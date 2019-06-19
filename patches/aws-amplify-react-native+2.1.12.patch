@@ -1,0 +1,153 @@
+diff --git a/node_modules/aws-amplify-react-native/dist/Storage/S3Album.js b/node_modules/aws-amplify-react-native/dist/Storage/S3Album.js
+index ee0b249..203ea37 100644
+--- a/node_modules/aws-amplify-react-native/dist/Storage/S3Album.js
++++ b/node_modules/aws-amplify-react-native/dist/Storage/S3Album.js
+@@ -29,9 +29,9 @@ export default class S3Album extends Component {
+     }
+ 
+     componentDidMount() {
+-        const { path, level, filter } = this.props;
++        const { path, level, filter, track, identityId } = this.props;
+         logger.debug(path);
+-        Storage.list(path, { level: level ? level : 'public' }).then(data => {
++        Storage.list(path, { level: level ? level : 'public', track, identityId }).then(data => {
+             logger.debug(data);
+             if (filter) {
+                 data = filter(data);
+diff --git a/node_modules/aws-amplify-react-native/dist/Storage/S3Image.js b/node_modules/aws-amplify-react-native/dist/Storage/S3Image.js
+index 1cd33bd..cde5845 100644
+--- a/node_modules/aws-amplify-react-native/dist/Storage/S3Image.js
++++ b/node_modules/aws-amplify-react-native/dist/Storage/S3Image.js
+@@ -11,9 +11,10 @@
+  * and limitations under the License.
+  */
+ 
+-import React, { Component } from 'react';
+ import { Image, StyleSheet } from 'react-native';
+-import { Storage, Logger } from 'aws-amplify';
++import { Logger, Storage } from 'aws-amplify';
++import React, { Component } from 'react';
++
+ import AmplifyTheme from '../AmplifyTheme';
+ 
+ const logger = new Logger('Storage.S3Image');
+@@ -22,21 +23,28 @@ export default class S3Image extends Component {
+     constructor(props) {
+         super(props);
+ 
++        this.mounted = true;
+         this.state = { src: null };
+     }
+ 
++    componentWillUnmount() {
++        this.mounted = false;
++    }
++
+     getImageSource() {
+-        const { imgKey, level } = this.props;
+-        Storage.get(imgKey, { level: level ? level : 'public' }).then(url => {
++        const { imgKey, level, track, identityId } = this.props;
++        Storage.get(imgKey, { level: level ? level : 'public', track, identityId }).then(url => {
+             logger.debug(url);
+-            this.setState({
+-                src: { uri: url }
+-            });
++            if (this.mounted) {
++                this.setState({
++                    src: { uri: url }
++                });
++            }
+         }).catch(err => logger.warn(err));
+     }
+ 
+     load() {
+-        const { imgKey, body, contentType, level } = this.props;
++        const { imgKey, body, contentType, level, track } = this.props;
+         if (!imgKey) {
+             logger.debug('empty imgKey');
+             return;
+@@ -48,7 +56,8 @@ export default class S3Image extends Component {
+             const type = contentType ? contentType : 'binary/octet-stream';
+             const opt = {
+                 contentType: type,
+-                level: level ? level : 'public'
++                level: level ? level : 'public',
++                track
+             };
+             const ret = Storage.put(imgKey, body, opt);
+             ret.then(data => {
+diff --git a/node_modules/aws-amplify-react-native/src/Storage/S3Album.js b/node_modules/aws-amplify-react-native/src/Storage/S3Album.js
+index b333af6..4ca2a92 100644
+--- a/node_modules/aws-amplify-react-native/src/Storage/S3Album.js
++++ b/node_modules/aws-amplify-react-native/src/Storage/S3Album.js
+@@ -34,9 +34,9 @@ export default class S3Album extends Component {
+     }
+ 
+     componentDidMount() {
+-        const { path, level, filter } = this.props;
++        const { path, level, filter, track, identityId } = this.props;
+         logger.debug(path);
+-        Storage.list(path, { level: level? level : 'public' })
++        Storage.list(path, { level: level? level : 'public', track, identityId })
+             .then(data => {
+                 logger.debug(data);
+                 if (filter) { data = filter(data); }
+diff --git a/node_modules/aws-amplify-react-native/src/Storage/S3Image.js b/node_modules/aws-amplify-react-native/src/Storage/S3Image.js
+index bb5240e..e78296e 100644
+--- a/node_modules/aws-amplify-react-native/src/Storage/S3Image.js
++++ b/node_modules/aws-amplify-react-native/src/Storage/S3Image.js
+@@ -20,6 +20,7 @@ import {
+     Storage,
+     Logger
+ } from 'aws-amplify';
++
+ import AmplifyTheme from '../AmplifyTheme';
+ 
+ const logger = new Logger('Storage.S3Image');
+@@ -28,23 +29,30 @@ export default class S3Image extends Component {
+     constructor(props) {
+         super(props);
+ 
++        this.mounted = true;
+         this.state = { src: null };
+     }
+ 
++    componentWillUnmount() {
++        this.mounted = false;
++    }
++
+     getImageSource() {
+-        const { imgKey, level } = this.props;
+-        Storage.get(imgKey, { level : level? level : 'public'})
++        const { imgKey, level, track, identityId } = this.props;
++        Storage.get(imgKey, { level : level? level : 'public', track, identityId })
+             .then(url => {
+                 logger.debug(url);
+-                this.setState({
+-                    src: { uri: url }
+-                });
++                if (this.mounted) {
++                    this.setState({
++                        src: { uri: url }
++                    });
++                }
+             })
+             .catch(err => logger.warn(err));
+     }
+ 
+     load() {
+-        const { imgKey, body, contentType, level } = this.props;
++        const { imgKey, body, contentType, level, track } = this.props;
+         if (!imgKey) {
+             logger.debug('empty imgKey');
+             return ;
+@@ -56,7 +64,8 @@ export default class S3Image extends Component {
+             const type = contentType? contentType : 'binary/octet-stream';
+             const opt = {
+                 contentType: type,
+-                level: level? level : 'public'
++                level: level? level : 'public',
++                track
+             }
+             const ret = Storage.put(imgKey, body, opt);
+             ret.then(data => {

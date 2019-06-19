@@ -1,24 +1,44 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "expo start",
+    "start": "yarn debugger && expo start",
+    "postinstall": "patch-package",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "lint": "tslint --project tsconfig.json --config tslint.json",
+    "debugger": "./scripts/run-debugger.sh",
+    "patch-package:update": "yarn patch-package react-native-elements aws-amplify-react-native"
   },
   "dependencies": {
-    "expo": "^33.0.6",
+    "aws-amplify": "1.1.29",
+    "aws-amplify-react-native": "2.1.12",
+    "expo": "33.0.6",
+    "formik": "1.5.7",
     "react": "16.8.3",
     "react-dom": "16.8.6",
     "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
-    "react-native-web": "^0.11.4"
+    "react-native-elements": "1.1.0",
+    "react-native-web": "0.11.4",
+    "react-navigation": "3.11.0",
+    "styled-components": "4.3.1",
+    "yup": "0.27.0"
   },
   "devDependencies": {
     "@types/react": "16.8.20",
     "@types/react-native": "0.57.63",
+    "@types/styled-components": "^4.1.16",
+    "@types/yup": "0.26.16",
+    "babel-plugin-styled-components": "1.10.1",
     "babel-preset-expo": "5.2.0",
-    "typescript": "3.5.2"
+    "patch-package": "6.1.2",
+    "tslint": "5.17.0",
+    "tslint-config-prettier": "1.18.0",
+    "tslint-react": "4.0.0",
+    "tslint-react-hooks": "2.1.1",
+    "typescript": "3.5.2",
+    "typescript-styled-plugin": "0.14.0"
   },
   "private": true
 }
