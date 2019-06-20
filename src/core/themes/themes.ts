@@ -5,7 +5,7 @@ import {
   colors,
 } from 'react-native-elements';
 
-export const DEFAULT_THEME: ThemeName = 'CYAN BLUE';
+export const DEFAULT_THEME: ThemeName = 'LIGHT BRILLIANT PINK';
 
 export interface Theme extends RneTheme {
   id: ThemeName;
