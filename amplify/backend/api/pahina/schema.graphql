@@ -1,0 +1,12 @@
+type PahinaUser
+  @model
+  @auth(rules: [{ allow: owner, ownerField: "id", queries: null }]) {
+  id: ID!
+  givenName: String!
+  familyName: String!
+  email: String!
+  picture: String
+  identityId: String
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}

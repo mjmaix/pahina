@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import { Hub } from '@aws-amplify/core';
 import Cache from '@aws-amplify/cache';
-import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 import {
   ThemeProvider as RneThemeProvider,
   Theme,
 } from 'react-native-elements';
 import { ThemeProvider as ScThemeProvider } from 'styled-components';
+
 import { ThemeHelper } from './core/themes/ThemeHelper';
 import { logError, logInfo } from './utils/reports';
 import { HubCallback } from '@aws-amplify/core/lib/Hub';
 import { STORAGE_KEY, ThemeName } from './core/themes';
+import { NavigationService } from './utils';
+import { AppRoutes } from './routes';
 
 interface AppState {
   theme?: Theme;
@@ -35,7 +38,7 @@ export default class App extends Component<{}, AppState> {
   }
 
   public authListener: HubCallback = data => {
-    logInfo('[START] authListener');
+    logInfo('[START]', 'authListener');
     switch (data.payload.event) {
       case 'signIn':
         break;
@@ -58,9 +61,16 @@ export default class App extends Component<{}, AppState> {
     return (
       <ScThemeProvider theme={theme}>
         <RneThemeProvider theme={theme}>
-          <View style={styles.container}>
-            <Text>Open up App.tsx to start working on your app!</Text>
-          </View>
+          <AppRoutes
+            screenProps={{
+              theme: this.state.theme,
+            }}
+            ref={navigatorRef => {
+              if (navigatorRef) {
+                NavigationService.setTopLevelNavigator(navigatorRef);
+              }
+            }}
+          />
         </RneThemeProvider>
       </ScThemeProvider>
     );
@@ -80,12 +90,3 @@ export default class App extends Component<{}, AppState> {
     }
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

@@ -5,7 +5,7 @@ import {
   colors,
 } from 'react-native-elements';
 
-export const DEFAULT_THEME: ThemeName = 'LIGHT BRILLIANT PINK';
+export const DEFAULT_THEME: ThemeName = 'CYAN BLUE';
 
 export interface Theme extends RneTheme {
   id: ThemeName;
@@ -26,7 +26,6 @@ export interface Theme extends RneTheme {
   } & Partial<RneColors>;
   activeTintColor: Color;
   inactiveTintColor: Color;
-  // statusBarStyle: StatusBarStyle;
 }
 
 export type ThemeName =
@@ -38,18 +37,6 @@ export type ThemeName =
   | 'GOLD';
 
 export const themes: Theme[] = [
-  // {
-  //   id: 'DEFAULT',
-  //   colors: {
-  //     ...Platform.select({
-  //       default: colors.platform.android,
-  //       ios: colors.platform.ios,
-  //     }),
-  //     bgColor: 'white',
-  //   },
-  //   activeTintColor: colors.primary,
-  //   inactiveTintColor: colors.secondary,
-  // },
   {
     id: 'LIGHT BRILLIANT PINK',
     colors: {
@@ -92,24 +79,4 @@ export const themes: Theme[] = [
     activeTintColor: '#ec407a',
     inactiveTintColor: '#455a64',
   },
-  // {
-  //   id: 'MISTY ROSE',
-  //   colors: {
-  //     bgColor: 'slateblue',
-  //     primary: 'mistyrose',
-  //     secondary: 'black',
-  //   },
-  //   activeTintColor: colors.primary,
-  //   inactiveTintColor: colors.secondary,
-  // },
-  // {
-  //   id: 'GOLD',
-  //   colors: {
-  //     bgColor: 'ghostwhite',
-  //     primary: 'gold',
-  //     secondary: 'black',
-  //   },
-  //   activeTintColor: colors.primary,
-  //   inactiveTintColor: colors.secondary,
-  // },
 ];

@@ -1,0 +1,10 @@
+{
+    "AppSyncApiName": "pahina",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authpahinaf228b64af228b64a",
+            "Outputs.UserPoolId"
+        ]
+    }
+}

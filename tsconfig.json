@@ -1,17 +1,18 @@
 {
   "compilerOptions": {
-    "allowJs": false,
+    "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "noFallthroughCasesInSwitch": true,
     "experimentalDecorators": true,
     "esModuleInterop": true,
-    "isolatedModules": true,
-    "jsx": "react-native",
+    "isolatedModules": false,
+    "jsx": "react",
     "lib": ["esnext"],
     "moduleResolution": "node",
     "noEmit": true,
     "strict": true,
     "target": "esnext",
+    "module": "esnext",
     "paths": { "*": ["types/*"] },
     "baseUrl": ".",
     "resolveJsonModule": true
