@@ -1,0 +1,19 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "pahina-dev-20190621014522-authRole",
+            "UnauthRoleArn": "arn:aws:iam::991300696177:role/pahina-dev-20190621014522-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::991300696177:role/pahina-dev-20190621014522-authRole",
+            "Region": "ap-southeast-1",
+            "DeploymentBucketName": "pahina-dev-20190621014522-deployment",
+            "UnauthRoleName": "pahina-dev-20190621014522-unauthRole",
+            "StackName": "pahina-dev-20190621014522",
+            "StackId": "arn:aws:cloudformation:ap-southeast-1:991300696177:stack/pahina-dev-20190621014522/2eb3e090-9383-11e9-a2b0-06e9ec8dfb16"
+        },
+        "categories": {
+            "auth": {
+                "pahinaf228b64af228b64a": {}
+            }
+        }
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "projectName": "pahina",
+    "version": "2.0",
+    "frontend": "javascript",
+    "javascript": {
+        "framework": "react-native",
+        "config": {
+            "SourceDir": "/",
+            "DistributionDir": "web-build",
+            "BuildCommand": "npm run-script amplify:hosting:build:web",
+            "StartCommand": "npm run-script expo:web"
+        }
+    },
+    "providers": [
+        "awscloudformation"
+    ]
+}

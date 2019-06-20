@@ -3,16 +3,16 @@ import React, { Component } from 'react';
 import { NavigationScreenProps } from 'react-navigation';
 
 import { EmailInput, Header, PasswordInput } from '../../components';
-import { SignUpModel, SignUpSchema, handleSignUp } from '../../core';
-import { FormikInputInjector } from '../../hocs';
-import { MemoFormikFormErrorText } from '../../hocs/MemoFormikFormErrorText';
+import { SignUpModel, SignUpSchema, handleSignUp } from '../../stores';
 import {
+  FormikInputInjector,
+  MemoFormikFormErrorText,
   StyledButton,
   StyledFormContainer,
   StyledFormRow,
   StyledScreenContainer,
   StyledTextInput,
-} from '../../styled';
+} from '../../components';
 import { Busy, NavigationService, alertFail, alertOk } from '../../utils';
 
 type Props = NavigationScreenProps;
