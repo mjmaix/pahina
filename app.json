@@ -8,10 +8,10 @@
     "platforms": ["ios", "android", "web"],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "http://com.mjabadilla.pahina.s3-website-ap-southeast-1.amazonaws.com/public/icon.png",
+    "icon": "./assets/icon.png",
     "primaryColor": "#E2A4C9",
     "splash": {
-      "image": "http://com.mjabadilla.pahina.s3-website-ap-southeast-1.amazonaws.com/public/splashscreen.png",
+      "image": "./assets/splashscreen.png",
       "resizeMode": "contain",
       "backgroundColor": "#E2A4C9"
     },
