@@ -1,0 +1,17 @@
+{
+  "name": "pahina",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://git-codecommit.ap-southeast-1.amazonaws.com/v1/repos/pahina",
+  "author": "MJ Abadilla <mjmaix@gmail.com>",
+  "license": "unlicensed",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "tslint": "5.17.0",
+    "tslint-config-prettier": "1.18.0",
+    "typescript": "3.5.2"
+  }
+}

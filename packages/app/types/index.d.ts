@@ -1,6 +1,6 @@
 import { CognitoUser as AuthCognitoUser } from '@aws-amplify/auth';
 
-import { GetPahinaUserQuery } from '../src/API';
+import { GetPahinaUserQuery } from '../../backend/src/API';
 
 declare global {
   /**

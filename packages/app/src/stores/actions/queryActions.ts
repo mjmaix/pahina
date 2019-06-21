@@ -1,11 +1,14 @@
 import gql from 'graphql-tag';
 
-import { ApolloQueryResult } from '../../../node_modules/apollo-client/core/types';
-import { GetPahinaUserQuery, GetPahinaUserQueryVariables } from '../../API';
+import {
+  GetPahinaUserQuery,
+  GetPahinaUserQueryVariables,
+} from '../../../../backend/src/API';
 
 import { apolloClient as client } from '../../setup';
 import { logRecord, logInfo } from '../../utils';
 import { getPahinaUser } from '../../graphql/queries';
+import { ApolloQueryResult } from 'apollo-client';
 
 const assertErrors = (response: ApolloQueryResult<GetPahinaUserQuery>) => {
   if (response && response.errors && response.errors.length > 0) {

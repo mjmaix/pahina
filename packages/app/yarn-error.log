@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/Cellar/node/12.4.0/bin/node /usr/local/Cellar/yarn/1.17.0/libexec/bin/yarn.js add -D @types/aws-amplify-react
+  /usr/local/Cellar/node/12.4.0/bin/node /usr/local/Cellar/yarn/1.17.0/libexec/bin/yarn.js add @pahina/backend
 
 PATH: 
   /Users/mjabadilla/.rvm/gems/ruby-2.5.1/bin:/Users/mjabadilla/.rvm/gems/ruby-2.5.1@global/bin:/Users/mjabadilla/.rvm/rubies/ruby-2.5.1/bin:/Users/mjabadilla/.fastlane/bin:/Users/mjabadilla/Library/Python/2.7/bin:/usr/local/opt/openssl/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/Users/mjabadilla/.local/bin::/Users/mjabadilla/Library/Android/sdk/emulator:/Users/mjabadilla/Library/Android/sdk/platform-tools:/Users/mjabadilla/Library/Android/sdk/tools:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/MacGPG2/bin:/Users/mjabadilla/.rvm/gems/ruby-2.5.1/bin:/Users/mjabadilla/.rvm/gems/ruby-2.5.1@global/bin:/Users/mjabadilla/.rvm/rubies/ruby-2.5.1/bin:/Users/mjabadilla/.fastlane/bin:/Users/mjabadilla/Library/Python/2.7/bin:/usr/local/opt/openssl/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/Users/mjabadilla/.local/bin:/Users/mjabadilla/Library/Android/sdk/emulator:/Users/mjabadilla/Library/Android/sdk/platform-tools:/Users/mjabadilla/Library/Android/sdk/tools:/Users/mjabadilla/.rvm/bin
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2faws-amplify-react: Not found
+  Error: https://registry.yarnpkg.com/@pahina%2fbackend: Not found
       at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.17.0/libexec/lib/cli.js:66823:18)
       at Request.self.callback (/usr/local/Cellar/yarn/1.17.0/libexec/lib/cli.js:140439:22)
       at Request.emit (events.js:200:13)
@@ -28,6 +28,8 @@ Trace:
 
 npm manifest: 
   {
+    "name": "@pahina/app",
+    "version": "1.0.0",
     "main": "node_modules/expo/AppEntry.js",
     "scripts": {
       "postinstall": "patch-package",
@@ -1191,9 +1193,9 @@ Lockfile:
       "@types/react" "*"
   
   "@types/react@*":
-    version "16.8.21"
-    resolved "https://registry.yarnpkg.com/@types/react/-/react-16.8.21.tgz#aefb32519a4111964993be5b2bd3f172f81c34ff"
-    integrity sha512-+jAtgtJ3htE+VEP/bMzBBOANGkaTbMOGYWVrmhCVtp2WE//lNG6Irw9kBEaLR7lQGjjkt/BlSSHPgArFNOKhkg==
+    version "16.8.22"
+    resolved "https://registry.yarnpkg.com/@types/react/-/react-16.8.22.tgz#7f18bf5ea0c1cad73c46b6b1c804a3ce0eec6d54"
+    integrity sha512-C3O1yVqk4sUXqWyx0wlys76eQfhrQhiDhDlHBrjER76lR2S2Agiid/KpOU9oCqj1dISStscz7xXz1Cg8+sCQeA==
     dependencies:
       "@types/prop-types" "*"
       csstype "^2.2.0"
@@ -2425,9 +2427,9 @@ Lockfile:
     integrity sha1-IsxKNKCrxDlQ9CxkEQJKP2NmtFo=
   
   caniuse-lite@^1.0.30000975:
-    version "1.0.30000975"
-    resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000975.tgz#d4e7131391dddcf2838999d3ce75065f65f1cdfc"
-    integrity sha512-ZsXA9YWQX6ATu5MNg+Vx/cMQ+hM6vBBSqDeJs8ruk9z0ky4yIHML15MoxcFt088ST2uyjgqyUGRJButkptWf0w==
+    version "1.0.30000976"
+    resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000976.tgz#d30fe12662cb2a21e130d307db9907513ca830a2"
+    integrity sha512-tleNB1IwPRqZiod6nUNum63xQCMN96BUO2JTeiwuRM7p9d616EHsMBjBWJMudX39qCaPuWY8KEWzMZq7A9XQMQ==
   
   capture-exit@^1.2.0:
     version "1.2.0"
@@ -2872,9 +2874,9 @@ Lockfile:
     integrity sha512-R9hc1Xa/NOBi9WRVUWg19rl1UB7Tt4kuPd+thNJgFZoxXsTz7ncaPaeIm+40oSGuP33DfMb4sZt1QIGiJzC4EA==
   
   deepmerge@^3.1.0:
-    version "3.2.1"
-    resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-3.2.1.tgz#76a1f47854bcfcd66ee9a948d110540a8e12b261"
-    integrity sha512-+hbDSzTqEW0fWgnlKksg7XAOtT+ddZS5lHZJ6f6MdixRs9wQy+50fm1uUCVb1IkvjLUYX/SfFO021ZNwriURTw==
+    version "3.3.0"
+    resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-3.3.0.tgz#d3c47fd6f3a93d517b14426b0628a17b0125f5f7"
+    integrity sha512-GRQOafGHwMHpjPx9iCvTgpu9NojZ49q794EEL94JVEw6VaeA8XTUyBKvAkOOjBX9oJNiV6G3P+T+tihFjo2TqA==
   
   define-property@^0.2.5:
     version "0.2.5"
@@ -6019,9 +6021,9 @@ Lockfile:
     integrity sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
   
   query-string@^6.2.0, query-string@^6.4.2:
-    version "6.7.0"
-    resolved "https://registry.yarnpkg.com/query-string/-/query-string-6.7.0.tgz#7e92bf8525140cf8c5ebf500f26716b0de5b7023"
-    integrity sha512-oQ01H1jrgDRbPq5SjtJF470S418GOrKkds+fpvAt6DQatHXl7bmkaJulHbTIM+QNGtoPpa8f5k9W3Zk50zXRPQ==
+    version "6.8.0"
+    resolved "https://registry.yarnpkg.com/query-string/-/query-string-6.8.0.tgz#08be5c20ea6657150bacaa6bd9829cfa8e546dc2"
+    integrity sha512-CVpZPN0xDUfmoT7qlDbbx/2jNjk43LW3Ayjy7E2BjOQNlL8L/hqhihUpv/XPu/w3H/LBjlZ7OXP8x/QEnuxTtA==
     dependencies:
       decode-uri-component "^0.2.0"
       split-on-first "^1.0.0"

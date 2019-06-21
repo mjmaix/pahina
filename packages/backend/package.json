@@ -1,0 +1,13 @@
+{
+  "name": "@pahina/backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "MJ Abadilla <mjmaix@gmail.com>",
+  "license": "unlicensed",
+  "private": true,
+  "devDependencies": {
+    "tslint": "5.17.0",
+    "tslint-config-prettier": "1.18.0",
+    "typescript": "3.5.2"
+  }
+}
