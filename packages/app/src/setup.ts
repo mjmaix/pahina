@@ -3,7 +3,7 @@ import AWSAppSyncClient from 'aws-appsync';
 import { AuthOptions } from 'aws-appsync/lib/link/auth-link';
 
 // @ts-ignore
-import awsmobile from '../../backend/src/aws-exports';
+import awsmobile from '@pahina/backend/src/aws-exports';
 
 Amplify.configure(awsmobile);
 

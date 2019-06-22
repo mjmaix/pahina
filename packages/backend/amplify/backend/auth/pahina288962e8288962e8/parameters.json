@@ -1,76 +1,92 @@
 {
-  "identityPoolName": "pahina288962e8_identitypool_288962e8",
-  "allowUnauthenticatedIdentities": true,
-  "lambdaLogPolicy": "pahina_288962e8_lambda_log_policy",
-  "openIdLambdaRoleName": "pahina_288962e8_openid_lambda_role",
-  "openIdRolePolicy": "pahina_288962e8_openid_pass_role_policy",
-  "openIdLambdaIAMPolicy": "pahina_288962e8_openid_lambda_iam_policy",
-  "openIdLogPolicy": "pahina_288962e8_openid_lambda_log_policy",
-  "userPoolName": "pahina288962e8_userpool_288962e8",
-  "autoVerifiedAttributes": ["email"],
-  "mfaConfiguration": "OPTIONAL",
-  "mfaTypes": ["TOTP"],
-  "roleName": "pahina288962e8_sns-role",
-  "roleExternalId": "pahina288962e8_role_external_id",
-  "policyName": "pahina288962e8-sns-policy",
-  "smsAuthenticationMessage": "Your authentication code is {####}",
-  "smsVerificationMessage": "Your verification code is {####}",
-  "emailVerificationSubject": "Your verification code",
-  "emailVerificationMessage": "Your verification code is {####}",
-  "defaultPasswordPolicy": true,
-  "passwordPolicyMinLength": 8,
-  "passwordPolicyCharacters": [
-    "Requires Lowercase",
-    "Requires Uppercase",
-    "Requires Numbers",
-    "Requires Symbols"
-  ],
-  "requiredAttributes": ["email", "family_name", "given_name"],
-  "userpoolClientName": "pahina288962e8_app_client",
-  "userpoolClientGenerateSecret": true,
-  "userpoolClientRefreshTokenValidity": 30,
-  "userpoolClientWriteAttributes": [
-    "preferred_username",
-    "picture",
-    "email",
-    "family_name",
-    "given_name",
-    "phone_number"
-  ],
-  "userpoolClientReadAttributes": [
-    "email",
-    "family_name",
-    "given_name",
-    "preferred_username",
-    "picture",
-    "phone_number",
-    "email_verified",
-    "phone_number_verified"
-  ],
-  "mfaLambdaRole": "pahina288962e8_totp_lambda_role",
-  "mfaLambdaLogPolicy": "pahina288962e8_totp_lambda_log_policy",
-  "mfaPassRolePolicy": "pahina288962e8_totp_pass_role_policy",
-  "mfaLambdaIAMPolicy": "pahina288962e8_totp_lambda_iam_policy",
-  "userpoolClientLambdaRole": "pahina288962e8_userpoolclient_lambda_role",
-  "userpoolClientLogPolicy": "pahina288962e8_userpoolclient_lambda_log_policy",
-  "userpoolClientLambdaPolicy": "pahina288962e8_userpoolclient_lambda_iam_policy",
-  "userpoolClientSetAttributes": true,
-  "useDefault": "manual",
-  "authSelections": "identityPoolAndUserPool",
-  "resourceName": "pahina288962e8288962e8",
-  "thirdPartyAuth": false,
-  "usernameAttributes": ["email"],
-  "hostedUI": false,
-  "authRoleName": {
-    "Ref": "AuthRoleName"
-  },
-  "unauthRoleName": {
-    "Ref": "UnauthRoleName"
-  },
-  "authRoleArn": {
-    "Fn::GetAtt": ["AuthRole", "Arn"]
-  },
-  "unauthRoleArn": {
-    "Fn::GetAtt": ["UnauthRole", "Arn"]
-  }
+    "identityPoolName": "pahina288962e8_identitypool_288962e8",
+    "allowUnauthenticatedIdentities": true,
+    "lambdaLogPolicy": "pahina_288962e8_lambda_log_policy",
+    "openIdLambdaRoleName": "pahina_288962e8_openid_lambda_role",
+    "openIdRolePolicy": "pahina_288962e8_openid_pass_role_policy",
+    "openIdLambdaIAMPolicy": "pahina_288962e8_openid_lambda_iam_policy",
+    "openIdLogPolicy": "pahina_288962e8_openid_lambda_log_policy",
+    "userPoolName": "pahina288962e8_userpool_288962e8",
+    "autoVerifiedAttributes": [
+        "email"
+    ],
+    "mfaConfiguration": "OPTIONAL",
+    "mfaTypes": [
+        "TOTP"
+    ],
+    "roleName": "pahina288962e8_sns-role",
+    "roleExternalId": "pahina288962e8_role_external_id",
+    "policyName": "pahina288962e8-sns-policy",
+    "smsAuthenticationMessage": "Your authentication code is {####}",
+    "smsVerificationMessage": "Your verification code is {####}",
+    "emailVerificationSubject": "Your verification code",
+    "emailVerificationMessage": "Your verification code is {####}",
+    "defaultPasswordPolicy": true,
+    "passwordPolicyMinLength": 8,
+    "passwordPolicyCharacters": [
+        "Requires Lowercase",
+        "Requires Uppercase",
+        "Requires Numbers",
+        "Requires Symbols"
+    ],
+    "requiredAttributes": [
+        "email",
+        "family_name",
+        "given_name"
+    ],
+    "userpoolClientName": "pahina288962e8_app_client",
+    "userpoolClientGenerateSecret": true,
+    "userpoolClientRefreshTokenValidity": 30,
+    "userpoolClientWriteAttributes": [
+        "preferred_username",
+        "picture",
+        "email",
+        "family_name",
+        "given_name",
+        "phone_number"
+    ],
+    "userpoolClientReadAttributes": [
+        "email",
+        "family_name",
+        "given_name",
+        "preferred_username",
+        "picture",
+        "phone_number",
+        "email_verified",
+        "phone_number_verified"
+    ],
+    "mfaLambdaRole": "pahina288962e8_totp_lambda_role",
+    "mfaLambdaLogPolicy": "pahina288962e8_totp_lambda_log_policy",
+    "mfaPassRolePolicy": "pahina288962e8_totp_pass_role_policy",
+    "mfaLambdaIAMPolicy": "pahina288962e8_totp_lambda_iam_policy",
+    "userpoolClientLambdaRole": "pahina288962e8_userpoolclient_lambda_role",
+    "userpoolClientLogPolicy": "pahina288962e8_userpoolclient_lambda_log_policy",
+    "userpoolClientLambdaPolicy": "pahina288962e8_userpoolclient_lambda_iam_policy",
+    "userpoolClientSetAttributes": true,
+    "useDefault": "manual",
+    "authSelections": "identityPoolAndUserPool",
+    "resourceName": "pahina288962e8288962e8",
+    "thirdPartyAuth": false,
+    "usernameAttributes": [
+        "email"
+    ],
+    "hostedUI": false,
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    },
+    "unauthRoleArn": {
+        "Fn::GetAtt": [
+            "UnauthRole",
+            "Arn"
+        ]
+    }
 }

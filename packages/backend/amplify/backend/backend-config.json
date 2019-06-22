@@ -19,5 +19,11 @@
 			"service": "S3",
 			"providerPlugin": "awscloudformation"
 		}
+	},
+	"analytics": {
+		"pahina": {
+			"service": "Pinpoint",
+			"providerPlugin": "awscloudformation"
+		}
 	}
 }
