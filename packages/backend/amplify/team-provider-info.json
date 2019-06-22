@@ -1,18 +1,18 @@
 {
     "dev": {
         "awscloudformation": {
-            "AuthRoleName": "pahina-dev-20190621014522-authRole",
-            "UnauthRoleArn": "arn:aws:iam::991300696177:role/pahina-dev-20190621014522-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::991300696177:role/pahina-dev-20190621014522-authRole",
+            "AuthRoleName": "pahina-dev-20190621173506-authRole",
+            "UnauthRoleArn": "arn:aws:iam::991300696177:role/pahina-dev-20190621173506-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::991300696177:role/pahina-dev-20190621173506-authRole",
             "Region": "ap-southeast-1",
-            "DeploymentBucketName": "pahina-dev-20190621014522-deployment",
-            "UnauthRoleName": "pahina-dev-20190621014522-unauthRole",
-            "StackName": "pahina-dev-20190621014522",
-            "StackId": "arn:aws:cloudformation:ap-southeast-1:991300696177:stack/pahina-dev-20190621014522/2eb3e090-9383-11e9-a2b0-06e9ec8dfb16"
+            "DeploymentBucketName": "pahina-dev-20190621173506-deployment",
+            "UnauthRoleName": "pahina-dev-20190621173506-unauthRole",
+            "StackName": "pahina-dev-20190621173506",
+            "StackId": "arn:aws:cloudformation:ap-southeast-1:991300696177:stack/pahina-dev-20190621173506/dbadc070-9407-11e9-a369-024d84896d6a"
         },
         "categories": {
             "auth": {
-                "pahinaf228b64af228b64a": {}
+                "pahina288962e8288962e8": {}
             }
         }
     }

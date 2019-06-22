@@ -1,13 +1,7 @@
 {
 	"auth": {
-		"pahinaf228b64af228b64a": {
+		"pahina288962e8288962e8": {
 			"service": "Cognito",
-			"providerPlugin": "awscloudformation"
-		}
-	},
-	"storage": {
-		"s3d45534d5": {
-			"service": "S3",
 			"providerPlugin": "awscloudformation"
 		}
 	},
@@ -18,6 +12,12 @@
 			"output": {
 				"securityType": "AMAZON_COGNITO_USER_POOLS"
 			}
+		}
+	},
+	"storage": {
+		"images": {
+			"service": "S3",
+			"providerPlugin": "awscloudformation"
 		}
 	}
 }

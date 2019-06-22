@@ -25,6 +25,9 @@
     },
     "android": {
       "package": "com.mjabadilla.pahina"
+    },
+    "packagerOpts": {
+      "config": "metro.config.js"
     }
   }
 }

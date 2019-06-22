@@ -9,7 +9,11 @@
   "workspaces": [
     "packages/*"
   ],
+  "scripts": {
+    "postinstall": "patch-package"
+  },
   "devDependencies": {
+    "patch-package": "6.1.2",
     "tslint": "5.17.0",
     "tslint-config-prettier": "1.18.0",
     "typescript": "3.5.2"
