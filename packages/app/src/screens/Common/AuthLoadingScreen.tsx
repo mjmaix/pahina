@@ -4,13 +4,8 @@ import { ActivityIndicator, StatusBar } from 'react-native';
 import * as Permissions from 'expo-permissions';
 
 import { StyledScreenContainer } from '../../components';
-import {
-  NavigationService,
-  alertOk,
-  alertConfirm,
-  logRecord,
-} from '../../utils';
-import { logInfo } from '../../reports';
+import { NavigationService, alertOk } from '../../utils';
+import { logRecord, logInfo } from '@pahina/core/src/utils';
 
 class AuthLoadingScreen extends React.Component<{}> {
   public async componentDidMount() {

@@ -4,12 +4,6 @@ import { NavigationScreenProps } from 'react-navigation';
 
 import { EmailInput, Header, PasswordInput } from '../../components';
 import {
-  SignInEmailSchema,
-  SignInModel,
-  handleClUserCreate,
-  handleSignIn,
-} from '../../stores';
-import {
   FormikInputInjector,
   MemoFormikFormErrorText,
   StyledButton,
@@ -21,7 +15,10 @@ import {
 import { Busy, NavigationService, alertFail } from '../../utils';
 import { MFA_CHALLENGES } from '../../utils/constants';
 import { ScreenName } from '../../routes/mappings';
-import { SafeException } from '../../core';
+import { SignInModel } from '@pahina/core/src/models';
+import { SignInEmailSchema } from '@pahina/core/src/validators';
+import { SafeException } from '@pahina/core/src/errors';
+import { handleSignIn } from '@pahina/core/src/actions';
 
 type Props = NavigationScreenProps;
 type FormModel = typeof SignInModel;

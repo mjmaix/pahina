@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { StyleGuide } from '../../core';
+import { StyleGuide } from '../../themes';
 
 export const StyledFormOverImageContainer = styled.View`
   background-color: 'rgba(255,255,255,0.3)';

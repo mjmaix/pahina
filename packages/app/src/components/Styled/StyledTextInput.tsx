@@ -1,6 +1,5 @@
-import React from 'react';
 import { Input } from 'react-native-elements';
-import styled from 'styled-components/native';
+import styled from 'styled-components';
 
 export const StyledTextInput = styled(Input).attrs(props => {
   return {

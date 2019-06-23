@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { StyleGuide } from '../../core';
+import { StyleGuide } from '../../themes';
 
 export const styles = StyleSheet.create({
   headerText: {

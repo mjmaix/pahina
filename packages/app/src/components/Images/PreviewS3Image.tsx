@@ -2,8 +2,9 @@ import React from 'react';
 import { View } from 'react-native';
 import { Icon } from 'react-native-elements';
 
-import { isConnected } from '../../utils';
 import { containerStyles } from '../commonStyles';
+import { S3Image } from './S3Image';
+import { isConnected } from '../../utils';
 
 interface PreviewS3ImageProps {
   imgKey: string;

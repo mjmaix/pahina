@@ -1,8 +1,7 @@
 import isBoolean from 'lodash/isBoolean';
 
 import { AwsException, AwsExceptions } from './AwsExceptions';
-import { logInfo } from '../../utils';
-import { logError } from '../../reports';
+import { logError, logInfo } from '../utils';
 
 /* tslint:disable:max-classes-per-file */
 

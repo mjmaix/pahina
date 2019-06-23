@@ -3,7 +3,7 @@ import { NavigationRouteConfig } from 'react-navigation';
 
 import { ConfirmSignUpScreen } from './../screens/Auth/ConfirmSignUpScreen';
 import { IconObject } from '../components';
-import { StyleGuide } from '../core';
+import { StyleGuide } from '../themes';
 import {
   BusyOverlayScreen,
   CompleteRegistrationScreen,

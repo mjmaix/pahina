@@ -3,13 +3,7 @@ import { ListRenderItem } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { FlatList, NavigationScreenProps } from 'react-navigation';
 
-import {
-  ProfileModel,
-  handleCheckContactVerified,
-  handleGetPreferredMfa,
-  handlePressVerifyContact,
-  handleSetMfa,
-} from '../../stores';
+import { handlePressVerifyContact } from '../../stores';
 
 import {
   NavigationService,
@@ -17,6 +11,13 @@ import {
   alertFail,
   alertOk,
 } from '../../utils';
+import { MfaChallengeType } from '@pahina/core/types';
+import { ProfileModel } from '@pahina/core/src/models';
+import {
+  handleGetPreferredMfa,
+  handleCheckContactVerified,
+  handleSetMfa,
+} from '@pahina/core/src/actions';
 
 type Props = NavigationScreenProps;
 interface State {

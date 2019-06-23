@@ -4,11 +4,6 @@ import { NavigationScreenProps } from 'react-navigation';
 
 import { EmailInput, Header } from '../../components';
 import {
-  EmailModel,
-  EmailOnlySchema,
-  handleForgotPassword,
-} from '../../stores';
-import {
   FormikInputInjector,
   MemoFormikFormErrorText,
   StyledButton,
@@ -18,6 +13,9 @@ import {
   StyledTextInput,
 } from '../../components';
 import { Busy, NavigationService, alertFail, alertOk } from '../../utils';
+import { EmailModel } from '@pahina/core/src/models';
+import { EmailOnlySchema } from '@pahina/core/src/validators';
+import { handleForgotPassword } from '@pahina/core/src/actions';
 
 type Props = NavigationScreenProps;
 type FormModel = typeof EmailModel;

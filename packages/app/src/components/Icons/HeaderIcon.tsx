@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon, IconProps } from 'react-native-elements';
 import { IconObject } from '.';
-import { StyleGuide } from '../../core';
+import { StyleGuide } from '../../themes';
 
 interface HeaderIconProps {
   icon: IconObject & IconProps;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Hub } from '@aws-amplify/core';
 import Cache from '@aws-amplify/cache';
+import { HubCallback } from '@aws-amplify/core/lib/Hub';
 import { ActivityIndicator } from 'react-native';
 import {
   ThemeProvider as RneThemeProvider,
@@ -8,12 +9,10 @@ import {
 } from 'react-native-elements';
 import { ThemeProvider as ScThemeProvider } from 'styled-components';
 
-import { ThemeHelper } from './core/themes/ThemeHelper';
-import { logError, logInfo } from './utils/reports';
-import { HubCallback } from '@aws-amplify/core/lib/Hub';
-import { STORAGE_KEY, ThemeName } from './core/themes';
+import { STORAGE_KEY, ThemeName, ThemeHelper } from './themes';
 import { NavigationService } from './utils';
 import { AppRoutes } from './routes';
+import { logInfo, logError } from '@pahina/core/src/utils';
 
 interface AppState {
   theme?: Theme;

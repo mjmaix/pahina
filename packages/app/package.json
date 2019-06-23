@@ -16,14 +16,10 @@
     "amplify:hosting:build:web": "if [ -f yarn.lock ] ; then yarn; elif [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ]; then npm ci; else npm install; fi && expo build:web"
   },
   "dependencies": {
-    "@pahina/backend": "1.0.0",
-    "aws-amplify": "1.1.29",
-    "aws-amplify-react": "^2.3.9",
+    "@pahina/core": "1.0.0",
     "aws-amplify-react-native": "2.1.12",
-    "aws-appsync": "^1.8.1",
     "expo": "33.0.6",
     "formik": "1.5.7",
-    "graphql-tag": "^2.10.1",
     "hex-to-rgb": "^1.0.1",
     "react": "16.8.3",
     "react-apollo": "^2.5.6",

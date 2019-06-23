@@ -5,17 +5,10 @@ import {
   NavigationScreenProps,
 } from 'react-navigation';
 
-import { StyleGuide, WrapKnownExceptions } from '../../core';
+import { StyleGuide } from '../../themes';
 import {
-  ProfileModel,
-  UpdateProfileSchema,
-  handleCheckContactVerified,
   handleAppSyncUserUpdate,
-  handleGetCurrentUserAttrs,
   handlePressVerifyContact,
-  handleSignOut,
-  handleUpdateProfile,
-  handleVerifyContactResend,
 } from '../../stores';
 import {
   FormikButtonInjector,
@@ -37,10 +30,21 @@ import {
   Busy,
   NavigationService,
   getMime,
-  logInfo,
   alertFail,
   alertOk,
 } from '../../utils';
+import { CognitoContact } from '@pahina/core/types';
+import { StorageConfig } from '../../../types';
+import { ProfileModel } from '@pahina/core/src/models';
+import {
+  handleGetCurrentUserAttrs,
+  handleCheckContactVerified,
+  handleSignOut,
+  handleUpdateProfile,
+} from '@pahina/core/src/actions';
+import { UpdateProfileSchema } from '@pahina/core/src/validators';
+import { WrapKnownExceptions } from '@pahina/core/src/errors';
+import { logInfo } from '@pahina/core/src/utils';
 
 interface Props extends NavigationScreenProps {}
 type FormModel = typeof ProfileModel;
@@ -224,18 +228,6 @@ class ProfileScreen extends Component<Props, typeof InitialState> {
 
   private handlePressChangePassword = () => {
     NavigationService.navigate('Change');
-  };
-
-  private handlePressVerifyContactResend = async (contact: CognitoContact) => {
-    try {
-      Busy.start();
-      await handleVerifyContactResend(contact);
-      alertOk(() => handlePressVerifyContact(contact));
-    } catch (err) {
-      alertFail(() => null, err);
-    } finally {
-      Busy.stop();
-    }
   };
 
   private onSave = async <T extends FormModel>(

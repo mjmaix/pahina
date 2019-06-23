@@ -3,10 +3,10 @@ import * as FileSystem from 'expo-file-system';
 import * as ImagePicker from 'expo-image-picker';
 
 import { Storage } from 'aws-amplify';
-import { Platform } from 'react-native';
 
-import { logError, logInfo } from '../utils/reports';
 import { getExt } from './getExt';
+import { StorageConfig, S3Object } from '../../types';
+import { logInfo, logError } from '@pahina/core/src/utils';
 
 const fs = FileSystem;
 
@@ -22,11 +22,11 @@ const defaultStorageConfig: StorageConfig = {
 
 export class AsyncImagePicker {
   private static loadAssetToBase64 = async (filePath: string) => {
-    let sureFilePath = filePath;
-    if (Platform.OS === 'ios') {
-      logInfo(`Read file: ${filePath}`);
-      sureFilePath = filePath.replace('file:/', '');
-    }
+    const sureFilePath = filePath;
+    // if (Platform.OS === 'ios') {
+    //   logInfo(`Read file: ${filePath}`);
+    //   sureFilePath = filePath.replace('file:/', '');
+    // }
     try {
       const data = await fs.readAsStringAsync(sureFilePath, {
         encoding: FileSystem.EncodingType.Base64,
@@ -48,7 +48,7 @@ export class AsyncImagePicker {
     const data = await AsyncImagePicker.loadAssetToBase64(imageUri);
     const uploadFileName = `profile_picture.${getExt(imageUri)}`;
     try {
-      logInfo(['Uploading', uploadFileName, storageConfig]);
+      logInfo('Uploading', uploadFileName, storageConfig);
       const result = await Storage.put(uploadFileName, data, storageConfig);
       const s3Key = (result as S3Object).key;
       return s3Key;

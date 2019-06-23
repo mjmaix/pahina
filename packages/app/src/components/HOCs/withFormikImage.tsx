@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 
 import { PreviewAvatarProps } from '../';
 import { FormikProps } from 'formik';
+import { StringKeyedObject } from '@pahina/core/types';
 
 export interface WithFormikConfig<T extends StringKeyedObject> {
   formProps: FormikProps<T>;

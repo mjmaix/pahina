@@ -10,7 +10,8 @@
     "packages/*"
   ],
   "scripts": {
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "cleanup:node": "rm -r node_modules; for d in packages/*/node_modules; do echo $d; rm -r $d; done"
   },
   "devDependencies": {
     "patch-package": "6.1.2",

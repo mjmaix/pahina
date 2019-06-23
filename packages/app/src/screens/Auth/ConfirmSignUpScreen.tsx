@@ -4,13 +4,6 @@ import { NavigationScreenProps } from 'react-navigation';
 
 import { CodeInput, EmailInput, Header } from '../../components';
 import {
-  ChallengeModel,
-  ChallengeSchema,
-  EmailModel,
-  handleConfirmSignUp,
-  handleResend,
-} from '../../stores';
-import {
   FormikInputInjector,
   MemoFormikFormErrorText,
   StyledButton,
@@ -20,6 +13,9 @@ import {
   StyledTextInput,
 } from '../../components';
 import { Busy, NavigationService, alertFail, alertOk } from '../../utils';
+import { ChallengeModel, EmailModel } from '@pahina/core/src/models';
+import { handleResend, handleConfirmSignUp } from '@pahina/core/src/actions';
+import { ChallengeSchema } from '@pahina/core/src/validators';
 
 interface Props extends NavigationScreenProps {}
 type FormModel = typeof ChallengeModel;

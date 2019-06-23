@@ -3,7 +3,7 @@ import { View, ViewProps } from 'react-native';
 import styled from 'styled-components/native';
 
 import { containerStyles, formStyles } from '../commonStyles';
-import { StyleGuide } from '../../core';
+import { StyleGuide } from '../../themes';
 
 type StyledBottomContainerProps = ViewProps &
   RefAttributes<View> & { rightContent?: boolean };

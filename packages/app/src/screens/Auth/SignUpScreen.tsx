@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { NavigationScreenProps } from 'react-navigation';
 
 import { EmailInput, Header, PasswordInput } from '../../components';
-import { SignUpModel, SignUpSchema, handleSignUp } from '../../stores';
 import {
   FormikInputInjector,
   MemoFormikFormErrorText,
@@ -14,6 +13,9 @@ import {
   StyledTextInput,
 } from '../../components';
 import { Busy, NavigationService, alertFail, alertOk } from '../../utils';
+import { handleSignUp } from '@pahina/core/src/actions';
+import { SignUpModel } from '@pahina/core/src/models';
+import { SignUpSchema } from '@pahina/core/src/validators';
 
 type Props = NavigationScreenProps;
 type FormModel = typeof SignUpModel;

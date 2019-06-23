@@ -2,7 +2,7 @@ import { EventEmitter } from 'eventemitter3';
 import _ from 'lodash';
 
 import { DEFAULT_THEME, ThemeName, themes } from './themes';
-import { logInfo } from '../../utils/reports';
+import { logInfo } from '@pahina/core/src/utils';
 
 type Theme = typeof themes[0];
 

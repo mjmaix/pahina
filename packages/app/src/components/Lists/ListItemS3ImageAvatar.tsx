@@ -1,7 +1,9 @@
 import React from 'react';
 import { Avatar, AvatarProps } from 'react-native-elements';
 
-import { StyleGuide } from '../../core';
+import { AppSyncUser } from '@pahina/core/types';
+
+import { StyleGuide } from '../../themes';
 import { PreviewAvatar } from '../Images/PreviewAvatar';
 
 interface Props extends AvatarProps {

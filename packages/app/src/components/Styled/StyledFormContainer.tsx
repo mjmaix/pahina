@@ -1,4 +1,4 @@
-import styled from 'styled-components/native';
+import styled from 'styled-components';
 
 import { FormKeyboardAvoidingView } from '../Forms';
 import { formStyles } from '../commonStyles';

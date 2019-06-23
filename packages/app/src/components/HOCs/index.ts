@@ -3,6 +3,7 @@ import { ReactElement } from 'react';
 import { ButtonProps, InputProps } from 'react-native-elements';
 
 import { PreviewAvatarProps } from './../Images/PreviewAvatar';
+import { StringKeyedObject } from '@pahina/core/types';
 
 export * from './FormikInputInjector';
 export * from './FormikButtonInjector';

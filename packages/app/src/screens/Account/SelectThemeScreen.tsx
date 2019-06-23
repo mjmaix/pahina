@@ -4,7 +4,7 @@ import { FlatList, ListRenderItemInfo, StyleSheet } from 'react-native';
 import { ThemeProps, withTheme as rneWithTheme } from 'react-native-elements';
 import { NavigationScreenProps } from 'react-navigation';
 
-import { STORAGE_KEY, Theme, ThemeHelper, themes } from '../../core';
+import { STORAGE_KEY, Theme, ThemeHelper, themes } from '../../themes';
 import {
   StyledBoldText,
   StyledScreenContainer,

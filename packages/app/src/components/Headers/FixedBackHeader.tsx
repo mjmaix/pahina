@@ -2,7 +2,7 @@ import React from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { Button, Icon, IconProps } from 'react-native-elements';
 
-import { StyleGuide } from '../../core';
+import { StyleGuide } from '../../themes';
 import { ScreenName } from '../../routes/mappings';
 import { NavigationService, alertClose } from '../../utils';
 

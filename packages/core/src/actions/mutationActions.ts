@@ -1,22 +1,20 @@
-import { ApolloCurrentResult } from 'apollo-client';
 import { ApolloQueryResult } from 'apollo-client/core/types';
 import { FetchResult } from 'apollo-link';
 import gql from 'graphql-tag';
 
-import * as mutations from '../../graphql/mutations';
-import { apolloClient as client } from '../../setup';
-import { logInfo } from '../../utils';
-import { logRecord } from '../../reports';
 import {
   CreatePahinaUserMutation,
   CreatePahinaUserMutationVariables,
   UpdatePahinaUserMutation,
   UpdatePahinaUserMutationVariables,
-} from '@pahina/backend/src/API';
+} from '../API';
 
-interface DataWrapper<T> extends ApolloCurrentResult<T> {
-  data: T;
-}
+import { createPahinaUser, updatePahinaUser } from '../graphql/mutations';
+
+import { AppCognitoUser } from '@pahina/core';
+
+import { apolloClient as client } from '../setup';
+import { logInfo, logRecord } from '../utils';
 
 const assertErrors = (response: ApolloQueryResult<any> | FetchResult<any>) => {
   if (response && response.errors && response.errors.length > 0) {
@@ -42,7 +40,7 @@ export const handleCreateAppSyncUser = async (
       CreatePahinaUserMutation,
       CreatePahinaUserMutationVariables
     >({
-      mutation: gql(mutations.createPahinaUser),
+      mutation: gql(createPahinaUser),
       optimisticResponse: { __typename: 'ClUser', createClUser: newUser },
       variables: {
         input: newUser,
@@ -78,7 +76,7 @@ export const handleUpdateAppSyncUser = async (
       UpdatePahinaUserMutation,
       UpdatePahinaUserMutationVariables
     >({
-      mutation: gql(mutations.updatePahinaUser),
+      mutation: gql(updatePahinaUser),
       // TODO: test first
       // optimisticResponse: { __typename: 'ClUser', updateClUser: newUser },
       variables: {

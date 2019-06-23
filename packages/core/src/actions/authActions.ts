@@ -3,13 +3,9 @@ import {
   GetPreferredMFAOpts,
 } from '@aws-amplify/auth/lib/types';
 import { Auth } from 'aws-amplify';
+import { WrapKnownExceptions } from '../errors';
 import _ from 'lodash';
 
-import {
-  asyncGetCurrentUserOpts,
-  buildOpts,
-} from '../../utils/amplifyAuthUtils';
-import { WrapKnownExceptions } from '../../core/errors';
 import {
   ChallengeModel,
   CodeRequiredModel,
@@ -20,25 +16,31 @@ import {
   ProfileModel,
   SignInModel,
   SignUpModel,
+  VerifyContactModel,
 } from '../models';
-import { VerifyContactModel } from '../models/index';
-import { logInfo } from '../../utils';
+import { logInfo } from '../utils';
+import {
+  AppCognitoUser,
+  CognitoContact,
+  MfaOption,
+  MfaChallengeType,
+  MfaSignIn,
+  VerifiedContact,
+} from '../../types';
 
 type SignUpModel = typeof ProfileModel & typeof PasswordRequiredModel;
 
 export const handleGetCurrentUserAttrs = async (provOpts?: CurrentUserOpts) => {
   logInfo('[START]', 'handleGetCurrentUserAttrs');
-  const opts = await buildOpts(provOpts);
   const currentUser: AppCognitoUser = await Auth.currentUserPoolUser(
-    opts,
+    provOpts,
   ).catch(WrapKnownExceptions);
   return currentUser.attributes;
 };
 
 export const handleGetCurrentUser = async (provOpts?: CurrentUserOpts) => {
   logInfo('[START]', 'handleGetCurrentUser');
-  const opts = await buildOpts(provOpts);
-  const currentUser = await Auth.currentUserPoolUser(opts).catch(
+  const currentUser = await Auth.currentUserPoolUser(provOpts).catch(
     WrapKnownExceptions,
   );
   return currentUser as AppCognitoUser;
@@ -109,8 +111,9 @@ export const handleCheckVerifiedContact = async (
   provOpts?: CurrentUserOpts,
 ) => {
   logInfo('[START]', 'handleCheckVerifiedContact');
-  const opts = await buildOpts(provOpts);
-  const user = await Auth.currentUserPoolUser(opts).catch(WrapKnownExceptions);
+  const user = await Auth.currentUserPoolUser(provOpts).catch(
+    WrapKnownExceptions,
+  );
   const verif = await Auth.verifiedContact(user).catch(WrapKnownExceptions);
   return verif;
 };
@@ -246,9 +249,11 @@ export const handleConfirmSignIn = async (
   );
 };
 
-export const handleCheckContactVerified = async (contact: CognitoContact) => {
+export const handleCheckContactVerified = async (
+  contact: CognitoContact,
+  provOpts?: CurrentUserOpts,
+) => {
   logInfo('[START]', 'handleConfirmSignIn');
-  const opts = await asyncGetCurrentUserOpts();
-  const status: VerifiedContact = await handleCheckVerifiedContact(opts);
+  const status: VerifiedContact = await handleCheckVerifiedContact(provOpts);
   return !!(status && status.verified && status.verified[contact]);
 };

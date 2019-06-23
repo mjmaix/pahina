@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Text } from 'react-native-elements';
-import { themes } from '../../core';
+import { themes } from '../../themes';
 
 type Theme = typeof themes[0];
 

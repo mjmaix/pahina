@@ -3,6 +3,7 @@ import React, { ReactElement } from 'react';
 import { InputProps } from 'react-native-elements';
 
 import { FormikFormWrapperProps, SupportedComp } from '.';
+import { StringKeyedObject } from '@pahina/core/types';
 
 interface FormikFieldWrapperProps<
   T extends StringKeyedObject,

@@ -1,6 +1,5 @@
 import { CurrentUserOpts } from '@aws-amplify/auth/lib/types';
-
-import { isConnected } from '../utils/networkUtil';
+import { isConnected } from './networkUtils';
 
 export const asyncGetCurrentUserOpts = () =>
   isConnected().then(conFlag => ({ bypassCache: conFlag }));
@@ -11,13 +10,6 @@ export const buildOpts = async (opts?: CurrentUserOpts) => {
     ...netOpts,
     ...opts,
   };
-  return builtOpts;
-};
 
-export const generateTotpLink = (
-  user: string,
-  secret: string,
-  issuer: string,
-) => {
-  return `otpauth://totp/AWSCognito:${user}?secret=${secret}&issuer=${issuer}`;
+  return builtOpts;
 };

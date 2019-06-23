@@ -5,11 +5,6 @@ import { NavigationScreenProps } from 'react-navigation';
 
 import { CodeInput, EmailInput, Header, PasswordInput } from '../../components';
 import {
-  PasswordResetModel,
-  PasswordResetSchema,
-  handleForgotPasswordSubmit,
-} from '../../stores';
-import {
   FormikInputInjector,
   MemoFormikFormErrorText,
   StyledButton,
@@ -19,6 +14,9 @@ import {
   StyledTextInput,
 } from '../../components';
 import { Busy, NavigationService, alertFail, alertOk } from '../../utils';
+import { PasswordResetModel } from '@pahina/core/src/models';
+import { PasswordResetSchema } from '@pahina/core/src/validators';
+import { handleForgotPasswordSubmit } from '@pahina/core/src/actions';
 
 type FormModel = typeof PasswordResetModel;
 type Props = NavigationScreenProps;

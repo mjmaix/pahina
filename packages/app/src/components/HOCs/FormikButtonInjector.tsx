@@ -3,7 +3,7 @@ import React, { ReactElement } from 'react';
 import * as Animatable from 'react-native-animatable';
 import { ButtonProps, Icon } from 'react-native-elements';
 
-import { StyleGuide } from '../../core';
+import { StyleGuide } from '../../themes';
 import { FormikFormWrapperProps } from '.';
 
 const AnimatedLoadingIcon = () => (

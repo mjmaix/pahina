@@ -4,12 +4,6 @@ import { TextInput, TextInputProps } from 'react-native';
 import { NavigationScreenProps } from 'react-navigation';
 
 import {
-  VerifyContactModel,
-  VerifyContactSchema,
-  handleVerifyContact,
-  handleVerifyContactResend,
-} from '../../stores';
-import {
   CodeInput,
   FormikInputInjector,
   MemoFormikFormErrorText,
@@ -20,6 +14,13 @@ import {
   StyledTextInput,
 } from '../../components';
 import { Busy, NavigationService, alertFail, alertOk } from '../../utils';
+import { CognitoContact } from '@pahina/core/types';
+import { VerifyContactModel } from '@pahina/core/src/models';
+import {
+  handleVerifyContact,
+  handleVerifyContactResend,
+} from '@pahina/core/src/actions';
+import { VerifyContactSchema } from '@pahina/core/src/validators';
 
 interface VerifyContactScreenProps extends NavigationScreenProps {}
 type FormModel = typeof VerifyContactModel;

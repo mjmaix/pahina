@@ -12,14 +12,14 @@ import {
   StyledScreenContainer,
   StyledTextInput,
 } from '../../components';
-import {
-  CodeRequiredModel,
-  CodeSchema,
-  handleSetupMfaSms,
-  handleSignOut,
-  handleVerifyMfaSms,
-} from '../../stores';
 import { Busy, NavigationService, alertFail, alertOk } from '../../utils';
+import { CodeRequiredModel } from '@pahina/core/src/models';
+import {
+  handleVerifyMfaSms,
+  handleSignOut,
+  handleSetupMfaSms,
+} from '@pahina/core/src/actions';
+import { CodeSchema } from '@pahina/core/src/validators';
 
 interface MfaSmsProps {}
 type FormModel = typeof CodeRequiredModel;

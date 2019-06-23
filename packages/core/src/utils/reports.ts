@@ -1,6 +1,7 @@
 // tslint:disable no-console
 
 export type RecordName =
+  | 'GetUserError'
   | 'CreateUserError'
   | 'UpdateUserError'
   | 'PermissionsCameraRollDenied';

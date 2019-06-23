@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { handleConfirmSignUp } from '../../stores';
+import { handleConfirmSignUp } from '@pahina/core';
 import { NavigationService, alertFail, alertOk } from '../../utils';
 import { BaseChallengeScreen } from '../Base/BaseChallengeScreen';
 

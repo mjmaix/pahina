@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { NavigationScreenProps } from 'react-navigation';
 
 import { EmailInput, Header } from '../../components';
-import { EmailModel, EmailOnlySchema, handleResend } from '../../stores';
 import {
   FormikInputInjector,
   MemoFormikFormErrorText,
@@ -14,6 +13,9 @@ import {
   StyledTextInput,
 } from '../../components';
 import { Busy, NavigationService, alertFail, alertOk } from '../../utils';
+import { EmailModel } from '@pahina/core/src/models';
+import { EmailOnlySchema } from '@pahina/core/src/validators';
+import { handleResend } from '@pahina/core/src/actions';
 
 type Props = NavigationScreenProps;
 type FormModel = typeof EmailModel;

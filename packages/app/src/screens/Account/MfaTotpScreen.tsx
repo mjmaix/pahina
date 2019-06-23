@@ -1,4 +1,4 @@
-import { Formik, FormikActions, FormikProps } from 'formik';
+import { Formik, FormikActions } from 'formik';
 import _ from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Dimensions, Linking, Platform } from 'react-native';
@@ -6,15 +6,6 @@ import { Image } from 'react-native-elements';
 import QRCode from 'react-native-qrcode-svg';
 
 import { CodeInput, Header, formStyles } from '../../components';
-import {
-  CodeRequiredModel,
-  CodeSchema,
-  ProfileModel,
-  handleGetCurrentUserAttrs,
-  handleSetupMfaTotp,
-  handleSignOut,
-  handleVerifyMfaTotp,
-} from '../../stores';
 import {
   FormikInputInjector,
   MemoFormikFormErrorText,
@@ -30,9 +21,17 @@ import {
   NavigationService,
   alertFail,
   alertOk,
-  generateTotpLink,
   BRAND_NAME,
+  generateTotpLink,
 } from '../../utils';
+import { CodeRequiredModel, ProfileModel } from '@pahina/core/src/models';
+import {
+  handleVerifyMfaTotp,
+  handleSignOut,
+  handleGetCurrentUserAttrs,
+  handleSetupMfaTotp,
+} from '@pahina/core/src/actions';
+import { CodeSchema } from '@pahina/core/src/validators';
 
 interface MfaTotpProps {}
 type FormModel = typeof CodeRequiredModel;

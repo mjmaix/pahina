@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { StyleGuide } from './../core/themes';
+import { StyleGuide } from '../themes';
 
 export const formStyles = StyleSheet.create({
   form: {

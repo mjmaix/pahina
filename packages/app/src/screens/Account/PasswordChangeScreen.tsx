@@ -4,12 +4,6 @@ import { NavigationScreenProps } from 'react-navigation';
 
 import { PasswordInput } from '../../components';
 import {
-  PasswordChangeModel,
-  PasswordChangeSchema,
-  handleChangePasswordSubmit,
-} from '../../stores';
-import { SafeException } from '../../core/errors';
-import {
   FormikInputInjector,
   StyledButton,
   StyledFormContainer,
@@ -20,6 +14,10 @@ import {
 } from '../../components';
 
 import { NavigationService, alertFail, alertOk } from '../../utils';
+import { PasswordChangeModel } from '@pahina/core/src/models';
+import { PasswordChangeSchema } from '@pahina/core/src/validators';
+import { handleChangePasswordSubmit } from '@pahina/core/src/actions';
+import { SafeException } from '@pahina/core/src/errors';
 
 type Props = NavigationScreenProps;
 type Model = typeof PasswordChangeModel;

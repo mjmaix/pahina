@@ -5,12 +5,6 @@ import { NavigationScreenProps } from 'react-navigation';
 
 import { EmailInput, Header, PasswordInput } from '../../components';
 import {
-  CompleteRegistrationSchema,
-  PasswordRequiredModel,
-  SignUpModel,
-  handleCompleteNewPassword,
-} from '../../stores';
-import {
   FormikInputInjector,
   MemoFormikFormErrorText,
   StyledButton,
@@ -20,6 +14,10 @@ import {
   StyledTextInput,
 } from '../../components';
 import { Busy, NavigationService, alertFail, alertOk } from '../../utils';
+import { AppCognitoUser } from '@pahina/core/types';
+import { SignUpModel, PasswordRequiredModel } from '@pahina/core/src/models';
+import { handleCompleteNewPassword } from '@pahina/core/src/actions';
+import { CompleteRegistrationSchema } from '@pahina/core/src/validators';
 
 type Props = NavigationScreenProps;
 interface State {
