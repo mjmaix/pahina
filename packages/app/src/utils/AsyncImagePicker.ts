@@ -58,14 +58,8 @@ export class AsyncImagePicker {
   };
 
   public showImagePicker = async () => {
-    return new Promise<ImagePicker.ImagePickerResult>(
-      async (resolve, reject) => {
-        const response = await ImagePicker.launchImageLibraryAsync(
-          avatarOptions,
-        );
+    const response = await ImagePicker.launchImageLibraryAsync(avatarOptions);
 
-        resolve(response);
-      },
-    );
+    return response;
   };
 }

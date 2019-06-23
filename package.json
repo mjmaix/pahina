@@ -11,6 +11,7 @@
   ],
   "scripts": {
     "postinstall": "patch-package",
+    "start": "yarn workspace @pahina/app expo:start",
     "cleanup:node": "rm -r node_modules; for d in packages/*/node_modules; do echo $d; rm -r $d; done"
   },
   "devDependencies": {

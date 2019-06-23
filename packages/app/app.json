@@ -24,7 +24,8 @@
       "bundleIdentifier": "com.mjabadilla.pahina"
     },
     "android": {
-      "package": "com.mjabadilla.pahina"
+      "package": "com.mjabadilla.pahina",
+      "permissions": ["CAMERA_ROLL"]
     },
     "packagerOpts": {
       "config": "metro.config.js"

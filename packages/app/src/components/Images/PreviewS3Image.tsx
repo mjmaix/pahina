@@ -49,6 +49,7 @@ class PreviewS3Image extends React.Component<
     const { imgKey, level, track, identityId } = this.props;
     return (
       <S3Image
+        resizeMethod="resize"
         imgKey={imgKey}
         level={level}
         track={track}

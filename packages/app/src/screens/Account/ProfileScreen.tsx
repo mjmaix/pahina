@@ -100,9 +100,9 @@ class ProfileScreen extends Component<Props, typeof InitialState> {
     this.setState({ showVerifyEmail });
   };
 
-  private renderAvatar = (fProps: FormikProps<FormModel>) => (
-    <FormikPreviewAvatar fProps={fProps} dataKey="picture" />
-  );
+  private renderAvatar = (fProps: FormikProps<FormModel>) => {
+    return <FormikPreviewAvatar fProps={fProps} dataKey="picture" />;
+  };
 
   private renderExtraButtons = () => {
     const { showVerifyEmail, showVerifyPhone } = this.state;

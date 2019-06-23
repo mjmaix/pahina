@@ -32,9 +32,9 @@ type SignUpModel = typeof ProfileModel & typeof PasswordRequiredModel;
 
 export const handleGetCurrentUserAttrs = async (provOpts?: CurrentUserOpts) => {
   logInfo('[START]', 'handleGetCurrentUserAttrs');
-  const currentUser: AppCognitoUser = await Auth.currentUserPoolUser(
-    provOpts,
-  ).catch(WrapKnownExceptions);
+  const currentUser: AppCognitoUser = await Auth.currentUserPoolUser().catch(
+    WrapKnownExceptions,
+  );
   return currentUser.attributes;
 };
 
