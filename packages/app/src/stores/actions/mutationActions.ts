@@ -12,7 +12,7 @@ import {
   CreatePahinaUserMutationVariables,
   UpdatePahinaUserMutation,
   UpdatePahinaUserMutationVariables,
-} from '../../../../backend/src/API';
+} from '@pahina/backend/src/API';
 
 interface DataWrapper<T> extends ApolloCurrentResult<T> {
   data: T;
