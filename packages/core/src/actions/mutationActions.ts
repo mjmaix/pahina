@@ -11,10 +11,9 @@ import {
 
 import { createPahinaUser, updatePahinaUser } from '../graphql/mutations';
 
-import { AppCognitoUser } from '@pahina/core';
-
 import { apolloClient as client } from '../setup';
 import { logInfo, logRecord } from '../utils';
+import { AppCognitoUser } from '../../types';
 
 const assertErrors = (response: ApolloQueryResult<any> | FetchResult<any>) => {
   if (response && response.errors && response.errors.length > 0) {
@@ -32,7 +31,7 @@ export const handleCreateAppSyncUser = async (
     email: user.attributes.email,
     familyName: user.attributes.family_name,
     givenName: user.attributes.given_name,
-    avatar: user.attributes.picture,
+    picture: user.attributes.picture,
     identityId,
   };
   try {
@@ -69,7 +68,7 @@ export const handleUpdateAppSyncUser = async (
       email: user.attributes.email,
       familyName: user.attributes.family_name,
       givenName: user.attributes.given_name,
-      avatar: user.attributes.picture,
+      picture: user.attributes.picture,
       identityId,
     };
     const response = await client.mutate<
