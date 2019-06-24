@@ -1,9 +1,12 @@
 import React from 'react';
 
-import { withAuthenticator } from 'aws-amplify-react';
+import { Button } from 'reactstrap';
 
 import logo from './logo.svg';
 import './App.css';
+import { handleSignOut } from '@pahina/core/dist/src/actions';
+import { SignInScreen } from './screens/SignInScreen';
+import { withAuthenticator } from 'aws-amplify-react';
 
 const App: React.FC = () => {
   return (
@@ -22,10 +25,11 @@ const App: React.FC = () => {
           >
             Learn React
           </a>
+          <Button onClick={() => handleSignOut()}>Sign out</Button>
         </header>
       }
     </div>
   );
 };
 
-export default withAuthenticator(App);
+export default withAuthenticator(App, false, [<SignInScreen />]);

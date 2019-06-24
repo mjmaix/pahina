@@ -6,6 +6,7 @@
   "license": "unlicensed",
   "private": true,
   "scripts": {
+    "postinstall": "yarn cp:awsexports && tsc",
     "build": "yarn clean && yarn cp:awsexports && tsc",
     "build:watch": "yarn build --watch",
     "clean": "rimraf dist && rm -rf node_modules",

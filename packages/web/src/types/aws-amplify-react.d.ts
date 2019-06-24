@@ -7,4 +7,6 @@ declare module 'aws-amplify-react' {
     theme?: any,
     signUpConfig?: any,
   ): React.ComponentType;
+
+  export class Authenticator extends React.Component<{}, {}> {}
 }
