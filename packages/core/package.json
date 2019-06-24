@@ -8,7 +8,7 @@
   "scripts": {
     "build": "yarn clean && yarn cp:awsexports && tsc",
     "build:watch": "yarn build --watch",
-    "clean": "rimraf dist",
+    "clean": "rimraf dist && rm -rf node_modules",
     "cp:awsexports": "cp src/aws-exports.js src/aws-exports.ts"
   },
   "dependencies": {

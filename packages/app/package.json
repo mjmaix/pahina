@@ -11,8 +11,8 @@
     "expo:web": "expo start --web",
     "expo:eject": "expo eject",
     "lint": "tslint --project tsconfig.json --config tslint.json",
-    "patch-package:update": "yarn patch-package react-native-elements aws-amplify-react-native",
-    "amplify:hosting:build:web": "if [ -f yarn.lock ] ; then yarn; elif [ -f package-lock.json ] || [ -f npm-shrinkwrap.json ]; then npm ci; else npm install; fi && expo build:web"
+    "clean:folders": "rm -rf node_modules /tmp/metro-bundler-cache-* /tmp/haste-map-react-native-packer-*",
+    "clean": "yarn clean:folders"
   },
   "dependencies": {
     "@pahina/core": "1.0.0",

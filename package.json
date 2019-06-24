@@ -19,10 +19,8 @@
     "postinstall": "patch-package",
     "app:start": "yarn workspace @pahina/app expo:start --clear",
     "web:start": "yarn workspace @pahina/web start",
-    "core:build": "yarn clean:all && yarn && yarn workspace @pahina/core build",
-    "clean:haste": "rm -rf /tmp/metro-bundler-cache-* /tmp/haste-map-react-native-packer-*",
-    "clean:node": "rm -r node_modules; for d in packages/*/node_modules; do echo $d; rm -r $d; done",
-    "clean:all": "yarn clean:node && yarn clean:haste"
+    "clean": "yarn workspace @pahina/app clean && yarn workspace @pahina/web clean && yarn workspace @pahina/core clean && yarn",
+    "patch-package:update": "yarn patch-package react-native-elements aws-amplify-react-native"
   },
   "devDependencies": {
     "patch-package": "6.1.2",
