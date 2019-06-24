@@ -5,7 +5,7 @@ import { GetPahinaUserQuery, GetPahinaUserQueryVariables } from '../API';
 
 import { getPahinaUser } from '../graphql/queries';
 
-import { apolloClient as client } from '../setup';
+import apollo from '../apollo-client';
 import { logRecord, logInfo } from '../utils';
 
 const assertErrors = (response: ApolloQueryResult<GetPahinaUserQuery>) => {
@@ -17,7 +17,7 @@ const assertErrors = (response: ApolloQueryResult<GetPahinaUserQuery>) => {
 export const handleGetAppSyncUser = async (username: string) => {
   logInfo('[START]', 'handleGetAppSyncUser');
   try {
-    const response = await client.query<
+    const response = await apollo.query<
       GetPahinaUserQuery,
       GetPahinaUserQueryVariables
     >({

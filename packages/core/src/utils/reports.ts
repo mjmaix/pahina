@@ -16,8 +16,8 @@ export interface Record {
 }
 
 export const logError = (...err: any[]) =>
-  console.error('[ERROR]', err.join('\n'));
+  console.error('[ERROR]', JSON.stringify(err, undefined, 2));
 export const logRecord = (rec: Record) =>
   console.log('[RECORD]', JSON.stringify(rec, undefined, 2));
 export const logInfo = (...data: any[]) =>
-  console.log('[INFO]', data.join('\n'));
+  console.log('[INFO]', JSON.stringify(data, undefined, 2));

@@ -1,5 +1,6 @@
 import includes from 'lodash/includes';
 import * as Yup from 'yup';
+import { CognitoRequiredAttributes } from '../types';
 
 export const emailRule = Yup.string()
   .label('Email')

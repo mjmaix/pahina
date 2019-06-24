@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@pahina/core": "1.0.0",
-    "aws-amplify-react-native": "2.1.12",
+    "aws-amplify-react-native": "2.1.13",
     "expo": "33.0.6",
     "formik": "1.5.7",
     "hex-to-rgb": "^1.0.1",

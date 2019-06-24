@@ -11,7 +11,7 @@ import {
 
 import { createPahinaUser, updatePahinaUser } from '../graphql/mutations';
 
-import { apolloClient as client } from '../setup';
+import apollo from '../apollo-client';
 import { logInfo, logRecord } from '../utils';
 import { AppCognitoUser } from '../../types';
 
@@ -35,7 +35,7 @@ export const handleCreateAppSyncUser = async (
     identityId,
   };
   try {
-    const response = await client.mutate<
+    const response = await apollo.mutate<
       CreatePahinaUserMutation,
       CreatePahinaUserMutationVariables
     >({
@@ -71,7 +71,7 @@ export const handleUpdateAppSyncUser = async (
       picture: user.attributes.picture,
       identityId,
     };
-    const response = await client.mutate<
+    const response = await apollo.mutate<
       UpdatePahinaUserMutation,
       UpdatePahinaUserMutationVariables
     >({

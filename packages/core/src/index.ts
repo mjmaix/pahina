@@ -1,4 +1,4 @@
-import './setup';
+import './init';
 
 import * as mutations from './graphql/mutations';
 import * as queries from './graphql/queries';

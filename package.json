@@ -6,13 +6,23 @@
   "author": "MJ Abadilla <mjmaix@gmail.com>",
   "license": "unlicensed",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/aws-amplify-react",
+      "**/aws-amplify-react/**"
+    ]
+  },
   "scripts": {
     "postinstall": "patch-package",
-    "start": "yarn workspace @pahina/app expo:start",
-    "cleanup:node": "rm -r node_modules; for d in packages/*/node_modules; do echo $d; rm -r $d; done"
+    "app:start": "yarn workspace @pahina/app expo:start --clear",
+    "web:start": "yarn workspace @pahina/web start",
+    "core:build": "yarn clean:all && yarn && yarn workspace @pahina/core build",
+    "clean:haste": "rm -rf /tmp/metro-bundler-cache-* /tmp/haste-map-react-native-packer-*",
+    "clean:node": "rm -r node_modules; for d in packages/*/node_modules; do echo $d; rm -r $d; done",
+    "clean:all": "yarn clean:node && yarn clean:haste"
   },
   "devDependencies": {
     "patch-package": "6.1.2",

@@ -27,6 +27,7 @@ import {
   MfaSignIn,
   VerifiedContact,
 } from '../../types';
+import { DeepRequired } from 'utility-types';
 
 type SignUpModel = typeof ProfileModel & typeof PasswordRequiredModel;
 
@@ -52,7 +53,7 @@ export const handleGetCurrentIdentityId = async () => {
   return creds.identityId;
 };
 
-export const handleSignUp = async (data: typeof SignUpModel) => {
+export const handleSignUp = async (data: DeepRequired<typeof SignUpModel>) => {
   logInfo('[START]', 'handleSignUp');
   const { password, ...attrs } = data;
   const user = await Auth.signUp({
@@ -69,7 +70,7 @@ export const handleSignUp = async (data: typeof SignUpModel) => {
   return user;
 };
 
-export const handleSignIn = async (data: typeof SignInModel) => {
+export const handleSignIn = async (data: DeepRequired<typeof SignInModel>) => {
   logInfo('[START]', 'handleSignIn');
   const { email, password, phone_number } = data;
   const user = await Auth.signIn({
@@ -84,7 +85,9 @@ export const handleSignOut = async (global = false) => {
   return Auth.signOut({ global }).catch(WrapKnownExceptions);
 };
 
-export const handleUpdateProfile = async (data: typeof ProfileModel) => {
+export const handleUpdateProfile = async (
+  data: DeepRequired<typeof ProfileModel>,
+) => {
   logInfo('[START]', 'handleUpdateProfile');
   const { email, family_name, given_name, phone_number, picture } = data;
   const user = await Auth.currentUserPoolUser().catch(WrapKnownExceptions);
@@ -118,7 +121,9 @@ export const handleCheckVerifiedContact = async (
   return verif;
 };
 
-export const handleVerifyContact = async (data: typeof VerifyContactModel) => {
+export const handleVerifyContact = async (
+  data: DeepRequired<typeof VerifyContactModel>,
+) => {
   logInfo('[START]', 'handleVerifyContact', data);
   const contact = data.contact as CognitoContact;
   const verif = await Auth.verifyCurrentUserAttributeSubmit(
@@ -134,25 +139,29 @@ export const handleVerifyContactResend = async (contact: CognitoContact) => {
   return Auth.verifyCurrentUserAttribute(contact).catch(WrapKnownExceptions);
 };
 
-export const handleResend = async (data: typeof EmailModel) => {
+export const handleResend = async (data: DeepRequired<typeof EmailModel>) => {
   logInfo('[START]', 'handleResend');
   return Auth.resendSignUp(data.email).catch(WrapKnownExceptions);
 };
 
-export const handleConfirmSignUp = async (data: typeof ChallengeModel) => {
+export const handleConfirmSignUp = async (
+  data: DeepRequired<typeof ChallengeModel>,
+) => {
   logInfo('[START]', 'handleConfirmSignUp');
   return Auth.confirmSignUp(data.email.toLowerCase(), data.code).catch(
     WrapKnownExceptions,
   );
 };
 
-export const handleForgotPassword = async (data: typeof EmailModel) => {
+export const handleForgotPassword = async (
+  data: DeepRequired<typeof EmailModel>,
+) => {
   logInfo('[START]', 'handleForgotPassword');
   return Auth.forgotPassword(data.email).catch(WrapKnownExceptions);
 };
 
 export const handleForgotPasswordSubmit = async (
-  data: typeof PasswordResetModel,
+  data: DeepRequired<typeof PasswordResetModel>,
 ) => {
   logInfo('[START]', 'handleForgotPasswordSubmit');
   await Auth.forgotPasswordSubmit(data.email, data.code, data.password);
@@ -160,7 +169,7 @@ export const handleForgotPasswordSubmit = async (
 };
 
 export const handleChangePasswordSubmit = async (
-  data: typeof PasswordChangeModel,
+  data: DeepRequired<typeof PasswordChangeModel>,
 ) => {
   logInfo('[START]', 'handleChangePasswordSubmit');
   const currentUser = await Auth.currentUserPoolUser().catch(
@@ -175,7 +184,9 @@ export const handleChangePasswordSubmit = async (
 
 export const handleCompleteNewPassword = async (
   unAuthUser: AppCognitoUser,
-  data: Partial<typeof SignUpModel> & typeof PasswordRequiredModel,
+  data: DeepRequired<
+    Partial<typeof SignUpModel> & typeof PasswordRequiredModel
+  >,
 ) => {
   logInfo('[START]', 'handleCompleteNewPassword');
   const { requiredAttributes } = unAuthUser.challengeParam;
@@ -199,7 +210,9 @@ export const handleSetupMfaTotp = async () => {
   return Auth.setupTOTP(user).catch(WrapKnownExceptions);
 };
 
-export const handleVerifyMfaTotp = async (data: typeof CodeRequiredModel) => {
+export const handleVerifyMfaTotp = async (
+  data: DeepRequired<typeof CodeRequiredModel>,
+) => {
   logInfo('[START]', 'handleVerifyMfaTotp');
   const user = await Auth.currentUserPoolUser().catch(WrapKnownExceptions);
   await Auth.verifyTotpToken(user, data.code).catch(WrapKnownExceptions);
@@ -213,7 +226,9 @@ export const handleSetupMfaSms = async () => {
   return Auth.enableSMS(user).catch(WrapKnownExceptions);
 };
 
-export const handleVerifyMfaSms = async (data: typeof CodeRequiredModel) => {
+export const handleVerifyMfaSms = async (
+  data: DeepRequired<typeof CodeRequiredModel>,
+) => {
   logInfo('[START]', 'handleVerifyMfaSms');
   const user = await Auth.currentUserPoolUser().catch(WrapKnownExceptions);
   await Auth.verifyTotpToken(user, data.code).catch(WrapKnownExceptions);
@@ -240,7 +255,7 @@ export const handleGetPreferredMfa = async (opts?: GetPreferredMFAOpts) => {
 
 export const handleConfirmSignIn = async (
   unAuthUser: AppCognitoUser,
-  data: typeof CodeRequiredModel,
+  data: DeepRequired<typeof CodeRequiredModel>,
 ) => {
   logInfo('[START]', 'handleConfirmSignIn');
   const mfaType = unAuthUser.challengeName as MfaSignIn;

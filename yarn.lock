@@ -1562,6 +1562,11 @@
   resolved "https://registry.yarnpkg.com/@types/fbemitter/-/fbemitter-2.0.32.tgz#8ed204da0f54e9c8eaec31b1eec91e25132d082c"
   integrity sha1-jtIE2g9U6cjq7DGx7skeJRMtCCw=
 
+"@types/graphql@0.12.6":
+  version "0.12.6"
+  resolved "https://registry.yarnpkg.com/@types/graphql/-/graphql-0.12.6.tgz#3d619198585fcabe5f4e1adfb5cf5f3388c66c13"
+  integrity sha512-wXAVyLfkG1UMkKOdMijVWFky39+OD/41KftzqfX1Oejd0Gm6dOIKjCihSVECg6X7PHjftxXmfOKA/d1H79ZfvQ==
+
 "@types/invariant@^2.2.29":
   version "2.2.29"
   resolved "https://registry.yarnpkg.com/@types/invariant/-/invariant-2.2.29.tgz#aa845204cd0a289f65d47e0de63a6a815e30cc66"
@@ -2203,13 +2208,14 @@ apollo-link-retry@2.2.5:
     "@types/zen-observable" "0.8.0"
     apollo-link "^1.2.3"
 
-apollo-link@1.2.3:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/apollo-link/-/apollo-link-1.2.3.tgz#9bd8d5fe1d88d31dc91dae9ecc22474d451fb70d"
-  integrity sha512-iL9yS2OfxYhigme5bpTbmRyC+Htt6tyo2fRMHT3K1XRL/C5IQDDz37OjpPy4ndx7WInSvfSZaaOTKFja9VWqSw==
+apollo-link@1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/apollo-link/-/apollo-link-1.2.2.tgz#54c84199b18ac1af8d63553a68ca389c05217a03"
+  integrity sha512-Uk/BC09dm61DZRDSu52nGq0nFhq7mcBPTjy5EEH1eunJndtCaNXQhQz/BjkI2NdrfGI+B+i5he6YSoRBhYizdw==
   dependencies:
+    "@types/graphql" "0.12.6"
     apollo-utilities "^1.0.0"
-    zen-observable-ts "^0.8.10"
+    zen-observable-ts "^0.8.9"
 
 apollo-link@^1.0.0, apollo-link@^1.0.6, apollo-link@^1.2.12, apollo-link@^1.2.3:
   version "1.2.12"
@@ -2480,10 +2486,10 @@ autoprefixer@^9.4.9:
     postcss "^7.0.16"
     postcss-value-parser "^3.3.1"
 
-aws-amplify-react-native@2.1.12:
-  version "2.1.12"
-  resolved "https://registry.yarnpkg.com/aws-amplify-react-native/-/aws-amplify-react-native-2.1.12.tgz#1738c257877df8037a60613d112f556661e7bea4"
-  integrity sha512-vVpvD/eaawRMwgaAyihc/zFuu0aMOvhIRWGVbEvBnYt7CKNMNkiqEb0ZlQY85qWo0MHYVehisJNyNjid9Yp9RA==
+aws-amplify-react-native@2.1.13:
+  version "2.1.13"
+  resolved "https://registry.yarnpkg.com/aws-amplify-react-native/-/aws-amplify-react-native-2.1.13.tgz#41f13b43b8e7905ffae252ef2cbc8f928b15452c"
+  integrity sha512-yWwmd+l0qDyIHoOZcHJDD32R79tVl38fEhMEqC5U5JaRnKYtuXRAEl1R0S7jkDFPMQVrhWkYAjE+oqX8NSfygQ==
   dependencies:
     axios "^0.17.1"
     babel-preset-es2015 "^6.24.1"
@@ -2515,19 +2521,19 @@ aws-amplify@1.1.29:
     "@aws-amplify/ui" "^1.0.20"
     "@aws-amplify/xr" "^0.1.18"
 
-aws-appsync@^1.8.1:
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/aws-appsync/-/aws-appsync-1.8.1.tgz#e206e537574cace638267a0be28f4ad5a4c1a175"
-  integrity sha512-aL49HawoRB+Q7nRcuM6BQgYY7BAJbGIm8ulRdP6MK0AMsLgxSswFYKrFo1t1l+YuXIPxJbi8rnoirV67cXys2Q==
+aws-appsync@1.7.2:
+  version "1.7.2"
+  resolved "https://registry.yarnpkg.com/aws-appsync/-/aws-appsync-1.7.2.tgz#8043dcf587dcfac6691fe131d0c4ab56f1fd46e8"
+  integrity sha512-bYrqLBeQVyAsKpRR+dGibk5GRgSV7IYA2sd2kqRPytA9QRv3idyCUFIa72v81qNLFHTznxk1GNo54mdNmJ9Jtg==
   dependencies:
     "@redux-offline/redux-offline" "2.2.1"
     apollo-cache-inmemory "1.3.10"
     apollo-client "2.4.6"
-    apollo-link "1.2.3"
+    apollo-link "1.2.2"
     apollo-link-context "1.0.9"
     apollo-link-http "1.3.1"
     apollo-link-retry "2.2.5"
-    aws-sdk "2.472.0"
+    aws-sdk "2.329.0"
     debug "2.6.9"
     graphql "0.13.0"
     redux "^3.7.2"
@@ -2536,10 +2542,25 @@ aws-appsync@^1.8.1:
     url "^0.11.0"
     uuid "3.x"
 
-aws-sdk@2.472.0:
-  version "2.472.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.472.0.tgz#0da7062299125a85fdea5786d13019d80aac8ee4"
-  integrity sha512-uFatrjfMSwC34VxdG9ollX6K61e+iaoE5ZHQ/OKeSoWx9HXs3AwJqIS90iBLEhaAm2WoTMFYAv0irMC8eMCu3g==
+aws-sdk@2.329.0:
+  version "2.329.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.329.0.tgz#616da7ca5e1909e53333148694990e068272150f"
+  integrity sha512-5yti9jyL6QL8CP5LGKX3uyrQcLAvLk6kyMZ749+F68IsutFKi0DaYxjxqx7lqWfzCSH3Z5REJ+XeywJLQ2tqfQ==
+  dependencies:
+    buffer "4.9.1"
+    events "1.1.1"
+    ieee754 "1.1.8"
+    jmespath "0.15.0"
+    querystring "0.2.0"
+    sax "1.2.1"
+    url "0.10.3"
+    uuid "3.1.0"
+    xml2js "0.4.19"
+
+aws-sdk@2.474.0:
+  version "2.474.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.474.0.tgz#580c7c28e00828b40e2f97b031820bcef68d2367"
+  integrity sha512-nyTZNeVRJix1AStgvH5zcacemgXOhrMrhsXHMmvPkvaXBp3Boj+A79/G8KMd3f/zfjgjRPi9VG0I/BNzfsP3HQ==
   dependencies:
     buffer "4.9.1"
     events "1.1.1"
@@ -2551,10 +2572,10 @@ aws-sdk@2.472.0:
     uuid "3.3.2"
     xml2js "0.4.19"
 
-aws-sdk@2.474.0:
-  version "2.474.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.474.0.tgz#580c7c28e00828b40e2f97b031820bcef68d2367"
-  integrity sha512-nyTZNeVRJix1AStgvH5zcacemgXOhrMrhsXHMmvPkvaXBp3Boj+A79/G8KMd3f/zfjgjRPi9VG0I/BNzfsP3HQ==
+aws-sdk@2.480.0:
+  version "2.480.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.480.0.tgz#ab4bb7ad2f4372fa5aa1051fc1553e82d34b27ca"
+  integrity sha512-X6xOgBeg8ZZJPnL4/wHXFIP6QF2SBABqw/F5l5zT/vEPUfmrIg24LVSUwPXmV6ZMh4hwsuuOjO910MbjNoHXXg==
   dependencies:
     buffer "4.9.1"
     events "1.1.1"
@@ -6515,7 +6536,7 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.3
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.15.tgz#ffb703e1066e8a0eeaa4c8b80ba9253eeefbfb00"
   integrity sha512-6uHUhOPEBgQ24HM+r6b/QwWfZq+yiFcipKFrOFiBEnWdy5sdzYoi+pJeQaPI5qOLRFqWmAXUPQNsielzdLoecA==
 
-graphql-tag@^2.10.1:
+graphql-tag@2.10.1:
   version "2.10.1"
   resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.10.1.tgz#10aa41f1cd8fae5373eaf11f1f67260a3cad5e02"
   integrity sha512-jApXqWBzNXQ8jYa/HLkZJaVw9jgwNqZkywa2zfFn16Iv1Zb7ELNHkJaXHR7Quvd5SIGsy6Ny7SUKATgnu05uEg==
@@ -13578,6 +13599,11 @@ uuid-js@^0.7.5:
   resolved "https://registry.yarnpkg.com/uuid-js/-/uuid-js-0.7.5.tgz#6c886d02a53d2d40dcf25d91a170b4a7b25b94d0"
   integrity sha1-bIhtAqU9LUDc8l2RoXC0p7JblNA=
 
+uuid@3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.1.0.tgz#3dd3d3e790abc24d7b0d3a034ffababe28ebbc04"
+  integrity sha512-DIWtzUkw04M4k3bf1IcpS2tngXEL26YUD2M0tMDUpnUrz2hgzUBlD55a4FjdLGPvfHxS6uluGWvaVEqgBcVa+g==
+
 uuid@3.3.2, uuid@3.x, uuid@^3.0.1, uuid@^3.2.1, uuid@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
@@ -14361,7 +14387,7 @@ yup@0.27.0:
     synchronous-promise "^2.0.6"
     toposort "^2.0.2"
 
-zen-observable-ts@^0.8.10, zen-observable-ts@^0.8.19:
+zen-observable-ts@^0.8.19, zen-observable-ts@^0.8.9:
   version "0.8.19"
   resolved "https://registry.yarnpkg.com/zen-observable-ts/-/zen-observable-ts-0.8.19.tgz#c094cd20e83ddb02a11144a6e2a89706946b5694"
   integrity sha512-u1a2rpE13G+jSzrg3aiCqXU5tN2kw41b+cBZGmnc+30YimdkKiDj9bTowcB41eL77/17RF/h+393AuVgShyheQ==
