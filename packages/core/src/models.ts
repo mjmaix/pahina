@@ -1,3 +1,5 @@
+import { Intersection } from 'utility-types/dist/mapped-types';
+
 type Fields =
   | 'email'
   | 'family_name'
@@ -11,7 +13,34 @@ type Fields =
 
 type FormModel = { [k in Fields]?: string };
 
-export const ProfileModel: FormModel = {
+export type ProfileModel = Intersection<typeof ProfileModel, FormModel>;
+export type EmailModel = Intersection<typeof EmailModel, FormModel>;
+export type PhoneNumberModel = Intersection<typeof PhoneNumberModel, FormModel>;
+export type CodeRequiredModel = Intersection<
+  typeof CodeRequiredModel,
+  FormModel
+>;
+export type ChallengeModel = Intersection<typeof ChallengeModel, FormModel>;
+export type PasswordRequiredModel = Intersection<
+  typeof PasswordRequiredModel,
+  FormModel
+>;
+export type PasswordResetModel = Intersection<
+  typeof PasswordResetModel,
+  FormModel
+>;
+export type PasswordChangeModel = Intersection<
+  typeof PasswordChangeModel,
+  FormModel
+>;
+export type SignUpModel = Intersection<typeof SignUpModel, FormModel>;
+export type SignInModel = Intersection<typeof SignInModel, FormModel>;
+export type VerifyContactModel = Intersection<
+  typeof VerifyContactModel,
+  FormModel
+>;
+
+export const ProfileModel = {
   email: '',
   family_name: '',
   given_name: '',
@@ -19,50 +48,50 @@ export const ProfileModel: FormModel = {
   picture: '',
 };
 
-export const EmailModel: FormModel = {
+export const EmailModel = {
   email: '',
 };
 
-export const PhoneNumberModel: FormModel = {
+export const PhoneNumberModel = {
   phone_number: '',
 };
 
-export const CodeRequiredModel: FormModel = {
+export const CodeRequiredModel = {
   code: '',
 };
 
-export const ChallengeModel: FormModel = {
+export const ChallengeModel = {
   ...CodeRequiredModel,
   ...EmailModel,
 };
 
-export const PasswordRequiredModel: FormModel = {
+export const PasswordRequiredModel = {
   password: '',
 };
 
-export const PasswordResetModel: FormModel = {
+export const PasswordResetModel = {
   ...PasswordRequiredModel,
   ...CodeRequiredModel,
   ...EmailModel,
 };
 
-export const PasswordChangeModel: FormModel = {
+export const PasswordChangeModel = {
   ...PasswordRequiredModel,
   password_old: '',
 };
 
-export const SignUpModel: FormModel = {
+export const SignUpModel = {
   ...ProfileModel,
   ...PasswordRequiredModel,
 };
 
-export const SignInModel: FormModel = {
+export const SignInModel = {
   ...EmailModel,
   ...PhoneNumberModel,
   ...PasswordRequiredModel,
 };
 
-export const VerifyContactModel: FormModel = {
+export const VerifyContactModel = {
   ...EmailModel,
   ...CodeRequiredModel,
   contact: '',

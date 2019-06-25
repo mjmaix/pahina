@@ -4,7 +4,6 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import './SignInScreen.css';
 import { handleSignIn } from '@pahina/core/dist/src/actions';
 import { SignInModel } from '../../../core/src/models';
-import { DeepRequired } from 'utility-types/dist/mapped-types';
 
 export class SignInScreen extends Component<{}, {}> {
   public readonly state = {
@@ -13,16 +12,10 @@ export class SignInScreen extends Component<{}, {}> {
   };
   public render() {
     const { email, password } = this.state;
-    const form: DeepRequired<typeof SignInModel> = {
+    const form: SignInModel = {
       email,
       password,
       phone_number: '',
-      family_name: '',
-      given_name: '',
-      picture: '',
-      password_old: '',
-      code: '',
-      contact: '',
     };
     return (
       <Form className="signin-form">
