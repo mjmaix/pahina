@@ -16,6 +16,7 @@
     "postinstall": "patch-package",
     "app:start": "yarn workspace @pahina/app expo:start --clear",
     "web:start": "yarn workspace @pahina/web start",
+    "core:build": "yarn workspace @pahina/core build && yarn",
     "clean": "yarn workspace @pahina/app clean && yarn workspace @pahina/web clean && yarn workspace @pahina/core clean && yarn",
     "patch-package:update": "yarn patch-package react-native-elements aws-amplify-react-native"
   },

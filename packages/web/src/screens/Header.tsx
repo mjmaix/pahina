@@ -1,0 +1,22 @@
+import React from 'react';
+import { Nav, NavItem, NavLink } from 'reactstrap';
+
+import './Header.css';
+
+export const Header = () => {
+  return (
+    <div className="Header">
+      <Nav>
+        <NavItem>
+          <NavLink href="/">Home</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink href="/about/">About</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink href="/users/">Users</NavLink>
+        </NavItem>
+      </Nav>
+    </div>
+  );
+};

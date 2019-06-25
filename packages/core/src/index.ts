@@ -14,7 +14,7 @@ export {
   mutations as gm,
   queries as gq,
   subscriptions as gs,
-  actions as coreactions,
+  actions as coreActions,
   errors as coreErrors,
   models as coreModels,
   validators as coreValidators,

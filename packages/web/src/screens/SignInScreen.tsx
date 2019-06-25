@@ -1,26 +1,31 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Spinner } from 'reactstrap';
 
 import './SignInScreen.css';
-import { handleSignIn } from '@pahina/core/dist/src/actions';
-import { SignInModel } from '../../../core/src/models';
+import { coreActions, coreModels, coreUtils } from '@pahina/core';
+import { RouteComponentProps, withRouter } from 'react-router';
 
-export class SignInScreen extends Component<{}, {}> {
+const { handleSignIn } = coreActions;
+const { SignInModel } = coreModels;
+const { logError } = coreUtils;
+
+class SignInScreen extends Component<RouteComponentProps, {}> {
   public readonly state = {
     email: '',
     password: '',
+    submitting: false,
   };
   public render() {
-    const { email, password } = this.state;
-    const form: SignInModel = {
+    const { email, password, submitting } = this.state;
+    const form: typeof SignInModel = {
       email,
       password,
       phone_number: '',
     };
     return (
-      <Form className="signin-form">
+      <Form className="SignIn-form">
         <h1 className="text-center">Pahina</h1>
-        {/* <h4 className="text-center">Share and sell notes</h4> */}
+        <p className="text-center">hare and sell notes</p>
         <p className="text-center">Welcome to the seller app</p>
         <FormGroup>
           <Label for="email">Email</Label>
@@ -46,14 +51,26 @@ export class SignInScreen extends Component<{}, {}> {
         </FormGroup>
 
         <Button
+          disabled={submitting}
           className="btn-lg btn-dark btn-block"
           onClick={async () => {
-            await handleSignIn(form);
+            try {
+              this.setState({ submitting: true });
+              await handleSignIn(form);
+              window.location.reload();
+            } catch (err) {
+              logError(err);
+            } finally {
+              this.setState({ submitting: false });
+            }
           }}
         >
-          Submit
+          {submitting ? <Spinner /> : 'Submit'}
         </Button>
       </Form>
     );
   }
 }
+const SignInScreenWithRouter = withRouter(SignInScreen);
+
+export { SignInScreenWithRouter as SignInScreen };

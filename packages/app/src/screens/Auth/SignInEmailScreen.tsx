@@ -1,6 +1,7 @@
 import { Formik, FormikActions } from 'formik';
 import React, { Component } from 'react';
 import { NavigationScreenProps } from 'react-navigation';
+import { NavLink } from 'react-router-dom';
 
 import { EmailInput, Header, PasswordInput } from '../../components';
 import {
