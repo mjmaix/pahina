@@ -1,13 +1,5 @@
-import React, { useState, Component } from 'react';
-import {
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  FormText,
-  Container,
-} from 'reactstrap';
+import React, { Component } from 'react';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import './SignInScreen.css';
 import { handleSignIn } from '@pahina/core/dist/src/actions';

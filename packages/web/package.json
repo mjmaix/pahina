@@ -22,7 +22,7 @@
     "typescript": "3.5.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "HTTPS=false react-scripts start",
     "build": "react-scripts build",
     "prebuild": "./scripts/prebuild.sh",
     "test": "react-scripts test",
