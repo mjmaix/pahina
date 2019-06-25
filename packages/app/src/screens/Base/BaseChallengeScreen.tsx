@@ -12,8 +12,7 @@ import {
   StyledScreenContainer,
   StyledTextInput,
 } from '../../components';
-import { ChallengeModel } from '@pahina/core/src/models';
-import { ChallengeSchema } from '@pahina/core/src/validators';
+import { ChallengeModel, ChallengeSchema } from '@pahina/core';
 
 interface OwnProps<T> {
   title?: string;

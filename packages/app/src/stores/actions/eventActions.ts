@@ -1,6 +1,5 @@
 import { NavigationService } from '../../utils';
 import { CognitoContact } from '@pahina/core/types';
-import { logInfo } from '@pahina/core/src/utils';
 import {
   handleGetCurrentUserAttrs,
   handleGetCurrentUser,
@@ -8,7 +7,8 @@ import {
   handleGetCurrentIdentityId,
   handleCreateAppSyncUser,
   handleUpdateAppSyncUser,
-} from '@pahina/core/src/actions';
+  logInfo,
+} from '@pahina/core';
 
 export const handlePressVerifyContact = async (contact: CognitoContact) => {
   logInfo('[START]', 'handlePressVerifyContact');

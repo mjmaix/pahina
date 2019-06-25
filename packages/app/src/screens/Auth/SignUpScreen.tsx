@@ -13,9 +13,7 @@ import {
   StyledTextInput,
 } from '../../components';
 import { Busy, NavigationService, alertFail, alertOk } from '../../utils';
-import { handleSignUp } from '@pahina/core/src/actions';
-import { SignUpModel } from '@pahina/core/src/models';
-import { SignUpSchema } from '@pahina/core/src/validators';
+import { handleSignUp, SignUpModel, SignUpSchema } from '@pahina/core';
 
 type Props = NavigationScreenProps;
 type FormModel = typeof SignUpModel;

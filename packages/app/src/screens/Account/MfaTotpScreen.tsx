@@ -24,14 +24,15 @@ import {
   BRAND_NAME,
   generateTotpLink,
 } from '../../utils';
-import { CodeRequiredModel, ProfileModel } from '@pahina/core/src/models';
 import {
   handleVerifyMfaTotp,
   handleSignOut,
   handleGetCurrentUserAttrs,
   handleSetupMfaTotp,
-} from '@pahina/core/src/actions';
-import { CodeSchema } from '@pahina/core/src/validators';
+  CodeRequiredModel,
+  ProfileModel,
+  CodeSchema,
+} from '@pahina/core';
 
 interface MfaTotpProps {}
 type FormModel = typeof CodeRequiredModel;

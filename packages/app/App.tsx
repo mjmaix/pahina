@@ -1,1 +1,2 @@
-export { default } from "./src/App";
+import '@pahina/core';
+export { default } from './src/App';

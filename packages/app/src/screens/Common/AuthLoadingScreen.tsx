@@ -5,7 +5,7 @@ import * as Permissions from 'expo-permissions';
 
 import { StyledScreenContainer } from '../../components';
 import { NavigationService, alertOk } from '../../utils';
-import { logRecord, logInfo } from '@pahina/core/src/utils';
+import { logRecord, logInfo } from '@pahina/core';
 
 class AuthLoadingScreen extends React.Component<{}> {
   public async componentDidMount() {

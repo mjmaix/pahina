@@ -14,9 +14,11 @@ import {
   StyledTextInput,
 } from '../../components';
 import { Busy, NavigationService, alertFail, alertOk } from '../../utils';
-import { PasswordResetModel } from '@pahina/core/src/models';
-import { PasswordResetSchema } from '@pahina/core/src/validators';
-import { handleForgotPasswordSubmit } from '@pahina/core/src/actions';
+import {
+  PasswordResetModel,
+  PasswordResetSchema,
+  handleForgotPasswordSubmit,
+} from '@pahina/core';
 
 type FormModel = typeof PasswordResetModel;
 type Props = NavigationScreenProps;

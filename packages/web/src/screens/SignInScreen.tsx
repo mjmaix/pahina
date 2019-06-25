@@ -2,12 +2,8 @@ import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input, Spinner } from 'reactstrap';
 
 import './SignInScreen.css';
-import { coreActions, coreModels, coreUtils } from '@pahina/core';
 import { RouteComponentProps, withRouter } from 'react-router';
-
-const { handleSignIn } = coreActions;
-const { SignInModel } = coreModels;
-const { logError } = coreUtils;
+import { SignInModel, logError, handleSignIn } from '@pahina/core';
 
 class SignInScreen extends Component<RouteComponentProps, {}> {
   public readonly state = {
@@ -17,7 +13,7 @@ class SignInScreen extends Component<RouteComponentProps, {}> {
   };
   public render() {
     const { email, password, submitting } = this.state;
-    const form: typeof SignInModel = {
+    const form: SignInModel = {
       email,
       password,
       phone_number: '',

@@ -33,18 +33,17 @@ import {
   alertFail,
   alertOk,
 } from '../../utils';
-import { CognitoContact } from '@pahina/core/types';
 import { StorageConfig } from '../../../types';
-import { ProfileModel } from '@pahina/core/src/models';
 import {
+  ProfileModel,
   handleGetCurrentUserAttrs,
   handleCheckContactVerified,
   handleSignOut,
   handleUpdateProfile,
-} from '@pahina/core/src/actions';
-import { UpdateProfileSchema } from '@pahina/core/src/validators';
-import { WrapKnownExceptions } from '@pahina/core/src/errors';
-import { logInfo } from '@pahina/core/src/utils';
+  UpdateProfileSchema,
+  WrapKnownExceptions,
+  logInfo,
+} from '@pahina/core';
 
 interface Props extends NavigationScreenProps {}
 type FormModel = typeof ProfileModel;

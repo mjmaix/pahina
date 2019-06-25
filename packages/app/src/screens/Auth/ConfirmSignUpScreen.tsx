@@ -13,9 +13,13 @@ import {
   StyledTextInput,
 } from '../../components';
 import { Busy, NavigationService, alertFail, alertOk } from '../../utils';
-import { ChallengeModel, EmailModel } from '@pahina/core/src/models';
-import { handleResend, handleConfirmSignUp } from '@pahina/core/src/actions';
-import { ChallengeSchema } from '@pahina/core/src/validators';
+import {
+  ChallengeModel,
+  EmailModel,
+  handleResend,
+  handleConfirmSignUp,
+  ChallengeSchema,
+} from '@pahina/core';
 
 interface Props extends NavigationScreenProps {}
 type FormModel = typeof ChallengeModel;

@@ -13,9 +13,11 @@ import {
   StyledTextInput,
 } from '../../components';
 import { Busy, NavigationService, alertFail, alertOk } from '../../utils';
-import { EmailModel } from '@pahina/core/src/models';
-import { EmailOnlySchema } from '@pahina/core/src/validators';
-import { handleForgotPassword } from '@pahina/core/src/actions';
+import {
+  EmailModel,
+  EmailOnlySchema,
+  handleForgotPassword,
+} from '@pahina/core';
 
 type Props = NavigationScreenProps;
 type FormModel = typeof EmailModel;

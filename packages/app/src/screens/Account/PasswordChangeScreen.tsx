@@ -14,10 +14,12 @@ import {
 } from '../../components';
 
 import { NavigationService, alertFail, alertOk } from '../../utils';
-import { PasswordChangeModel } from '@pahina/core/src/models';
-import { PasswordChangeSchema } from '@pahina/core/src/validators';
-import { handleChangePasswordSubmit } from '@pahina/core/src/actions';
-import { SafeException } from '@pahina/core/src/errors';
+import {
+  PasswordChangeSchema,
+  PasswordChangeModel,
+  handleChangePasswordSubmit,
+  SafeException,
+} from '@pahina/core';
 
 type Props = NavigationScreenProps;
 type Model = typeof PasswordChangeModel;

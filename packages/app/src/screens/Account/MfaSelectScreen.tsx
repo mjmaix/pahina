@@ -12,12 +12,12 @@ import {
   alertOk,
 } from '../../utils';
 import { MfaChallengeType } from '@pahina/core/types';
-import { ProfileModel } from '@pahina/core/src/models';
 import {
   handleGetPreferredMfa,
   handleCheckContactVerified,
   handleSetMfa,
-} from '@pahina/core/src/actions';
+  ProfileModel,
+} from '@pahina/core';
 
 type Props = NavigationScreenProps;
 interface State {

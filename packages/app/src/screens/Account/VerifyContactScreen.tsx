@@ -15,12 +15,12 @@ import {
 } from '../../components';
 import { Busy, NavigationService, alertFail, alertOk } from '../../utils';
 import { CognitoContact } from '@pahina/core/types';
-import { VerifyContactModel } from '@pahina/core/src/models';
 import {
+  VerifyContactModel,
   handleVerifyContact,
   handleVerifyContactResend,
-} from '@pahina/core/src/actions';
-import { VerifyContactSchema } from '@pahina/core/src/validators';
+  VerifyContactSchema,
+} from '@pahina/core';
 
 interface VerifyContactScreenProps extends NavigationScreenProps {}
 type FormModel = typeof VerifyContactModel;

@@ -1,22 +1,11 @@
 import './init';
 
-import * as mutations from './graphql/mutations';
-import * as queries from './graphql/queries';
-import * as subscriptions from './graphql/subscriptions';
+export * from './graphql/mutations';
+export * from './graphql/queries';
+export * from './graphql/subscriptions';
 
-import * as actions from './actions';
-import * as errors from './errors';
-import * as models from './models';
-import * as validators from './validators';
-import * as utils from './utils';
-
-export {
-  mutations as gm,
-  queries as gq,
-  subscriptions as gs,
-  actions as coreActions,
-  errors as coreErrors,
-  models as coreModels,
-  validators as coreValidators,
-  utils as coreUtils,
-};
+export * from './actions';
+export * from './errors';
+export * from './models';
+export * from './validators';
+export * from './utils';

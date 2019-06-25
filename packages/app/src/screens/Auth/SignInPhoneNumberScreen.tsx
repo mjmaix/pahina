@@ -15,9 +15,7 @@ import {
 } from '../../components';
 import { Busy, NavigationService, alertFail } from '../../utils';
 import { MFA_CHALLENGES } from '../../utils/constants';
-import { SignInModel } from '@pahina/core/src/models';
-import { SignInMobileSchema } from '@pahina/core/src/validators';
-import { handleSignIn } from '@pahina/core/src/actions';
+import { SignInModel, SignInMobileSchema, handleSignIn } from '@pahina/core';
 
 type Props = NavigationScreenProps;
 type FormModel = typeof SignInModel;

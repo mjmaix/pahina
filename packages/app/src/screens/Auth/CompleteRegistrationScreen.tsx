@@ -15,15 +15,18 @@ import {
 } from '../../components';
 import { Busy, NavigationService, alertFail, alertOk } from '../../utils';
 import { AppCognitoUser } from '@pahina/core/types';
-import { SignUpModel, PasswordRequiredModel } from '@pahina/core/src/models';
-import { handleCompleteNewPassword } from '@pahina/core/src/actions';
-import { CompleteRegistrationSchema } from '@pahina/core/src/validators';
+import {
+  SignUpModel,
+  PasswordRequiredModel,
+  handleCompleteNewPassword,
+  CompleteRegistrationSchema,
+} from '@pahina/core';
 
 type Props = NavigationScreenProps;
 interface State {
   user?: AppCognitoUser;
 }
-type FormModel = Partial<typeof SignUpModel> & typeof PasswordRequiredModel; // NOTE: Partial just to complete blanks
+type FormModel = SignUpModel & PasswordRequiredModel;
 
 class CompleteRegistrationScreen extends Component<Props, State> {
   public readonly state: State = {

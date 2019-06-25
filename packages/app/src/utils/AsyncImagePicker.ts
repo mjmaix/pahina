@@ -6,7 +6,7 @@ import { Storage } from 'aws-amplify';
 
 import { getExt } from './getExt';
 import { StorageConfig, S3Object } from '../../types';
-import { logInfo, logError } from '@pahina/core/src/utils';
+import { logInfo, logError } from '@pahina/core';
 
 const fs = FileSystem;
 

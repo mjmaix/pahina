@@ -16,9 +16,11 @@ import {
 } from '../../components';
 import { Busy, NavigationService, alertFail, alertOk } from '../../utils';
 import { AppCognitoUser } from '@pahina/core/types';
-import { CodeRequiredModel } from '@pahina/core/src/models';
-import { CodeSchema } from '@pahina/core/src/validators';
-import { handleConfirmSignIn } from '@pahina/core/src/actions';
+import {
+  CodeRequiredModel,
+  CodeSchema,
+  handleConfirmSignIn,
+} from '@pahina/core';
 
 type FormModel = typeof CodeRequiredModel;
 interface SignInCodeScreenProps extends NavigationScreenProps {}

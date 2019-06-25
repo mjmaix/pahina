@@ -12,7 +12,7 @@ import { ThemeProvider as ScThemeProvider } from 'styled-components';
 import { STORAGE_KEY, ThemeName, ThemeHelper } from './themes';
 import { NavigationService } from './utils';
 import { AppRoutes } from './routes';
-import { logInfo, logError } from '@pahina/core/src/utils';
+import { logInfo, logError } from '@pahina/core';
 
 interface AppState {
   theme?: Theme;

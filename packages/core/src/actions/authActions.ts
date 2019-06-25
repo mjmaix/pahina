@@ -158,9 +158,7 @@ export const handleForgotPasswordSubmit = async (data: PasswordResetModel) => {
   return handleSignOut(true).catch(WrapKnownExceptions);
 };
 
-export const handleChangePasswordSubmit = async (
-  data: DeepRequired<typeof PasswordChangeModel>,
-) => {
+export const handleChangePasswordSubmit = async (data: PasswordChangeModel) => {
   logInfo('[START]', 'handleChangePasswordSubmit');
   const currentUser = await Auth.currentUserPoolUser().catch(
     WrapKnownExceptions,
@@ -174,7 +172,7 @@ export const handleChangePasswordSubmit = async (
 
 export const handleCompleteNewPassword = async (
   unAuthUser: AppCognitoUser,
-  data: SignUpModel & typeof PasswordRequiredModel,
+  data: SignUpModel & PasswordRequiredModel,
 ) => {
   logInfo('[START]', 'handleCompleteNewPassword');
   const { requiredAttributes } = unAuthUser.challengeParam;
