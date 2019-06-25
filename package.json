@@ -10,14 +10,7 @@
     "packages": [
       "packages/*"
     ],
-    "nohoist": [
-      "**/react",
-      "**/react/**",
-      "**/react-dom",
-      "**/react-dom/**",
-      "**/aws-amplify-react",
-      "**/aws-amplify-react/**"
-    ]
+    "nohoist": []
   },
   "scripts": {
     "postinstall": "patch-package",

@@ -43,5 +43,17 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "workspaces": {
+    "nohoist": [
+      "**/aws-amplify-react",
+      "**/aws-amplify-react/**",
+      "**/react",
+      "**/react/**",
+      "**/react-dom",
+      "**/react-dom/**",
+      "**/reactstrap",
+      "**/reactstrap/**"
+    ]
   }
 }
