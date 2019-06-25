@@ -4,11 +4,12 @@ import { Button } from 'reactstrap';
 
 import logo from '../logo.svg';
 import './Dashboard.css';
+import './Screen.css';
 import { handleSignOut } from '@pahina/core/dist/src/actions';
 
 const Dashboard: React.FC = () => {
   return (
-    <div className="App">
+    <div className="Screen App">
       {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />

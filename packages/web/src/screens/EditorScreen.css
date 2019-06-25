@@ -1,0 +1,17 @@
+.Editor-container {
+  margin: 10px 50px 10px 50px;
+}
+
+.Editor-ButtonToolbar {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  justify-content: center;
+}
+
+.Editor-Button {
+  color: black;
+  background: rgba(0, 0, 0, 0);
+  border-color: rgba(0, 0, 0, 0);
+  margin-right: 5px;
+  margin-left: 5px;
+}
