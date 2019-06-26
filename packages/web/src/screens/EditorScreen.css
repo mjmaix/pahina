@@ -3,8 +3,7 @@
 }
 
 .Editor-ButtonToolbar {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  margin-top: 20px;
   justify-content: center;
 }
 
@@ -34,4 +33,24 @@
   text-align: center;
   font-size: 0.8em;
   margin-bottom: 0.2rem;
+}
+
+#Form-Summary {
+  border-width: 0;
+}
+
+.Form-Buttons {
+  padding: 10px;
+}
+
+.Editor-Outline {
+  padding: 20px;
+  border-style: solid;
+  border-color: #282c34;
+  border-width: thin 0 thin 0;
+}
+
+.Editor-Toolbar-Outline {
+  border-color: #282c34;
+  border-width: thin 0 thin 0;
 }

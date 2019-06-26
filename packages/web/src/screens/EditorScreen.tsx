@@ -62,19 +62,20 @@ const plugins = [
 
 const existingContent = JSON.parse(Cache.getItem(EDITOR_CACHE_KEY));
 
+const initiaState = {
+  value: Value.fromJSON(existingContent || initialValue),
+  linkedCase: {
+    title:
+      'Commissioner of Internal Revenue Vs. Pilipinas Shell Petroleum Corporation/Commissioner of Internal Revenue Vs. Pilipinas Shell Petroleum Corporation and Petron Corporation',
+    code:
+      'G.R. Nos. 212761-62/G.R. Nos. 213473-74/G.R. Nos. 213538-39. July 31, 2018',
+    link: 'http://www.chanrobles.com/cralaw/2018julydecisions.php?id=750',
+  },
+};
 export class EditorScreen extends Component<{}, State> {
   private editor?: Editor;
 
-  public readonly state: State = {
-    value: Value.fromJSON(existingContent || initialValue),
-    linkedCase: {
-      title:
-        'Commissioner of Internal Revenue Vs. Pilipinas Shell Petroleum Corporation/Commissioner of Internal Revenue Vs. Pilipinas Shell Petroleum Corporation and Petron Corporation',
-      code:
-        'G.R. Nos. 212761-62/G.R. Nos. 213473-74/G.R. Nos. 213538-39. July 31, 2018',
-      link: 'http://www.chanrobles.com/cralaw/2018julydecisions.php?id=750',
-    },
-  };
+  public readonly state: State = initiaState;
 
   public hasMark = (type: string) => {
     const { value } = this.state;
@@ -108,36 +109,59 @@ export class EditorScreen extends Component<{}, State> {
         </div>
         <Form>
           <FormGroup row>
-            <Label for="Input-Summary" sm={2}>
+            <Label for="Form-Summary" sm={2}>
               Summary (promotional)
             </Label>
-            <Col sm={10}>
-              <Input
-                type="textarea"
-                name="summary"
-                id="Input-Summary"
-                placeholder="Short (promotional) summary for this note."
-              />
+            <Input
+              type="textarea"
+              name="summary"
+              id="Form-Summary"
+              placeholder="Add summary for potential buyers."
+            />
+          </FormGroup>
+          <FormGroup row>
+            <Col sm={12}>
+              <div className="Editor-Toolbar-Outline">
+                {this.renderEditorToolbar()}
+              </div>
+              <div className="Editor-Outline">
+                <Editor
+                  spellCheck
+                  autoFocus
+                  placeholder="Write your digest here..."
+                  plugins={plugins}
+                  ref={this.ref}
+                  value={value}
+                  onChange={this.onChange}
+                  onKeyDown={this.onKeyDown}
+                  renderBlock={this.renderBlock}
+                  renderMark={this.renderMark}
+                />
+              </div>
             </Col>
           </FormGroup>
+          <div className="Form-Buttons">
+            <Button
+              outline
+              active
+              className="Gap-reg  btn btn-primary btn-outline-dark"
+            >
+              Publish
+            </Button>
+            <Button
+              outline
+              active
+              className="Gap-reg btn btn-secondary btn-outline-info"
+            >
+              Save
+            </Button>
+          </div>
         </Form>
-        {this.renderEditorToolbar()}
-        <Editor
-          spellCheck
-          autoFocus
-          placeholder="Write your digest here..."
-          plugins={plugins}
-          ref={this.ref}
-          value={value}
-          onChange={this.onChange}
-          onKeyDown={this.onKeyDown}
-          renderBlock={this.renderBlock}
-          renderMark={this.renderMark}
-        />
       </div>
     );
   }
-  renderEditorToolbar() {
+
+  private renderEditorToolbar = () => {
     return (
       <ButtonToolbar className="Editor-ButtonToolbar">
         {this.renderMarkButton('bold', 'format_bold')}
@@ -151,7 +175,7 @@ export class EditorScreen extends Component<{}, State> {
         {this.renderBlockButton('bulleted-list', 'format_list_bulleted')}
       </ButtonToolbar>
     );
-  }
+  };
 
   public renderMarkButton = (type: string, icon: string) => {
     const isActive = this.hasMark(type);
