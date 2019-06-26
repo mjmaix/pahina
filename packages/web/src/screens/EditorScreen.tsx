@@ -1,14 +1,14 @@
 /* tslint:disable */
 import React, { Component } from 'react';
+import debounce from 'lodash/debounce';
 import {
   Editor,
   RenderMarkProps,
   RenderBlockProps,
   EventHook,
 } from 'slate-react';
-import './EditorScreen.css';
-import './Screen.css';
-
+import { isKeyHotkey } from 'is-hotkey';
+import { ButtonToolbar, Button } from 'reactstrap';
 import {
   Value,
   Block,
@@ -17,11 +17,21 @@ import {
   Editor as CoreEditor,
 } from 'slate';
 
-import initialValue from './value.json';
-import { isKeyHotkey } from 'is-hotkey';
-import { ButtonToolbar, Button } from 'reactstrap';
+import './EditorScreen.css';
+import './Screen.css';
+import { Cache } from '@pahina/core';
+
 import { Icon } from '../components/Icon';
 import { TooltipWrapper } from '../components/HOCs/TooltipWrapper';
+
+import initialValue from './value.json';
+
+interface State {
+  value: Value;
+}
+type ClickEvent = React.MouseEvent<HTMLButtonElement, MouseEvent>;
+
+const EDITOR_CACHE_KEY = 'editor_draft';
 
 const DEFAULT_NODE = 'paragraph';
 
@@ -30,17 +40,13 @@ const isItalicHotkey = isKeyHotkey('mod+i');
 const isUnderlinedHotkey = isKeyHotkey('mod+u');
 const isCodeHotkey = isKeyHotkey('mod+`');
 
-interface State {
-  value: Value;
-}
-
-type ClickEvent = React.MouseEvent<HTMLButtonElement, MouseEvent>;
+const existingContent = JSON.parse(Cache.getItem(EDITOR_CACHE_KEY));
 
 export class EditorScreen extends Component<{}, State> {
   private editor?: Editor;
 
   public readonly state: State = {
-    value: Value.fromJSON(initialValue),
+    value: Value.fromJSON(existingContent || initialValue),
   };
 
   public hasMark = (type: string) => {
@@ -189,6 +195,8 @@ export class EditorScreen extends Component<{}, State> {
   };
 
   public onChange = ({ value }: State) => {
+    this.cacheChanges(value, this.state.value);
+
     this.setState({ value });
   };
 
@@ -273,4 +281,17 @@ export class EditorScreen extends Component<{}, State> {
       }
     }
   };
+
+  private cacheChanges = debounce(
+    (value: Value, oldValue: Value) => {
+      if (value.document != oldValue.document) {
+        const content = JSON.stringify(value.toJSON());
+        Cache.setItem(EDITOR_CACHE_KEY, content);
+      }
+    },
+    5 * 1000,
+    {
+      maxWait: 10 * 1000,
+    },
+  );
 }
