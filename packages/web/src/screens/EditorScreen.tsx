@@ -77,17 +77,7 @@ export class EditorScreen extends Component<{}, State> {
     return (
       <div className="Editor-container">
         <h3 className="text-center">Editor - Case digest</h3>
-        <ButtonToolbar className="Editor-ButtonToolbar">
-          {this.renderMarkButton('bold', 'format_bold')}
-          {this.renderMarkButton('italic', 'format_italic')}
-          {this.renderMarkButton('underlined', 'format_underlined')}
-          {this.renderMarkButton('code', 'code')}
-          {this.renderBlockButton('heading-one', 'looks_one')}
-          {this.renderBlockButton('heading-two', 'looks_two')}
-          {this.renderBlockButton('block-quote', 'format_quote')}
-          {this.renderBlockButton('numbered-list', 'format_list_numbered')}
-          {this.renderBlockButton('bulleted-list', 'format_list_bulleted')}
-        </ButtonToolbar>
+        {this.renderEditorToolbar()}
         <Editor
           spellCheck
           autoFocus
@@ -101,6 +91,21 @@ export class EditorScreen extends Component<{}, State> {
           renderMark={this.renderMark}
         />
       </div>
+    );
+  }
+  renderEditorToolbar() {
+    return (
+      <ButtonToolbar className="Editor-ButtonToolbar">
+        {this.renderMarkButton('bold', 'format_bold')}
+        {this.renderMarkButton('italic', 'format_italic')}
+        {this.renderMarkButton('underlined', 'format_underlined')}
+        {this.renderMarkButton('code', 'code')}
+        {this.renderBlockButton('heading-one', 'looks_one')}
+        {this.renderBlockButton('heading-two', 'looks_two')}
+        {this.renderBlockButton('block-quote', 'format_quote')}
+        {this.renderBlockButton('numbered-list', 'format_list_numbered')}
+        {this.renderBlockButton('bulleted-list', 'format_list_bulleted')}
+      </ButtonToolbar>
     );
   }
 
