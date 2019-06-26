@@ -7,7 +7,7 @@ import {
   RenderBlockProps,
   EventHook,
 } from 'slate-react';
-import { isKeyHotkey } from 'is-hotkey';
+
 import { ButtonToolbar, Button } from 'reactstrap';
 import {
   Value,
@@ -15,6 +15,8 @@ import {
   Mark,
   Node as SlateNode,
   Editor as CoreEditor,
+  Document,
+  Inline,
 } from 'slate';
 
 import './EditorScreen.css';
@@ -25,20 +27,24 @@ import { Icon } from '../components/Icon';
 import { TooltipWrapper } from '../components/HOCs/TooltipWrapper';
 
 import initialValue from './value.json';
+import { Hotkey } from '../components/slate';
 
 interface State {
   value: Value;
 }
+type AcceptedParent = Document<any> | Block | Inline;
 type ClickEvent = React.MouseEvent<HTMLButtonElement, MouseEvent>;
 
 const EDITOR_CACHE_KEY = 'editor_draft';
 
 const DEFAULT_NODE = 'paragraph';
 
-const isBoldHotkey = isKeyHotkey('mod+b');
-const isItalicHotkey = isKeyHotkey('mod+i');
-const isUnderlinedHotkey = isKeyHotkey('mod+u');
-const isCodeHotkey = isKeyHotkey('mod+`');
+const plugins = [
+  Hotkey('mod+b', (editor: CoreEditor) => editor.toggleMark('bold')),
+  Hotkey('mod+i', (editor: CoreEditor) => editor.toggleMark('italic')),
+  Hotkey('mod+u', (editor: CoreEditor) => editor.toggleMark('underline')),
+  Hotkey('mod+`', (editor: CoreEditor) => editor.toggleMark('code')),
+];
 
 const existingContent = JSON.parse(Cache.getItem(EDITOR_CACHE_KEY));
 
@@ -86,6 +92,7 @@ export class EditorScreen extends Component<{}, State> {
           spellCheck
           autoFocus
           placeholder="Write your digest here..."
+          plugins={plugins}
           ref={this.ref}
           value={this.state.value}
           onChange={this.onChange}
@@ -124,9 +131,14 @@ export class EditorScreen extends Component<{}, State> {
       } = this.state;
 
       if (blocks.size > 0) {
-        const parent = document.getParent(blocks.first().key);
-        // @ts-ignore
-        isActive = this.hasBlock('list-item') && parent && parent.type === type;
+        const parent: SlateNode | null = document.getParent(blocks.first().key);
+        if (parent && (parent as AcceptedParent).type) {
+          isActive = !!(
+            this.hasBlock('list-item') &&
+            parent &&
+            (parent as any).type === type
+          );
+        }
       }
     }
 
@@ -205,22 +217,7 @@ export class EditorScreen extends Component<{}, State> {
     editor: CoreEditor,
     next: () => any,
   ) => {
-    let mark;
-
-    if (isBoldHotkey(event as KeyboardEvent)) {
-      mark = 'bold';
-    } else if (isItalicHotkey(event as KeyboardEvent)) {
-      mark = 'italic';
-    } else if (isUnderlinedHotkey(event as KeyboardEvent)) {
-      mark = 'underlined';
-    } else if (isCodeHotkey(event as KeyboardEvent)) {
-      mark = 'code';
-    } else {
-      return next();
-    }
-
-    event.preventDefault();
-    editor.toggleMark(mark);
+    return next();
   };
 
   public onClickMark = (event: ClickEvent, type: string) => {
@@ -258,9 +255,9 @@ export class EditorScreen extends Component<{}, State> {
           if (!block) {
             return false;
           }
-          return !!document.getClosest(block.key, (parent: SlateNode) =>
-            // @ts-ignore
-            parent && parent.type ? parent.type === type : false,
+          return !!document.getClosest(
+            block.key,
+            (parent: SlateNode) => (parent as AcceptedParent).type === type,
           );
         });
 
@@ -284,6 +281,7 @@ export class EditorScreen extends Component<{}, State> {
 
   private cacheChanges = debounce(
     (value: Value, oldValue: Value) => {
+      // eslint-disable-next-line eqeqeq
       if (value.document != oldValue.document) {
         const content = JSON.stringify(value.toJSON());
         Cache.setItem(EDITOR_CACHE_KEY, content);
