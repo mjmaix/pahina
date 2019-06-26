@@ -1,7 +1,6 @@
 import { Formik, FormikActions } from 'formik';
 import React, { Component } from 'react';
 import { NavigationScreenProps } from 'react-navigation';
-import { NavLink } from 'react-router-dom';
 
 import { EmailInput, Header, PasswordInput } from '../../components';
 import {
@@ -22,6 +21,8 @@ import {
   SafeException,
   handleSignIn,
 } from '@pahina/core';
+import { handleCreateAppSyncUser } from '@pahina/core';
+import { handleAppSyncUserCreate } from '../../stores/actions/eventActions';
 
 type Props = NavigationScreenProps;
 type FormModel = typeof SignInModel;
@@ -86,7 +87,7 @@ class SignInEmailScreen extends Component<Props> {
       } else if (MFA_CHALLENGES.includes(user.challengeName)) {
         transferScreen = 'SignInCode';
       } else if (!user.challengeName) {
-        // await handleClUserCreate();
+        await handleAppSyncUserCreate();
       }
     } catch (err) {
       transferScreen = null;

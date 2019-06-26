@@ -11,6 +11,18 @@ export const createPahinaUser = `mutation CreatePahinaUser($input: CreatePahinaU
     identityId
     createdAt
     updatedAt
+    active
+    notes {
+      items {
+        id
+        promotional
+        createdAt
+        updatedAt
+        status
+        active
+      }
+      nextToken
+    }
   }
 }
 `;
@@ -24,6 +36,18 @@ export const updatePahinaUser = `mutation UpdatePahinaUser($input: UpdatePahinaU
     identityId
     createdAt
     updatedAt
+    active
+    notes {
+      items {
+        id
+        promotional
+        createdAt
+        updatedAt
+        status
+        active
+      }
+      nextToken
+    }
   }
 }
 `;
@@ -37,6 +61,87 @@ export const deletePahinaUser = `mutation DeletePahinaUser($input: DeletePahinaU
     identityId
     createdAt
     updatedAt
+    active
+    notes {
+      items {
+        id
+        promotional
+        createdAt
+        updatedAt
+        status
+        active
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const createPahinaCase = `mutation CreatePahinaCase($input: CreatePahinaCaseInput!) {
+  createPahinaCase(input: $input) {
+    id
+    title
+    code
+    link
+    active
+    createdAt
+    updatedAt
+    notes {
+      items {
+        id
+        promotional
+        createdAt
+        updatedAt
+        status
+        active
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const updatePahinaCase = `mutation UpdatePahinaCase($input: UpdatePahinaCaseInput!) {
+  updatePahinaCase(input: $input) {
+    id
+    title
+    code
+    link
+    active
+    createdAt
+    updatedAt
+    notes {
+      items {
+        id
+        promotional
+        createdAt
+        updatedAt
+        status
+        active
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const deletePahinaCase = `mutation DeletePahinaCase($input: DeletePahinaCaseInput!) {
+  deletePahinaCase(input: $input) {
+    id
+    title
+    code
+    link
+    active
+    createdAt
+    updatedAt
+    notes {
+      items {
+        id
+        promotional
+        createdAt
+        updatedAt
+        status
+        active
+      }
+      nextToken
+    }
   }
 }
 `;

@@ -2,18 +2,17 @@ import { ApolloQueryResult } from 'apollo-client/core/types';
 import { FetchResult } from 'apollo-link';
 import gql from 'graphql-tag';
 
-import {
-  CreatePahinaUserMutation,
-  CreatePahinaUserMutationVariables,
-  UpdatePahinaUserMutation,
-  UpdatePahinaUserMutationVariables,
-} from '../API';
-
 import { createPahinaUser, updatePahinaUser } from '../graphql/mutations';
 
 import apollo from '../apollo-client';
 import { logInfo, logRecord } from '../utils';
-import { AppCognitoUser } from '../../types';
+import {
+  AppCognitoUser,
+  CreatePahinaUserMutation,
+  CreatePahinaUserMutationVariables,
+  UpdatePahinaUserMutation,
+  UpdatePahinaUserMutationVariables,
+} from '../../types';
 
 const assertErrors = (response: ApolloQueryResult<any> | FetchResult<any>) => {
   if (response && response.errors && response.errors.length > 0) {
@@ -40,7 +39,6 @@ export const handleCreateAppSyncUser = async (
       CreatePahinaUserMutationVariables
     >({
       mutation: gql(createPahinaUser),
-      optimisticResponse: { __typename: 'ClUser', createClUser: newUser },
       variables: {
         input: newUser,
       },
@@ -76,8 +74,6 @@ export const handleUpdateAppSyncUser = async (
       UpdatePahinaUserMutationVariables
     >({
       mutation: gql(updatePahinaUser),
-      // TODO: test first
-      // optimisticResponse: { __typename: 'ClUser', updateClUser: newUser },
       variables: {
         input: newUser,
       },

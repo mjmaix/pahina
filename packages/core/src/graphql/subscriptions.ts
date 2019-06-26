@@ -1,42 +1,72 @@
 // tslint:disable
 // this is an auto generated file. This will be overwritten
 
-export const onCreatePahinaUser = `subscription OnCreatePahinaUser {
-  onCreatePahinaUser {
+export const onCreatePahinaCase = `subscription OnCreatePahinaCase {
+  onCreatePahinaCase {
     id
-    givenName
-    familyName
-    email
-    picture
-    identityId
+    title
+    code
+    link
+    active
     createdAt
     updatedAt
+    notes {
+      items {
+        id
+        promotional
+        createdAt
+        updatedAt
+        status
+        active
+      }
+      nextToken
+    }
   }
 }
 `;
-export const onUpdatePahinaUser = `subscription OnUpdatePahinaUser {
-  onUpdatePahinaUser {
+export const onUpdatePahinaCase = `subscription OnUpdatePahinaCase {
+  onUpdatePahinaCase {
     id
-    givenName
-    familyName
-    email
-    picture
-    identityId
+    title
+    code
+    link
+    active
     createdAt
     updatedAt
+    notes {
+      items {
+        id
+        promotional
+        createdAt
+        updatedAt
+        status
+        active
+      }
+      nextToken
+    }
   }
 }
 `;
-export const onDeletePahinaUser = `subscription OnDeletePahinaUser {
-  onDeletePahinaUser {
+export const onDeletePahinaCase = `subscription OnDeletePahinaCase {
+  onDeletePahinaCase {
     id
-    givenName
-    familyName
-    email
-    picture
-    identityId
+    title
+    code
+    link
+    active
     createdAt
     updatedAt
+    notes {
+      items {
+        id
+        promotional
+        createdAt
+        updatedAt
+        status
+        active
+      }
+      nextToken
+    }
   }
 }
 `;

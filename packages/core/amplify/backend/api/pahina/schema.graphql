@@ -1,12 +1,59 @@
+enum PahinaNoteStatus {
+  DRAFT
+  PUBLISHED
+  EDITED_UNPUBLISHED
+  UNLISTED
+}
+
 type PahinaUser
-  @model
-  @auth(rules: [{ allow: owner, ownerField: "id", queries: null }]) {
+  @model(subscriptions: null)
+  @auth(
+    rules: [
+      { allow: owner, ownerField: "id", operations: [create, update, read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
   id: ID!
   givenName: String!
   familyName: String!
-  email: String!
+  email: String! @auth(rules: [{ allow: owner, ownerField: "id" }])
   picture: String
   identityId: String
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
+  active: Boolean @auth(rules: [{ allow: groups, groups: ["Admin"] }])
+  notes: [PahinaNote]
+    @connection(name: "PahinaUserNotes", sortField: "updatedAt")
+    @auth(rules: [{ allow: owner, ownerField: "id" }])
+}
+
+type PahinaNote
+  @model(subscriptions: null, queries: null, mutations: { delete: null })
+  @auth(
+    rules: [
+      { allow: owner, ownerField: "author", operations: [create, update, read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
+  id: ID!
+  author: PahinaUser @connection(name: "PahinaUserNotes")
+  case: PahinaCase @connection(name: "PahinaCases")
+  promotional: String
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+  status: PahinaNoteStatus!
+  active: Boolean @auth(rules: [{ allow: groups, groups: ["Admin"] }])
+}
+
+type PahinaCase
+  @model
+  @auth(rules: [{ allow: groups, groups: ["Admin"], operations: [update] }]) {
+  id: ID!
+  title: String!
+  code: String!
+  link: String
+  active: Boolean @auth(rules: [{ allow: groups, groups: ["Admin"] }])
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+  notes: [PahinaNote] @connection(name: "PahinaCases", sortField: "updatedAt")
 }
