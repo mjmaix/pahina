@@ -8,7 +8,15 @@ import {
   EventHook,
 } from 'slate-react';
 
-import { ButtonToolbar, Button } from 'reactstrap';
+import {
+  ButtonToolbar,
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Col,
+  Input,
+} from 'reactstrap';
 import {
   Value,
   Block,
@@ -31,9 +39,15 @@ import { Hotkey } from '../components/slate';
 
 interface State {
   value: Value;
+  linkedCase: {
+    code: string;
+    title: string;
+    link: string;
+  };
 }
 type AcceptedParent = Document<any> | Block | Inline;
 type ClickEvent = React.MouseEvent<HTMLButtonElement, MouseEvent>;
+type OnChange = (change: { value: Value }) => any;
 
 const EDITOR_CACHE_KEY = 'editor_draft';
 
@@ -53,6 +67,13 @@ export class EditorScreen extends Component<{}, State> {
 
   public readonly state: State = {
     value: Value.fromJSON(existingContent || initialValue),
+    linkedCase: {
+      title:
+        'Commissioner of Internal Revenue Vs. Pilipinas Shell Petroleum Corporation/Commissioner of Internal Revenue Vs. Pilipinas Shell Petroleum Corporation and Petron Corporation',
+      code:
+        'G.R. Nos. 212761-62/G.R. Nos. 213473-74/G.R. Nos. 213538-39. July 31, 2018',
+      link: 'http://www.chanrobles.com/cralaw/2018julydecisions.php?id=750',
+    },
   };
 
   public hasMark = (type: string) => {
@@ -74,9 +95,32 @@ export class EditorScreen extends Component<{}, State> {
   };
 
   public render() {
+    const { value, linkedCase } = this.state;
     return (
       <div className="Editor-container">
         <h3 className="text-center">Editor - Case digest</h3>
+        <div>
+          <p className="Note-Title">{linkedCase.title}</p>
+          <p className="Note-Code">{linkedCase.code}</p>
+          <div className="Note-Link">
+            <a href={linkedCase.link}>{linkedCase.link}</a>
+          </div>
+        </div>
+        <Form>
+          <FormGroup row>
+            <Label for="Input-Summary" sm={2}>
+              Summary (promotional)
+            </Label>
+            <Col sm={10}>
+              <Input
+                type="textarea"
+                name="summary"
+                id="Input-Summary"
+                placeholder="Short (promotional) summary for this note."
+              />
+            </Col>
+          </FormGroup>
+        </Form>
         {this.renderEditorToolbar()}
         <Editor
           spellCheck
@@ -84,7 +128,7 @@ export class EditorScreen extends Component<{}, State> {
           placeholder="Write your digest here..."
           plugins={plugins}
           ref={this.ref}
-          value={this.state.value}
+          value={value}
           onChange={this.onChange}
           onKeyDown={this.onKeyDown}
           renderBlock={this.renderBlock}
@@ -211,7 +255,7 @@ export class EditorScreen extends Component<{}, State> {
     }
   };
 
-  public onChange = ({ value }: State) => {
+  public onChange: OnChange = ({ value }) => {
     this.cacheChanges(value, this.state.value);
 
     this.setState({ value });
