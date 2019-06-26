@@ -144,9 +144,9 @@ export class EditorScreen extends Component<{}, State> {
             <Button
               outline
               active
-              className="Gap-reg  btn btn-primary btn-outline-dark"
+              className="Gap-reg btn btn-primary btn-outline-dark"
             >
-              Publish
+              Publish to market
             </Button>
             <Button
               outline
