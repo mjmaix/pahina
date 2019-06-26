@@ -1,5 +1,5 @@
 /* tslint:disable */
-import React from 'react';
+import React, { Component } from 'react';
 import {
   Editor,
   RenderMarkProps,
@@ -21,6 +21,7 @@ import initialValue from './value.json';
 import { isKeyHotkey } from 'is-hotkey';
 import { ButtonToolbar, Button } from 'reactstrap';
 import { Icon } from '../components/Icon';
+import { TooltipWrapper } from '../components/HOCs/TooltipWrapper';
 
 const DEFAULT_NODE = 'paragraph';
 
@@ -35,7 +36,7 @@ interface State {
 
 type ClickEvent = React.MouseEvent<HTMLButtonElement, MouseEvent>;
 
-export class EditorScreen extends React.Component<{}, State> {
+export class EditorScreen extends Component<{}, State> {
   private editor?: Editor;
 
   public readonly state: State = {
@@ -93,14 +94,18 @@ export class EditorScreen extends React.Component<{}, State> {
   public renderMarkButton = (type: string, icon: string) => {
     const isActive = this.hasMark(type);
 
+    const id = `MarkButton_${type}`;
     return (
-      <Button
-        active={isActive}
-        onMouseDown={(event: ClickEvent) => this.onClickMark(event, type)}
-        className="Editor-Button"
-      >
-        <Icon>{icon}</Icon>
-      </Button>
+      <TooltipWrapper tooltipMessage={type}>
+        <Button
+          id={id}
+          active={isActive}
+          onMouseDown={(event: ClickEvent) => this.onClickMark(event, type)}
+          className="Editor-Button"
+        >
+          <Icon>{icon}</Icon>
+        </Button>
+      </TooltipWrapper>
     );
   };
 
@@ -119,16 +124,21 @@ export class EditorScreen extends React.Component<{}, State> {
       }
     }
 
+    const id = `BlockButton_${type}`;
+
     return (
-      <Button
-        active={isActive}
-        onMouseDown={(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
-          this.onClickBlock(event, type)
-        }
-        className="Editor-Button"
-      >
-        <Icon>{icon}</Icon>
-      </Button>
+      <TooltipWrapper tooltipMessage={type}>
+        <Button
+          id={id}
+          active={isActive}
+          onMouseDown={(
+            event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+          ) => this.onClickBlock(event, type)}
+          className="Editor-Button"
+        >
+          <Icon>{icon}</Icon>
+        </Button>
+      </TooltipWrapper>
     );
   };
 
