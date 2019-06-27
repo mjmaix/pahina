@@ -20,6 +20,7 @@ export const createPahinaUser = `mutation CreatePahinaUser($input: CreatePahinaU
         updatedAt
         status
         active
+        value
       }
       nextToken
     }
@@ -45,6 +46,7 @@ export const updatePahinaUser = `mutation UpdatePahinaUser($input: UpdatePahinaU
         updatedAt
         status
         active
+        value
       }
       nextToken
     }
@@ -70,6 +72,7 @@ export const deletePahinaUser = `mutation DeletePahinaUser($input: DeletePahinaU
         updatedAt
         status
         active
+        value
       }
       nextToken
     }
@@ -110,6 +113,7 @@ export const createPahinaNote = `mutation CreatePahinaNote($input: CreatePahinaN
     updatedAt
     status
     active
+    value
   }
 }
 `;
@@ -147,6 +151,7 @@ export const updatePahinaNote = `mutation UpdatePahinaNote($input: UpdatePahinaN
     updatedAt
     status
     active
+    value
   }
 }
 `;
@@ -167,6 +172,7 @@ export const createPahinaCase = `mutation CreatePahinaCase($input: CreatePahinaC
         updatedAt
         status
         active
+        value
       }
       nextToken
     }
@@ -190,6 +196,7 @@ export const updatePahinaCase = `mutation UpdatePahinaCase($input: UpdatePahinaC
         updatedAt
         status
         active
+        value
       }
       nextToken
     }
@@ -213,6 +220,7 @@ export const deletePahinaCase = `mutation DeletePahinaCase($input: DeletePahinaC
         updatedAt
         status
         active
+        value
       }
       nextToken
     }

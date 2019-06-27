@@ -43,6 +43,7 @@ export type CreatePahinaNoteInput = {
   updatedAt?: string | null;
   status: PahinaNoteStatus;
   active?: boolean | null;
+  value?: string | null;
   pahinaNoteAuthorId?: string | null;
   pahinaNoteCaseId?: string | null;
 };
@@ -54,6 +55,7 @@ export type UpdatePahinaNoteInput = {
   updatedAt?: string | null;
   status?: PahinaNoteStatus | null;
   active?: boolean | null;
+  value?: string | null;
   pahinaNoteAuthorId?: string | null;
   pahinaNoteCaseId?: string | null;
 };
@@ -128,6 +130,24 @@ export type ModelBooleanFilterInput = {
   eq?: boolean | null;
 };
 
+export type ModelPahinaNoteFilterInput = {
+  id?: ModelIDFilterInput | null;
+  promotional?: ModelStringFilterInput | null;
+  createdAt?: ModelStringFilterInput | null;
+  updatedAt?: ModelStringFilterInput | null;
+  status?: ModelPahinaNoteStatusFilterInput | null;
+  active?: ModelBooleanFilterInput | null;
+  value?: ModelStringFilterInput | null;
+  and?: Array<ModelPahinaNoteFilterInput | null> | null;
+  or?: Array<ModelPahinaNoteFilterInput | null> | null;
+  not?: ModelPahinaNoteFilterInput | null;
+};
+
+export type ModelPahinaNoteStatusFilterInput = {
+  eq?: PahinaNoteStatus | null;
+  ne?: PahinaNoteStatus | null;
+};
+
 export type ModelPahinaCaseFilterInput = {
   id?: ModelIDFilterInput | null;
   title?: ModelStringFilterInput | null;
@@ -167,6 +187,7 @@ export type CreatePahinaUserMutation = {
         updatedAt: string | null;
         status: PahinaNoteStatus;
         active: boolean | null;
+        value: string | null;
       } | null> | null;
       nextToken: string | null;
     } | null;
@@ -199,6 +220,7 @@ export type UpdatePahinaUserMutation = {
         updatedAt: string | null;
         status: PahinaNoteStatus;
         active: boolean | null;
+        value: string | null;
       } | null> | null;
       nextToken: string | null;
     } | null;
@@ -231,6 +253,7 @@ export type DeletePahinaUserMutation = {
         updatedAt: string | null;
         status: PahinaNoteStatus;
         active: boolean | null;
+        value: string | null;
       } | null> | null;
       nextToken: string | null;
     } | null;
@@ -280,6 +303,7 @@ export type CreatePahinaNoteMutation = {
     updatedAt: string | null;
     status: PahinaNoteStatus;
     active: boolean | null;
+    value: string | null;
   } | null;
 };
 
@@ -326,6 +350,7 @@ export type UpdatePahinaNoteMutation = {
     updatedAt: string | null;
     status: PahinaNoteStatus;
     active: boolean | null;
+    value: string | null;
   } | null;
 };
 
@@ -353,6 +378,7 @@ export type CreatePahinaCaseMutation = {
         updatedAt: string | null;
         status: PahinaNoteStatus;
         active: boolean | null;
+        value: string | null;
       } | null> | null;
       nextToken: string | null;
     } | null;
@@ -383,6 +409,7 @@ export type UpdatePahinaCaseMutation = {
         updatedAt: string | null;
         status: PahinaNoteStatus;
         active: boolean | null;
+        value: string | null;
       } | null> | null;
       nextToken: string | null;
     } | null;
@@ -413,6 +440,7 @@ export type DeletePahinaCaseMutation = {
         updatedAt: string | null;
         status: PahinaNoteStatus;
         active: boolean | null;
+        value: string | null;
       } | null> | null;
       nextToken: string | null;
     } | null;
@@ -445,6 +473,7 @@ export type GetPahinaUserQuery = {
         updatedAt: string | null;
         status: PahinaNoteStatus;
         active: boolean | null;
+        value: string | null;
       } | null> | null;
       nextToken: string | null;
     } | null;
@@ -480,6 +509,98 @@ export type ListPahinaUsersQuery = {
   } | null;
 };
 
+export type GetPahinaNoteQueryVariables = {
+  id: string;
+};
+
+export type GetPahinaNoteQuery = {
+  getPahinaNote: {
+    __typename: 'PahinaNote';
+    id: string;
+    author: {
+      __typename: 'PahinaUser';
+      id: string;
+      givenName: string;
+      familyName: string;
+      email: string;
+      picture: string | null;
+      identityId: string | null;
+      createdAt: string | null;
+      updatedAt: string | null;
+      active: boolean | null;
+      notes: {
+        __typename: 'ModelPahinaNoteConnection';
+        nextToken: string | null;
+      } | null;
+    } | null;
+    case: {
+      __typename: 'PahinaCase';
+      id: string;
+      title: string;
+      code: string;
+      link: string | null;
+      active: boolean | null;
+      createdAt: string | null;
+      updatedAt: string | null;
+      notes: {
+        __typename: 'ModelPahinaNoteConnection';
+        nextToken: string | null;
+      } | null;
+    } | null;
+    promotional: string | null;
+    createdAt: string | null;
+    updatedAt: string | null;
+    status: PahinaNoteStatus;
+    active: boolean | null;
+    value: string | null;
+  } | null;
+};
+
+export type ListPahinaNotesQueryVariables = {
+  filter?: ModelPahinaNoteFilterInput | null;
+  limit?: number | null;
+  nextToken?: string | null;
+};
+
+export type ListPahinaNotesQuery = {
+  listPahinaNotes: {
+    __typename: 'ModelPahinaNoteConnection';
+    items: Array<{
+      __typename: 'PahinaNote';
+      id: string;
+      author: {
+        __typename: 'PahinaUser';
+        id: string;
+        givenName: string;
+        familyName: string;
+        email: string;
+        picture: string | null;
+        identityId: string | null;
+        createdAt: string | null;
+        updatedAt: string | null;
+        active: boolean | null;
+      } | null;
+      case: {
+        __typename: 'PahinaCase';
+        id: string;
+        title: string;
+        code: string;
+        link: string | null;
+        active: boolean | null;
+        createdAt: string | null;
+        updatedAt: string | null;
+      } | null;
+      promotional: string | null;
+      createdAt: string | null;
+      updatedAt: string | null;
+      status: PahinaNoteStatus;
+      active: boolean | null;
+      value: string | null;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+};
+
 export type GetPahinaCaseQueryVariables = {
   id: string;
 };
@@ -504,6 +625,7 @@ export type GetPahinaCaseQuery = {
         updatedAt: string | null;
         status: PahinaNoteStatus;
         active: boolean | null;
+        value: string | null;
       } | null> | null;
       nextToken: string | null;
     } | null;
@@ -557,6 +679,7 @@ export type OnCreatePahinaCaseSubscription = {
         updatedAt: string | null;
         status: PahinaNoteStatus;
         active: boolean | null;
+        value: string | null;
       } | null> | null;
       nextToken: string | null;
     } | null;
@@ -583,6 +706,7 @@ export type OnUpdatePahinaCaseSubscription = {
         updatedAt: string | null;
         status: PahinaNoteStatus;
         active: boolean | null;
+        value: string | null;
       } | null> | null;
       nextToken: string | null;
     } | null;
@@ -609,6 +733,7 @@ export type OnDeletePahinaCaseSubscription = {
         updatedAt: string | null;
         status: PahinaNoteStatus;
         active: boolean | null;
+        value: string | null;
       } | null> | null;
       nextToken: string | null;
     } | null;

@@ -18,6 +18,7 @@ export const onCreatePahinaCase = `subscription OnCreatePahinaCase {
         updatedAt
         status
         active
+        value
       }
       nextToken
     }
@@ -41,6 +42,7 @@ export const onUpdatePahinaCase = `subscription OnUpdatePahinaCase {
         updatedAt
         status
         active
+        value
       }
       nextToken
     }
@@ -64,6 +66,7 @@ export const onDeletePahinaCase = `subscription OnDeletePahinaCase {
         updatedAt
         status
         active
+        value
       }
       nextToken
     }

@@ -39,6 +39,8 @@ import { Hotkey } from '../components/slate';
 
 interface State {
   value: Value;
+  saveLabel: string;
+  publishLabel: string;
   linkedCase: {
     code: string;
     title: string;
@@ -63,6 +65,8 @@ const plugins = [
 const existingContent = JSON.parse(Cache.getItem(EDITOR_CACHE_KEY));
 
 const initiaState = {
+  saveLabel: 'Save',
+  publishLabel: 'Publish to market',
   value: Value.fromJSON(existingContent || initialValue),
   linkedCase: {
     title:
@@ -96,7 +100,7 @@ export class EditorScreen extends Component<{}, State> {
   };
 
   public render() {
-    const { value, linkedCase } = this.state;
+    const { value, linkedCase, saveLabel, publishLabel } = this.state;
     return (
       <div className="Editor-container">
         <h3 className="text-center">Editor - Case digest</h3>
@@ -146,14 +150,14 @@ export class EditorScreen extends Component<{}, State> {
               active
               className="Gap-reg btn btn-primary btn-outline-dark"
             >
-              Publish to market
+              {publishLabel}
             </Button>
             <Button
               outline
               active
               className="Gap-reg btn btn-secondary btn-outline-info"
             >
-              Save
+              {saveLabel}
             </Button>
           </div>
         </Form>

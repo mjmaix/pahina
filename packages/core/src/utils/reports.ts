@@ -1,6 +1,10 @@
 // tslint:disable no-console
 
 export type RecordName =
+  | 'GetNoteError'
+  | 'UpdateNoteError'
+  | 'CreateNoteError'
+  | 'PutNoteError'
   | 'GetUserError'
   | 'CreateUserError'
   | 'UpdateUserError'

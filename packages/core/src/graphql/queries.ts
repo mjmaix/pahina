@@ -20,6 +20,7 @@ export const getPahinaUser = `query GetPahinaUser($id: ID!) {
         updatedAt
         status
         active
+        value
       }
       nextToken
     }
@@ -50,6 +51,83 @@ export const listPahinaUsers = `query ListPahinaUsers(
   }
 }
 `;
+export const getPahinaNote = `query GetPahinaNote($id: ID!) {
+  getPahinaNote(id: $id) {
+    id
+    author {
+      id
+      givenName
+      familyName
+      email
+      picture
+      identityId
+      createdAt
+      updatedAt
+      active
+      notes {
+        nextToken
+      }
+    }
+    case {
+      id
+      title
+      code
+      link
+      active
+      createdAt
+      updatedAt
+      notes {
+        nextToken
+      }
+    }
+    promotional
+    createdAt
+    updatedAt
+    status
+    active
+    value
+  }
+}
+`;
+export const listPahinaNotes = `query ListPahinaNotes(
+  $filter: ModelPahinaNoteFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listPahinaNotes(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      author {
+        id
+        givenName
+        familyName
+        email
+        picture
+        identityId
+        createdAt
+        updatedAt
+        active
+      }
+      case {
+        id
+        title
+        code
+        link
+        active
+        createdAt
+        updatedAt
+      }
+      promotional
+      createdAt
+      updatedAt
+      status
+      active
+      value
+    }
+    nextToken
+  }
+}
+`;
 export const getPahinaCase = `query GetPahinaCase($id: ID!) {
   getPahinaCase(id: $id) {
     id
@@ -67,6 +145,7 @@ export const getPahinaCase = `query GetPahinaCase($id: ID!) {
         updatedAt
         status
         active
+        value
       }
       nextToken
     }

@@ -30,7 +30,6 @@ type PahinaUser
 type PahinaNote
   @model(
     subscriptions: null
-    queries: null
     mutations: {
       delete: null
       update: "updatePahinaNote"
@@ -51,10 +50,12 @@ type PahinaNote
   updatedAt: AWSDateTime
   status: PahinaNoteStatus!
   active: Boolean @auth(rules: [{ allow: groups, groups: ["Admin"] }])
+  value: AWSJSON
 }
 
 type PahinaCase
   @model
+  # (subscriptions: null) FIXME: cannot codegen
   @auth(rules: [{ allow: groups, groups: ["Admin"], operations: [update] }]) {
   id: ID!
   title: String!
