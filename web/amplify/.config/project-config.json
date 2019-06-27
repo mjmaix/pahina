@@ -1,0 +1,15 @@
+{
+  "projectName": "pahina",
+  "version": "2.0",
+  "frontend": "javascript",
+  "javascript": {
+    "framework": "react",
+    "config": {
+      "SourceDir": "../web",
+      "DistributionDir": "../web/build",
+      "BuildCommand": "yarn workspace @pahina/web build",
+      "StartCommand": "yarn workspace @pahina/web start"
+    }
+  },
+  "providers": ["awscloudformation"]
+}
