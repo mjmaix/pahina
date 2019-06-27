@@ -14,8 +14,8 @@
   },
   "dependencies": {
     "aws-amplify": "1.1.29",
-    "aws-sdk": "2.480.0",
-    "aws-appsync": "1.7.2",
+    "aws-sdk": "2.483.0",
+    "aws-appsync": "1.8.1",
     "graphql-tag": "2.10.1"
   },
   "devDependencies": {
