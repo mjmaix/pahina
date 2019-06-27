@@ -36,6 +36,28 @@ export type DeletePahinaUserInput = {
   id?: string | null;
 };
 
+export type CreatePahinaNoteInput = {
+  id?: string | null;
+  promotional?: string | null;
+  createdAt?: string | null;
+  updatedAt?: string | null;
+  status: PahinaNoteStatus;
+  active?: boolean | null;
+  pahinaNoteAuthorId?: string | null;
+  pahinaNoteCaseId?: string | null;
+};
+
+export type UpdatePahinaNoteInput = {
+  id: string;
+  promotional?: string | null;
+  createdAt?: string | null;
+  updatedAt?: string | null;
+  status?: PahinaNoteStatus | null;
+  active?: boolean | null;
+  pahinaNoteAuthorId?: string | null;
+  pahinaNoteCaseId?: string | null;
+};
+
 export type CreatePahinaCaseInput = {
   id?: string | null;
   title: string;
@@ -212,6 +234,98 @@ export type DeletePahinaUserMutation = {
       } | null> | null;
       nextToken: string | null;
     } | null;
+  } | null;
+};
+
+export type CreatePahinaNoteMutationVariables = {
+  input: CreatePahinaNoteInput;
+};
+
+export type CreatePahinaNoteMutation = {
+  createPahinaNote: {
+    __typename: 'PahinaNote';
+    id: string;
+    author: {
+      __typename: 'PahinaUser';
+      id: string;
+      givenName: string;
+      familyName: string;
+      email: string;
+      picture: string | null;
+      identityId: string | null;
+      createdAt: string | null;
+      updatedAt: string | null;
+      active: boolean | null;
+      notes: {
+        __typename: 'ModelPahinaNoteConnection';
+        nextToken: string | null;
+      } | null;
+    } | null;
+    case: {
+      __typename: 'PahinaCase';
+      id: string;
+      title: string;
+      code: string;
+      link: string | null;
+      active: boolean | null;
+      createdAt: string | null;
+      updatedAt: string | null;
+      notes: {
+        __typename: 'ModelPahinaNoteConnection';
+        nextToken: string | null;
+      } | null;
+    } | null;
+    promotional: string | null;
+    createdAt: string | null;
+    updatedAt: string | null;
+    status: PahinaNoteStatus;
+    active: boolean | null;
+  } | null;
+};
+
+export type UpdatePahinaNoteMutationVariables = {
+  input: UpdatePahinaNoteInput;
+};
+
+export type UpdatePahinaNoteMutation = {
+  updatePahinaNote: {
+    __typename: 'PahinaNote';
+    id: string;
+    author: {
+      __typename: 'PahinaUser';
+      id: string;
+      givenName: string;
+      familyName: string;
+      email: string;
+      picture: string | null;
+      identityId: string | null;
+      createdAt: string | null;
+      updatedAt: string | null;
+      active: boolean | null;
+      notes: {
+        __typename: 'ModelPahinaNoteConnection';
+        nextToken: string | null;
+      } | null;
+    } | null;
+    case: {
+      __typename: 'PahinaCase';
+      id: string;
+      title: string;
+      code: string;
+      link: string | null;
+      active: boolean | null;
+      createdAt: string | null;
+      updatedAt: string | null;
+      notes: {
+        __typename: 'ModelPahinaNoteConnection';
+        nextToken: string | null;
+      } | null;
+    } | null;
+    promotional: string | null;
+    createdAt: string | null;
+    updatedAt: string | null;
+    status: PahinaNoteStatus;
+    active: boolean | null;
   } | null;
 };
 

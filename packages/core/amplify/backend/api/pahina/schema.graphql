@@ -28,7 +28,15 @@ type PahinaUser
 }
 
 type PahinaNote
-  @model(subscriptions: null, queries: null, mutations: { delete: null })
+  @model(
+    subscriptions: null
+    queries: null
+    mutations: {
+      delete: null
+      update: "updatePahinaNote"
+      create: "createPahinaNote"
+    }
+  )
   @auth(
     rules: [
       { allow: owner, ownerField: "author", operations: [create, update, read] }

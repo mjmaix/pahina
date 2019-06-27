@@ -76,6 +76,80 @@ export const deletePahinaUser = `mutation DeletePahinaUser($input: DeletePahinaU
   }
 }
 `;
+export const createPahinaNote = `mutation CreatePahinaNote($input: CreatePahinaNoteInput!) {
+  createPahinaNote(input: $input) {
+    id
+    author {
+      id
+      givenName
+      familyName
+      email
+      picture
+      identityId
+      createdAt
+      updatedAt
+      active
+      notes {
+        nextToken
+      }
+    }
+    case {
+      id
+      title
+      code
+      link
+      active
+      createdAt
+      updatedAt
+      notes {
+        nextToken
+      }
+    }
+    promotional
+    createdAt
+    updatedAt
+    status
+    active
+  }
+}
+`;
+export const updatePahinaNote = `mutation UpdatePahinaNote($input: UpdatePahinaNoteInput!) {
+  updatePahinaNote(input: $input) {
+    id
+    author {
+      id
+      givenName
+      familyName
+      email
+      picture
+      identityId
+      createdAt
+      updatedAt
+      active
+      notes {
+        nextToken
+      }
+    }
+    case {
+      id
+      title
+      code
+      link
+      active
+      createdAt
+      updatedAt
+      notes {
+        nextToken
+      }
+    }
+    promotional
+    createdAt
+    updatedAt
+    status
+    active
+  }
+}
+`;
 export const createPahinaCase = `mutation CreatePahinaCase($input: CreatePahinaCaseInput!) {
   createPahinaCase(input: $input) {
     id
