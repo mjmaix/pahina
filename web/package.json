@@ -40,6 +40,7 @@
     "typescript": "3.5.2"
   },
   "scripts": {
+    "prepare": "yarn run sync-amplify",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

@@ -75,7 +75,6 @@ export const handleSignIn = async (data: SignInModel) => {
     username: email.toLowerCase() || phone_number,
     password,
   }).catch(WrapKnownExceptions);
-  logInfo('user', user);
   return user;
 };
 

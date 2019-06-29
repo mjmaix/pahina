@@ -12,7 +12,9 @@
     "expo:eject": "expo eject",
     "lint": "tslint --project tsconfig.json --config tslint.json",
     "clean:folders": "rm -rf node_modules /tmp/metro-bundler-cache-* /tmp/haste-map-react-native-packer-*",
-    "clean": "yarn clean:folders"
+    "clean": "yarn clean:folders",
+    "web:build": "cd ../web && yarn build",
+    "web:start": "cd ../web && yarn start"
   },
   "dependencies": {
     "apollo-client": "^2.6.3",
