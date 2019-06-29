@@ -34,5 +34,6 @@ yarn-error.log*
 # awsconfiguration.json
 
 amplify/
+src/aws-exports.js
 src/shared/API.ts
 src/shared/graphql/
