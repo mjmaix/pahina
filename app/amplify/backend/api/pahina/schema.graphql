@@ -6,7 +6,7 @@ enum PahinaNoteStatus {
 }
 
 type PahinaUser
-  @model
+  @model(subscriptions: null)
   @auth(
     rules: [
       { allow: owner, ownerField: "id", operations: [create, update, read] }
@@ -29,6 +29,7 @@ type PahinaUser
 
 type PahinaNote
   @model(
+    subscriptions: null
     mutations: {
       delete: null
       update: "updatePahinaNote"
@@ -53,7 +54,7 @@ type PahinaNote
 }
 
 type PahinaCase
-  @model
+  @model(subscriptions: null)
   @auth(
     rules: [
       { allow: groups, groups: ["Admin"], operations: [update, create, delete] }
@@ -67,4 +68,8 @@ type PahinaCase
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
   notes: [PahinaNote] @connection(name: "PahinaCases", sortField: "updatedAt")
+}
+
+type Subscription {
+  onCreatePahinaCase: PahinaCase @aws_subscribe(mutations: ["createPahinaCase"])
 }
