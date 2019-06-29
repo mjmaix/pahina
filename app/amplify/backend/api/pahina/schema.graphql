@@ -6,7 +6,7 @@ enum PahinaNoteStatus {
 }
 
 type PahinaUser
-  @model(subscriptions: null)
+  @model
   @auth(
     rules: [
       { allow: owner, ownerField: "id", operations: [create, update, read] }
@@ -29,7 +29,6 @@ type PahinaUser
 
 type PahinaNote
   @model(
-    subscriptions: null
     mutations: {
       delete: null
       update: "updatePahinaNote"
@@ -55,8 +54,11 @@ type PahinaNote
 
 type PahinaCase
   @model
-  # (subscriptions: null) FIXME: cannot codegen
-  @auth(rules: [{ allow: groups, groups: ["Admin"], operations: [update] }]) {
+  @auth(
+    rules: [
+      { allow: groups, groups: ["Admin"], operations: [update, create, delete] }
+    ]
+  ) {
   id: ID!
   title: String!
   code: String!
