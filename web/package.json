@@ -41,7 +41,9 @@
   },
   "scripts": {
     "prepare": "yarn run sync-amplify",
+    "prestart": "yarn prepare",
     "start": "react-scripts start",
+    "prebuild": "yarn prepare",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
