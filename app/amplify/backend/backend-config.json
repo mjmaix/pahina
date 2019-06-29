@@ -1,7 +1,19 @@
 {
 	"auth": {
-		"pahina288962e8288962e8": {
+		"pahina96b0423b96b0423b": {
 			"service": "Cognito",
+			"providerPlugin": "awscloudformation"
+		}
+	},
+	"analytics": {
+		"pahina": {
+			"service": "Pinpoint",
+			"providerPlugin": "awscloudformation"
+		}
+	},
+	"storage": {
+		"s32353429e": {
+			"service": "S3",
 			"providerPlugin": "awscloudformation"
 		}
 	},
@@ -12,24 +24,6 @@
 			"output": {
 				"securityType": "AMAZON_COGNITO_USER_POOLS"
 			}
-		}
-	},
-	"storage": {
-		"images": {
-			"service": "S3",
-			"providerPlugin": "awscloudformation"
-		}
-	},
-	"analytics": {
-		"pahina": {
-			"service": "Pinpoint",
-			"providerPlugin": "awscloudformation"
-		}
-	},
-	"hosting": {
-		"S3AndCloudFront": {
-			"service": "S3AndCloudFront",
-			"providerPlugin": "awscloudformation"
 		}
 	}
 }

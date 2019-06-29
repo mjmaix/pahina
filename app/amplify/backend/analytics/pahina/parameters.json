@@ -1,10 +1,10 @@
 {
     "appName": "pahina",
-    "roleName": "pinpointLambdaRoleb195d24a",
-    "cloudWatchPolicyName": "cloudWatchPolicyb195d24a",
-    "pinpointPolicyName": "pinpointPolicyb195d24a",
-    "authPolicyName": "pinpoint_amplify_b195d24a",
-    "unauthPolicyName": "pinpoint_amplify_b195d24a",
+    "roleName": "pinpointLambdaRolec652973d",
+    "cloudWatchPolicyName": "cloudWatchPolicyc652973d",
+    "pinpointPolicyName": "pinpointPolicyc652973d",
+    "authPolicyName": "pinpoint_amplify_c652973d",
+    "unauthPolicyName": "pinpoint_amplify_c652973d",
     "authRoleName": {
         "Ref": "AuthRoleName"
     },
