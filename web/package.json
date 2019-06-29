@@ -44,7 +44,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "clean": "rm -rf node_modules"
+    "clean": "rm -rf node_modules",
+    "sync-amplify": "ts-node --project ./scripts/sync-amplify/tsconfig.json ./scripts/sync-amplify"
   },
   "eslintConfig": {
     "extends": "react-app"
