@@ -11,7 +11,6 @@ export const getPahinaUser = `query GetPahinaUser($id: ID!) {
     identityId
     createdAt
     updatedAt
-    active
     notes {
       nextToken
     }
@@ -33,7 +32,6 @@ export const listPahinaUsers = `query ListPahinaUsers(
       identityId
       createdAt
       updatedAt
-      active
     }
     nextToken
   }
@@ -51,14 +49,12 @@ export const getPahinaNote = `query GetPahinaNote($id: ID!) {
       identityId
       createdAt
       updatedAt
-      active
     }
     case {
       id
       title
       code
       link
-      active
       createdAt
       updatedAt
     }
@@ -66,7 +62,6 @@ export const getPahinaNote = `query GetPahinaNote($id: ID!) {
     createdAt
     updatedAt
     status
-    active
     value
   }
 }
@@ -83,7 +78,6 @@ export const listPahinaNotes = `query ListPahinaNotes(
       createdAt
       updatedAt
       status
-      active
       value
     }
     nextToken
@@ -96,7 +90,6 @@ export const getPahinaCase = `query GetPahinaCase($id: ID!) {
     title
     code
     link
-    active
     createdAt
     updatedAt
     notes {
@@ -116,7 +109,6 @@ export const listPahinaCases = `query ListPahinaCases(
       title
       code
       link
-      active
       createdAt
       updatedAt
     }

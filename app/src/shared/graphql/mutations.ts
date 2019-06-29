@@ -11,7 +11,6 @@ export const createPahinaUser = `mutation CreatePahinaUser($input: CreatePahinaU
     identityId
     createdAt
     updatedAt
-    active
     notes {
       nextToken
     }
@@ -28,7 +27,6 @@ export const updatePahinaUser = `mutation UpdatePahinaUser($input: UpdatePahinaU
     identityId
     createdAt
     updatedAt
-    active
     notes {
       nextToken
     }
@@ -45,7 +43,6 @@ export const deletePahinaUser = `mutation DeletePahinaUser($input: DeletePahinaU
     identityId
     createdAt
     updatedAt
-    active
     notes {
       nextToken
     }
@@ -64,14 +61,12 @@ export const createPahinaNote = `mutation CreatePahinaNote($input: CreatePahinaN
       identityId
       createdAt
       updatedAt
-      active
     }
     case {
       id
       title
       code
       link
-      active
       createdAt
       updatedAt
     }
@@ -79,7 +74,6 @@ export const createPahinaNote = `mutation CreatePahinaNote($input: CreatePahinaN
     createdAt
     updatedAt
     status
-    active
     value
   }
 }
@@ -96,14 +90,12 @@ export const updatePahinaNote = `mutation UpdatePahinaNote($input: UpdatePahinaN
       identityId
       createdAt
       updatedAt
-      active
     }
     case {
       id
       title
       code
       link
-      active
       createdAt
       updatedAt
     }
@@ -111,7 +103,6 @@ export const updatePahinaNote = `mutation UpdatePahinaNote($input: UpdatePahinaN
     createdAt
     updatedAt
     status
-    active
     value
   }
 }
@@ -122,7 +113,6 @@ export const createPahinaCase = `mutation CreatePahinaCase($input: CreatePahinaC
     title
     code
     link
-    active
     createdAt
     updatedAt
     notes {
@@ -137,7 +127,6 @@ export const updatePahinaCase = `mutation UpdatePahinaCase($input: UpdatePahinaC
     title
     code
     link
-    active
     createdAt
     updatedAt
     notes {
@@ -152,7 +141,6 @@ export const deletePahinaCase = `mutation DeletePahinaCase($input: DeletePahinaC
     title
     code
     link
-    active
     createdAt
     updatedAt
     notes {

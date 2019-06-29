@@ -7,7 +7,6 @@ export const onCreatePahinaCase = `subscription OnCreatePahinaCase {
     title
     code
     link
-    active
     createdAt
     updatedAt
     notes {

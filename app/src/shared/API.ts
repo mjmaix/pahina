@@ -10,7 +10,6 @@ export type CreatePahinaUserInput = {
   identityId?: string | null,
   createdAt?: string | null,
   updatedAt?: string | null,
-  active?: boolean | null,
 };
 
 export type UpdatePahinaUserInput = {
@@ -22,7 +21,6 @@ export type UpdatePahinaUserInput = {
   identityId?: string | null,
   createdAt?: string | null,
   updatedAt?: string | null,
-  active?: boolean | null,
 };
 
 export type DeletePahinaUserInput = {
@@ -34,8 +32,7 @@ export type CreatePahinaNoteInput = {
   promotional?: string | null,
   createdAt?: string | null,
   updatedAt?: string | null,
-  status: PahinaNoteStatus,
-  active?: boolean | null,
+  status?: PahinaNoteStatus | null,
   value?: string | null,
   pahinaNoteAuthorId?: string | null,
   pahinaNoteCaseId?: string | null,
@@ -55,7 +52,6 @@ export type UpdatePahinaNoteInput = {
   createdAt?: string | null,
   updatedAt?: string | null,
   status?: PahinaNoteStatus | null,
-  active?: boolean | null,
   value?: string | null,
   pahinaNoteAuthorId?: string | null,
   pahinaNoteCaseId?: string | null,
@@ -66,7 +62,6 @@ export type CreatePahinaCaseInput = {
   title: string,
   code: string,
   link?: string | null,
-  active?: boolean | null,
   createdAt?: string | null,
   updatedAt?: string | null,
 };
@@ -76,7 +71,6 @@ export type UpdatePahinaCaseInput = {
   title?: string | null,
   code?: string | null,
   link?: string | null,
-  active?: boolean | null,
   createdAt?: string | null,
   updatedAt?: string | null,
 };
@@ -94,7 +88,6 @@ export type ModelPahinaUserFilterInput = {
   identityId?: ModelStringFilterInput | null,
   createdAt?: ModelStringFilterInput | null,
   updatedAt?: ModelStringFilterInput | null,
-  active?: ModelBooleanFilterInput | null,
   and?: Array< ModelPahinaUserFilterInput | null > | null,
   or?: Array< ModelPahinaUserFilterInput | null > | null,
   not?: ModelPahinaUserFilterInput | null,
@@ -126,18 +119,12 @@ export type ModelStringFilterInput = {
   beginsWith?: string | null,
 };
 
-export type ModelBooleanFilterInput = {
-  ne?: boolean | null,
-  eq?: boolean | null,
-};
-
 export type ModelPahinaNoteFilterInput = {
   id?: ModelIDFilterInput | null,
   promotional?: ModelStringFilterInput | null,
   createdAt?: ModelStringFilterInput | null,
   updatedAt?: ModelStringFilterInput | null,
   status?: ModelPahinaNoteStatusFilterInput | null,
-  active?: ModelBooleanFilterInput | null,
   value?: ModelStringFilterInput | null,
   and?: Array< ModelPahinaNoteFilterInput | null > | null,
   or?: Array< ModelPahinaNoteFilterInput | null > | null,
@@ -154,7 +141,6 @@ export type ModelPahinaCaseFilterInput = {
   title?: ModelStringFilterInput | null,
   code?: ModelStringFilterInput | null,
   link?: ModelStringFilterInput | null,
-  active?: ModelBooleanFilterInput | null,
   createdAt?: ModelStringFilterInput | null,
   updatedAt?: ModelStringFilterInput | null,
   and?: Array< ModelPahinaCaseFilterInput | null > | null,
@@ -177,7 +163,6 @@ export type CreatePahinaUserMutation = {
     identityId: string | null,
     createdAt: string | null,
     updatedAt: string | null,
-    active: boolean | null,
     notes:  {
       __typename: "ModelPahinaNoteConnection",
       nextToken: string | null,
@@ -200,7 +185,6 @@ export type UpdatePahinaUserMutation = {
     identityId: string | null,
     createdAt: string | null,
     updatedAt: string | null,
-    active: boolean | null,
     notes:  {
       __typename: "ModelPahinaNoteConnection",
       nextToken: string | null,
@@ -223,7 +207,6 @@ export type DeletePahinaUserMutation = {
     identityId: string | null,
     createdAt: string | null,
     updatedAt: string | null,
-    active: boolean | null,
     notes:  {
       __typename: "ModelPahinaNoteConnection",
       nextToken: string | null,
@@ -249,7 +232,6 @@ export type CreatePahinaNoteMutation = {
       identityId: string | null,
       createdAt: string | null,
       updatedAt: string | null,
-      active: boolean | null,
     } | null,
     case:  {
       __typename: "PahinaCase",
@@ -257,15 +239,13 @@ export type CreatePahinaNoteMutation = {
       title: string,
       code: string,
       link: string | null,
-      active: boolean | null,
       createdAt: string | null,
       updatedAt: string | null,
     } | null,
     promotional: string | null,
     createdAt: string | null,
     updatedAt: string | null,
-    status: PahinaNoteStatus,
-    active: boolean | null,
+    status: PahinaNoteStatus | null,
     value: string | null,
   } | null,
 };
@@ -288,7 +268,6 @@ export type UpdatePahinaNoteMutation = {
       identityId: string | null,
       createdAt: string | null,
       updatedAt: string | null,
-      active: boolean | null,
     } | null,
     case:  {
       __typename: "PahinaCase",
@@ -296,15 +275,13 @@ export type UpdatePahinaNoteMutation = {
       title: string,
       code: string,
       link: string | null,
-      active: boolean | null,
       createdAt: string | null,
       updatedAt: string | null,
     } | null,
     promotional: string | null,
     createdAt: string | null,
     updatedAt: string | null,
-    status: PahinaNoteStatus,
-    active: boolean | null,
+    status: PahinaNoteStatus | null,
     value: string | null,
   } | null,
 };
@@ -320,7 +297,6 @@ export type CreatePahinaCaseMutation = {
     title: string,
     code: string,
     link: string | null,
-    active: boolean | null,
     createdAt: string | null,
     updatedAt: string | null,
     notes:  {
@@ -341,7 +317,6 @@ export type UpdatePahinaCaseMutation = {
     title: string,
     code: string,
     link: string | null,
-    active: boolean | null,
     createdAt: string | null,
     updatedAt: string | null,
     notes:  {
@@ -362,7 +337,6 @@ export type DeletePahinaCaseMutation = {
     title: string,
     code: string,
     link: string | null,
-    active: boolean | null,
     createdAt: string | null,
     updatedAt: string | null,
     notes:  {
@@ -387,7 +361,6 @@ export type GetPahinaUserQuery = {
     identityId: string | null,
     createdAt: string | null,
     updatedAt: string | null,
-    active: boolean | null,
     notes:  {
       __typename: "ModelPahinaNoteConnection",
       nextToken: string | null,
@@ -414,7 +387,6 @@ export type ListPahinaUsersQuery = {
       identityId: string | null,
       createdAt: string | null,
       updatedAt: string | null,
-      active: boolean | null,
     } | null > | null,
     nextToken: string | null,
   } | null,
@@ -438,7 +410,6 @@ export type GetPahinaNoteQuery = {
       identityId: string | null,
       createdAt: string | null,
       updatedAt: string | null,
-      active: boolean | null,
     } | null,
     case:  {
       __typename: "PahinaCase",
@@ -446,15 +417,13 @@ export type GetPahinaNoteQuery = {
       title: string,
       code: string,
       link: string | null,
-      active: boolean | null,
       createdAt: string | null,
       updatedAt: string | null,
     } | null,
     promotional: string | null,
     createdAt: string | null,
     updatedAt: string | null,
-    status: PahinaNoteStatus,
-    active: boolean | null,
+    status: PahinaNoteStatus | null,
     value: string | null,
   } | null,
 };
@@ -474,8 +443,7 @@ export type ListPahinaNotesQuery = {
       promotional: string | null,
       createdAt: string | null,
       updatedAt: string | null,
-      status: PahinaNoteStatus,
-      active: boolean | null,
+      status: PahinaNoteStatus | null,
       value: string | null,
     } | null > | null,
     nextToken: string | null,
@@ -493,7 +461,6 @@ export type GetPahinaCaseQuery = {
     title: string,
     code: string,
     link: string | null,
-    active: boolean | null,
     createdAt: string | null,
     updatedAt: string | null,
     notes:  {
@@ -518,7 +485,6 @@ export type ListPahinaCasesQuery = {
       title: string,
       code: string,
       link: string | null,
-      active: boolean | null,
       createdAt: string | null,
       updatedAt: string | null,
     } | null > | null,
@@ -533,7 +499,6 @@ export type OnCreatePahinaCaseSubscription = {
     title: string,
     code: string,
     link: string | null,
-    active: boolean | null,
     createdAt: string | null,
     updatedAt: string | null,
     notes:  {

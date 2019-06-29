@@ -1,3 +1,7 @@
+# NOTE:
+#  generated mutation/queries does not exclude field specific auth
+#  active: Boolean @auth(rules: [{ allow: groups, groups: ["Admin"] }])
+
 enum PahinaNoteStatus {
   DRAFT
   PUBLISHED
@@ -21,7 +25,6 @@ type PahinaUser
   identityId: String
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
-  active: Boolean @auth(rules: [{ allow: groups, groups: ["Admin"] }])
   notes: [PahinaNote]
     @connection(name: "PahinaUserNotes", sortField: "updatedAt")
     @auth(rules: [{ allow: owner, ownerField: "id" }])
@@ -48,8 +51,7 @@ type PahinaNote
   promotional: String
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
-  status: PahinaNoteStatus!
-  active: Boolean @auth(rules: [{ allow: groups, groups: ["Admin"] }])
+  status: PahinaNoteStatus
   value: AWSJSON
 }
 
@@ -64,7 +66,6 @@ type PahinaCase
   title: String!
   code: String!
   link: String
-  active: Boolean @auth(rules: [{ allow: groups, groups: ["Admin"] }])
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
   notes: [PahinaNote] @connection(name: "PahinaCases", sortField: "updatedAt")
