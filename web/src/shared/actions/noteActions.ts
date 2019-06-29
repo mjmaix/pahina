@@ -92,7 +92,7 @@ export const handleCreatePahinaNote = async (
           promotional: data.promotional,
           status: data.status,
           pahinaNoteAuthorId: user.getUsername(),
-          pahinaNoteCaseId: null,
+          pahinaNoteCaseId: data.pahinaNoteCaseId,
           value: data.value,
         },
       },

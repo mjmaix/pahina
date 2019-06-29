@@ -1,12 +1,15 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { Provider } from 'unstated';
 
 import AppAuth from './AppAuth';
 
 const App: React.FC = () => {
   return (
     <Router>
-      <AppAuth />
+      <Provider>
+        <AppAuth />
+      </Provider>
     </Router>
   );
 };

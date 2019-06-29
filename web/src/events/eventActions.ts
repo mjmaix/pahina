@@ -1,5 +1,4 @@
 import {
-  AppCognitoUser,
   UpdatePahinaNoteInput,
   CreatePahinaNoteInput,
   logInfo,
@@ -7,19 +6,22 @@ import {
   handleCreatePahinaNote,
   handleUpdatePahinaNote,
   logRecord,
+  handleGetCurrentUser,
 } from '../shared';
 
 export const handlePutPahinaNote = async (
-  user: AppCognitoUser,
   data: UpdatePahinaNoteInput & CreatePahinaNoteInput,
 ) => {
+  const user = await handleGetCurrentUser();
+
   try {
     logInfo('[START]', 'handlePutPahinaNote');
     const existing = await handleGetPahinaNote(data.id);
+    const parsedData = { ...data, value: JSON.stringify(data.value) };
     if (!existing || !existing.getPahinaNote) {
-      await handleCreatePahinaNote(user, data);
+      await handleCreatePahinaNote(user, parsedData);
     } else {
-      await handleUpdatePahinaNote(user, data);
+      await handleUpdatePahinaNote(user, parsedData);
     }
   } catch (e) {
     logRecord({

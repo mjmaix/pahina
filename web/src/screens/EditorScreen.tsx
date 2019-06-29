@@ -33,13 +33,15 @@ import './Screen.css';
 import { Icon } from '../components/Icon';
 import { TooltipWrapper } from '../components/HOCs/TooltipWrapper';
 
-import initialValue from './value.json';
 import { Hotkey } from '../components/slate';
+import { handlePutPahinaNote } from '../events/eventActions';
+import { NoteContainer, NoteState } from '../unstated';
+import { Subscribe } from 'unstated';
+import { logError } from '../shared';
 
 interface State {
-  value: Value;
   saveLabel: string;
-  publishLabel: string;
+  submitting: boolean;
   linkedCase: {
     code: string;
     title: string;
@@ -60,9 +62,8 @@ const plugins = [
 ];
 
 const initiaState = {
+  submitting: false,
   saveLabel: 'Save',
-  publishLabel: 'Publish to market',
-  value: Value.fromJSON(initialValue),
   linkedCase: {
     title:
       'Commissioner of Internal Revenue Vs. Pilipinas Shell Petroleum Corporation/Commissioner of Internal Revenue Vs. Pilipinas Shell Petroleum Corporation and Petron Corporation',
@@ -74,17 +75,19 @@ const initiaState = {
 export class EditorScreen extends Component<{}, State> {
   private editor?: Editor;
 
+  private note = new NoteContainer();
+
   public readonly state: State = initiaState;
 
   public hasMark = (type: string) => {
-    const { value } = this.state;
+    const { value } = this.note.state;
     return value.activeMarks.some((mark?: Mark) =>
       mark ? mark.type === type : false,
     );
   };
 
   public hasBlock = (type: string) => {
-    const { value } = this.state;
+    const { value } = this.note.state;
     return value.blocks.some((node?: Block) =>
       node ? node.type === type : false,
     );
@@ -95,68 +98,72 @@ export class EditorScreen extends Component<{}, State> {
   };
 
   public render() {
-    const { value, linkedCase, saveLabel, publishLabel } = this.state;
+    const { linkedCase, saveLabel, submitting } = this.state;
+
     return (
-      <div className="Editor-container">
-        <h3 className="text-center">Editor - Case digest</h3>
-        <div>
-          <p className="Note-Title">{linkedCase.title}</p>
-          <p className="Note-Code">{linkedCase.code}</p>
-          <div className="Note-Link">
-            <a href={linkedCase.link}>{linkedCase.link}</a>
-          </div>
-        </div>
-        <Form>
-          <FormGroup row>
-            <Label for="Form-Summary" sm={2}>
-              Summary (promotional)
-            </Label>
-            <Input
-              type="textarea"
-              name="summary"
-              id="Form-Summary"
-              placeholder="Add summary for potential buyers."
-            />
-          </FormGroup>
-          <FormGroup row>
-            <Col sm={12}>
-              <div className="Editor-Toolbar-Outline">
-                {this.renderEditorToolbar()}
+      <Subscribe to={[this.note]}>
+        {(note: NoteContainer) => (
+          <div className="Editor-container">
+            <h3 className="text-center">Editor - Case digest</h3>
+            <div>
+              <p className="Note-Title">{linkedCase.title}</p>
+              <p className="Note-Code">{linkedCase.code}</p>
+              <div className="Note-Link">
+                <a href={linkedCase.link}>{linkedCase.link}</a>
               </div>
-              <div className="Editor-Outline">
-                <Editor
-                  spellCheck
-                  autoFocus
-                  placeholder="Write your digest here..."
-                  plugins={plugins}
-                  ref={this.ref}
-                  value={value}
-                  onChange={this.onChange}
-                  onKeyDown={this.onKeyDown}
-                  renderBlock={this.renderBlock}
-                  renderMark={this.renderMark}
+            </div>
+            <Form>
+              <FormGroup row>
+                <Label for="Form-Summary" sm={2}>
+                  Summary (promotional)
+                </Label>
+                <Input
+                  type="textarea"
+                  name="summary"
+                  id="Form-Summary"
+                  placeholder="Add summary for potential buyers."
+                  onChange={e => note.onChangePromotional(e.target.value)}
                 />
+              </FormGroup>
+              <FormGroup row>
+                <Col sm={12}>
+                  <div className="Editor-Toolbar-Outline">
+                    {this.renderEditorToolbar()}
+                  </div>
+                  <div className="Editor-Outline">
+                    <Editor
+                      spellCheck
+                      autoFocus
+                      placeholder="Write your digest here..."
+                      plugins={plugins}
+                      ref={this.ref}
+                      value={note.state.value}
+                      onChange={this.onChange}
+                      onKeyDown={this.onKeyDown}
+                      renderBlock={this.renderBlock}
+                      renderMark={this.renderMark}
+                    />
+                  </div>
+                </Col>
+              </FormGroup>
+              <div className="Form-Buttons">
+                <Button
+                  outline
+                  active
+                  disabled={submitting}
+                  className="Gap-reg btn btn-primary btn-outline-info"
+                  onClick={async () => {
+                    await this.onClickSave(this.note.state);
+                    alert('Saved');
+                  }}
+                >
+                  {saveLabel}
+                </Button>
               </div>
-            </Col>
-          </FormGroup>
-          <div className="Form-Buttons">
-            <Button
-              outline
-              active
-              className="Gap-reg btn btn-primary btn-outline-dark"
-            >
-              {publishLabel}
-            </Button>
-            <Button
-              outline
-              active
-              className="Gap-reg btn btn-secondary btn-outline-info"
-            >
-              {saveLabel}
-            </Button>
+            </Form>
           </div>
-        </Form>
-      </div>
+        )}
+      </Subscribe>
     );
   }
 
@@ -200,7 +207,7 @@ export class EditorScreen extends Component<{}, State> {
     if (['numbered-list', 'bulleted-list'].includes(type)) {
       const {
         value: { document, blocks },
-      } = this.state;
+      } = this.note.state;
 
       if (blocks.size > 0) {
         const parent: SlateNode | null = document.getParent(blocks.first().key);
@@ -279,9 +286,9 @@ export class EditorScreen extends Component<{}, State> {
   };
 
   public onChange: OnChange = ({ value }) => {
-    this.cacheChanges(value, this.state.value);
+    this.debouncedSave({ ...this.note.state, value }, this.note.state);
 
-    this.setState({ value });
+    this.note.onChangeValue(value);
   };
 
   public onKeyDown: EventHook = (
@@ -351,16 +358,37 @@ export class EditorScreen extends Component<{}, State> {
     }
   };
 
-  private cacheChanges = debounce(
-    (value: Value, oldValue: Value) => {
+  private onClickSave = async (note: NoteState, oldNote?: NoteState) => {
+    let proceed = true;
+    if (oldNote) {
+      const value = note.value;
+      const oldValue = oldNote.value;
+
       // eslint-disable-next-line eqeqeq
-      // if (value.document != oldValue.document) {
-      //   const content = JSON.stringify(value.toJSON());
-      // }
-    },
-    5 * 1000,
-    {
-      maxWait: 10 * 1000,
-    },
-  );
+      const docChanged = value.document != oldValue.document;
+      const promoChanged = note.promotional !== oldNote.promotional;
+
+      proceed = docChanged || promoChanged;
+    }
+
+    if (!proceed) {
+      return;
+    }
+    try {
+      this.setState({ submitting: true });
+      await handlePutPahinaNote({
+        ...note,
+        value: JSON.stringify(note.value.document),
+      });
+    } catch (err) {
+      logError(`[ERROR] onClickSave ${err}`);
+      throw err;
+    } finally {
+      this.setState({ submitting: false });
+    }
+  };
+
+  private debouncedSave = debounce(this.onClickSave, 5 * 1000, {
+    maxWait: 10 * 1000,
+  });
 }
