@@ -1,18 +1,5 @@
-.Editor-container {
+.EditorScreen-container {
   margin: 10px 50px 10px 50px;
-}
-
-.Editor-ButtonToolbar {
-  margin-top: 20px;
-  justify-content: center;
-}
-
-.Editor-Button {
-  color: black;
-  background: rgba(0, 0, 0, 0);
-  border-color: rgba(0, 0, 0, 0);
-  margin-right: 5px;
-  margin-left: 5px;
 }
 
 .Note-Title {
@@ -41,16 +28,4 @@
 
 .Form-Buttons {
   padding: 10px;
-}
-
-.Editor-Outline {
-  padding: 20px;
-  border-style: solid;
-  border-color: #282c34;
-  border-width: thin 0 thin 0;
-}
-
-.Editor-Toolbar-Outline {
-  border-color: #282c34;
-  border-width: thin 0 thin 0;
 }

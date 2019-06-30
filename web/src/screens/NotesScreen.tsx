@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Subscribe } from 'unstated';
 import moment from 'moment';
 import {
@@ -10,26 +10,11 @@ import {
 
 import './NotesScreen.css';
 import { UserContainer } from '../unstated/UserContainer';
-import {
-  handleGetCurrentUser,
-  handleGetAppSyncUser,
-  AppSyncUserNote,
-} from '../shared';
-
-const userContainer = new UserContainer();
+import { AppSyncUserNote } from '../shared';
 
 const NotesScreen: React.FC = () => {
-  useEffect(() => {
-    handleGetCurrentUser()
-      .then(cognitoUser => handleGetAppSyncUser(cognitoUser.getUsername()))
-      .then(appUser => {
-        if (appUser && appUser.getPahinaUser) {
-          userContainer.onSignIn(appUser.getPahinaUser);
-        }
-      });
-  }, []);
   return (
-    <Subscribe to={[userContainer]}>
+    <Subscribe to={[UserContainer]}>
       {(user: UserContainer) => {
         const notes = user.notes();
         if (!notes || !notes.items) {
@@ -43,7 +28,7 @@ const NotesScreen: React.FC = () => {
               }
               return (
                 <ListGroup key={n.id}>
-                  <ListGroupItem>
+                  <ListGroupItem tag="a" href={`/editor/${n.id}`}>
                     <ListGroupItemHeading>
                       {`${n.status}-${
                         n.createdAt ? moment(n.createdAt).fromNow() : null

@@ -9,7 +9,7 @@ function AppRouter() {
     <Router>
       <div>
         <Route path="/" exact component={Dashboard} />
-        <Route path="/editor/:id" component={EditorScreen} />
+        <Route path="/editor/:id?" component={EditorScreen} />
         <Route path="/notes/" component={NotesScreen} />
       </div>
     </Router>

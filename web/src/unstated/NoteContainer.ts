@@ -1,10 +1,10 @@
 import { Container } from 'unstated';
 import { Value } from 'slate';
+import Plain from 'slate-plain-serializer';
 import uuid from 'uuid/v4';
 
 import initialValue from './value.json';
-import { PahinaNote } from '../shared/types.js';
-import { handleGetPahinaNote, logError } from '../shared/index.js';
+import { handleGetPahinaNote, logError } from '../shared/';
 
 export interface NoteState {
   value: Value;
@@ -21,31 +21,52 @@ const initialState = {
   value: Value.fromJSON(initialValue),
   promotional: undefined,
   pahinaNoteCaseId: uuid(),
-  isReady: true,
+  isReady: false,
   errorMessage: null,
 };
 
+type Props = {
+  id?: string;
+};
+
 class NoteContainer extends Container<NoteState> {
-  constructor(props: { id?: string }) {
+  constructor(props: Props) {
     super();
     const { id } = props;
     if (id) {
-      handleGetPahinaNote(id)
-        .then(note => {
-          if (note && note.getPahinaNote) {
-            this.setNote(note.getPahinaNote);
-            this.setState({ isReady: true });
-          }
-        })
-        .catch(err => {
-          logError(err);
-          this.setState({
-            errorMessage: 'Failed to load document',
-            isReady: true,
-          });
-        });
+      this.fetchData(id);
+      this.state = { ...initialState };
     } else {
-      this.state = initialState;
+      this.state = { ...initialState, isReady: true };
+    }
+  }
+
+  private async fetchData(id: string) {
+    try {
+      const resp = await handleGetPahinaNote(id);
+      if (resp && resp.getPahinaNote) {
+        const note = resp.getPahinaNote;
+        const val = note.value
+          ? Plain.deserialize(note.value)
+          : initialState.value;
+        const newNote = {
+          value: val,
+          id: note.id,
+          promotional: note.promotional,
+        };
+        this.setState({ ...newNote, isReady: true });
+      } else {
+        this.setState({
+          errorMessage: 'Document does not exist',
+          isReady: true,
+        });
+      }
+    } catch (err) {
+      logError(err);
+      this.setState({
+        errorMessage: 'Failed to load document',
+        isReady: true,
+      });
     }
   }
 
@@ -59,16 +80,6 @@ class NoteContainer extends Container<NoteState> {
 
   public onChangeValue(value: Value) {
     this.setState({ value });
-  }
-
-  public setNote(note: PahinaNote) {
-    this.setState({
-      value: note.value
-        ? Value.fromJSON(JSON.parse(note.value))
-        : initialState.value,
-      id: note.id,
-      promotional: note.promotional,
-    });
   }
 
   public onReset() {

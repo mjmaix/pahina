@@ -3,6 +3,10 @@
   min-height: 94vh;
 }
 
-.Gap-reg {
+.margin-tiny {
   margin: 5px;
+}
+
+.pad-big {
+  padding: 15px;
 }

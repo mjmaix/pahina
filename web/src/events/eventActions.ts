@@ -17,11 +17,10 @@ export const handlePutPahinaNote = async (
   try {
     logInfo('[START]', 'handlePutPahinaNote');
     const existing = await handleGetPahinaNote(data.id);
-    const parsedData = { ...data, value: JSON.stringify(data.value) };
     if (!existing || !existing.getPahinaNote) {
-      await handleCreatePahinaNote(user, parsedData);
+      await handleCreatePahinaNote(user, data);
     } else {
-      await handleUpdatePahinaNote(user, parsedData);
+      await handleUpdatePahinaNote(user, data);
     }
   } catch (e) {
     logRecord({

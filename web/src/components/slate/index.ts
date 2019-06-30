@@ -1,1 +1,1 @@
-export * from './HotKeyPlugin';
+export * from './Editor';

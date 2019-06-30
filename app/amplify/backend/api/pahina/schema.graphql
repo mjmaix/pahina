@@ -51,7 +51,7 @@ type PahinaNote
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
   status: PahinaNoteStatus
-  value: AWSJSON
+  value: String
 }
 
 type PahinaCase

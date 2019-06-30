@@ -1422,6 +1422,13 @@
     "@types/react" "*"
     popper.js "^1.14.1"
 
+"@types/slate-plain-serializer@^0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@types/slate-plain-serializer/-/slate-plain-serializer-0.6.1.tgz#c392ce51621f7c55df0976f161dcfca18bd559ee"
+  integrity sha512-5meyKFvmWH1T02j2dbAaY8kn/FNofxP79jV3TsfuLsUIeHkON5CroBxAyrgkYF4vHp+MVWZddI36Yvwl7Y0Feg==
+  dependencies:
+    "@types/slate" "*"
+
 "@types/slate-react@^0.22.1":
   version "0.22.1"
   resolved "https://registry.yarnpkg.com/@types/slate-react/-/slate-react-0.22.1.tgz#b197c1d5ca814bc750101b1568ff14d7939f20f2"
