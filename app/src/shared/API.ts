@@ -12,6 +12,13 @@ export type CreatePahinaUserInput = {
   updatedAt?: string | null,
 };
 
+export enum PahinaNoteStatus {
+  DRAFT = "DRAFT",
+  PUBLISHED = "PUBLISHED",
+  UNLISTED = "UNLISTED",
+}
+
+
 export type UpdatePahinaUserInput = {
   id: string,
   givenName?: string | null,
@@ -37,14 +44,6 @@ export type CreatePahinaNoteInput = {
   pahinaNoteAuthorId?: string | null,
   pahinaNoteCaseId?: string | null,
 };
-
-export enum PahinaNoteStatus {
-  DRAFT = "DRAFT",
-  PUBLISHED = "PUBLISHED",
-  EDITED_UNPUBLISHED = "EDITED_UNPUBLISHED",
-  UNLISTED = "UNLISTED",
-}
-
 
 export type UpdatePahinaNoteInput = {
   id: string,
@@ -165,6 +164,15 @@ export type CreatePahinaUserMutation = {
     updatedAt: string | null,
     notes:  {
       __typename: "ModelPahinaNoteConnection",
+      items:  Array< {
+        __typename: "PahinaNote",
+        id: string,
+        promotional: string | null,
+        createdAt: string | null,
+        updatedAt: string | null,
+        status: PahinaNoteStatus | null,
+        value: string | null,
+      } | null > | null,
       nextToken: string | null,
     } | null,
   } | null,
@@ -187,6 +195,15 @@ export type UpdatePahinaUserMutation = {
     updatedAt: string | null,
     notes:  {
       __typename: "ModelPahinaNoteConnection",
+      items:  Array< {
+        __typename: "PahinaNote",
+        id: string,
+        promotional: string | null,
+        createdAt: string | null,
+        updatedAt: string | null,
+        status: PahinaNoteStatus | null,
+        value: string | null,
+      } | null > | null,
       nextToken: string | null,
     } | null,
   } | null,
@@ -209,6 +226,15 @@ export type DeletePahinaUserMutation = {
     updatedAt: string | null,
     notes:  {
       __typename: "ModelPahinaNoteConnection",
+      items:  Array< {
+        __typename: "PahinaNote",
+        id: string,
+        promotional: string | null,
+        createdAt: string | null,
+        updatedAt: string | null,
+        status: PahinaNoteStatus | null,
+        value: string | null,
+      } | null > | null,
       nextToken: string | null,
     } | null,
   } | null,
@@ -232,6 +258,10 @@ export type CreatePahinaNoteMutation = {
       identityId: string | null,
       createdAt: string | null,
       updatedAt: string | null,
+      notes:  {
+        __typename: "ModelPahinaNoteConnection",
+        nextToken: string | null,
+      } | null,
     } | null,
     case:  {
       __typename: "PahinaCase",
@@ -241,6 +271,10 @@ export type CreatePahinaNoteMutation = {
       link: string | null,
       createdAt: string | null,
       updatedAt: string | null,
+      notes:  {
+        __typename: "ModelPahinaNoteConnection",
+        nextToken: string | null,
+      } | null,
     } | null,
     promotional: string | null,
     createdAt: string | null,
@@ -268,6 +302,10 @@ export type UpdatePahinaNoteMutation = {
       identityId: string | null,
       createdAt: string | null,
       updatedAt: string | null,
+      notes:  {
+        __typename: "ModelPahinaNoteConnection",
+        nextToken: string | null,
+      } | null,
     } | null,
     case:  {
       __typename: "PahinaCase",
@@ -277,6 +315,10 @@ export type UpdatePahinaNoteMutation = {
       link: string | null,
       createdAt: string | null,
       updatedAt: string | null,
+      notes:  {
+        __typename: "ModelPahinaNoteConnection",
+        nextToken: string | null,
+      } | null,
     } | null,
     promotional: string | null,
     createdAt: string | null,
@@ -301,6 +343,15 @@ export type CreatePahinaCaseMutation = {
     updatedAt: string | null,
     notes:  {
       __typename: "ModelPahinaNoteConnection",
+      items:  Array< {
+        __typename: "PahinaNote",
+        id: string,
+        promotional: string | null,
+        createdAt: string | null,
+        updatedAt: string | null,
+        status: PahinaNoteStatus | null,
+        value: string | null,
+      } | null > | null,
       nextToken: string | null,
     } | null,
   } | null,
@@ -321,6 +372,15 @@ export type UpdatePahinaCaseMutation = {
     updatedAt: string | null,
     notes:  {
       __typename: "ModelPahinaNoteConnection",
+      items:  Array< {
+        __typename: "PahinaNote",
+        id: string,
+        promotional: string | null,
+        createdAt: string | null,
+        updatedAt: string | null,
+        status: PahinaNoteStatus | null,
+        value: string | null,
+      } | null > | null,
       nextToken: string | null,
     } | null,
   } | null,
@@ -341,6 +401,15 @@ export type DeletePahinaCaseMutation = {
     updatedAt: string | null,
     notes:  {
       __typename: "ModelPahinaNoteConnection",
+      items:  Array< {
+        __typename: "PahinaNote",
+        id: string,
+        promotional: string | null,
+        createdAt: string | null,
+        updatedAt: string | null,
+        status: PahinaNoteStatus | null,
+        value: string | null,
+      } | null > | null,
       nextToken: string | null,
     } | null,
   } | null,
@@ -363,6 +432,15 @@ export type GetPahinaUserQuery = {
     updatedAt: string | null,
     notes:  {
       __typename: "ModelPahinaNoteConnection",
+      items:  Array< {
+        __typename: "PahinaNote",
+        id: string,
+        promotional: string | null,
+        createdAt: string | null,
+        updatedAt: string | null,
+        status: PahinaNoteStatus | null,
+        value: string | null,
+      } | null > | null,
       nextToken: string | null,
     } | null,
   } | null,
@@ -387,6 +465,10 @@ export type ListPahinaUsersQuery = {
       identityId: string | null,
       createdAt: string | null,
       updatedAt: string | null,
+      notes:  {
+        __typename: "ModelPahinaNoteConnection",
+        nextToken: string | null,
+      } | null,
     } | null > | null,
     nextToken: string | null,
   } | null,
@@ -410,6 +492,10 @@ export type GetPahinaNoteQuery = {
       identityId: string | null,
       createdAt: string | null,
       updatedAt: string | null,
+      notes:  {
+        __typename: "ModelPahinaNoteConnection",
+        nextToken: string | null,
+      } | null,
     } | null,
     case:  {
       __typename: "PahinaCase",
@@ -419,6 +505,10 @@ export type GetPahinaNoteQuery = {
       link: string | null,
       createdAt: string | null,
       updatedAt: string | null,
+      notes:  {
+        __typename: "ModelPahinaNoteConnection",
+        nextToken: string | null,
+      } | null,
     } | null,
     promotional: string | null,
     createdAt: string | null,
@@ -440,6 +530,26 @@ export type ListPahinaNotesQuery = {
     items:  Array< {
       __typename: "PahinaNote",
       id: string,
+      author:  {
+        __typename: "PahinaUser",
+        id: string,
+        givenName: string,
+        familyName: string,
+        email: string,
+        picture: string | null,
+        identityId: string | null,
+        createdAt: string | null,
+        updatedAt: string | null,
+      } | null,
+      case:  {
+        __typename: "PahinaCase",
+        id: string,
+        title: string,
+        code: string,
+        link: string | null,
+        createdAt: string | null,
+        updatedAt: string | null,
+      } | null,
       promotional: string | null,
       createdAt: string | null,
       updatedAt: string | null,
@@ -465,6 +575,15 @@ export type GetPahinaCaseQuery = {
     updatedAt: string | null,
     notes:  {
       __typename: "ModelPahinaNoteConnection",
+      items:  Array< {
+        __typename: "PahinaNote",
+        id: string,
+        promotional: string | null,
+        createdAt: string | null,
+        updatedAt: string | null,
+        status: PahinaNoteStatus | null,
+        value: string | null,
+      } | null > | null,
       nextToken: string | null,
     } | null,
   } | null,
@@ -487,6 +606,10 @@ export type ListPahinaCasesQuery = {
       link: string | null,
       createdAt: string | null,
       updatedAt: string | null,
+      notes:  {
+        __typename: "ModelPahinaNoteConnection",
+        nextToken: string | null,
+      } | null,
     } | null > | null,
     nextToken: string | null,
   } | null,
@@ -503,6 +626,15 @@ export type OnCreatePahinaCaseSubscription = {
     updatedAt: string | null,
     notes:  {
       __typename: "ModelPahinaNoteConnection",
+      items:  Array< {
+        __typename: "PahinaNote",
+        id: string,
+        promotional: string | null,
+        createdAt: string | null,
+        updatedAt: string | null,
+        status: PahinaNoteStatus | null,
+        value: string | null,
+      } | null > | null,
       nextToken: string | null,
     } | null,
   } | null,

@@ -12,6 +12,14 @@ export const getPahinaUser = `query GetPahinaUser($id: ID!) {
     createdAt
     updatedAt
     notes {
+      items {
+        id
+        promotional
+        createdAt
+        updatedAt
+        status
+        value
+      }
       nextToken
     }
   }
@@ -32,6 +40,9 @@ export const listPahinaUsers = `query ListPahinaUsers(
       identityId
       createdAt
       updatedAt
+      notes {
+        nextToken
+      }
     }
     nextToken
   }
@@ -49,6 +60,9 @@ export const getPahinaNote = `query GetPahinaNote($id: ID!) {
       identityId
       createdAt
       updatedAt
+      notes {
+        nextToken
+      }
     }
     case {
       id
@@ -57,6 +71,9 @@ export const getPahinaNote = `query GetPahinaNote($id: ID!) {
       link
       createdAt
       updatedAt
+      notes {
+        nextToken
+      }
     }
     promotional
     createdAt
@@ -74,6 +91,24 @@ export const listPahinaNotes = `query ListPahinaNotes(
   listPahinaNotes(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
+      author {
+        id
+        givenName
+        familyName
+        email
+        picture
+        identityId
+        createdAt
+        updatedAt
+      }
+      case {
+        id
+        title
+        code
+        link
+        createdAt
+        updatedAt
+      }
       promotional
       createdAt
       updatedAt
@@ -93,6 +128,14 @@ export const getPahinaCase = `query GetPahinaCase($id: ID!) {
     createdAt
     updatedAt
     notes {
+      items {
+        id
+        promotional
+        createdAt
+        updatedAt
+        status
+        value
+      }
       nextToken
     }
   }
@@ -111,6 +154,9 @@ export const listPahinaCases = `query ListPahinaCases(
       link
       createdAt
       updatedAt
+      notes {
+        nextToken
+      }
     }
     nextToken
   }

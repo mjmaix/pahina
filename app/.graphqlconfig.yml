@@ -1,6 +1,6 @@
 projects:
   pahina:
-    schemaPath: src/shared/graphql/schema.json
+    schemaPath: src/graphql/schema.json
     includes:
       - src/shared/graphql/**/*.ts
     excludes:
@@ -10,4 +10,4 @@ projects:
         codeGenTarget: typescript
         generatedFileName: src/shared/API.ts
         docsFilePath: src/shared/graphql
-        maxDepth: 2
+        maxDepth: 3

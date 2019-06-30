@@ -10,6 +10,14 @@ export const onCreatePahinaCase = `subscription OnCreatePahinaCase {
     createdAt
     updatedAt
     notes {
+      items {
+        id
+        promotional
+        createdAt
+        updatedAt
+        status
+        value
+      }
       nextToken
     }
   }

@@ -12,6 +12,14 @@ export const createPahinaUser = `mutation CreatePahinaUser($input: CreatePahinaU
     createdAt
     updatedAt
     notes {
+      items {
+        id
+        promotional
+        createdAt
+        updatedAt
+        status
+        value
+      }
       nextToken
     }
   }
@@ -28,6 +36,14 @@ export const updatePahinaUser = `mutation UpdatePahinaUser($input: UpdatePahinaU
     createdAt
     updatedAt
     notes {
+      items {
+        id
+        promotional
+        createdAt
+        updatedAt
+        status
+        value
+      }
       nextToken
     }
   }
@@ -44,6 +60,14 @@ export const deletePahinaUser = `mutation DeletePahinaUser($input: DeletePahinaU
     createdAt
     updatedAt
     notes {
+      items {
+        id
+        promotional
+        createdAt
+        updatedAt
+        status
+        value
+      }
       nextToken
     }
   }
@@ -61,6 +85,9 @@ export const createPahinaNote = `mutation CreatePahinaNote($input: CreatePahinaN
       identityId
       createdAt
       updatedAt
+      notes {
+        nextToken
+      }
     }
     case {
       id
@@ -69,6 +96,9 @@ export const createPahinaNote = `mutation CreatePahinaNote($input: CreatePahinaN
       link
       createdAt
       updatedAt
+      notes {
+        nextToken
+      }
     }
     promotional
     createdAt
@@ -90,6 +120,9 @@ export const updatePahinaNote = `mutation UpdatePahinaNote($input: UpdatePahinaN
       identityId
       createdAt
       updatedAt
+      notes {
+        nextToken
+      }
     }
     case {
       id
@@ -98,6 +131,9 @@ export const updatePahinaNote = `mutation UpdatePahinaNote($input: UpdatePahinaN
       link
       createdAt
       updatedAt
+      notes {
+        nextToken
+      }
     }
     promotional
     createdAt
@@ -116,6 +152,14 @@ export const createPahinaCase = `mutation CreatePahinaCase($input: CreatePahinaC
     createdAt
     updatedAt
     notes {
+      items {
+        id
+        promotional
+        createdAt
+        updatedAt
+        status
+        value
+      }
       nextToken
     }
   }
@@ -130,6 +174,14 @@ export const updatePahinaCase = `mutation UpdatePahinaCase($input: UpdatePahinaC
     createdAt
     updatedAt
     notes {
+      items {
+        id
+        promotional
+        createdAt
+        updatedAt
+        status
+        value
+      }
       nextToken
     }
   }
@@ -144,6 +196,14 @@ export const deletePahinaCase = `mutation DeletePahinaCase($input: DeletePahinaC
     createdAt
     updatedAt
     notes {
+      items {
+        id
+        promotional
+        createdAt
+        updatedAt
+        status
+        value
+      }
       nextToken
     }
   }
