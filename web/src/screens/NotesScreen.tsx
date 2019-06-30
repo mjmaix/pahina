@@ -1,16 +1,11 @@
 import React from 'react';
 import { Subscribe } from 'unstated';
-import moment from 'moment';
-import {
-  ListGroup,
-  ListGroupItem,
-  ListGroupItemHeading,
-  ListGroupItemText,
-} from 'reactstrap';
+import { ListGroup } from 'reactstrap';
 
 import './NotesScreen.css';
 import { UserContainer } from '../unstated/UserContainer';
 import { AppSyncUserNote } from '../shared';
+import { NoteListItem } from '../components/Lists';
 
 const NotesScreen: React.FC = () => {
   return (
@@ -22,25 +17,17 @@ const NotesScreen: React.FC = () => {
         }
         return (
           <div>
-            {notes.items.map((n: AppSyncUserNote) => {
-              if (!n) {
-                return null;
-              }
-              return (
-                <ListGroup key={n.id}>
-                  <ListGroupItem tag="a" href={`/editor/${n.id}`}>
-                    <ListGroupItemHeading>
-                      {`${n.status}-${
-                        n.createdAt ? moment(n.createdAt).fromNow() : null
-                      }`}
-                    </ListGroupItemHeading>
-                    {!!n.promotional && (
-                      <ListGroupItemText>{n.promotional}</ListGroupItemText>
-                    )}
-                  </ListGroupItem>
-                </ListGroup>
-              );
-            })}
+            <h3 className="pad-big text-center">Manage notes</h3>
+            <div className="container">
+              <ListGroup>
+                {notes.items.map((n: AppSyncUserNote | null) => {
+                  if (!n) {
+                    return null;
+                  }
+                  return <NoteListItem {...n} key={n.id} />;
+                })}
+              </ListGroup>
+            </div>
           </div>
         );
       }}

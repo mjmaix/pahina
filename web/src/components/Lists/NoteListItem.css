@@ -1,0 +1,7 @@
+.NoteListItem-ShowMe {
+  display: none;
+}
+
+.NoteListItem-ShowHidden:hover .NoteListItem-ShowMe {
+  display: block;
+}

@@ -21,8 +21,10 @@ import { handlePutPahinaNote } from '../events/eventActions';
 import { NoteContainer, NoteState } from '../unstated';
 import { logError } from '../shared';
 import { EditorOnChange, Editor } from '../components/slate';
+import { LinkedPageTitle } from '../components/Page';
 
 interface State {
+  title: string;
   saveLabel: string;
   submitting: boolean;
   linkedCase: {
@@ -33,6 +35,7 @@ interface State {
 }
 
 const initiaState = {
+  title: 'Editor',
   submitting: false,
   saveLabel: 'Save',
   linkedCase: {
@@ -48,18 +51,22 @@ type Props = RouteComponentProps<{
 }>;
 
 export class EditorScreen extends Component<Props, State> {
-  public readonly state: State = initiaState;
+  public readonly state: State;
 
   private note: NoteContainer;
 
   constructor(props: Props) {
     super(props);
     const { match } = this.props;
+    this.state = {
+      ...initiaState,
+      title: `${match.params.id ? 'Edit' : 'Create'} case digest`,
+    };
     this.note = new NoteContainer(match.params);
   }
 
   public render() {
-    const { linkedCase, saveLabel, submitting } = this.state;
+    const { linkedCase, saveLabel, submitting, title } = this.state;
 
     return (
       <Subscribe to={[this.note]}>
@@ -88,19 +95,17 @@ export class EditorScreen extends Component<Props, State> {
           }
 
           return (
-            <div className="EditorScreen-container">
-              <h3 className="text-center">Editor - Case digest</h3>
-              <div>
-                <p className="Note-Title">{linkedCase.title}</p>
-                <p className="Note-Code">{linkedCase.code}</p>
-                <div className="Note-Link">
-                  <a href={linkedCase.link}>{linkedCase.link}</a>
-                </div>
-              </div>
+            <div className="container">
+              <h3 className="pad-big text-center">{title}</h3>
+              <LinkedPageTitle
+                title={linkedCase.title}
+                sub={linkedCase.code}
+                link={linkedCase.link}
+              />
               <Form>
                 <FormGroup row>
-                  <Label for="Form-Summary" sm={2}>
-                    Summary (promotional)
+                  <Label for="Form-Summary" sm={4}>
+                    Promotional message
                   </Label>
                   <Input
                     type="textarea"

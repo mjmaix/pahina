@@ -80,9 +80,13 @@ export type AppSyncUser = ModelFromGetQuery<
   'getPahinaUser'
 >;
 
-export type AppSyncUserNote = Exclude<
-  NonNullable<Exclude<Exclude<AppSyncUser['notes'], null>['items'], [null]>>[0],
-  [null]
+export type AppSyncUserNote = NonNullable<
+  Exclude<
+    NonNullable<
+      Exclude<Exclude<AppSyncUser['notes'], null>['items'], [null]>
+    >[0],
+    [null]
+  >
 >;
 
 export type PahinaNote = ModelFromGetQuery<GetPahinaNoteQuery, 'getPahinaNote'>;
