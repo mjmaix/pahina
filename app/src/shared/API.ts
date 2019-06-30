@@ -1,6 +1,14 @@
 /* tslint:disable */
 //  This file was automatically generated and should not be edited.
 
+export enum PahinaNoteStatus {
+  DRAFT = "DRAFT",
+  PUBLISHED = "PUBLISHED",
+  PUBLISHED_EDITED = "PUBLISHED_EDITED",
+  UNLISTED = "UNLISTED",
+}
+
+
 export type CreatePahinaUserInput = {
   id?: string | null,
   givenName: string,
@@ -11,13 +19,6 @@ export type CreatePahinaUserInput = {
   createdAt?: string | null,
   updatedAt?: string | null,
 };
-
-export enum PahinaNoteStatus {
-  DRAFT = "DRAFT",
-  PUBLISHED = "PUBLISHED",
-  UNLISTED = "UNLISTED",
-}
-
 
 export type UpdatePahinaUserInput = {
   id: string,
@@ -54,6 +55,10 @@ export type UpdatePahinaNoteInput = {
   value?: string | null,
   pahinaNoteAuthorId?: string | null,
   pahinaNoteCaseId?: string | null,
+};
+
+export type DeletePahinaNoteInput = {
+  id?: string | null,
 };
 
 export type CreatePahinaCaseInput = {
@@ -145,6 +150,37 @@ export type ModelPahinaCaseFilterInput = {
   and?: Array< ModelPahinaCaseFilterInput | null > | null,
   or?: Array< ModelPahinaCaseFilterInput | null > | null,
   not?: ModelPahinaCaseFilterInput | null,
+};
+
+export type GetPahinaUserSortedNotesQueryVariables = {
+  id: string,
+};
+
+export type GetPahinaUserSortedNotesQuery = {
+  getPahinaUser:  {
+    __typename: "PahinaUser",
+    id: string,
+    givenName: string,
+    familyName: string,
+    email: string,
+    picture: string | null,
+    identityId: string | null,
+    createdAt: string | null,
+    updatedAt: string | null,
+    notes:  {
+      __typename: "ModelPahinaNoteConnection",
+      items:  Array< {
+        __typename: "PahinaNote",
+        id: string,
+        promotional: string | null,
+        createdAt: string | null,
+        updatedAt: string | null,
+        status: PahinaNoteStatus | null,
+        value: string | null,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
+  } | null,
 };
 
 export type CreatePahinaUserMutationVariables = {
@@ -290,6 +326,50 @@ export type UpdatePahinaNoteMutationVariables = {
 
 export type UpdatePahinaNoteMutation = {
   updatePahinaNote:  {
+    __typename: "PahinaNote",
+    id: string,
+    author:  {
+      __typename: "PahinaUser",
+      id: string,
+      givenName: string,
+      familyName: string,
+      email: string,
+      picture: string | null,
+      identityId: string | null,
+      createdAt: string | null,
+      updatedAt: string | null,
+      notes:  {
+        __typename: "ModelPahinaNoteConnection",
+        nextToken: string | null,
+      } | null,
+    } | null,
+    case:  {
+      __typename: "PahinaCase",
+      id: string,
+      title: string,
+      code: string,
+      link: string | null,
+      createdAt: string | null,
+      updatedAt: string | null,
+      notes:  {
+        __typename: "ModelPahinaNoteConnection",
+        nextToken: string | null,
+      } | null,
+    } | null,
+    promotional: string | null,
+    createdAt: string | null,
+    updatedAt: string | null,
+    status: PahinaNoteStatus | null,
+    value: string | null,
+  } | null,
+};
+
+export type DeletePahinaNoteMutationVariables = {
+  input: DeletePahinaNoteInput,
+};
+
+export type DeletePahinaNoteMutation = {
+  deletePahinaNote:  {
     __typename: "PahinaNote",
     id: string,
     author:  {

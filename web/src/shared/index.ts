@@ -4,6 +4,7 @@ export * from './API';
 export * from './actions';
 export * from './graphql/mutations';
 export * from './graphql/queries';
+export * from './graphql/customQueries';
 export * from './graphql/subscriptions';
 
 export * from './models';

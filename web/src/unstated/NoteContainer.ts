@@ -4,7 +4,7 @@ import Plain from 'slate-plain-serializer';
 import uuid from 'uuid/v4';
 
 import initialValue from './value.json';
-import { handleGetPahinaNote, logError } from '../shared/';
+import { handleGetPahinaNote, logError, PahinaNoteStatus } from '../shared/';
 
 export interface NoteState {
   value: Value;
@@ -23,6 +23,7 @@ const initialState = {
   pahinaNoteCaseId: uuid(),
   isReady: false,
   errorMessage: null,
+  status: PahinaNoteStatus.DRAFT,
 };
 
 type Props = {
@@ -41,7 +42,7 @@ class NoteContainer extends Container<NoteState> {
     }
   }
 
-  private async fetchData(id: string) {
+  private fetchData = async (id: string) => {
     try {
       const resp = await handleGetPahinaNote(id);
       if (resp && resp.getPahinaNote) {
@@ -68,23 +69,23 @@ class NoteContainer extends Container<NoteState> {
         isReady: true,
       });
     }
-  }
+  };
 
-  public setId(id: string) {
+  public setId = (id: string) => {
     this.setState({ id: id });
-  }
+  };
 
-  public onChangePromotional(promotional: string) {
+  public onChangePromotional = (promotional: string) => {
     this.setState({ promotional });
-  }
+  };
 
-  public onChangeValue(value: Value) {
+  public onChangeValue = (value: Value) => {
     this.setState({ value });
-  }
+  };
 
-  public onReset() {
+  public onReset = () => {
     this.setState(initialState);
-  }
+  };
 }
 
 export { NoteContainer };

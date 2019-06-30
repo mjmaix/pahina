@@ -5,6 +5,7 @@
 enum PahinaNoteStatus {
   DRAFT
   PUBLISHED
+  PUBLISHED_EDITED
   UNLISTED
 }
 
@@ -33,7 +34,7 @@ type PahinaNote
   @model(
     subscriptions: null
     mutations: {
-      delete: null
+      delete: "deletePahinaNote"
       update: "updatePahinaNote"
       create: "createPahinaNote"
     }

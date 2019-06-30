@@ -2,20 +2,16 @@ import { ApolloQueryResult } from 'apollo-client/core/types';
 import { FetchResult } from 'apollo-link';
 import gql from 'graphql-tag';
 
-import {
-  createPahinaUser,
-  updatePahinaUser,
-} from '../../shared/graphql/mutations';
-
 import apollo from '../apollo-client';
 import {
-  AppCognitoUser,
   CreatePahinaUserMutation,
   CreatePahinaUserMutationVariables,
   UpdatePahinaUserMutation,
   UpdatePahinaUserMutationVariables,
 } from '../../shared';
 import { logInfo, logRecord } from '../utils';
+import { AppCognitoUser } from '../types';
+import { createPahinaUser, updatePahinaUser } from '../graphql/mutations';
 
 const __DEV__ = process.env.NODE_ENV;
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { UncontrolledTooltip } from 'reactstrap';
+import './TooltipWrapper.css';
 
 interface Props {
   children: React.ReactElement<{ id: string }>; // FIXME: id not showing as mandatory in editor

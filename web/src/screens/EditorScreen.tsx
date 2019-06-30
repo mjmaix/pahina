@@ -77,6 +77,7 @@ export class EditorScreen extends Component<Props, State> {
           const { isReady, errorMessage, value, promotional } = note.state;
           if (!isReady) {
             return (
+              // TODO: MOVE TO SYSTEM
               <div className="pad-big">
                 <Alert color="info">
                   <Spinner />

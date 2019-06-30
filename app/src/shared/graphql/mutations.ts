@@ -143,6 +143,41 @@ export const updatePahinaNote = `mutation UpdatePahinaNote($input: UpdatePahinaN
   }
 }
 `;
+export const deletePahinaNote = `mutation DeletePahinaNote($input: DeletePahinaNoteInput!) {
+  deletePahinaNote(input: $input) {
+    id
+    author {
+      id
+      givenName
+      familyName
+      email
+      picture
+      identityId
+      createdAt
+      updatedAt
+      notes {
+        nextToken
+      }
+    }
+    case {
+      id
+      title
+      code
+      link
+      createdAt
+      updatedAt
+      notes {
+        nextToken
+      }
+    }
+    promotional
+    createdAt
+    updatedAt
+    status
+    value
+  }
+}
+`;
 export const createPahinaCase = `mutation CreatePahinaCase($input: CreatePahinaCaseInput!) {
   createPahinaCase(input: $input) {
     id

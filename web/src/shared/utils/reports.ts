@@ -5,6 +5,7 @@ export type RecordName =
   | 'UpdateNoteError'
   | 'CreateNoteError'
   | 'PutNoteError'
+  | 'DeleteNoteError'
   | 'GetUserError'
   | 'CreateUserError'
   | 'UpdateUserError'

@@ -21,7 +21,7 @@ class UserContainer extends Container<UserState> {
     this.fetchAppUser();
   }
 
-  private async fetchAppUser() {
+  public fetchAppUser = async () => {
     try {
       const cognitoUser = await handleGetCurrentUser();
       const user = await handleGetAppSyncUser(cognitoUser.getUsername());
@@ -33,18 +33,18 @@ class UserContainer extends Container<UserState> {
     } finally {
       this.setState({ isReady: true });
     }
-  }
+  };
 
-  public onSignIn(user: AppSyncUser) {
+  public onSignIn = (user: AppSyncUser) => {
     this.setState({ user });
-  }
+  };
 
-  public notes() {
+  public notes = () => {
     if (!this.state.user) {
       return null;
     }
     return this.state.user.notes;
-  }
+  };
 }
 
 export { UserContainer };
