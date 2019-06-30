@@ -1,17 +1,36 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { withAuthenticator } from 'aws-amplify-react';
+import { Hub } from 'aws-amplify';
+import { HubCallback } from '@aws-amplify/core/lib/Hub';
 
 import { SignInScreen } from './screens/SignInScreen';
-import { withAuthenticator } from 'aws-amplify-react';
-import Router from './Router';
 import { Header } from './screens/Header';
+import Router from './AppRouter';
+import { logInfo } from './shared';
 
-const AuthenticatedApp: React.FC = () => {
-  return (
-    <div>
-      <Header />
-      <Router />
-    </div>
-  );
-};
+class AuthenticatedApp extends Component {
+  public async componentDidMount() {
+    Hub.listen('auth', this.authListener);
+  }
+
+  public authListener: HubCallback = async data => {
+    logInfo('[START]', 'authListener');
+    switch (data.payload.event) {
+      case 'signIn':
+        break;
+      case 'signOut':
+        break;
+    }
+  };
+
+  render() {
+    return (
+      <div>
+        <Header />
+        <Router />
+      </div>
+    );
+  }
+}
 
 export default withAuthenticator(AuthenticatedApp, false, [<SignInScreen />]);

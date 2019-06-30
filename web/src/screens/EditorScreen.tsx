@@ -16,6 +16,8 @@ import {
   Label,
   Col,
   Input,
+  Spinner,
+  Alert,
 } from 'reactstrap';
 import {
   Value,
@@ -38,6 +40,7 @@ import { handlePutPahinaNote } from '../events/eventActions';
 import { NoteContainer, NoteState } from '../unstated';
 import { Subscribe } from 'unstated';
 import { logError } from '../shared';
+import { RouteComponentProps } from 'react-router';
 
 interface State {
   saveLabel: string;
@@ -62,6 +65,7 @@ const plugins = [
 ];
 
 const initiaState = {
+  isReady: false,
   submitting: false,
   saveLabel: 'Save',
   linkedCase: {
@@ -72,33 +76,33 @@ const initiaState = {
     link: 'http://www.chanrobles.com/cralaw/2018julydecisions.php?id=750',
   },
 };
-export class EditorScreen extends Component<{}, State> {
-  private editor?: Editor;
+type Props = RouteComponentProps<{
+  id: string;
+}>;
 
-  private note = new NoteContainer();
-
+export class EditorScreen extends Component<Props, State> {
   public readonly state: State = initiaState;
 
-  public hasMark = (type: string) => {
-    const { value } = this.note.state;
-    return value.activeMarks.some((mark?: Mark) =>
-      mark ? mark.type === type : false,
-    );
-  };
+  private note: NoteContainer;
+  private editor?: Editor;
 
-  public hasBlock = (type: string) => {
-    const { value } = this.note.state;
-    return value.blocks.some((node?: Block) =>
-      node ? node.type === type : false,
-    );
-  };
-
-  public ref = (editor: Editor) => {
-    this.editor = editor;
-  };
+  constructor(props: Props) {
+    super(props);
+    const { match } = this.props;
+    this.note = new NoteContainer(match.params);
+  }
 
   public render() {
     const { linkedCase, saveLabel, submitting } = this.state;
+    const { isReady, errorMessage } = this.note.state;
+
+    if (!isReady) {
+      return <Spinner />;
+    }
+
+    if (errorMessage) {
+      return <Alert color="danger">{errorMessage}</Alert>;
+    }
 
     return (
       <Subscribe to={[this.note]}>
@@ -166,6 +170,24 @@ export class EditorScreen extends Component<{}, State> {
       </Subscribe>
     );
   }
+
+  private hasMark = (type: string) => {
+    const { value } = this.note.state;
+    return value.activeMarks.some((mark?: Mark) =>
+      mark ? mark.type === type : false,
+    );
+  };
+
+  private hasBlock = (type: string) => {
+    const { value } = this.note.state;
+    return value.blocks.some((node?: Block) =>
+      node ? node.type === type : false,
+    );
+  };
+
+  private ref = (editor: Editor) => {
+    this.editor = editor;
+  };
 
   private renderEditorToolbar = () => {
     return (

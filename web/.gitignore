@@ -36,4 +36,5 @@ yarn-error.log*
 amplify/
 src/aws-exports.js
 src/shared/API.ts
+src/shared/types.ts
 src/shared/graphql/

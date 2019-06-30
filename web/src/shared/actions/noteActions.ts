@@ -11,6 +11,7 @@ import {
   CreatePahinaNoteMutationVariables,
   CreatePahinaNoteMutation,
   CreatePahinaNoteInput,
+  PahinaNoteStatus,
 } from '../API';
 import { getPahinaNote } from '../graphql/queries';
 import { AppCognitoUser } from '../types';
@@ -56,7 +57,7 @@ export const handleUpdatePahinaNote = async (
         input: {
           id: data.id,
           promotional: data.promotional,
-          status: data.status,
+          status: data.status || PahinaNoteStatus.DRAFT,
           pahinaNoteAuthorId: user.getUsername(),
           pahinaNoteCaseId: null,
           value: data.value,
@@ -90,7 +91,7 @@ export const handleCreatePahinaNote = async (
         input: {
           id: data.id,
           promotional: data.promotional,
-          status: data.status,
+          status: data.status || PahinaNoteStatus.DRAFT,
           pahinaNoteAuthorId: user.getUsername(),
           pahinaNoteCaseId: data.pahinaNoteCaseId,
           value: data.value,

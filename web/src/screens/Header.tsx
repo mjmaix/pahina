@@ -14,7 +14,7 @@ export const Header = () => {
           <NavLink href="/editor/">Editor</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="/users/">Users</NavLink>
+          <NavLink href="/notes/">Notes</NavLink>
         </NavItem>
       </Nav>
     </div>

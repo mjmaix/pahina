@@ -24,6 +24,10 @@ const SHARED_FOLDER = `src/shared`;
 exec(`cp ${APP_DIR}/src/aws-exports.js ./src/aws-exports.js`, execCb);
 exec(`cp ${APP_DIR}/${SHARED_FOLDER}/API.ts ./${SHARED_FOLDER}/API.ts`, execCb);
 exec(
+  `cp ${APP_DIR}/${SHARED_FOLDER}/types.ts ./${SHARED_FOLDER}/types.ts`,
+  execCb,
+);
+exec(
   `cp -a ${APP_DIR}/${SHARED_FOLDER}/graphql/. ./${SHARED_FOLDER}/graphql`,
   execCb,
 );
