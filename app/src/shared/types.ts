@@ -1,6 +1,6 @@
 import { CognitoUser as AuthCognitoUser } from '@aws-amplify/auth';
 import { ModelFromGetQuery } from './typesGetter';
-import { GetPahinaUserQuery, GetPahinaNoteQuery } from './API';
+import { GetPahinaNoteQuery, GetPahinaUserSortedNotesQuery } from './API';
 
 /**
  * AWS Cognito
@@ -76,7 +76,7 @@ export interface AppCognitoUser extends AuthCognitoUser {
  */
 
 export type AppSyncUser = ModelFromGetQuery<
-  GetPahinaUserQuery,
+  GetPahinaUserSortedNotesQuery,
   'getPahinaUser'
 >;
 

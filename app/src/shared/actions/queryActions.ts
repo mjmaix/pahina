@@ -1,18 +1,27 @@
 import gql from 'graphql-tag';
 import apollo from '../apolloClient';
-import { GetPahinaUserQueryVariables, GetPahinaUserQuery } from '../API';
+import {
+  GetPahinaUserSortedNotesQueryVariables,
+  GetPahinaUserSortedNotesQuery,
+} from '../API';
 import { logInfo, logRecord } from '../utils';
 import { getPahinaUserSortedNotes } from '../graphql/customQueries';
 
-export const handleGetAppSyncUser = async (username: string) => {
+export const handleGetAppSyncUser = async (
+  username: string,
+  notesNextToken?: string,
+) => {
   logInfo('[START]', 'handleGetAppSyncUser');
   try {
     const response = await apollo.query<
-      GetPahinaUserQuery,
-      GetPahinaUserQueryVariables
+      GetPahinaUserSortedNotesQuery,
+      GetPahinaUserSortedNotesQueryVariables
     >({
       query: gql(getPahinaUserSortedNotes),
-      variables: { id: username },
+      variables: {
+        id: username,
+        notesNextToken,
+      },
     });
     return response.data;
   } catch (e) {

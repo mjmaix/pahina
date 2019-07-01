@@ -154,6 +154,7 @@ export type ModelPahinaCaseFilterInput = {
 
 export type GetPahinaUserSortedNotesQueryVariables = {
   id: string,
+  notesNextToken?: string | null,
 };
 
 export type GetPahinaUserSortedNotesQuery = {

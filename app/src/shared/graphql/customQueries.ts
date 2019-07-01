@@ -1,4 +1,5 @@
-export const getPahinaUserSortedNotes = `query GetPahinaUserSortedNotes($id: ID!) {
+export const getPahinaUserSortedNotes = `query GetPahinaUserSortedNotes
+  ($id: ID!, $notesNextToken: String) {
     getPahinaUser(id: $id) {
       id
       givenName
@@ -8,7 +9,7 @@ export const getPahinaUserSortedNotes = `query GetPahinaUserSortedNotes($id: ID!
       identityId
       createdAt
       updatedAt
-      notes(sortDirection: DESC) {
+      notes(sortDirection: DESC, nextToken: $notesNextToken) {
         items {
           id
           promotional
