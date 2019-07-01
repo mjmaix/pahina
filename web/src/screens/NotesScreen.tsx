@@ -5,7 +5,7 @@ import { ListGroup, NavLink } from 'reactstrap';
 import './NotesScreen.css';
 import { UserContainer } from '../unstated/UserContainer';
 import { AppSyncUserNote } from '../shared';
-import { NoteListItem } from '../components/Lists';
+import { NoteListItem, PaginationLinks } from '../components/Lists';
 
 const NotesScreen: React.FC = () => {
   return (
@@ -25,6 +25,7 @@ const NotesScreen: React.FC = () => {
               </div>
             )}
             <div className="container">
+              <PaginationLinks />
               <ListGroup>
                 {notes.items.map((n: AppSyncUserNote | null) => {
                   if (!n) {
