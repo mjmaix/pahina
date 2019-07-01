@@ -63,8 +63,10 @@ const deleteAction = async (
 export const NoteListItem = (props: AppSyncUserNote) => {
   const [submitting, setSubmitting] = useState<boolean>(false);
 
-  const { id, status, createdAt, promotional } = props;
-  const fromTime = !!createdAt ? moment(createdAt).fromNow() : null;
+  const { id, status, updatedAt, promotional } = props;
+  const fromTime = !!updatedAt
+    ? `updated ${moment(updatedAt).fromNow()}`
+    : null;
 
   const allowPublish = status !== PahinaNoteStatus.PUBLISHED;
   const allowUnpublish =
@@ -128,7 +130,7 @@ export const NoteListItem = (props: AppSyncUserNote) => {
             <div className="margin-tiny NoteListItem-ShowHidden">
               <Row className="d-flex justify-content-between">
                 <ListGroupItemHeading tag="a" href={`/editor/${id}`}>
-                  {`${status}-${fromTime}`}
+                  {`${status}, ${fromTime}`}
                 </ListGroupItemHeading>
                 <ButtonGroup className="NoteListItem-ShowMe" size="sm">
                   {PublishButton}
