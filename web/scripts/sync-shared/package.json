@@ -1,0 +1,13 @@
+{
+  "name": "sync-shared",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "license": "MIT",
+  "dependencies": {
+    "sync-folders": "^2.0.0",
+    "yargs": "^13.2.4"
+  },
+  "devDependencies": {
+    "@types/yargs": "^13.0.0"
+  }
+}

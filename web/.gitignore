@@ -35,14 +35,4 @@ yarn-error.log*
 
 amplify/
 src/aws-exports.js
-src/shared/API.ts
-src/shared/types.ts
-src/shared/apolloClient.ts
-src/shared/typesGetter.ts
-src/shared/index.ts
-src/shared/models.ts
-src/shared/validators.ts
-src/shared/graphql/
-src/shared/utils/
-src/shared/errors/
-src/shared/actions/
+src/shared/

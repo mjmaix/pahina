@@ -2,6 +2,17 @@
   "name": "@pahina/web",
   "version": "1.0.0",
   "private": true,
+  "scripts": {
+    "prestart": "yarn sync-shared:watch",
+    "start": "react-scripts start",
+    "prebuild": "yarn sync-shared",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "clean": "rm -rf node_modules",
+    "sync-shared:watch": "yarn sync-shared -w",
+    "sync-shared": "ts-node --project ./scripts/sync-shared/tsconfig.json ./scripts/sync-shared"
+  },
   "dependencies": {
     "apollo-client": "^2.6.3",
     "aws-amplify-react": "^2.3.9",
@@ -40,20 +51,10 @@
     "@types/uuid": "^3.4.4",
     "@types/yup": "^0.26.18",
     "react-scripts": "3.0.1",
+    "sync-folders": "^2.0.0",
     "tslint": "5.17.0",
     "tslint-config-prettier": "1.18.0",
     "typescript": "3.5.2"
-  },
-  "scripts": {
-    "prepare": "yarn run sync-amplify",
-    "prestart": "yarn prepare",
-    "start": "react-scripts start",
-    "prebuild": "yarn prepare",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "clean": "rm -rf node_modules",
-    "sync-amplify": "ts-node --project ./scripts/sync-amplify/tsconfig.json ./scripts/sync-amplify"
   },
   "eslintConfig": {
     "extends": "react-app"
