@@ -3,6 +3,13 @@
   min-height: 94vh;
 }
 
+:root {
+  --c-gap-sm: 5px;
+  --c-gap-md: 10px;
+  --c-gap-lg: 15px;
+  --c-gap-xl: 20px;
+}
+
 .Title {
   text-align: center;
   font-weight: 700;
@@ -23,14 +30,18 @@
   margin-bottom: 0.2rem;
 }
 
-.margin-tiny {
-  margin: 5px;
+.Margin-sm {
+  margin: var(--c-gap-sm);
 }
 
-.pad-big {
-  padding: 15px;
+.Margin-bottom-lg {
+  margin-bottom: var(--c-gap-lg);
 }
 
-.pad-reg {
-  padding: 10px;
+.Pad-lg {
+  padding: var(--c-gap-lg);
+}
+
+.Pad-md {
+  padding: var(--c-gap-md);
 }
