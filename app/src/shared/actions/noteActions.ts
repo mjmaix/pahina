@@ -19,8 +19,6 @@ import { getPahinaNote } from '../graphql/queries';
 import { AppCognitoUser } from '../types';
 import { updatePahinaNote, createPahinaNote } from '../graphql/mutations';
 
-const __DEV__ = process.env.NODE_ENV;
-
 export const handleGetPahinaNote = async (noteId: string) => {
   logInfo('[START]', 'handleGetPahinaNote');
   try {
@@ -30,7 +28,6 @@ export const handleGetPahinaNote = async (noteId: string) => {
     >({
       query: gql(getPahinaNote),
       variables: { id: noteId },
-      fetchPolicy: __DEV__ ? 'no-cache' : undefined,
     });
     return response.data;
   } catch (e) {
@@ -70,7 +67,6 @@ export const handleUpdatePahinaNote = async (
           value: data.value,
         },
       },
-      fetchPolicy: __DEV__ ? 'no-cache' : undefined,
     });
     return response.data;
   } catch (e) {
@@ -101,7 +97,6 @@ export const handlSetPahinaNoteStatus = async (
           status,
         },
       },
-      fetchPolicy: __DEV__ ? 'no-cache' : undefined,
     });
     return response.data;
   } catch (e) {
@@ -128,7 +123,6 @@ export const handlDeletePahinaNote = async (noteId: string) => {
           id: noteId,
         },
       },
-      fetchPolicy: __DEV__ ? 'no-cache' : undefined,
     });
     return response.data;
   } catch (e) {
@@ -162,7 +156,6 @@ export const handleCreatePahinaNote = async (
           value: data.value,
         },
       },
-      fetchPolicy: __DEV__ ? 'no-cache' : undefined,
     });
     return response.data;
   } catch (e) {
