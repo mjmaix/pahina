@@ -1,5 +1,3 @@
-import { ApolloQueryResult } from 'apollo-client/core/types';
-import { FetchResult } from 'apollo-link';
 import gql from 'graphql-tag';
 
 import {
@@ -16,12 +14,6 @@ import {
   UpdatePahinaUserMutationVariables,
 } from '../../shared';
 import { logInfo, logRecord } from '../utils';
-
-const assertErrors = (response: ApolloQueryResult<any> | FetchResult<any>) => {
-  if (response && response.errors && response.errors.length > 0) {
-    throw new Error(response.errors.join('\n'));
-  }
-};
 
 export const handleCreateAppSyncUser = async (
   user: AppCognitoUser,
@@ -46,7 +38,6 @@ export const handleCreateAppSyncUser = async (
         input: newUser,
       },
     });
-    assertErrors(response);
     return response;
   } catch (e) {
     logRecord({
@@ -80,9 +71,7 @@ export const handleUpdateAppSyncUser = async (
       variables: {
         input: newUser,
       },
-      fetchPolicy: __DEV__ ? 'no-cache' : undefined,
     });
-    assertErrors(response);
     return response;
   } catch (e) {
     logRecord({

@@ -27,7 +27,23 @@ exec(
   `cp ${APP_DIR}/${SHARED_FOLDER}/types.ts ./${SHARED_FOLDER}/types.ts`,
   execCb,
 );
+exec(`rm -rf ./${SHARED_FOLDER}/graphql`);
 exec(
-  `cp -a ${APP_DIR}/${SHARED_FOLDER}/graphql/. ./${SHARED_FOLDER}/graphql`,
+  `cp -R ${APP_DIR}/${SHARED_FOLDER}/graphql/ ./${SHARED_FOLDER}/graphql`,
+  execCb,
+);
+exec(`rm -rf ./${SHARED_FOLDER}/utils`);
+exec(
+  `cp -R ${APP_DIR}/${SHARED_FOLDER}/utils/ ./${SHARED_FOLDER}/utils`,
+  execCb,
+);
+exec(`rm -rf ./${SHARED_FOLDER}/errors`);
+exec(
+  `cp -R ${APP_DIR}/${SHARED_FOLDER}/errors/ ./${SHARED_FOLDER}/errors`,
+  execCb,
+);
+exec(`rm -rf ./${SHARED_FOLDER}/actions`);
+exec(
+  `cp -R ${APP_DIR}/${SHARED_FOLDER}/actions/ ./${SHARED_FOLDER}/actions`,
   execCb,
 );

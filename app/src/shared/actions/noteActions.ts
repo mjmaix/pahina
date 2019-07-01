@@ -8,13 +8,18 @@ import {
   UpdatePahinaNoteInput,
   UpdatePahinaNoteMutation,
   UpdatePahinaNoteMutationVariables,
+  DeletePahinaNoteMutation,
+  DeletePahinaNoteMutationVariables,
   CreatePahinaNoteMutationVariables,
   CreatePahinaNoteMutation,
   CreatePahinaNoteInput,
+  PahinaNoteStatus,
 } from '../API';
 import { getPahinaNote } from '../graphql/queries';
 import { AppCognitoUser } from '../types';
 import { updatePahinaNote, createPahinaNote } from '../graphql/mutations';
+
+const __DEV__ = process.env.NODE_ENV;
 
 export const handleGetPahinaNote = async (noteId: string) => {
   logInfo('[START]', 'handleGetPahinaNote');
@@ -44,7 +49,12 @@ export const handleUpdatePahinaNote = async (
   data: UpdatePahinaNoteInput,
 ) => {
   logInfo('[START]', 'handleUpdatePahinaNote');
+
   try {
+    let updateStatus = data.status || PahinaNoteStatus.DRAFT;
+    if (data.status === PahinaNoteStatus.PUBLISHED) {
+      updateStatus = PahinaNoteStatus.PUBLISHED_EDITED;
+    }
     const response = await apollo.mutate<
       UpdatePahinaNoteMutation,
       UpdatePahinaNoteMutationVariables
@@ -54,9 +64,9 @@ export const handleUpdatePahinaNote = async (
         input: {
           id: data.id,
           promotional: data.promotional,
-          status: data.status,
+          status: updateStatus,
           pahinaNoteAuthorId: user.getUsername(),
-          pahinaNoteCaseId: data.pahinaNoteCaseId,
+          pahinaNoteCaseId: null,
           value: data.value,
         },
       },
@@ -66,6 +76,64 @@ export const handleUpdatePahinaNote = async (
   } catch (e) {
     logRecord({
       name: 'UpdateNoteError',
+      attributes: {
+        error: e.message,
+      },
+    });
+  }
+};
+
+export const handlSetPahinaNoteStatus = async (
+  noteId: string,
+  status: PahinaNoteStatus,
+) => {
+  logInfo('[START]', 'handlSetPahinaNoteStatus');
+
+  try {
+    const response = await apollo.mutate<
+      UpdatePahinaNoteMutation,
+      UpdatePahinaNoteMutationVariables
+    >({
+      mutation: gql(updatePahinaNote),
+      variables: {
+        input: {
+          id: noteId,
+          status,
+        },
+      },
+      fetchPolicy: __DEV__ ? 'no-cache' : undefined,
+    });
+    return response.data;
+  } catch (e) {
+    logRecord({
+      name: 'UpdateNoteError',
+      attributes: {
+        error: e.message,
+      },
+    });
+  }
+};
+
+export const handlDeletePahinaNote = async (noteId: string) => {
+  logInfo('[START]', 'handlDeletePahinaNote');
+
+  try {
+    const response = await apollo.mutate<
+      DeletePahinaNoteMutation,
+      DeletePahinaNoteMutationVariables
+    >({
+      mutation: gql(updatePahinaNote),
+      variables: {
+        input: {
+          id: noteId,
+        },
+      },
+      fetchPolicy: __DEV__ ? 'no-cache' : undefined,
+    });
+    return response.data;
+  } catch (e) {
+    logRecord({
+      name: 'DeleteNoteError',
       attributes: {
         error: e.message,
       },
@@ -88,7 +156,7 @@ export const handleCreatePahinaNote = async (
         input: {
           id: data.id,
           promotional: data.promotional,
-          status: data.status,
+          status: data.status || PahinaNoteStatus.DRAFT,
           pahinaNoteAuthorId: user.getUsername(),
           pahinaNoteCaseId: data.pahinaNoteCaseId,
           value: data.value,
