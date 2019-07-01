@@ -1,31 +1,33 @@
+import process from 'process';
 import yargs from 'yargs';
-import syncFolders, { OnSync, SyncOpts } from 'sync-folders';
+import rimraf from 'rimraf';
+import util from 'util';
 
-yargs
-  .option('watch', {
-    alias: 'w',
-  })
-  .usage('Watch for changes');
+import { sync } from './sync';
 
-const watch = yargs.argv.watch as boolean;
+const watchOpts = { alias: 'w' };
+yargs.option('watch', watchOpts).usage('Watch for changes');
 
-const APP = '../app/src/';
-const WEB = './src/';
+// change from web to root
+process.chdir('../');
+// should point to root where web/app
+const projRootDir = process.cwd();
+
+const APP = `${projRootDir}/app/src`;
+const WEB = `${projRootDir}/web/src`;
 const SHARED = `shared`;
 
-const onSyncCb: OnSync = ({ sourcePath }: SyncOpts) => {
-  console.log(`Synced folder ${sourcePath}`);
-};
+const SYNC_SOURCE = `${APP}/${SHARED}`;
+const SYNC_DEST = `${WEB}`;
+const RIMRAF_CLEAN = `${WEB}/${SHARED}`;
 
-const onUpdateCb: OnSync = (opts: any) => {
-  console.log(`Synced file ${opts}`);
-};
+/**
+ * Execute here
+ * 1. Clean
+ * 2. Run sync
+ */
+const rimrafAsync = util.promisify(rimraf);
 
-syncFolders([`${APP}/${SHARED}`], `${WEB}/`, {
-  watch,
-  verbose: true,
-  bail: true,
-  ignore: [/node_modules/],
-  onSync: onSyncCb,
-  onUpdate: onUpdateCb,
-});
+rimrafAsync(RIMRAF_CLEAN, {})
+  .then(() => sync(SYNC_SOURCE, SYNC_DEST))
+  .catch((err: Error) => console.log(err));

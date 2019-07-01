@@ -26,6 +26,7 @@ class UserContainer extends Container<UserState> {
       const cognitoUser = await handleGetCurrentUser();
       const user = await handleGetAppSyncUser(cognitoUser.getUsername());
       if (user && user.getPahinaUser) {
+        console.log('user.getPahinaUser', user.getPahinaUser);
         this.onSignIn(user.getPahinaUser);
       }
     } catch (err) {
