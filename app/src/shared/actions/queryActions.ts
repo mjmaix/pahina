@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import apollo from '../apollo-client';
+import apollo from '../apolloClient';
 import { GetPahinaUserQueryVariables, GetPahinaUserQuery } from '../API';
 import { logInfo, logRecord } from '../utils';
 import { getPahinaUserSortedNotes } from '../graphql/customQueries';
