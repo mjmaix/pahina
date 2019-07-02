@@ -6,17 +6,15 @@ import { emitter, initProgressBar } from './tools/progress';
 import { extractAValueLink } from './tools/scraper';
 
 const selector = '#container_title > ul > li > a';
-
 const metaDbName = 'meta';
-const { db: metaDb } = createDb(metaDbName);
-const urls = metaDb.get('docmonths').value();
-
 const dbName = 'showdocs';
-const { db } = createDb(dbName);
-
-initProgressBar('items', urls.length);
 
 async function Step3() {
+  const { db: metaDb } = createDb(metaDbName);
+  const urls = metaDb.get('docmonths').value();
+  const { db } = createDb(dbName);
+
+  initProgressBar('items', urls.length);
   await bluebird
     .resolve(urls)
     .map(

@@ -7,9 +7,9 @@ const elibraryBookself = 'http://elibrary.judiciary.gov.ph/';
 const selector = '#legal_menu > ul > li > a';
 
 const dbName = 'meta';
-const { db } = createDb(dbName);
 
 async function Step1() {
+  const { db } = createDb(dbName);
   await extractLinks(elibraryBookself, selector)
     .then(links => {
       return links;

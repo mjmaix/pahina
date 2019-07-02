@@ -7,13 +7,12 @@ import { emitter, initProgressBar } from './tools/progress';
 const selector = '#container_date > a';
 const dbName = 'meta';
 
-const { db } = createDb(dbName);
-const categories: string[] = db.get('categories').value();
-
-initProgressBar('months', categories.length);
-
 async function Step2() {
   let count = 0;
+  const { db } = createDb(dbName);
+  const categories: string[] = db.get('categories').value();
+
+  initProgressBar('months', categories.length);
   await bluebird.resolve(categories).mapSeries(async url => {
     console.log(`\ngetting ${url}\n`);
     emitter('progress', 'months', {});
