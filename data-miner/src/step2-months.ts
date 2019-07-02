@@ -12,9 +12,9 @@ const categories: string[] = db.get('categories').value();
 
 initProgressBar('months', categories.length);
 
-function Step2() {
+async function Step2() {
   let count = 0;
-  bluebird.resolve(categories).mapSeries(async url => {
+  await bluebird.resolve(categories).mapSeries(async url => {
     console.log(`\ngetting ${url}\n`);
     emitter('progress', 'months', {});
 

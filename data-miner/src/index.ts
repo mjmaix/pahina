@@ -1,11 +1,12 @@
-// import Step1 from './step1-categories';
-// Step1();
-
-// import Step2 from './step2-months';
-// Step2();
-
+import Step1 from './step1-categories';
+import Step2 from './step2-months';
 import Step3 from './step3-extract-meta';
-Step3();
+import Step4 from './step4-clean-text';
 
-// import Step4 from './step4-clean-text';
-// Step4();
+const start = async () => {
+  await Step1();
+  await Step2();
+  await Step3();
+  await Step4();
+};
+start();

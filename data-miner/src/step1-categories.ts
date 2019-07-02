@@ -9,8 +9,8 @@ const selector = '#legal_menu > ul > li > a';
 const dbName = 'meta';
 const { db } = createDb(dbName);
 
-function Step1() {
-  extractLinks(elibraryBookself, selector)
+async function Step1() {
+  await extractLinks(elibraryBookself, selector)
     .then(links => {
       return links;
     })

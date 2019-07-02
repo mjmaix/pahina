@@ -16,8 +16,8 @@ const { db } = createDb(dbName);
 
 initProgressBar('items', urls.length);
 
-function Step3() {
-  bluebird
+async function Step3() {
+  await bluebird
     .resolve(urls)
     .map(
       async (url: string) => {
@@ -39,6 +39,7 @@ function Step3() {
         concurrency: 5,
       },
     )
+    .then(db.write())
     .catch(err => console.log(err));
 }
 

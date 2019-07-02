@@ -1,45 +1,32 @@
 import fs, { PathLike, Dirent } from 'fs-extra';
 import _ from 'lodash';
 import { asyncForEach } from './tools/asyncForEach';
-import { cleanFields } from './tools/cleanFields';
+import { cleanFields, ShowDoc } from './tools/cleanFields';
 import createDb from './createDb';
 
-interface ShowDoc {
-  locatedUrl: string;
-  href: string;
-  text: string;
-}
-
-type ReadDirOpts = {
-  encoding?: string | null;
-  withFileTypes: true;
-};
-
 const showDocsDbName = 'showdocs';
-const { db: showDocsDb } = createDb(showDocsDbName);
+const { db: showDocsDb, path: showDocsPath } = createDb(showDocsDbName);
 
 const dbName = 'processed';
 const { db, path: dbPath } = createDb(dbName);
 
-const showdocs = showDocsDb.read().value();
-console.log('showdocs', showdocs);
+const showdocs = Object.values(fs.readJSONSync(showDocsPath)) as ShowDoc[];
 
-function Step4() {
+async function Step4() {
   const startProcess = async () => {
-    const itemProcess = async () => {
-      return asyncForEach(
-        showdocs,
-        async (v: ShowDoc, i: number, arr: ShowDoc[]) => {
-          const item = await cleanFields(v);
-
-          db.set(item.link, item).value();
-        },
-      );
-    };
-    await itemProcess();
+    await asyncForEach(
+      showdocs,
+      async (v: ShowDoc, i: number, arr: ShowDoc[]) => {
+        const item = await cleanFields(v);
+        console.log('item', item);
+        const urlSplit = item.link.split('/');
+        const l = urlSplit.length;
+        db.set(_.slice(urlSplit, l - 3, l).join('/'), item).value();
+      },
+    );
   };
 
-  startProcess()
+  await startProcess()
     .then(() => {
       const processedItems = fs.readJsonSync(dbPath);
       console.log('processedItems', processedItems);

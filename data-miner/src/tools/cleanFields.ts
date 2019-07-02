@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 export interface ShowDoc {
   locatedUrl: string;
-  href: string;
+  link: string;
   text: string;
   fields?: string[];
 }
@@ -46,21 +46,21 @@ export function cleanFields(docVal: ShowDoc) {
   if (!lastIsDate) {
     console.log(
       'detected not standard doc, last element is not date',
-      docVal.href,
+      docVal.link,
       fields,
     );
   }
   if (!standardLength) {
     console.log(
       'detected not standard doc, not standard length, more than 3',
-      docVal.href,
+      docVal.link,
       fields,
     );
   }
 
   const item = { ...docVal, fields };
   const processed: ProcessedShowDoc = {
-    link: item.href,
+    link: item.link,
     title: standardLength
       ? _.slice(item.fields, 1, 1).join('')
       : _.first(item.fields) || 'No title found',
