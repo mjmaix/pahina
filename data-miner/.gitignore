@@ -63,5 +63,4 @@ typings/
 node_modules/**
 
 out/
-files/
-files2/
+files*/
