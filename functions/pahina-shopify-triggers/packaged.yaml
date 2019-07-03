@@ -4,13 +4,46 @@ Description: 'SAM Template for pahina-shop-triggers
 
   '
 Parameters:
-  PahinaCaseTableStream:
+  EnvType:
+    Description: Environment for this function
     Type: String
-    Default: arn:aws:dynamodb:ap-southeast-1:991300696177:table/PahinaNote-kmn6vrmi4falhppz6x5fmm4dty-dev/stream/2019-06-29T12:24:26.303
+    Default: dev
+    AllowedValues:
+    - dev
+    - prod
+    - test
+  ShopifyGqlApiKey:
+    Description: Shopify GraphQL API Key
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: shpy_freemjabadilla_gql_api_key
+  ShopifyGqlApiPassword:
+    Description: Shopify GraphQL password
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: shpy_freemjabadilla_gql_api_pwd
+Mappings:
+  PahinaCaseTblStreamArn:
+    ap-southeast-1:
+      dev: arn:aws:dynamodb:ap-southeast-1:991300696177:table/PahinaNote-kmn6vrmi4falhppz6x5fmm4dty-dev/stream/2019-06-29T12:24:26.303
+      prod: ''
+  EnvConfigMap:
+    BatchSize:
+      dev: 2
+      prod: 10
+Conditions:
+  IsDev:
+    Fn::Equals:
+    - Ref: EnvType
+    - dev
 Globals:
   Function:
     Handler: index.handler
     Timeout: 3
+    Environment:
+      Variables:
+        SHOPIFY_API_KEY:
+          Ref: ShopifyGqlApiKey
+        SHOPIFY_API_PWD:
+          Ref: ShopifyGqlApiPassword
 Resources:
   PahinaNoteCreateFunction:
     Type: AWS::Serverless::Function
@@ -22,9 +55,16 @@ Resources:
           Type: DynamoDB
           Properties:
             Stream:
-              Ref: PahinaCaseTableStream
+              Fn::FindInMap:
+              - PahinaCaseTblStreamArn
+              - Ref: AWS::Region
+              - Ref: EnvType
             StartingPosition: TRIM_HORIZON
-            BatchSize: 10
+            BatchSize:
+              Fn::FindInMap:
+              - EnvConfigMap
+              - BatchSize
+              - Ref: EnvType
             Enabled: true
 Outputs:
   PahinaNoteCreateFunction:
