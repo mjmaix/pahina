@@ -1,8 +1,11 @@
 {
   "name": "pahina-shopify-trigger",
   "version": "1.0.0",
-  "license": "MIT",
+  "license": "none",
   "scripts": {
+    "build": "yarn --cwd note-stream build",
+    "presam:package": "yarn build",
+    "presam:deploy": "yarn build",
     "sam:package": "sam package --output-template-file packaged.yaml --s3-bucket pahina-shopify-triggers",
     "sam:deploy": "sam deploy --template-file packaged.yaml --stack-name pahina-shopify-triggers --capabilities CAPABILITY_IAM --region ap-southeast-1"
   }

@@ -9,7 +9,7 @@
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noUnusedLocals": true,
-    "sourceMap": true,
+    "inlineSourceMap": true,
     "strictNullChecks": true,
     "strict": true,
     "pretty": true,

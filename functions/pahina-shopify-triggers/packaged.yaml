@@ -20,6 +20,10 @@ Parameters:
     Description: Shopify GraphQL password
     Type: AWS::SSM::Parameter::Value<String>
     Default: shpy_freemjabadilla_gql_api_pwd
+  ShopifyGqlApiHost:
+    Description: Shopify GraphQL hostname
+    Type: String
+    Default: freemjabadilla.myshopify.com
 Mappings:
   CaseTblStreamArn:
     ap-southeast-1:
@@ -44,11 +48,13 @@ Globals:
           Ref: ShopifyGqlApiKey
         SHOPIFY_API_PWD:
           Ref: ShopifyGqlApiPwd
+        SHOPIFY_HOSTNAME:
+          Ref: ShopifyGqlApiHost
 Resources:
   NoteStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-triggers/e7f81f149815e052ed168b6e5666f701
+      CodeUri: s3://pahina-shopify-triggers/ec38379516d1219aa5f2f336f45bfe25
       Runtime: nodejs10.x
       Events:
         StreamEvent:
