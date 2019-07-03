@@ -16,12 +16,12 @@ Parameters:
     Description: Shopify GraphQL API Key
     Type: AWS::SSM::Parameter::Value<String>
     Default: shpy_freemjabadilla_gql_api_key
-  ShopifyGqlApiPassword:
+  ShopifyGqlApiPwd:
     Description: Shopify GraphQL password
     Type: AWS::SSM::Parameter::Value<String>
     Default: shpy_freemjabadilla_gql_api_pwd
 Mappings:
-  PahinaCaseTblStreamArn:
+  CaseTblStreamArn:
     ap-southeast-1:
       dev: arn:aws:dynamodb:ap-southeast-1:991300696177:table/PahinaNote-kmn6vrmi4falhppz6x5fmm4dty-dev/stream/2019-06-29T12:24:26.303
       prod: ''
@@ -43,20 +43,20 @@ Globals:
         SHOPIFY_API_KEY:
           Ref: ShopifyGqlApiKey
         SHOPIFY_API_PWD:
-          Ref: ShopifyGqlApiPassword
+          Ref: ShopifyGqlApiPwd
 Resources:
-  PahinaNoteCreateFunction:
+  NoteStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopifytriggers/e7f81f149815e052ed168b6e5666f701
+      CodeUri: s3://pahina-shopify-triggers/e7f81f149815e052ed168b6e5666f701
       Runtime: nodejs10.x
       Events:
-        CreateEvent:
+        StreamEvent:
           Type: DynamoDB
           Properties:
             Stream:
               Fn::FindInMap:
-              - PahinaCaseTblStreamArn
+              - CaseTblStreamArn
               - Ref: AWS::Region
               - Ref: EnvType
             StartingPosition: TRIM_HORIZON
@@ -67,15 +67,15 @@ Resources:
               - Ref: EnvType
             Enabled: true
 Outputs:
-  PahinaNoteCreateFunction:
-    Description: Pahina Note Create Function ARN
+  NoteStreamFunction:
+    Description: Note Stream Function ARN
     Value:
       Fn::GetAtt:
-      - PahinaNoteCreateFunction
+      - NoteStreamFunction
       - Arn
-  PahinaNoteCreateFunctionIamRole:
-    Description: Implicit IAM Role created for Pahina Note Create Function
+  NoteStreamFunctionIamRole:
+    Description: Implicit IAM Role created for Note Stream Function
     Value:
       Fn::GetAtt:
-      - PahinaNoteCreateFunctionRole
+      - NoteStreamFunctionRole
       - Arn

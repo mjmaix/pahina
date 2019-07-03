@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "sam:package": "sam package --output-template-file packaged.yaml --s3-bucket pahina-shopifytriggers",
+    "sam:package": "sam package --output-template-file packaged.yaml --s3-bucket pahina-shopify-triggers",
     "sam:deploy": "sam deploy --template-file packaged.yaml --stack-name pahina-shopify-triggers --capabilities CAPABILITY_IAM --region ap-southeast-1"
   }
 }

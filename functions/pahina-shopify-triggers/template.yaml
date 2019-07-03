@@ -18,13 +18,13 @@ Parameters:
     Type: AWS::SSM::Parameter::Value<String>
     Default: 'shpy_freemjabadilla_gql_api_key' 
 
-  ShopifyGqlApiPassword:
+  ShopifyGqlApiPwd:
     Description: 'Shopify GraphQL password'
     Type: AWS::SSM::Parameter::Value<String>
     Default: 'shpy_freemjabadilla_gql_api_pwd' 
 
 Mappings: 
-  PahinaCaseTblStreamArn:
+  CaseTblStreamArn:
     ap-southeast-1: 
       dev: "arn:aws:dynamodb:ap-southeast-1:991300696177:table/PahinaNote-kmn6vrmi4falhppz6x5fmm4dty-dev/stream/2019-06-29T12:24:26.303"
       prod: ""
@@ -44,19 +44,19 @@ Globals:
     Environment: 
       Variables:
         SHOPIFY_API_KEY: !Ref ShopifyGqlApiKey
-        SHOPIFY_API_PWD: !Ref ShopifyGqlApiPassword
+        SHOPIFY_API_PWD: !Ref ShopifyGqlApiPwd
 
 Resources:
-  PahinaNoteCreateFunction:
+  NoteStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: pahina-note-create/
+      CodeUri: note-stream/
       Runtime: nodejs10.x
       Events:
-        CreateEvent:
+        StreamEvent:
           Type: DynamoDB # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
-            Stream: !FindInMap [PahinaCaseTblStreamArn, !Ref "AWS::Region", !Ref EnvType]
+            Stream: !FindInMap [CaseTblStreamArn, !Ref "AWS::Region", !Ref EnvType]
             StartingPosition: TRIM_HORIZON
             BatchSize: !FindInMap [EnvConfigMap, 'BatchSize', !Ref EnvType]
             Enabled: true
@@ -65,11 +65,11 @@ Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
   # Find out more about other implicit resources you can reference within SAM
   # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
-  PahinaNoteCreateFunction:
-    Description: "Pahina Note Create Function ARN"
-    Value: !GetAtt PahinaNoteCreateFunction.Arn
-  PahinaNoteCreateFunctionIamRole:
-    Description: "Implicit IAM Role created for Pahina Note Create Function"
-    Value: !GetAtt PahinaNoteCreateFunctionRole.Arn
+  NoteStreamFunction:
+    Description: "Note Stream Function ARN"
+    Value: !GetAtt NoteStreamFunction.Arn
+  NoteStreamFunctionIamRole:
+    Description: "Implicit IAM Role created for Note Stream Function"
+    Value: !GetAtt NoteStreamFunctionRole.Arn
 
 
