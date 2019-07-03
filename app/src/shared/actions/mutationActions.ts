@@ -5,7 +5,7 @@ import {
   updatePahinaUser,
 } from '../../shared/graphql/mutations';
 
-import apollo from '../apolloClient';
+import apollo from '../awsApolloClient';
 import {
   AppCognitoUser,
   CreatePahinaUserMutation,

@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import apollo from '../apolloClient';
+import apollo from '../awsApolloClient';
 import {
   GetPahinaUserSortedNotesQueryVariables,
   GetPahinaUserSortedNotesQuery,
