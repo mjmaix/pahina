@@ -4,6 +4,7 @@ import _ from 'lodash';
 import createDb from './createDb';
 import { emitter, initProgressBar } from './tools/progress';
 import { extractAValueLink } from './tools/scraper';
+import { getUrlAsKey } from './tools/getUrlAsKey';
 
 const selector = '#container_title > ul > li > a';
 const metaDbName = 'meta';
@@ -20,17 +21,33 @@ async function Step3() {
     .map(
       async (url: string) => {
         let newItems = {};
+        const keyUrl = getStatusKey(url);
         try {
-          const items = await extractAValueLink(url, selector);
-          emitter('progress', 'items', {});
-          _.forEach(items, item => {
-            const urlSplit = item.link.split('/');
-            const l = urlSplit.length;
-            db.set(_.slice(urlSplit, l - 3, l).join('/'), item).value();
-          });
-          db.write();
+          const savedValue = metaDb
+            .read()
+            .get(keyUrl)
+            .value();
+          const savedStatus =
+            savedValue === 'true' || savedValue === Boolean(savedValue);
+          console.log('savedStatus', savedStatus);
+          if (!savedStatus) {
+            const items = await extractAValueLink(url, selector);
+            emitter('progress', 'items', {});
+            _.forEach(items, item => {
+              const saveData = { ...item, locatedUrl: url };
+              const key = getUrlAsKey(item.link);
+              db.set(key, saveData).value();
+            });
+            metaDb.set(keyUrl, true).value();
+            metaDb.write();
+            db.write();
+          } else {
+            console.log('Skipping processed url', url);
+          }
         } catch (err) {
           console.log(err);
+          metaDb.set(keyUrl, false);
+          metaDb.write();
         }
         return bluebird.resolve(newItems).delay(2000);
       },
@@ -38,8 +55,15 @@ async function Step3() {
         concurrency: 5,
       },
     )
-    .then(db.write())
+    .then(() => {
+      db.write();
+      metaDb.write();
+    })
     .catch(err => console.log(err));
+
+  function getStatusKey(url: string): _.Many<string | number | symbol> {
+    return `step3_success.${getUrlAsKey(url, 4)}`;
+  }
 }
 
 export default Step3;

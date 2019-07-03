@@ -14,7 +14,6 @@ async function Step2() {
 
   initProgressBar('months', categories.length);
   await bluebird.resolve(categories).mapSeries(async url => {
-    console.log(`\ngetting ${url}\n`);
     emitter('progress', 'months', {});
 
     const links = await extractLinks(url, selector);
