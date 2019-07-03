@@ -29,7 +29,6 @@ async function Step3() {
             .value();
           const savedStatus =
             savedValue === 'true' || savedValue === Boolean(savedValue);
-          console.log('savedStatus', savedStatus);
           if (!savedStatus) {
             const items = await extractAValueLink(url, selector);
             _.forEach(items, item => {

@@ -13,12 +13,14 @@
     "bluebird": "^3.5.4",
     "cheerio": "^1.0.0-rc.3",
     "fs-extra": "^7.0.1",
+    "json-dynamo-putrequest": "^1.0.0",
     "lodash": "^4.17.11",
     "lowdb": "^1.0.0",
     "prettier": "^1.17.0",
     "progress": "^2.0.3",
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
+    "rimraf": "^2.6.3",
     "typescript": "^3.4.5"
   },
   "devDependencies": {
@@ -29,6 +31,7 @@
     "@types/node": "^11.13.7",
     "@types/progress": "^2.0.3",
     "@types/request-promise": "^4.1.43",
+    "@types/rimraf": "^2.0.2",
     "ts-node": "^8.3.0",
     "tslint": "^5.16.0"
   }
