@@ -1,15 +1,18 @@
 {
   "folders": [
-	{
-		"path": "app"
-	},
-	{
-		"path": "data-miner"
-	},
-	{
-		"path": "web"
-	}
-],
+    {
+      "path": "app"
+    },
+    {
+      "path": "data-miner"
+    },
+    {
+      "path": "web"
+    },
+    {
+      "path": "functions"
+    }
+  ],
   "settings": {
     "explorer.autoReveal": false
   }

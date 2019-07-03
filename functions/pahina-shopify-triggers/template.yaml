@@ -1,0 +1,43 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  SAM Template for pahina-shop-triggers
+
+Parameters: 
+  PahinaCaseTableStream: 
+    Type: String
+    Default: arn:aws:dynamodb:ap-southeast-1:991300696177:table/PahinaNote-kmn6vrmi4falhppz6x5fmm4dty-dev/stream/2019-06-29T12:24:26.303
+  
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Handler: index.handler
+    Timeout: 3
+
+Resources:
+  PahinaNoteCreateFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: pahina-note-create/
+      Runtime: nodejs10.x
+      Events:
+        CreateEvent:
+          Type: DynamoDB # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Stream: !Ref PahinaCaseTableStream
+            StartingPosition: TRIM_HORIZON
+            BatchSize: 10
+            Enabled: true
+
+Outputs:
+  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+  # Find out more about other implicit resources you can reference within SAM
+  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+  PahinaNoteCreateFunction:
+    Description: "Pahina Note Create Function ARN"
+    Value: !GetAtt PahinaNoteCreateFunction.Arn
+  PahinaNoteCreateFunctionIamRole:
+    Description: "Implicit IAM Role created for Pahina Note Create Function"
+    Value: !GetAtt PahinaNoteCreateFunctionRole.Arn
+
+
