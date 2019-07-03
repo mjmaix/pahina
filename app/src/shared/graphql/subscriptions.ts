@@ -9,6 +9,7 @@ export const onCreatePahinaCase = `subscription OnCreatePahinaCase {
     link
     createdAt
     updatedAt
+    date
     notes {
       items {
         id

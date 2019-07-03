@@ -64,3 +64,4 @@ node_modules/**
 
 out/
 files*/
+build/

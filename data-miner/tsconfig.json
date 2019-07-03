@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
     "esModuleInterop": true,
-    "strict": false
+    "strict": false,
+    "outDir": "./build",
+    "target": "es5",
+    "sourceMap": true
   },
   "exclude": ["**/node_modules/**"]
 }

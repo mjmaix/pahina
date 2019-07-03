@@ -96,6 +96,7 @@ export const createPahinaNote = `mutation CreatePahinaNote($input: CreatePahinaN
       link
       createdAt
       updatedAt
+      date
       notes {
         nextToken
       }
@@ -131,6 +132,7 @@ export const updatePahinaNote = `mutation UpdatePahinaNote($input: UpdatePahinaN
       link
       createdAt
       updatedAt
+      date
       notes {
         nextToken
       }
@@ -166,6 +168,7 @@ export const deletePahinaNote = `mutation DeletePahinaNote($input: DeletePahinaN
       link
       createdAt
       updatedAt
+      date
       notes {
         nextToken
       }
@@ -186,6 +189,7 @@ export const createPahinaCase = `mutation CreatePahinaCase($input: CreatePahinaC
     link
     createdAt
     updatedAt
+    date
     notes {
       items {
         id
@@ -208,6 +212,7 @@ export const updatePahinaCase = `mutation UpdatePahinaCase($input: UpdatePahinaC
     link
     createdAt
     updatedAt
+    date
     notes {
       items {
         id
@@ -230,6 +235,7 @@ export const deletePahinaCase = `mutation DeletePahinaCase($input: DeletePahinaC
     link
     createdAt
     updatedAt
+    date
     notes {
       items {
         id

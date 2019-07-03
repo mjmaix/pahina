@@ -62,7 +62,7 @@ export function cleanFields(docVal: ShowDoc) {
   const processed: ProcessedShowDoc = {
     link: item.link,
     title: standardLength
-      ? _.slice(item.fields, 1, 1).join('')
+      ? item.fields[1]
       : _.first(item.fields) || 'No title found',
     code: firstIsCode ? _.first(item.fields) : undefined,
     date: lastIsDate ? _.last(item.fields) : undefined,

@@ -71,6 +71,7 @@ export const getPahinaNote = `query GetPahinaNote($id: ID!) {
       link
       createdAt
       updatedAt
+      date
       notes {
         nextToken
       }
@@ -108,6 +109,7 @@ export const listPahinaNotes = `query ListPahinaNotes(
         link
         createdAt
         updatedAt
+        date
       }
       promotional
       createdAt
@@ -127,6 +129,7 @@ export const getPahinaCase = `query GetPahinaCase($id: ID!) {
     link
     createdAt
     updatedAt
+    date
     notes {
       items {
         id
@@ -154,6 +157,7 @@ export const listPahinaCases = `query ListPahinaCases(
       link
       createdAt
       updatedAt
+      date
       notes {
         nextToken
       }

@@ -32,7 +32,6 @@ async function Step3() {
           console.log('savedStatus', savedStatus);
           if (!savedStatus) {
             const items = await extractAValueLink(url, selector);
-            emitter('progress', 'items', {});
             _.forEach(items, item => {
               const saveData = { ...item, locatedUrl: url };
               const key = getUrlAsKey(item.link);
@@ -44,6 +43,7 @@ async function Step3() {
           } else {
             console.log('Skipping processed url', url);
           }
+          emitter('progress', 'items', {});
         } catch (err) {
           console.log(err);
           metaDb.set(keyUrl, false);

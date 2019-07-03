@@ -68,6 +68,7 @@ export type CreatePahinaCaseInput = {
   link?: string | null,
   createdAt?: string | null,
   updatedAt?: string | null,
+  date?: string | null,
 };
 
 export type UpdatePahinaCaseInput = {
@@ -77,6 +78,7 @@ export type UpdatePahinaCaseInput = {
   link?: string | null,
   createdAt?: string | null,
   updatedAt?: string | null,
+  date?: string | null,
 };
 
 export type DeletePahinaCaseInput = {
@@ -147,6 +149,7 @@ export type ModelPahinaCaseFilterInput = {
   link?: ModelStringFilterInput | null,
   createdAt?: ModelStringFilterInput | null,
   updatedAt?: ModelStringFilterInput | null,
+  date?: ModelStringFilterInput | null,
   and?: Array< ModelPahinaCaseFilterInput | null > | null,
   or?: Array< ModelPahinaCaseFilterInput | null > | null,
   not?: ModelPahinaCaseFilterInput | null,
@@ -308,6 +311,7 @@ export type CreatePahinaNoteMutation = {
       link: string | null,
       createdAt: string | null,
       updatedAt: string | null,
+      date: string | null,
       notes:  {
         __typename: "ModelPahinaNoteConnection",
         nextToken: string | null,
@@ -352,6 +356,7 @@ export type UpdatePahinaNoteMutation = {
       link: string | null,
       createdAt: string | null,
       updatedAt: string | null,
+      date: string | null,
       notes:  {
         __typename: "ModelPahinaNoteConnection",
         nextToken: string | null,
@@ -396,6 +401,7 @@ export type DeletePahinaNoteMutation = {
       link: string | null,
       createdAt: string | null,
       updatedAt: string | null,
+      date: string | null,
       notes:  {
         __typename: "ModelPahinaNoteConnection",
         nextToken: string | null,
@@ -422,6 +428,7 @@ export type CreatePahinaCaseMutation = {
     link: string | null,
     createdAt: string | null,
     updatedAt: string | null,
+    date: string | null,
     notes:  {
       __typename: "ModelPahinaNoteConnection",
       items:  Array< {
@@ -451,6 +458,7 @@ export type UpdatePahinaCaseMutation = {
     link: string | null,
     createdAt: string | null,
     updatedAt: string | null,
+    date: string | null,
     notes:  {
       __typename: "ModelPahinaNoteConnection",
       items:  Array< {
@@ -480,6 +488,7 @@ export type DeletePahinaCaseMutation = {
     link: string | null,
     createdAt: string | null,
     updatedAt: string | null,
+    date: string | null,
     notes:  {
       __typename: "ModelPahinaNoteConnection",
       items:  Array< {
@@ -586,6 +595,7 @@ export type GetPahinaNoteQuery = {
       link: string | null,
       createdAt: string | null,
       updatedAt: string | null,
+      date: string | null,
       notes:  {
         __typename: "ModelPahinaNoteConnection",
         nextToken: string | null,
@@ -630,6 +640,7 @@ export type ListPahinaNotesQuery = {
         link: string | null,
         createdAt: string | null,
         updatedAt: string | null,
+        date: string | null,
       } | null,
       promotional: string | null,
       createdAt: string | null,
@@ -654,6 +665,7 @@ export type GetPahinaCaseQuery = {
     link: string | null,
     createdAt: string | null,
     updatedAt: string | null,
+    date: string | null,
     notes:  {
       __typename: "ModelPahinaNoteConnection",
       items:  Array< {
@@ -687,6 +699,7 @@ export type ListPahinaCasesQuery = {
       link: string | null,
       createdAt: string | null,
       updatedAt: string | null,
+      date: string | null,
       notes:  {
         __typename: "ModelPahinaNoteConnection",
         nextToken: string | null,
@@ -705,6 +718,7 @@ export type OnCreatePahinaCaseSubscription = {
     link: string | null,
     createdAt: string | null,
     updatedAt: string | null,
+    date: string | null,
     notes:  {
       __typename: "ModelPahinaNoteConnection",
       items:  Array< {

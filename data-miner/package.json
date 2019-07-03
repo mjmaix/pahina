@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/index.ts",
   "scripts": {
-    "format": "npx prettier --write ./files/*.json ./files/**/*.json"
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
@@ -22,13 +22,14 @@
     "typescript": "^3.4.5"
   },
   "devDependencies": {
-    "@types/lowdb": "^1.0.9",
     "@types/cheerio": "^0.22.11",
     "@types/fs-extra": "^5.0.5",
     "@types/lodash": "^4.14.135",
+    "@types/lowdb": "^1.0.9",
     "@types/node": "^11.13.7",
     "@types/progress": "^2.0.3",
     "@types/request-promise": "^4.1.43",
+    "ts-node": "^8.3.0",
     "tslint": "^5.16.0"
   }
 }
