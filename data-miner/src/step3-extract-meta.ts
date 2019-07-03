@@ -28,6 +28,7 @@ async function Step3() {
             const l = urlSplit.length;
             db.set(_.slice(urlSplit, l - 3, l).join('/'), item).value();
           });
+          db.write();
         } catch (err) {
           console.log(err);
         }

@@ -16,7 +16,6 @@ async function Step4() {
       showdocs,
       async (v: ShowDoc, i: number, arr: ShowDoc[]) => {
         const item = await cleanFields(v);
-        console.log('item', item);
         const urlSplit = item.link.split('/');
         const l = urlSplit.length;
         db.set(_.slice(urlSplit, l - 3, l).join('/'), item).value();
@@ -24,14 +23,9 @@ async function Step4() {
     );
   };
 
-  await startProcess()
-    .then(() => {
-      const processedItems = fs.readJsonSync(dbPath);
-      console.log('processedItems', processedItems);
-    })
-    .then(() => {
-      db.write();
-    });
+  await startProcess().then(() => {
+    db.write();
+  });
 }
 
 export default Step4;
