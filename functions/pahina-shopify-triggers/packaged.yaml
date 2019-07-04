@@ -54,7 +54,7 @@ Resources:
   NoteStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-triggers/ec38379516d1219aa5f2f336f45bfe25
+      CodeUri: s3://pahina-shopify-triggers/e330523aa5bda9deedb180275f97a92a
       Runtime: nodejs10.x
       Events:
         StreamEvent:

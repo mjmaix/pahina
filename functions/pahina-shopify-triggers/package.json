@@ -1,9 +1,10 @@
 {
   "name": "pahina-shopify-trigger",
   "version": "1.0.0",
-  "license": "none",
+  "license": "UNLICENSED",
   "scripts": {
     "build": "yarn --cwd note-stream build",
+    "deploy": "npm-run-all --sequential sam:package sam:deploy",
     "presam:package": "yarn build",
     "presam:deploy": "yarn build",
     "sam:package": "sam package --output-template-file packaged.yaml --s3-bucket pahina-shopify-triggers",
