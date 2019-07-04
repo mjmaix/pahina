@@ -1,0 +1,10 @@
+{
+  "callbackWaitsForEmptyEventLoop": true,
+  "functionVersion": "$LATEST",
+  "functionName": "pahina-shopify-triggers-NoteStreamFunction-JMCKP6TCIEPX",
+  "memoryLimitInMB": "128",
+  "logGroupName": "/aws/lambda/pahina-shopify-triggers-NoteStreamFunction-JMCKP6TCIEPX",
+  "logStreamName": "2019/07/04/[$LATEST]5d5ecf61f163495da94d53e84e29afbc",
+  "invokedFunctionArn": "arn:aws:lambda:ap-southeast-1:991300696177:function:pahina-shopify-triggers-NoteStreamFunction-JMCKP6TCIEPX",
+  "awsRequestId": "5ce657b2-7384-4490-8537-4e325a79d553"
+}

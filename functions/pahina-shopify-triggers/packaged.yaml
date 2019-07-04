@@ -40,7 +40,7 @@ Conditions:
     - dev
 Globals:
   Function:
-    Handler: index.handler
+    Handler: app.handler
     Timeout: 3
     Environment:
       Variables:
@@ -54,7 +54,7 @@ Resources:
   NoteStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-triggers/e330523aa5bda9deedb180275f97a92a
+      CodeUri: s3://pahina-shopify-triggers/20f37a22efd50de8306ef5e962d7339c
       Runtime: nodejs10.x
       Events:
         StreamEvent:

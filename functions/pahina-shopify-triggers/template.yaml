@@ -44,7 +44,7 @@ Conditions:
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
   Function:
-    Handler: index.handler
+    Handler: app.handler
     Timeout: 3
     Environment: 
       Variables:

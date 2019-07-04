@@ -1,3 +1,7 @@
 {
-  "extends": "../tsconfig.functions.json"
+  "extends": "../tsconfig.functions.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "baseUrl": "./"
+  }
 }
