@@ -1,0 +1,89 @@
+{
+  "input": {
+    "productType": "Case Digest",
+    "title": "(Case Title) + (SKU)",
+    "vendor": "Author name",
+    "descriptionHtml": "The promotional text",
+    "handle": "(sameassku)",
+    "seo": {
+      "description": "(Product Type), (Case title), (case code)"
+    },
+    "collectionsToJoin": [],
+    "variants": [
+      {
+        "options": "paid",
+        "inventoryPolicy": "CONTINUE",
+        "inventoryQuantity": 0,
+        "price": 100,
+        "requiresShipping": false,
+        "sku": "(prefix_unq_per_user)_paid"
+      },
+      {
+        "options": "free",
+        "inventoryPolicy": "DENY",
+        "inventoryQuantity": 5,
+        "price": 0,
+        "requiresShipping": false,
+        "sku": "(prefix_unq_per_user)_free"
+      }
+    ],
+    "metafields": [
+      {
+        "namespace": "ProductLinks",
+        "description": "Note ID",
+        "key": "noteId",
+        "value": "06eed910-e641-423c-9c5a-a7d1a4384d43",
+        "valueType": "STRING"
+      },
+      {
+        "namespace": "ProductLinks",
+        "description": "Author ID",
+        "key": "authorId",
+        "value": "b964512a-2d73-43b0-ba4d-7da8f9bf9f12",
+        "valueType": "STRING"
+      },
+      {
+        "namespace": "ProductLinks",
+        "description": "Note Case ID",
+        "key": "pahinaNoteCaseId",
+        "value": "dc7034d8-3844-4cf2-bdb9-4bbd27165284",
+        "valueType": "STRING"
+      },
+      {
+        "namespace": "ProductDetails",
+        "description": "Author Name",
+        "key": "authorName",
+        "value": "Michael James Abadilla",
+        "valueType": "STRING"
+      },
+      {
+        "namespace": "ProductDetails",
+        "description": "Case Title",
+        "key": "caseTitle",
+        "value": "RAMIRO LIM & SONS AGRICULTURAL CO., INC., SIMA REAL ESTATE DEVELOPMENT, INC., AND RAMIRO LIM, PETITIONERS, VS. ARMANDO GUILARAN, ROMEO FRIAS, SANTIAGO CARAMBIAS, SR., JOEL SUAREZ, VICENTE OBORDO, JESSIE DAYON, JOEL PALMA, DOMICIANO PITULAN, NINFA ESPINOSA, ROMULO DELA PEÑA, FERNANDO ROWEL, VICENTE ESPINOSA, PONCIANO DACUMOS, OFELIA FRIAS, GILBERT CARAMBIAS, RODRIGO FRIAS, NIXON CARAMBIAS, RESTITUTO JUANICA, MARIANITA GUILARAN, ALY ROMERO, ROSEMINDA JUANICA, LOLITA ROMERO, LILIA ROWEL, ANTONIO DUMDUMAN, SANTIAGO CARAMBIAS, JR., DIOSCORO DACUMOS, ROSENDO DACUMOS, JONIEL DACUMOS, LEONARDA DACUMOS, JUDITA DACUMOS, MIGUELA DACUMOS, AND NINFA CARAMBIAS, RESPONDENT.",
+        "valueType": "STRING"
+      },
+      {
+        "namespace": "ProductDetails",
+        "description": "Case Code",
+        "key": "caseCode",
+        "value": "G.R. No. 221967",
+        "valueType": "STRING"
+      },
+      {
+        "namespace": "ProductDetails",
+        "description": "date",
+        "key": "caseDate",
+        "value": "February 06, 2019",
+        "valueType": "STRING"
+      },
+      {
+        "namespace": "ProductDetails",
+        "description": "Case link",
+        "key": "caseLink",
+        "value": "http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/64971",
+        "valueType": "STRING"
+      }
+    ]
+  }
+}
