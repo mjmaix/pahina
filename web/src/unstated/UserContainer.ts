@@ -1,16 +1,21 @@
+import _ from 'lodash';
 import { Container } from 'unstated';
-import { AppSyncUser } from '../shared/types';
+import { AppSyncUser, AppSyncUserNote } from '../shared/types';
 import { handleGetCurrentUser, handleGetAppSyncUser } from '../shared';
 
 export interface UserState {
   user?: AppSyncUser;
+  notes: { [k: string]: AppSyncUserNote };
   isReady: boolean;
+  isFetchingMore: boolean;
   errorMessage?: string | null;
 }
 
 const initialState = {
   user: undefined,
   isReady: false,
+  isFetchingMore: false,
+  notes: {},
 };
 
 class UserContainer extends Container<UserState> {
@@ -21,12 +26,14 @@ class UserContainer extends Container<UserState> {
     this.fetchAppUser();
   }
 
-  public fetchAppUser = async () => {
+  public fetchAppUser = async (nextToken?: string) => {
     try {
       const cognitoUser = await handleGetCurrentUser();
-      const user = await handleGetAppSyncUser(cognitoUser.getUsername());
+      const user = await handleGetAppSyncUser(
+        cognitoUser.getUsername(),
+        nextToken,
+      );
       if (user && user.getPahinaUser) {
-        console.log('user.getPahinaUser', user.getPahinaUser);
         this.onSignIn(user.getPahinaUser);
       }
     } catch (err) {
@@ -36,15 +43,33 @@ class UserContainer extends Container<UserState> {
     }
   };
 
+  public fetchMoreNotes = async (nextToken: string) => {
+    try {
+      this.setState({ isFetchingMore: true });
+      await this.fetchAppUser(nextToken);
+    } finally {
+      this.setState({ isFetchingMore: false });
+    }
+  };
+
   public onSignIn = (user: AppSyncUser) => {
-    this.setState({ user });
+    const { notes } = user;
+    if (notes && notes.items) {
+      const newNotes = _.keyBy(notes.items, 'id');
+      this.setState(
+        prev => ({ user, notes: { ...prev.notes, ...newNotes } } as UserState),
+      );
+    } else {
+      this.setState({ user });
+    }
   };
 
   public notes = () => {
-    if (!this.state.user) {
+    const { notes } = this.state;
+    if (_.isEmpty(notes)) {
       return null;
     }
-    return this.state.user.notes;
+    return Object.values(notes);
   };
 }
 
