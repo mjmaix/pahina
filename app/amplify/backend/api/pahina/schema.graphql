@@ -9,6 +9,27 @@ enum PahinaNoteStatus {
   UNLISTED
 }
 
+enum PahinaPriceLevel {
+  L_0
+  L_50
+  L_100
+  L_150
+  L_200
+  L_250
+  L_300
+  L_350
+  L_400
+  L_450
+  L_500
+}
+
+enum PahinaStoreProductStatus {
+  SENT
+  CREATING
+  CREATED
+  FAILED
+}
+
 type PahinaUser
   @model(subscriptions: null)
   @auth(
@@ -28,6 +49,54 @@ type PahinaUser
   notes: [PahinaNote]
     @connection(name: "PahinaUserNotes", sortField: "updatedAt")
     @auth(rules: [{ allow: owner, ownerField: "id" }])
+  stores: [PahinaUserStore] @connection(name: "PahinaUserStores")
+}
+
+type PahinaMainStore
+  @model(subscriptions: null, mutations: null)
+  @auth(rules: [{ allow: groups, groups: ["Admin"] }]) {
+  id: ID!
+  digitalPublicationId: String
+  digitalLocationId: String
+}
+
+type PahinaUserStore
+  @model(subscriptions: null, mutations: null)
+  @auth(
+    rules: [
+      { allow: owner, ownerField: "owner", operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
+  id: ID!
+  owner: PahinaUser! @connection(name: "PahinaUserStores")
+  products: [PahinaUserStoreProduct]
+    @connection(name: "PahinaUserStoreProducts")
+  skuPrefix: String
+}
+
+type PahinaUserStoreProduct
+  @model(subscriptions: null, mutations: null)
+  @key(fields: ["storeId", "sku"])
+  @auth(
+    rules: [
+      { allow: owner, ownerField: "owner", operations: [read] }
+      { allow: groups, groups: ["Admin"] }
+    ]
+  ) {
+  sku: String!
+  store: PahinaUserStore!
+    @connection(name: "PahinaUserStoreProducts", keyField: "storeId")
+  storeId: String!
+  shopifyProductId: String
+  shopifyShopId: String
+  onlineStoreUrl: String
+  onlineStorePreviewUrl: String
+  handle: String
+  status: PahinaStoreProductStatus
+  rawResponse: String
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
 }
 
 type PahinaNote
@@ -52,6 +121,7 @@ type PahinaNote
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
   status: PahinaNoteStatus
+  priceLevel: PahinaPriceLevel
   value: String
 }
 

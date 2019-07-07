@@ -17,6 +17,7 @@ export const onCreatePahinaCase = `subscription OnCreatePahinaCase {
         createdAt
         updatedAt
         status
+        priceLevel
         value
       }
       nextToken

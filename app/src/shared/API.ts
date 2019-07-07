@@ -20,6 +20,21 @@ export type CreatePahinaUserInput = {
   updatedAt?: string | null,
 };
 
+export enum PahinaPriceLevel {
+  L_0 = "L_0",
+  L_50 = "L_50",
+  L_100 = "L_100",
+  L_150 = "L_150",
+  L_200 = "L_200",
+  L_250 = "L_250",
+  L_300 = "L_300",
+  L_350 = "L_350",
+  L_400 = "L_400",
+  L_450 = "L_450",
+  L_500 = "L_500",
+}
+
+
 export type UpdatePahinaUserInput = {
   id: string,
   givenName?: string | null,
@@ -41,6 +56,7 @@ export type CreatePahinaNoteInput = {
   createdAt?: string | null,
   updatedAt?: string | null,
   status?: PahinaNoteStatus | null,
+  priceLevel?: PahinaPriceLevel | null,
   value?: string | null,
   pahinaNoteAuthorId?: string | null,
   pahinaNoteCaseId?: string | null,
@@ -52,6 +68,7 @@ export type UpdatePahinaNoteInput = {
   createdAt?: string | null,
   updatedAt?: string | null,
   status?: PahinaNoteStatus | null,
+  priceLevel?: PahinaPriceLevel | null,
   value?: string | null,
   pahinaNoteAuthorId?: string | null,
   pahinaNoteCaseId?: string | null,
@@ -125,12 +142,70 @@ export type ModelStringFilterInput = {
   beginsWith?: string | null,
 };
 
+export type ModelPahinaMainStoreFilterInput = {
+  id?: ModelIDFilterInput | null,
+  digitalPublicationId?: ModelStringFilterInput | null,
+  digitalLocationId?: ModelStringFilterInput | null,
+  and?: Array< ModelPahinaMainStoreFilterInput | null > | null,
+  or?: Array< ModelPahinaMainStoreFilterInput | null > | null,
+  not?: ModelPahinaMainStoreFilterInput | null,
+};
+
+export enum PahinaStoreProductStatus {
+  SENT = "SENT",
+  CREATING = "CREATING",
+  CREATED = "CREATED",
+  FAILED = "FAILED",
+}
+
+
+export type ModelPahinaUserStoreFilterInput = {
+  id?: ModelIDFilterInput | null,
+  skuPrefix?: ModelStringFilterInput | null,
+  and?: Array< ModelPahinaUserStoreFilterInput | null > | null,
+  or?: Array< ModelPahinaUserStoreFilterInput | null > | null,
+  not?: ModelPahinaUserStoreFilterInput | null,
+};
+
+export type ModelStringKeyConditionInput = {
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+};
+
+export type ModelPahinaUserStoreProductFilterInput = {
+  sku?: ModelStringFilterInput | null,
+  storeId?: ModelStringFilterInput | null,
+  shopifyProductId?: ModelStringFilterInput | null,
+  shopifyShopId?: ModelStringFilterInput | null,
+  onlineStoreUrl?: ModelStringFilterInput | null,
+  onlineStorePreviewUrl?: ModelStringFilterInput | null,
+  handle?: ModelStringFilterInput | null,
+  status?: ModelPahinaStoreProductStatusFilterInput | null,
+  rawResponse?: ModelStringFilterInput | null,
+  createdAt?: ModelStringFilterInput | null,
+  updatedAt?: ModelStringFilterInput | null,
+  and?: Array< ModelPahinaUserStoreProductFilterInput | null > | null,
+  or?: Array< ModelPahinaUserStoreProductFilterInput | null > | null,
+  not?: ModelPahinaUserStoreProductFilterInput | null,
+};
+
+export type ModelPahinaStoreProductStatusFilterInput = {
+  eq?: PahinaStoreProductStatus | null,
+  ne?: PahinaStoreProductStatus | null,
+};
+
 export type ModelPahinaNoteFilterInput = {
   id?: ModelIDFilterInput | null,
   promotional?: ModelStringFilterInput | null,
   createdAt?: ModelStringFilterInput | null,
   updatedAt?: ModelStringFilterInput | null,
   status?: ModelPahinaNoteStatusFilterInput | null,
+  priceLevel?: ModelPahinaPriceLevelFilterInput | null,
   value?: ModelStringFilterInput | null,
   and?: Array< ModelPahinaNoteFilterInput | null > | null,
   or?: Array< ModelPahinaNoteFilterInput | null > | null,
@@ -140,6 +215,11 @@ export type ModelPahinaNoteFilterInput = {
 export type ModelPahinaNoteStatusFilterInput = {
   eq?: PahinaNoteStatus | null,
   ne?: PahinaNoteStatus | null,
+};
+
+export type ModelPahinaPriceLevelFilterInput = {
+  eq?: PahinaPriceLevel | null,
+  ne?: PahinaPriceLevel | null,
 };
 
 export type ModelPahinaCaseFilterInput = {
@@ -211,7 +291,17 @@ export type CreatePahinaUserMutation = {
         createdAt: string | null,
         updatedAt: string | null,
         status: PahinaNoteStatus | null,
+        priceLevel: PahinaPriceLevel | null,
         value: string | null,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
+    stores:  {
+      __typename: "ModelPahinaUserStoreConnection",
+      items:  Array< {
+        __typename: "PahinaUserStore",
+        id: string,
+        skuPrefix: string | null,
       } | null > | null,
       nextToken: string | null,
     } | null,
@@ -242,7 +332,17 @@ export type UpdatePahinaUserMutation = {
         createdAt: string | null,
         updatedAt: string | null,
         status: PahinaNoteStatus | null,
+        priceLevel: PahinaPriceLevel | null,
         value: string | null,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
+    stores:  {
+      __typename: "ModelPahinaUserStoreConnection",
+      items:  Array< {
+        __typename: "PahinaUserStore",
+        id: string,
+        skuPrefix: string | null,
       } | null > | null,
       nextToken: string | null,
     } | null,
@@ -273,7 +373,17 @@ export type DeletePahinaUserMutation = {
         createdAt: string | null,
         updatedAt: string | null,
         status: PahinaNoteStatus | null,
+        priceLevel: PahinaPriceLevel | null,
         value: string | null,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
+    stores:  {
+      __typename: "ModelPahinaUserStoreConnection",
+      items:  Array< {
+        __typename: "PahinaUserStore",
+        id: string,
+        skuPrefix: string | null,
       } | null > | null,
       nextToken: string | null,
     } | null,
@@ -302,6 +412,10 @@ export type CreatePahinaNoteMutation = {
         __typename: "ModelPahinaNoteConnection",
         nextToken: string | null,
       } | null,
+      stores:  {
+        __typename: "ModelPahinaUserStoreConnection",
+        nextToken: string | null,
+      } | null,
     } | null,
     case:  {
       __typename: "PahinaCase",
@@ -321,6 +435,7 @@ export type CreatePahinaNoteMutation = {
     createdAt: string | null,
     updatedAt: string | null,
     status: PahinaNoteStatus | null,
+    priceLevel: PahinaPriceLevel | null,
     value: string | null,
   } | null,
 };
@@ -347,6 +462,10 @@ export type UpdatePahinaNoteMutation = {
         __typename: "ModelPahinaNoteConnection",
         nextToken: string | null,
       } | null,
+      stores:  {
+        __typename: "ModelPahinaUserStoreConnection",
+        nextToken: string | null,
+      } | null,
     } | null,
     case:  {
       __typename: "PahinaCase",
@@ -366,6 +485,7 @@ export type UpdatePahinaNoteMutation = {
     createdAt: string | null,
     updatedAt: string | null,
     status: PahinaNoteStatus | null,
+    priceLevel: PahinaPriceLevel | null,
     value: string | null,
   } | null,
 };
@@ -392,6 +512,10 @@ export type DeletePahinaNoteMutation = {
         __typename: "ModelPahinaNoteConnection",
         nextToken: string | null,
       } | null,
+      stores:  {
+        __typename: "ModelPahinaUserStoreConnection",
+        nextToken: string | null,
+      } | null,
     } | null,
     case:  {
       __typename: "PahinaCase",
@@ -411,6 +535,7 @@ export type DeletePahinaNoteMutation = {
     createdAt: string | null,
     updatedAt: string | null,
     status: PahinaNoteStatus | null,
+    priceLevel: PahinaPriceLevel | null,
     value: string | null,
   } | null,
 };
@@ -438,6 +563,7 @@ export type CreatePahinaCaseMutation = {
         createdAt: string | null,
         updatedAt: string | null,
         status: PahinaNoteStatus | null,
+        priceLevel: PahinaPriceLevel | null,
         value: string | null,
       } | null > | null,
       nextToken: string | null,
@@ -468,6 +594,7 @@ export type UpdatePahinaCaseMutation = {
         createdAt: string | null,
         updatedAt: string | null,
         status: PahinaNoteStatus | null,
+        priceLevel: PahinaPriceLevel | null,
         value: string | null,
       } | null > | null,
       nextToken: string | null,
@@ -498,6 +625,7 @@ export type DeletePahinaCaseMutation = {
         createdAt: string | null,
         updatedAt: string | null,
         status: PahinaNoteStatus | null,
+        priceLevel: PahinaPriceLevel | null,
         value: string | null,
       } | null > | null,
       nextToken: string | null,
@@ -529,7 +657,17 @@ export type GetPahinaUserQuery = {
         createdAt: string | null,
         updatedAt: string | null,
         status: PahinaNoteStatus | null,
+        priceLevel: PahinaPriceLevel | null,
         value: string | null,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
+    stores:  {
+      __typename: "ModelPahinaUserStoreConnection",
+      items:  Array< {
+        __typename: "PahinaUserStore",
+        id: string,
+        skuPrefix: string | null,
       } | null > | null,
       nextToken: string | null,
     } | null,
@@ -559,6 +697,200 @@ export type ListPahinaUsersQuery = {
         __typename: "ModelPahinaNoteConnection",
         nextToken: string | null,
       } | null,
+      stores:  {
+        __typename: "ModelPahinaUserStoreConnection",
+        nextToken: string | null,
+      } | null,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
+export type GetPahinaMainStoreQueryVariables = {
+  id: string,
+};
+
+export type GetPahinaMainStoreQuery = {
+  getPahinaMainStore:  {
+    __typename: "PahinaMainStore",
+    id: string,
+    digitalPublicationId: string | null,
+    digitalLocationId: string | null,
+  } | null,
+};
+
+export type ListPahinaMainStoresQueryVariables = {
+  filter?: ModelPahinaMainStoreFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListPahinaMainStoresQuery = {
+  listPahinaMainStores:  {
+    __typename: "ModelPahinaMainStoreConnection",
+    items:  Array< {
+      __typename: "PahinaMainStore",
+      id: string,
+      digitalPublicationId: string | null,
+      digitalLocationId: string | null,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
+export type GetPahinaUserStoreQueryVariables = {
+  id: string,
+};
+
+export type GetPahinaUserStoreQuery = {
+  getPahinaUserStore:  {
+    __typename: "PahinaUserStore",
+    id: string,
+    owner:  {
+      __typename: "PahinaUser",
+      id: string,
+      givenName: string,
+      familyName: string,
+      email: string,
+      picture: string | null,
+      identityId: string | null,
+      createdAt: string | null,
+      updatedAt: string | null,
+      notes:  {
+        __typename: "ModelPahinaNoteConnection",
+        nextToken: string | null,
+      } | null,
+      stores:  {
+        __typename: "ModelPahinaUserStoreConnection",
+        nextToken: string | null,
+      } | null,
+    },
+    products:  {
+      __typename: "ModelPahinaUserStoreProductConnection",
+      items:  Array< {
+        __typename: "PahinaUserStoreProduct",
+        sku: string,
+        storeId: string,
+        shopifyProductId: string | null,
+        shopifyShopId: string | null,
+        onlineStoreUrl: string | null,
+        onlineStorePreviewUrl: string | null,
+        handle: string | null,
+        status: PahinaStoreProductStatus | null,
+        rawResponse: string | null,
+        createdAt: string | null,
+        updatedAt: string | null,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
+    skuPrefix: string | null,
+  } | null,
+};
+
+export type ListPahinaUserStoresQueryVariables = {
+  filter?: ModelPahinaUserStoreFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListPahinaUserStoresQuery = {
+  listPahinaUserStores:  {
+    __typename: "ModelPahinaUserStoreConnection",
+    items:  Array< {
+      __typename: "PahinaUserStore",
+      id: string,
+      owner:  {
+        __typename: "PahinaUser",
+        id: string,
+        givenName: string,
+        familyName: string,
+        email: string,
+        picture: string | null,
+        identityId: string | null,
+        createdAt: string | null,
+        updatedAt: string | null,
+      },
+      products:  {
+        __typename: "ModelPahinaUserStoreProductConnection",
+        nextToken: string | null,
+      } | null,
+      skuPrefix: string | null,
+    } | null > | null,
+    nextToken: string | null,
+  } | null,
+};
+
+export type GetPahinaUserStoreProductQueryVariables = {
+  storeId: string,
+  sku: string,
+};
+
+export type GetPahinaUserStoreProductQuery = {
+  getPahinaUserStoreProduct:  {
+    __typename: "PahinaUserStoreProduct",
+    sku: string,
+    store:  {
+      __typename: "PahinaUserStore",
+      id: string,
+      owner:  {
+        __typename: "PahinaUser",
+        id: string,
+        givenName: string,
+        familyName: string,
+        email: string,
+        picture: string | null,
+        identityId: string | null,
+        createdAt: string | null,
+        updatedAt: string | null,
+      },
+      products:  {
+        __typename: "ModelPahinaUserStoreProductConnection",
+        nextToken: string | null,
+      } | null,
+      skuPrefix: string | null,
+    },
+    storeId: string,
+    shopifyProductId: string | null,
+    shopifyShopId: string | null,
+    onlineStoreUrl: string | null,
+    onlineStorePreviewUrl: string | null,
+    handle: string | null,
+    status: PahinaStoreProductStatus | null,
+    rawResponse: string | null,
+    createdAt: string | null,
+    updatedAt: string | null,
+  } | null,
+};
+
+export type ListPahinaUserStoreProductsQueryVariables = {
+  storeId?: string | null,
+  sku?: ModelStringKeyConditionInput | null,
+  filter?: ModelPahinaUserStoreProductFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListPahinaUserStoreProductsQuery = {
+  listPahinaUserStoreProducts:  {
+    __typename: "ModelPahinaUserStoreProductConnection",
+    items:  Array< {
+      __typename: "PahinaUserStoreProduct",
+      sku: string,
+      store:  {
+        __typename: "PahinaUserStore",
+        id: string,
+        skuPrefix: string | null,
+      },
+      storeId: string,
+      shopifyProductId: string | null,
+      shopifyShopId: string | null,
+      onlineStoreUrl: string | null,
+      onlineStorePreviewUrl: string | null,
+      handle: string | null,
+      status: PahinaStoreProductStatus | null,
+      rawResponse: string | null,
+      createdAt: string | null,
+      updatedAt: string | null,
     } | null > | null,
     nextToken: string | null,
   } | null,
@@ -586,6 +918,10 @@ export type GetPahinaNoteQuery = {
         __typename: "ModelPahinaNoteConnection",
         nextToken: string | null,
       } | null,
+      stores:  {
+        __typename: "ModelPahinaUserStoreConnection",
+        nextToken: string | null,
+      } | null,
     } | null,
     case:  {
       __typename: "PahinaCase",
@@ -605,6 +941,7 @@ export type GetPahinaNoteQuery = {
     createdAt: string | null,
     updatedAt: string | null,
     status: PahinaNoteStatus | null,
+    priceLevel: PahinaPriceLevel | null,
     value: string | null,
   } | null,
 };
@@ -646,6 +983,7 @@ export type ListPahinaNotesQuery = {
       createdAt: string | null,
       updatedAt: string | null,
       status: PahinaNoteStatus | null,
+      priceLevel: PahinaPriceLevel | null,
       value: string | null,
     } | null > | null,
     nextToken: string | null,
@@ -675,6 +1013,7 @@ export type GetPahinaCaseQuery = {
         createdAt: string | null,
         updatedAt: string | null,
         status: PahinaNoteStatus | null,
+        priceLevel: PahinaPriceLevel | null,
         value: string | null,
       } | null > | null,
       nextToken: string | null,
@@ -728,6 +1067,7 @@ export type OnCreatePahinaCaseSubscription = {
         createdAt: string | null,
         updatedAt: string | null,
         status: PahinaNoteStatus | null,
+        priceLevel: PahinaPriceLevel | null,
         value: string | null,
       } | null > | null,
       nextToken: string | null,
