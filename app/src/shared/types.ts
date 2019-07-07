@@ -1,6 +1,11 @@
 import { CognitoUser as AuthCognitoUser } from '@aws-amplify/auth';
-import { ModelFromGetQuery } from './typesGetter';
-import { GetPahinaNoteQuery, GetPahinaUserSortedNotesQuery } from './API';
+import { ModelFromGetQuery, ModelFromListQuery } from './typesGetter';
+import {
+  GetPahinaNoteQuery,
+  GetPahinaUserSortedNotesQuery,
+  GetPahinaCaseQuery,
+  ListPahinaCasesQuery,
+} from './API';
 
 /**
  * AWS Cognito
@@ -88,6 +93,10 @@ export type AppSyncUserNote = NonNullable<
     [null]
   >
 >;
+
+export type PahinaCase =
+  | ModelFromGetQuery<GetPahinaCaseQuery, 'getPahinaCase'>
+  | ModelFromListQuery<ListPahinaCasesQuery, 'listPahinaCases'>;
 
 export type PahinaNote = ModelFromGetQuery<GetPahinaNoteQuery, 'getPahinaNote'>;
 

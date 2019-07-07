@@ -6,7 +6,6 @@ import {
   ListGroupItem,
   ListGroupItemHeading,
   ListGroupItemText,
-  Row,
   ButtonGroup,
   NavLink,
 } from 'reactstrap';
@@ -127,24 +126,24 @@ export const NoteListItem = (props: AppSyncUserNote) => {
           </Button>
         );
         return (
-          <ListGroupItem className="NoteListItem-ShowHidden">
-            <div className="margin-tiny">
-              <ListGroupItemHeading>
-                <Row className="justify-content-between">
-                  <NavLink
-                    href={`/editor/${id}`}
-                  >{`${status}, ${fromTime}`}</NavLink>
-                  <ButtonGroup className="NoteListItem-ShowMe" size="sm">
-                    {PublishButton}
-                    {UnpublishButton}
-                    {DeleteButton}
-                  </ButtonGroup>
-                </Row>
-              </ListGroupItemHeading>
-              {!!promotional && (
-                <ListGroupItemText>{promotional}</ListGroupItemText>
-              )}
-            </div>
+          <ListGroupItem className="">
+            <ListGroupItemHeading className="row justify-content-between align-items-md-start">
+              <NavLink
+                target="_blank"
+                href={`/editor/${id}`}
+                className="col-md-9 col-sm-12 text-md-left text-center"
+              >{`${status}, ${fromTime}`}</NavLink>
+              <div className="row col-sm-12 col-md-3 justify-content-md-end">
+                <ButtonGroup className="" size="sm">
+                  {PublishButton}
+                  {UnpublishButton}
+                  {DeleteButton}
+                </ButtonGroup>
+              </div>
+            </ListGroupItemHeading>
+            {!!promotional && (
+              <ListGroupItemText>{promotional}</ListGroupItemText>
+            )}
           </ListGroupItem>
         );
       }}

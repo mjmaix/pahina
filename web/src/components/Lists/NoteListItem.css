@@ -1,7 +1,7 @@
-.NoteListItem-ShowMe {
+.ListItem-ShowMe {
   display: none;
 }
 
-.NoteListItem-ShowHidden:hover .NoteListItem-ShowMe {
+.ListItem-ShowHidden:hover .ListItem-ShowMe {
   display: block;
 }
