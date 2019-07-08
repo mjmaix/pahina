@@ -135,10 +135,10 @@ type PahinaCase
   id: ID!
   title: String!
   code: String!
+  date: AWSDate!
   link: String
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
-  date: String
   notes: [PahinaNote] @connection(name: "PahinaCases", sortField: "updatedAt")
 }
 
