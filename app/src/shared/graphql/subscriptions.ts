@@ -6,10 +6,10 @@ export const onCreatePahinaCase = `subscription OnCreatePahinaCase {
     id
     title
     code
+    date
     link
     createdAt
     updatedAt
-    date
     notes {
       items {
         id
