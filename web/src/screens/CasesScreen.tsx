@@ -1,24 +1,12 @@
 import React from 'react';
 import { Subscribe } from 'unstated';
-import { ListGroup, ListGroupItem, Spinner } from 'reactstrap';
-
-import Icon from 'react-icons-kit';
-import { chevronsDown } from 'react-icons-kit/feather/chevronsDown';
+import { ListGroup } from 'reactstrap';
 
 import './CasesScreen.css';
 import './Screen.css';
 import { PahinaCase } from '../shared';
-import { CaseListItem } from '../components/Lists';
-import { IconSize } from '../themes/constants';
+import { CaseListItem, FetchMoreItem } from '../components/Lists';
 import { CaseContainer } from '../unstated';
-
-const MoreComponent = (isFetchingMore: boolean) => {
-  return isFetchingMore ? (
-    <Spinner />
-  ) : (
-    <Icon size={IconSize.MD} icon={chevronsDown} />
-  );
-};
 
 const CasesScreen: React.FC = () => (
   <Subscribe to={[CaseContainer]}>
@@ -26,10 +14,12 @@ const CasesScreen: React.FC = () => (
       const { isFetchingMore, nextToken } = caseCntr.state;
       const cases = caseCntr.data();
       const { fetchMore } = caseCntr;
+      const loadMore = async () => {
+        await fetchMore();
+      };
       if (!cases) {
         return null;
       }
-      // TODO: candidate for reuse with feching
       return (
         <div>
           <h3 className="Pad-lg text-center">Discover cases</h3>
@@ -42,14 +32,7 @@ const CasesScreen: React.FC = () => (
                 return <CaseListItem {...n} key={n.id} />;
               })}
               {!!nextToken && (
-                <ListGroupItem
-                  className="text-center"
-                  onMouseEnter={async () => {
-                    await fetchMore();
-                  }}
-                >
-                  {MoreComponent(isFetchingMore)}
-                </ListGroupItem>
+                <FetchMoreItem loading={isFetchingMore} loadMore={loadMore} />
               )}
             </ListGroup>
           </div>
