@@ -34,6 +34,10 @@
   margin: var(--c-gap-sm);
 }
 
+.Margin-lg {
+  margin: var(--c-gap-lg);
+}
+
 .Margin-bottom-lg {
   margin-bottom: var(--c-gap-lg);
 }

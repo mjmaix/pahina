@@ -1,11 +1,37 @@
 import gql from 'graphql-tag';
 import apollo from '../awsApolloClient';
 import { ListPahinaCasesQuery, ListPahinaCasesQueryVariables } from '../API';
-import { logInfo, logRecord } from '../utils';
+import { logInfo, logRecord, GRAPHQL_SCAN_LIMIT } from '../utils';
 import { listPahinaCases } from '../graphql/queries';
 
-export const handleListAppSyncCase = async (nextToken?: string | null) => {
+export const handleListAppSyncCase = async (
+  nextToken?: string | null,
+  search?: string | null,
+) => {
   logInfo('[START]', 'handleListAppSyncCase');
+
+  let filter;
+  if (search) {
+    filter = {
+      or: [
+        {
+          title: {
+            contains: search.toUpperCase(),
+          },
+        },
+        {
+          code: {
+            contains: search.toUpperCase(),
+          },
+        },
+        {
+          date: {
+            contains: search.toUpperCase(),
+          },
+        },
+      ],
+    };
+  }
   try {
     const response = await apollo.query<
       ListPahinaCasesQuery,
@@ -14,6 +40,8 @@ export const handleListAppSyncCase = async (nextToken?: string | null) => {
       query: gql(listPahinaCases),
       variables: {
         nextToken,
+        filter,
+        limit: GRAPHQL_SCAN_LIMIT,
       },
     });
     return response.data;

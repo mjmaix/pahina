@@ -30,9 +30,14 @@ export const SystemAlerts = () => {
             >
               {errorMessage}
             </Alert>
-            <Alert color="dark" isOpen={!!loadingMessage} className="pad-big">
+            <Alert
+              color="dark"
+              isOpen={!!loadingMessage}
+              className="d-flex pad-big align-items-center Margin-lg"
+              fade={true}
+            >
               <Spinner />
-              &nbsp;{loadingMessage}
+              <span>&nbsp;{loadingMessage}</span>
             </Alert>
           </div>
         );
