@@ -1,6 +1,6 @@
 import React from 'react';
 import { Subscribe } from 'unstated';
-import { Alert } from 'reactstrap';
+import { Alert, Spinner } from 'reactstrap';
 import { SystemContainer } from '../unstated';
 
 export const SystemAlerts = () => {
@@ -10,7 +10,7 @@ export const SystemAlerts = () => {
         if (!system) {
           return null;
         }
-        const { successMessage, errorMessage } = system.state;
+        const { successMessage, errorMessage, loadingMessage } = system.state;
         const { setSuccessMessage, setErrorMessage } = system;
         return (
           <div>
@@ -29,6 +29,10 @@ export const SystemAlerts = () => {
               className="pad-big"
             >
               {errorMessage}
+            </Alert>
+            <Alert color="dark" isOpen={!!loadingMessage} className="pad-big">
+              <Spinner />
+              &nbsp;{loadingMessage}
             </Alert>
           </div>
         );

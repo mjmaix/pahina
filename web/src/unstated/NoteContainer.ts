@@ -4,7 +4,12 @@ import Plain from 'slate-plain-serializer';
 import uuid from 'uuid/v4';
 
 import initialValue from './value.json';
-import { handleGetPahinaNote, logError, PahinaNoteStatus } from '../shared/';
+import {
+  handleGetPahinaNote,
+  logError,
+  PahinaNoteStatus,
+  PahinaCase,
+} from '../shared/';
 
 export interface NoteState {
   value: Value;
@@ -14,6 +19,7 @@ export interface NoteState {
   pahinaNoteCaseId?: string | null;
   isReady: boolean;
   errorMessage?: string | null;
+  case?: PahinaCase | null;
 }
 
 const initialState = {
@@ -24,6 +30,7 @@ const initialState = {
   isReady: false,
   errorMessage: null,
   status: PahinaNoteStatus.DRAFT,
+  case: null,
 };
 
 type Props = {
@@ -51,6 +58,7 @@ class NoteContainer extends Container<NoteState> {
           ? Plain.deserialize(note.value)
           : initialState.value;
         const newNote = {
+          ...note,
           value: val,
           id: note.id,
           promotional: note.promotional,

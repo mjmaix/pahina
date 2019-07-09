@@ -1,3 +1,4 @@
+import React from 'react';
 import Icon from 'react-icons-kit';
 import { chevronsDown } from 'react-icons-kit/feather/chevronsDown';
 import { IconSize } from '../../themes/constants';

@@ -14,11 +14,6 @@ export const Header = () => {
           <NavLink href="/cases/">Cases</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="/editor/" target="_blank">
-            Editor
-          </NavLink>
-        </NavItem>
-        <NavItem>
           <NavLink href="/notes/">Notes</NavLink>
         </NavItem>
       </Nav>

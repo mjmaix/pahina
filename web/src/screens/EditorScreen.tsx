@@ -2,53 +2,41 @@ import React, { Component } from 'react';
 import debounce from 'lodash/debounce';
 import { RouteComponentProps } from 'react-router';
 import { Subscribe } from 'unstated';
-import {
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Col,
-  Input,
-  Spinner,
-  Alert,
-} from 'reactstrap';
+import { Button, Form, FormGroup, Label, Col, Input } from 'reactstrap';
 import Plain from 'slate-plain-serializer';
 
 import './EditorScreen.css';
 import './Screen.css';
 
 import { handlePutPahinaNote } from '../events/eventActions';
-import { NoteContainer, NoteState } from '../unstated';
+import { NoteContainer, NoteState, SystemContainer } from '../unstated';
 import { logError } from '../shared';
 import { EditorOnChange, Editor } from '../components/slate';
 import { LinkedPageTitle } from '../components/Page';
+import queryString from 'query-string';
 
 interface State {
   title: string;
   saveLabel: string;
   submitting: boolean;
-  linkedCase: {
-    code: string;
-    title: string;
-    link: string;
+  newCase: {
+    id?: string | null;
+    code?: string | null;
+    title?: string | null;
+    date?: string | null;
+    link?: string | null;
   };
 }
+
+type Props = RouteComponentProps<{
+  id: string;
+}>;
 
 const initiaState = {
   title: 'Editor',
   submitting: false,
   saveLabel: 'Save',
-  linkedCase: {
-    title:
-      'Commissioner of Internal Revenue Vs. Pilipinas Shell Petroleum Corporation/Commissioner of Internal Revenue Vs. Pilipinas Shell Petroleum Corporation and Petron Corporation',
-    code:
-      'G.R. Nos. 212761-62/G.R. Nos. 213473-74/G.R. Nos. 213538-39. July 31, 2018',
-    link: 'http://www.chanrobles.com/cralaw/2018julydecisions.php?id=750',
-  },
 };
-type Props = RouteComponentProps<{
-  id: string;
-}>;
 
 export class EditorScreen extends Component<Props, State> {
   public readonly state: State;
@@ -57,90 +45,57 @@ export class EditorScreen extends Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
-    const { match } = this.props;
+    const { match, location } = this.props;
+    const qParams = queryString.parse(location.search);
     this.state = {
       ...initiaState,
       title: `${match.params.id ? 'Edit' : 'Create'} case digest`,
+      newCase: {
+        id: (qParams.caseId || null) as string | null,
+        code: (qParams.caseCode || null) as string | null,
+        title: (qParams.caseTitle || null) as string | null,
+        link: (qParams.caseLink || null) as string | null,
+        date: (qParams.caseDate || null) as string | null,
+      },
     };
     this.note = new NoteContainer(match.params);
   }
 
   public render() {
-    const { linkedCase, saveLabel, submitting, title } = this.state;
+    const { title } = this.state;
 
     return (
-      <Subscribe to={[this.note]}>
-        {(note: NoteContainer) => {
+      <Subscribe to={[this.note, SystemContainer]}>
+        {(note: NoteContainer, system: SystemContainer) => {
           if (!note || !note.state) {
             return null;
           }
-          const { isReady, errorMessage, value, promotional } = note.state;
+          const { isReady, errorMessage } = note.state;
+          console.log('isReady', isReady);
+          console.log('errorMessage', errorMessage);
+
           if (!isReady) {
-            return (
-              // TODO: MOVE TO SYSTEM
-              <div className="pad-big">
-                <Alert color="info">
-                  <Spinner />
-                  &nbsp;Retrieving document
-                </Alert>
-              </div>
-            );
+            const message = 'Retrieving document';
+            if (system.state.loadingMessage !== message) {
+              system.setLoadingMessage(message);
+            }
+          } else {
+            if (system.state.loadingMessage !== null) {
+              system.setLoadingMessage(null);
+            }
           }
-
           if (errorMessage) {
-            return (
-              <div className="pad-big">
-                <Alert color="danger">{errorMessage}</Alert>
-              </div>
-            );
+            if (system.state.errorMessage !== errorMessage) {
+              system.setErrorMessage(errorMessage);
+            }
           }
 
+          let lCase = this.getCase(note);
           return (
             <div className="container">
               <h3 className="pad-big text-center">{title}</h3>
-              <LinkedPageTitle
-                title={linkedCase.title}
-                sub={linkedCase.code}
-                link={linkedCase.link}
-              />
-              <Form>
-                <FormGroup row>
-                  <Label for="Form-Summary" sm={4}>
-                    Promotional message
-                  </Label>
-                  <Input
-                    type="textarea"
-                    name="summary"
-                    id="Form-Summary"
-                    placeholder="Add summary for potential buyers."
-                    value={promotional || ''}
-                    onChange={e => note.onChangePromotional(e.target.value)}
-                  />
-                </FormGroup>
-                <FormGroup row>
-                  <Col sm={12}>
-                    <Editor
-                      onChange={this.onChange}
-                      placeholder="Write your digest here..."
-                      value={value}
-                    />
-                  </Col>
-                </FormGroup>
-                <div className="Form-Buttons">
-                  <Button
-                    outline
-                    active
-                    disabled={submitting}
-                    className="margin-tiny btn btn-primary btn-outline-info"
-                    onClick={async () => {
-                      await this.onClickSave(this.note.state);
-                      alert('Saved');
-                    }}
-                  >
-                    {saveLabel}
-                  </Button>
-                </div>
-              </Form>
+              {this.renderCase(lCase)}
+              {this.renderForm(note)}
             </div>
           );
         }}
@@ -187,4 +142,73 @@ export class EditorScreen extends Component<Props, State> {
   private debouncedSave = debounce(this.onClickSave, 5 * 1000, {
     maxWait: 10 * 1000,
   });
+
+  private renderForm(note: NoteContainer) {
+    return (
+      <Form>
+        <FormGroup row>
+          <Label for="Form-Summary" sm={4}>
+            Promotional message
+          </Label>
+          <Input
+            type="textarea"
+            name="summary"
+            id="Form-Summary"
+            placeholder="Add summary for potential buyers."
+            value={note.state.promotional || ''}
+            onChange={e => note.onChangePromotional(e.target.value)}
+          />
+        </FormGroup>
+        <FormGroup row>
+          <Col sm={12}>
+            <Editor
+              onChange={this.onChange}
+              placeholder="Write your digest here..."
+              value={note.state.value}
+            />
+          </Col>
+        </FormGroup>
+        <div className="Form-Buttons">
+          <Button
+            outline
+            active
+            disabled={this.state.submitting}
+            className="margin-tiny btn btn-primary btn-outline-info"
+            onClick={async () => {
+              await this.onClickSave(this.note.state);
+              alert('Saved');
+            }}
+          >
+            {this.state.saveLabel}
+          </Button>
+        </div>
+      </Form>
+    );
+  }
+
+  private renderCase(lCase: {
+    id?: string | null | undefined;
+    code?: string | null | undefined;
+    title?: string | null | undefined;
+    date?: string | null | undefined;
+    link?: string | null | undefined;
+  }) {
+    return (
+      <LinkedPageTitle
+        title={lCase.title || 'Case title not provided'}
+        sub={lCase.code}
+        link={lCase.link}
+      />
+    );
+  }
+
+  private getCase(note: NoteContainer) {
+    let lCase;
+    if (note.state.case) {
+      lCase = note.state.case;
+    } else {
+      lCase = this.state.newCase;
+    }
+    return lCase;
+  }
 }

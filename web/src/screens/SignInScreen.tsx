@@ -3,7 +3,12 @@ import { Button, Form, FormGroup, Label, Input, Spinner } from 'reactstrap';
 
 import './SignInScreen.css';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { logError, handleSignIn, SignInModel } from '../shared';
+import {
+  logError,
+  handleSignIn,
+  SignInModel,
+  handleAppSyncUserCreate,
+} from '../shared';
 
 const initialState = {
   email: '',
@@ -55,7 +60,12 @@ class SignInScreen extends Component<RouteComponentProps, typeof initialState> {
           onClick={async () => {
             try {
               this.setState({ submitting: true });
-              await handleSignIn(form);
+              const user = await handleSignIn(form);
+              if (user.challengeName) {
+                // Should complete registration using app
+              } else if (!user.challengeName) {
+                await handleAppSyncUserCreate();
+              }
               window.location.reload();
             } catch (err) {
               logError(err);

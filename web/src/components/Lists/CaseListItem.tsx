@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {
-  Button,
   ListGroupItem,
   ListGroupItemText,
   ButtonGroup,
@@ -16,26 +15,19 @@ import { RouteComponentProps, withRouter } from 'react-router';
 type Props = PahinaCase & RouteComponentProps;
 
 const CaseListItem = (props: Props) => {
-  const { title, code, date, link } = props;
-  // const { id, title, code, link, date } = props;
+  const { id, title, code, date, link } = props;
 
+  const path = `/editor/?caseId=${id}&caseTitle=${title}&caseDate=${Date}&caseCode=${code}&caseLink=${link}`;
   const CreateButton = (
-    <Button
-      outline
-      color="success"
-      onClick={() => {
-        // `/editor/?caseId=${id}`
-        alert('Not yet implemented');
-      }}
-    >
+    <a className="btn btn-outline-primary" href={path}>
       Create note
-    </Button>
+    </a>
   );
 
   const ReviewButton = (
-    <Button outline color="info" onClick={() => alert('Not yet implemented')}>
+    <a className="btn btn-outline-secondary" href={link || '#'}>
       Review case
-    </Button>
+    </a>
   );
 
   return (

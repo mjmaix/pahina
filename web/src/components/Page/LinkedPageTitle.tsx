@@ -1,9 +1,9 @@
 import React from 'react';
 
 interface PageTitleProps {
-  title: string;
-  sub?: string;
-  link?: string;
+  title: string | null;
+  sub?: string | null;
+  link?: string | null;
 }
 
 export function LinkedPageTitle(props: PageTitleProps) {

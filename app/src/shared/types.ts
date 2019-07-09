@@ -94,11 +94,18 @@ export type AppSyncUserNote = NonNullable<
   >
 >;
 
+type CaseFromPahinaNote = NonNullable<
+  ModelFromGetQuery<GetPahinaNoteQuery, 'getPahinaNote'>['case']
+>;
+
 export type PahinaCase =
   | ModelFromGetQuery<GetPahinaCaseQuery, 'getPahinaCase'>
-  | ModelFromListQuery<ListPahinaCasesQuery, 'listPahinaCases'>;
+  | ModelFromListQuery<ListPahinaCasesQuery, 'listPahinaCases'>
+  | CaseFromPahinaNote;
 
-export type PahinaNote = ModelFromGetQuery<GetPahinaNoteQuery, 'getPahinaNote'>;
+export type PahinaNote =
+  | ModelFromGetQuery<GetPahinaCaseQuery, 'getPahinaCase'>
+  | ModelFromListQuery<ListPahinaCasesQuery, 'listPahinaCases'>;
 
 /**
  * Others

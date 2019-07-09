@@ -1,4 +1,4 @@
 export * from './authActions';
 export * from './mutationActions';
-export * from './queryActions';
 export * from './noteActions';
+export * from './userActions';

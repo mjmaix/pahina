@@ -15,12 +15,12 @@ import {
 import { Busy, NavigationService, alertFail } from '../../utils';
 import { MFA_CHALLENGES } from '../../utils/constants';
 
-import { handleAppSyncUserCreate } from '../../stores/actions/eventActions';
 import {
   SignInModel,
   SignInEmailSchema,
   handleSignIn,
   SafeException,
+  handleAppSyncUserCreate,
 } from '../../shared';
 import { ScreenName } from '../routes/mappings';
 
