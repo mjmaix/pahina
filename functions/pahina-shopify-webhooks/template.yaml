@@ -1,0 +1,82 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  SAM Template for pahina-shop-triggers
+
+Parameters: 
+  EnvType:
+    Description: 'Environment for this function'
+    Type: String
+    Default: dev
+    AllowedValues: 
+      - dev
+      - prod
+      - test 
+
+  ShopifyApiKey:
+    Description: 'Shopify API Key'
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: 'shpy_freemjabadilla_gql_api_key' 
+
+  ShopifyApiPwd:
+    Description: 'Shopify password'
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: 'shpy_freemjabadilla_gql_api_pwd' 
+
+  ShopifyApiHost:
+    Description: 'Shopify hostname'
+    Type: String
+    Default: 'freemjabadilla.myshopify.com' 
+
+  ShopifyApiVersion:
+    Description: 'Shopify API version'
+    Type: String
+    Default: '2019-07'
+    AllowedValues: 
+      - 2019-07
+
+Mappings: 
+  EnvConfigMap:
+    BatchSize:
+      dev: 2
+      prod: 10
+
+Conditions: 
+  IsDev: !Equals [ !Ref EnvType, dev ]
+    
+Globals:
+  Function:
+    Handler: app.handler
+    Timeout: 3
+    Environment: 
+      Variables:
+        SHOPIFY_API_KEY: !Ref ShopifyApiKey
+        SHOPIFY_API_PWD: !Ref ShopifyApiPwd
+        SHOPIFY_API_VERSION: !Ref ShopifyApiVersion
+        SHOPIFY_API_HOSTNAME: !Ref ShopifyApiHost
+
+Resources:
+  ProductsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: products/dist/
+      Runtime: nodejs10.x
+      Events:
+        ProductsEvent:
+          Type: Api
+          Properties:
+            Path: /products
+            Method: post
+
+Outputs:
+  ProductsApi:
+    Description: "API Gateway endpoint URL for Prod stage for Products function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/products"
+  ProductsFunction:
+    Description: "Products Function ARN"
+    Value: !GetAtt ProductsFunction.Arn
+  ProductsFunctionIamRole:
+    Description: "Implicit IAM Role created for Products Function"
+    Value: !GetAtt ProductsFunctionRole.Arn
+
+

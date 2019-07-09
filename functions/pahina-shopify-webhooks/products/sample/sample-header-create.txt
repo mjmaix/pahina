@@ -1,0 +1,4 @@
+X-Shopify-Topic:products/create
+X-Shopify-Hmac-Sha256:XWmrwMey6OsLMeiZKwP4FppHH3cmAiiJJAweH5Jo4bM=
+X-Shopify-Shop-Domain:freemjabadilla.myshopify.com
+X-Shopify-API-Version:2019-07
