@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import moment from 'moment';
 
 export interface ShowDoc {
   locatedUrl: string;
@@ -65,7 +66,9 @@ export function cleanFields(docVal: ShowDoc) {
       ? item.fields[1]
       : _.first(item.fields) || 'No title found',
     code: firstIsCode ? _.first(item.fields) : undefined,
-    date: lastIsDate ? _.last(item.fields) : undefined,
+    date: lastIsDate
+      ? moment(_.last(item.fields)).format('YYYY-MM-DD')
+      : undefined,
   };
 
   return processed;
