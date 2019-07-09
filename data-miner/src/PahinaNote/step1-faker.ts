@@ -10,9 +10,13 @@ const asyncExec = util.promisify(exec);
 const asyncRimraf = util.promisify(rimraf);
 
 async function Step1() {
-  const caseId = 'showdocs/1/33521';
+  const pahinaNoteCaseId = 'showdocs/1/33521';
   const username = 'b964512a-2d73-43b0-ba4d-7da8f9bf9f12';
   const outFile = `${FILES_DIR}/step1.json`;
+
+  const updatedAt = faker.date.past().toISOString();
+  const createdAt = faker.date.past(2, updatedAt).toISOString();
+  const __typename = 'PahinaNote';
   const data = [];
 
   try {
@@ -30,9 +34,13 @@ async function Step1() {
       promotional: faker.lorem.sentences(randomLength),
       value: faker.lorem.paragraphs(randomLength),
       pahinaNoteAuthorId: username,
-      pahinaNoteCaseId: caseId,
+      author: username,
+      pahinaNoteCaseId,
+      updatedAt,
+      createddAt: createdAt,
       status: 'DRAFT',
       priceLevel: 'L_0',
+      __typename,
     };
     data.push(entry);
   });
