@@ -4,9 +4,10 @@ import util from 'util';
 import { exec } from 'child_process';
 import { ShowDoc } from './tools/cleanFields';
 import createDb from './createDb';
-import { FILES_DIR, DYNAMODB_TABLE } from './config';
+import { FILES_DIR } from './config';
 import rimraf from 'rimraf';
 import { emitter, initProgressBar } from './tools/progress';
+import { findDynamoDbTable } from './tools/findDynamoDbTable';
 
 const asyncExec = util.promisify(exec);
 const asyncRimraf = util.promisify(rimraf);
@@ -22,6 +23,8 @@ interface DbNoteCase extends ShowDoc {
 }
 
 async function Step5() {
+  const dbTable = await findDynamoDbTable('PahinaCase', 'dev');
+
   const { path: dbPath } = createDb(dbName);
   const data: { [k: string]: ShowDoc } = fs.readJSONSync(dbPath);
 
@@ -75,7 +78,7 @@ async function Step5() {
 
     const jdpScript = `
         ./node_modules/.bin/json-dynamo-putrequest \
-        ${DYNAMODB_TABLE} \
+        ${dbTable} \
         ${batchFile} \
         --output ${outBatchDir}/${fName} \
         --beautify `;
