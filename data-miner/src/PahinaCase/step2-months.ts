@@ -1,8 +1,8 @@
 import bluebird from 'bluebird';
 import _ from 'lodash';
 import createDb from './createDb';
-import { extractLinks } from './tools/scraper';
-import { emitter, initProgressBar } from './tools/progress';
+import { extractLinks } from './helpers/scraper';
+import { emitter, initProgressBar } from '../tools/progress';
 
 const selector = '#container_date > a';
 const dbName = 'meta';

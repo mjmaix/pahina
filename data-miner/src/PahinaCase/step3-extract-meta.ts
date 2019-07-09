@@ -2,9 +2,9 @@ import bluebird from 'bluebird';
 import _ from 'lodash';
 
 import createDb from './createDb';
-import { emitter, initProgressBar } from './tools/progress';
-import { extractAValueLink } from './tools/scraper';
-import { getUrlAsKey } from './tools/getUrlAsKey';
+import { emitter, initProgressBar } from '../tools/progress';
+import { extractAValueLink } from './helpers/scraper';
+import { getUrlAsKey } from './helpers/getUrlAsKey';
 
 const selector = '#container_title > ul > li > a';
 const metaDbName = 'meta';

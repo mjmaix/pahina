@@ -1,16 +1,15 @@
 import fs from 'fs-extra';
 import _ from 'lodash';
 import util from 'util';
-import { exec } from 'child_process';
 import { FILES_DIR, AWS_PROFILE } from './config';
 import rimraf from 'rimraf';
-import { emitter, initProgressBar } from './tools/progress';
-import { asyncForEach } from './tools/asyncForEach';
+import { emitter, initProgressBar } from '../tools/progress';
+import { asyncForEach } from '../tools/asyncForEach';
+import { uploadBatchWrite } from '../tools/uploadBatchWrite';
 
-const asyncExec = util.promisify(exec);
 const asyncRimraf = util.promisify(rimraf);
-const outBatchDir = `${FILES_DIR}/step5/batch`;
-const errorFile = `${FILES_DIR}/step6_error.json`;
+const outBatchDir = `${FILES_DIR}/step2/batch`;
+const errorFile = `${FILES_DIR}/error.json`;
 
 async function Step6() {
   const allFiles = fs.readdirSync(outBatchDir, { withFileTypes: true });
@@ -21,9 +20,10 @@ async function Step6() {
 
   const startUpload = async () => {
     await asyncForEach(jsonFiles, async (f: fs.Dirent) => {
-      const script = `aws dynamodb batch-write-item --request-items file://${outBatchDir}/${f.name} --profile ${AWS_PROFILE} --return-consumed-capacity TOTAL`;
+      const file = `${outBatchDir}/${f.name}`;
+      const awsProfile = AWS_PROFILE;
       try {
-        await asyncExec(script);
+        await uploadBatchWrite(file, awsProfile);
       } catch (err) {
         console.error(err);
       }

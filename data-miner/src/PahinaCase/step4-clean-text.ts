@@ -1,9 +1,9 @@
 import fs from 'fs-extra';
 import _ from 'lodash';
-import { asyncForEach } from './tools/asyncForEach';
-import { cleanFields, ShowDoc } from './tools/cleanFields';
+import { asyncForEach } from '../tools/asyncForEach';
+import { cleanFields, ShowDoc } from './helpers/cleanFields';
 import createDb from './createDb';
-import { getUrlAsKey } from './tools/getUrlAsKey';
+import { getUrlAsKey } from './helpers/getUrlAsKey';
 
 const showDocsDbName = 'showdocs';
 const dbName = 'processed';

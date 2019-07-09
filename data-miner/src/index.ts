@@ -1,18 +1,29 @@
-import Step1 from './step1-categories';
-import Step2 from './step2-months';
-import Step3 from './step3-extract-meta';
-import Step4 from './step4-clean-text';
-import Step5 from './step5-create-upload';
-import Step6 from './step6-aws-dynamodb-upload';
+import PahinaCaseStep1 from './PahinaCase/step1-categories';
+import PahinaCaseStep2 from './PahinaCase/step2-months';
+import PahinaCaseStep3 from './PahinaCase/step3-extract-meta';
+import PahinaCaseStep4 from './PahinaCase/step4-clean-text';
+import PahinaCaseStep5 from './PahinaCase/step5-batch';
+import PahinaCaseStep6 from './PahinaCase/step6-upload';
+
+import PahinaNoteStep1 from './PahinaNote/step1-faker';
+import PahinaNoteStep2 from './PahinaNote/step2-batch';
+import PahinaNoteStep3 from './PahinaNote/step3-upload';
 
 // TODO:
-// 1. Step 3 - force past 1or2 years dates to be queries again
-const start = async () => {
-  await Step1();
-  await Step2();
-  await Step3();
-  await Step4();
-  await Step5();
-  await Step6();
+// 1. PahinaCaseStep 3 - force past 1or2 years dates to be queries again
+// const PahinaCase = async () => {
+//   await PahinaCaseStep1();
+//   await PahinaCaseStep2();
+//   await PahinaCaseStep3();
+//   await PahinaCaseStep4();
+//   await PahinaCaseStep5();
+//   await PahinaCaseStep6();
+// };
+// PahinaCase();
+
+const PahinaNote = async () => {
+  await PahinaNoteStep1();
+  await PahinaNoteStep2();
+  await PahinaNoteStep3();
 };
-start();
+PahinaNote();
