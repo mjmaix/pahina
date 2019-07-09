@@ -12,10 +12,11 @@ import { PahinaCase } from '../../shared';
 import './NoteListItem.css';
 import { RouteComponentProps, withRouter } from 'react-router';
 
-type Props = PahinaCase & RouteComponentProps;
+type Props = PahinaCase &
+  RouteComponentProps & { i?: number; showRowNum?: boolean };
 
 const CaseListItem = (props: Props) => {
-  const { id, title, code, date, link } = props;
+  const { id, title, code, date, link, i, showRowNum } = props;
 
   const path = `/editor/?caseId=${id}&caseTitle=${title}&caseDate=${Date}&caseCode=${code}&caseLink=${link}`;
   const CreateButton = (
@@ -32,6 +33,7 @@ const CaseListItem = (props: Props) => {
 
   return (
     <ListGroupItem className="">
+      {showRowNum && <span className="text-muted">#{i}</span>}
       <ListGroupItemHeading className="row justify-content-between align-items-md-start">
         <NavLink
           target="_blank"

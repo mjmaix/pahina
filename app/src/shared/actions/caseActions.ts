@@ -41,7 +41,7 @@ export const handleListAppSyncCase = async (
       variables: {
         nextToken,
         filter,
-        limit: GRAPHQL_SCAN_LIMIT,
+        limit: filter ? GRAPHQL_SCAN_LIMIT : undefined,
       },
     });
     return response.data;

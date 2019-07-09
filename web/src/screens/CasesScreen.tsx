@@ -7,6 +7,7 @@ import './Screen.css';
 import { PahinaCase } from '../shared';
 import { CaseListItem, FetchMoreItem } from '../components/Lists';
 import { CaseContainer, SystemContainer } from '../unstated';
+import { ScrollButton } from '../components/Page';
 
 const CasesScreen: React.FC = () => (
   <Subscribe to={[CaseContainer, SystemContainer]}>
@@ -51,16 +52,17 @@ const CasesScreen: React.FC = () => (
             />
           </InputGroup>
           <ListGroup className="Margin-bottom-lg ">
-            {cases.map((n: PahinaCase | null) => {
+            {cases.map((n: PahinaCase | null, i: number) => {
               if (!n) {
                 return null;
               }
-              return <CaseListItem {...n} key={n.id} />;
+              return <CaseListItem {...n} key={n.id} i={i + 1} showRowNum />;
             })}
             {caseCntr.hasNext() && (
               <FetchMoreItem loading={isFetchingMore} loadMore={loadMore} />
             )}
           </ListGroup>
+          <ScrollButton scrollStepInPx={3000} delayInMs={16.66} />
         </div>
       );
     }}

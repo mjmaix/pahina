@@ -46,7 +46,7 @@ class CaseContainer extends Container<CaseState> {
     try {
       const data = await handleListAppSyncCase(nextToken, search);
       if (data && data.listPahinaCases) {
-        this.onFetch(data.listPahinaCases, !!search);
+        this.onFetch(data.listPahinaCases);
       }
     } catch (err) {
       this.setState({ errorMessage: 'Failed to load cases' });

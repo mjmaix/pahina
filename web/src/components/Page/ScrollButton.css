@@ -1,0 +1,18 @@
+.ScrollButton-scroll {
+  background-color: #010e19;
+  opacity: 0.3;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  border-radius: 5px;
+  border: thin;
+  height: 40px;
+  width: 40px;
+}
+
+.ScrollButton-arrow-up {
+  top: 50%;
+  left: 50%;
+  margin-top: -10px;
+  margin-left: -3px;
+}
