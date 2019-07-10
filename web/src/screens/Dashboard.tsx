@@ -1,11 +1,8 @@
 import React from 'react';
 
-import { Button } from 'reactstrap';
-
 import logo from '../logo.svg';
 import './Dashboard.css';
 import './Screen.css';
-import { handleSignOut } from '../shared';
 
 const Dashboard: React.FC = () => {
   return (
@@ -13,18 +10,15 @@ const Dashboard: React.FC = () => {
       {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
+
           <a
             className="App-link"
             href="https://reactjs.org"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Learn React
+            Welcome to Pahina
           </a>
-          <Button onClick={() => handleSignOut()}>Sign out</Button>
         </header>
       }
     </div>

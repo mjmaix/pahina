@@ -1,7 +1,11 @@
 .Header {
-  background-color: #282c34;
+  /* background-color: #282c34;
   min-height: 6vh;
   display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(10px + 2vmin); */
+}
+
+.Header-active {
+  /* background-color: rgba(255, 255, 255, 0.55); */
 }

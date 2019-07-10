@@ -1,8 +1,3 @@
-.Screen {
-  background-color: #282c34;
-  min-height: 94vh;
-}
-
 :root {
   --c-gap-sm: 5px;
   --c-gap-md: 10px;
@@ -40,6 +35,10 @@
 
 .Margin-bottom-lg {
   margin-bottom: var(--c-gap-lg);
+}
+
+.Margin-top-lg {
+  margin-top: var(--c-gap-lg);
 }
 
 .Pad-lg {

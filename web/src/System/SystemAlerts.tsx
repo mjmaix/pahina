@@ -13,12 +13,12 @@ export const SystemAlerts = () => {
         const { successMessage, errorMessage, loadingMessage } = system.state;
         const { setSuccessMessage, setErrorMessage } = system;
         return (
-          <div>
+          <div className="container">
             <Alert
               color="success"
               isOpen={!!successMessage}
               toggle={() => setSuccessMessage(null)}
-              className="pad-big"
+              className="Margin-top-lg "
             >
               {successMessage}
             </Alert>
@@ -26,14 +26,14 @@ export const SystemAlerts = () => {
               color="warning"
               isOpen={!!errorMessage}
               toggle={() => setErrorMessage(null)}
-              className="pad-big"
+              className="Margin-top-lg "
             >
               {errorMessage}
             </Alert>
             <Alert
               color="dark"
               isOpen={!!loadingMessage}
-              className="d-flex pad-big align-items-center Margin-lg"
+              className="d-flex align-items-center Margin-top-lg"
               fade={true}
             >
               <Spinner />

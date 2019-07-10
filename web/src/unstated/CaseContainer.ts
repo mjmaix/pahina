@@ -1,7 +1,10 @@
 import _ from 'lodash';
 import { Container } from 'unstated';
 import { PahinaCase, ListPahinaCasesQuery } from '../shared';
-import { handleListAppSyncCase } from '../shared/actions/caseActions';
+import {
+  handleListAppSyncCase,
+  CaseSearchField,
+} from '../shared/actions/caseActions';
 
 export interface CaseState {
   cases: { [k: string]: PahinaCase };
@@ -10,7 +13,8 @@ export interface CaseState {
   hasNext: boolean;
   errorMessage?: string | null;
   nextToken: string | null;
-  search?: string | null;
+  searchText?: string | null;
+  searchField: CaseSearchField;
 }
 type ListResult = NonNullable<ListPahinaCasesQuery['listPahinaCases']>;
 
@@ -19,7 +23,8 @@ const initialState = {
   isFetchingMore: false,
   cases: {},
   nextToken: null,
-  search: null,
+  searchText: null,
+  searchField: 'code' as CaseSearchField,
   hasNext: true,
 };
 
@@ -31,20 +36,24 @@ class CaseContainer extends Container<CaseState> {
     this.fetchData();
   }
 
-  public setSearch = (text?: string | null) => {
-    this.setState({
-      search: text,
-      nextToken: null,
-      cases: {},
-    });
+  public setSearchText = (searchText?: string | null) => {
+    this.setState({ searchText, nextToken: null, cases: {} });
+  };
+
+  public setSearchField = (searchField?: CaseSearchField) => {
+    this.setState({ searchField, nextToken: null, cases: {} });
   };
 
   public fetchData = async (
     nextToken?: string | null,
-    search?: string | null,
+    searchText?: string | null,
+    searchField?: CaseSearchField,
   ) => {
     try {
-      const data = await handleListAppSyncCase(nextToken, search);
+      const data = await handleListAppSyncCase(nextToken, {
+        text: searchText,
+        field: searchField,
+      });
       if (data && data.listPahinaCases) {
         this.onFetch(data.listPahinaCases);
       }
@@ -56,10 +65,10 @@ class CaseContainer extends Container<CaseState> {
   };
 
   public fetchSearch = _.debounce(
-    async (text?: string | null) => {
+    async (searchText?: string | null, searchField?: CaseSearchField) => {
       try {
         this.setState({ isFetchingMore: true });
-        await this.fetchData(null, text);
+        await this.fetchData(null, searchText, searchField);
       } finally {
         _.delay(() => {
           this.setState({ isFetchingMore: false });
@@ -75,9 +84,9 @@ class CaseContainer extends Container<CaseState> {
 
   public fetchMore = async () => {
     try {
-      const { nextToken, search } = this.state;
+      const { nextToken, searchField, searchText } = this.state;
       this.setState({ isFetchingMore: true });
-      await this.fetchData(nextToken, search);
+      await this.fetchData(nextToken, searchText, searchField);
     } finally {
       _.delay(() => {
         this.setState({ isFetchingMore: false });

@@ -4,32 +4,25 @@ import { ListPahinaCasesQuery, ListPahinaCasesQueryVariables } from '../API';
 import { logInfo, logRecord, GRAPHQL_SCAN_LIMIT } from '../utils';
 import { listPahinaCases } from '../graphql/queries';
 
+export type CaseSearchField = 'code' | 'title' | 'date';
+
+export interface CaseSearch {
+  text?: string | null;
+  field?: CaseSearchField;
+}
+
 export const handleListAppSyncCase = async (
   nextToken?: string | null,
-  search?: string | null,
+  search?: CaseSearch,
 ) => {
   logInfo('[START]', 'handleListAppSyncCase');
 
   let filter;
-  if (search) {
+  if (search && search.text) {
     filter = {
-      or: [
-        {
-          title: {
-            contains: search.toUpperCase(),
-          },
-        },
-        {
-          code: {
-            contains: search.toUpperCase(),
-          },
-        },
-        {
-          date: {
-            contains: search.toUpperCase(),
-          },
-        },
-      ],
+      [search.field || 'code']: {
+        contains: search.text.toUpperCase(),
+      },
     };
   }
   try {
