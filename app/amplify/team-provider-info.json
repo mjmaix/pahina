@@ -13,6 +13,11 @@
         "categories": {
             "auth": {
                 "pahina96b0423b96b0423b": {}
+            },
+            "function": {
+                "pahina96b0423b96b0423bPostConfirmation": {
+                    "GROUP": "Members"
+                }
             }
         }
     }

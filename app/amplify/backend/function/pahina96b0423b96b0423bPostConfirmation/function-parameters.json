@@ -1,0 +1,15 @@
+{
+    "trigger": true,
+    "modules": [
+        "add-to-group",
+        "custom"
+    ],
+    "parentResource": "pahina96b0423b96b0423b",
+    "functionName": "pahina96b0423b96b0423bPostConfirmation",
+    "parentStack": "auth",
+    "triggerEnvs": "[]",
+    "triggerTemplate": "PostConfirmation.json.ejs",
+    "roleName": "pahina96b0423b96b0423bPostConfirmation",
+    "skipEdit": true,
+    "resourceName": "pahina96b0423b96b0423bPostConfirmation"
+}
