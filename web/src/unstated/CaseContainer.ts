@@ -77,7 +77,7 @@ class CaseContainer extends Container<CaseState> {
     },
     1 * 1000,
     {
-      leading: true,
+      trailing: true,
       maxWait: 3 * 1000,
     },
   );
