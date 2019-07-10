@@ -47,9 +47,6 @@ class Header extends Component<Props, State> {
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem active={path === '/'}>
-                <NavLink href="/">Home</NavLink>
-              </NavItem>
               <NavItem active={path === '/cases/'}>
                 <NavLink href="/cases/">Cases</NavLink>
               </NavItem>
