@@ -14,6 +14,12 @@
     }
   ],
   "settings": {
-    "explorer.autoReveal": false
+    "explorer.autoReveal": false,
+    "files.exclude": {
+      "**/web/src/shared": true
+    },
+    "search.exclude": {
+      "**/web/src/shared": true
+    }
   }
 }
