@@ -1,0 +1,24 @@
+{
+  "version": "1",
+  "region": "ap-southeast-1",
+  "userPoolId": "ap-southeast-1_1CQQvDhhM",
+  "userName": "83a85df6-01c0-4523-98f1-f371e6a848d4",
+  "callerContext": {
+    "awsSdkVersion": "aws-sdk-unknown-unknown",
+    "clientId": "5fkitdjec8gal86vus1q9cp91q"
+  },
+  "triggerSource": "PostConfirmation_ConfirmSignUp",
+  "request": {
+    "userAttributes": {
+      "sub": "83a85df6-01c0-4523-98f1-f371e6a848d4",
+      "cognito:email_alias": "free@mjabadilla.com",
+      "cognito:user_status": "CONFIRMED",
+      "email_verified": "true",
+      "phone_number_verified": "false",
+      "given_name": "Free",
+      "family_name": "MJAbadilla",
+      "email": "free@mjabadilla.com"
+    }
+  },
+  "response": {}
+}
