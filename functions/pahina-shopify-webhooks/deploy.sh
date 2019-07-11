@@ -2,7 +2,11 @@
 
 yarn --cwd products clean
 yarn --cwd products install
-yarn --cwd products build
+yarn --cwd products test || { echo 'products test failed' ; exit 1; }
+yarn --cwd products build || { echo 'user-stream build failed' ; exit 1; }
+
+
+echo 'Build and Tests are passing'
 
 sam package --output-template-file packaged.yaml --s3-bucket pahina-shopify-webhooks
 
