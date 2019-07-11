@@ -12,6 +12,7 @@ Parameters:
     - dev
     - prod
     - test
+    - NONE
   ShopifyApiKey:
     Description: Shopify API Key
     Type: AWS::SSM::Parameter::Value<String>
@@ -24,9 +25,6 @@ Parameters:
     Description: Shopify hostname
     Type: String
     Default: freemjabadilla.myshopify.com
-  GraphQLAPIIdOutput:
-    Description: AppSync prefix for API ID Output
-    Type: String
 Mappings:
   EnvConfigMap:
     BatchSize:
@@ -41,6 +39,8 @@ Conditions:
     Fn::Equals:
     - Ref: EnvType
     - dev
+  ShouldNotCreateEnvResources:
+    Fn::Equals: [ !Ref EnvType, "NONE"]
 Globals:
   Function:
     Handler: app.handler
@@ -77,8 +77,13 @@ Resources:
   UserStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: user-stream/dist
+      CodeUri: user-stream/dist/src
       Runtime: nodejs10.x
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName:
+              Fn::ImportValue:
+                  !Join [":", [ !FindInMap [ "AmplifyProject", "GraphQLAPIIdOutput", !Ref EnvType ], "GetAtt", "PahinaUserStoreTable", "Name" ] ]
       Events:
         StreamEvent:
           Type: DynamoDB
@@ -93,6 +98,7 @@ Resources:
               - BatchSize
               - Ref: EnvType
             Enabled: true
+  
 Outputs:
   NoteStreamFunction:
     Description: NoteStream Function ARN

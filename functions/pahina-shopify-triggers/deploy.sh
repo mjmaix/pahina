@@ -10,4 +10,4 @@ yarn --cwd user-stream build
 
 sam package --output-template-file packaged.yaml --s3-bucket pahina-shopify-triggers
 
-sam deploy --template-file packaged.yaml --stack-name pahina-shopify-triggers --capabilities CAPABILITY_IAM --region ap-southeast-1
+sam deploy --template-file packaged.yaml --stack-name pahina-shopify-triggers --capabilities CAPABILITY_NAMED_IAM --region ap-southeast-1

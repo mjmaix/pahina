@@ -12,6 +12,7 @@ Parameters:
     - dev
     - prod
     - test
+    - NONE
   ShopifyApiKey:
     Description: Shopify API Key
     Type: AWS::SSM::Parameter::Value<String>
@@ -24,9 +25,6 @@ Parameters:
     Description: Shopify hostname
     Type: String
     Default: freemjabadilla.myshopify.com
-  GraphQLAPIIdOutput:
-    Description: AppSync prefix for API ID Output
-    Type: String
 Mappings:
   EnvConfigMap:
     BatchSize:
@@ -41,6 +39,10 @@ Conditions:
     Fn::Equals:
     - Ref: EnvType
     - dev
+  ShouldNotCreateEnvResources:
+    Fn::Equals:
+    - Ref: EnvType
+    - NONE
 Globals:
   Function:
     Handler: app.handler
@@ -57,7 +59,7 @@ Resources:
   NoteStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-triggers/96c7d2d52585d8c564bdec1ed9fc09ca
+      CodeUri: s3://pahina-shopify-triggers/5d4b14d0cc887d53b8ba70e503f618e7
       Runtime: nodejs10.x
       Events:
         StreamEvent:
@@ -84,8 +86,21 @@ Resources:
   UserStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-triggers/5329cff437490a6d900b0c162a25dc0f
+      CodeUri: s3://pahina-shopify-triggers/f033ff1ddec7ffa94781b7d806422d60
       Runtime: nodejs10.x
+      Policies:
+      - DynamoDBCrudPolicy:
+          TableName:
+            Fn::ImportValue:
+              Fn::Join:
+              - ':'
+              - - Fn::FindInMap:
+                  - AmplifyProject
+                  - GraphQLAPIIdOutput
+                  - Ref: EnvType
+                - GetAtt
+                - PahinaUserStoreTable
+                - Name
       Events:
         StreamEvent:
           Type: DynamoDB
