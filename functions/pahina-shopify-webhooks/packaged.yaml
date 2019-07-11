@@ -58,7 +58,7 @@ Resources:
   ProductsFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-webhooks/f8ef5d0af54ae3843a3bf24e672f7437
+      CodeUri: s3://pahina-shopify-webhooks/5dda92da1dad92c4b175e37e00d33259
       Runtime: nodejs10.x
       Events:
         ProductsEvent:

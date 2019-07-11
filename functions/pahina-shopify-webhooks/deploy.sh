@@ -1,14 +1,25 @@
 #!/bin/sh -x
 
-yarn --cwd products clean
-yarn --cwd products install
-yarn --cwd products test || { echo 'products test failed' ; exit 1; }
-yarn --cwd products build || { echo 'user-stream build failed' ; exit 1; }
-
+sh ./prep-module.sh products
 
 echo 'Build and Tests are passing'
 
-sam package --output-template-file packaged.yaml --s3-bucket pahina-shopify-webhooks
+ENV_TYPE=dev
+BUCKET=pahina-shopify-webhooks
+STACK_NAME=pahina-shopify-webhooks
+OUTPUT_FILE=packaged.yaml
+REGION=ap-southeast-1
 
-sam deploy --template-file packaged.yaml --stack-name pahina-shopify-webhooks --capabilities CAPABILITY_IAM --region ap-southeast-1
+sam package \
+--output-template-file $OUTPUT_FILE \
+--s3-bucket $BUCKET
+
+sam deploy \
+--template-file $OUTPUT_FILE \
+--stack-name $STACK_NAME \
+--capabilities CAPABILITY_IAM \
+--region $REGION \
+--parameter-overrides \
+   EnvType=$ENV_TYPE
+
 
