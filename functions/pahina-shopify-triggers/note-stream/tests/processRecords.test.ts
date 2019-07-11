@@ -1,7 +1,7 @@
 import chai from 'chai';
 
-import * as func from '../processRecords';
-import { ProcessingError } from '../utils/ProcessingError';
+import * as func from '../src/processRecords';
+import { ProcessingError } from '../src/utils/ProcessingError';
 
 const { expect } = chai;
 
@@ -16,23 +16,6 @@ const createEvent = (
   dynamodb: {},
   eventSourceARN: 'arn',
 });
-
-// const context: Context = {
-//   callbackWaitsForEmptyEventLoop: true,
-//   functionVersion: '$LATEST',
-//   functionName: 'pahina-shopify-triggers-NoteStreamFunction-JMCKP6TCIEPX',
-//   memoryLimitInMB: 128,
-//   logGroupName:
-//     '/aws/lambda/pahina-shopify-triggers-NoteStreamFunction-JMCKP6TCIEPX',
-//   logStreamName: '2019/07/04/[$LATEST]5d5ecf61f163495da94d53e84e29afbc',
-//   invokedFunctionArn:
-//     'arn:aws:lambda:ap-southeast-1:991300696177:function:pahina-shopify-triggers-NoteStreamFunction-JMCKP6TCIEPX',
-//   awsRequestId: '5ce657b2-7384-4490-8537-4e325a79d553',
-//   getRemainingTimeInMillis: () => 100,
-//   succeed: () => null,
-//   done: () => null,
-//   fail: () => null,
-// };
 
 describe('Verify generated GraphQL scripts', function() {
   it('makes single gql command', async () => {

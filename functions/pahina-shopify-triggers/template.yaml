@@ -58,7 +58,7 @@ Resources:
   NoteStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: note-stream/dist/
+      CodeUri: note-stream/dist/src/
       Runtime: nodejs10.x
       Events:
         StreamEvent:
@@ -77,7 +77,7 @@ Resources:
   UserStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: user-stream/dist/src
+      CodeUri: user-stream/dist/src/
       Runtime: nodejs10.x
       Policies:
         - DynamoDBCrudPolicy:
