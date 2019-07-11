@@ -1,5 +1,5 @@
 projects:
-  pahina:
+  pahinaapi:
     schemaPath: src/graphql/schema.json
     includes:
       - src/shared/graphql/**/*.ts

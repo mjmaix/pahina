@@ -15,18 +15,6 @@ Parameters:
   
   
   
-  
-  
-  functionpahina96b0423b96b0423bPostConfirmationArn: 
-    Type: String
-    Default: functionpahina96b0423b96b0423bPostConfirmationArn
-  
-  functionpahina96b0423b96b0423bPostConfirmationName: 
-    Type: String
-    Default: functionpahina96b0423b96b0423bPostConfirmationName
-  
-  
-  
 
     
   identityPoolName:
@@ -157,9 +145,6 @@ Parameters:
                                                             
   triggers:
     Type: String
-              
-  PostConfirmation:
-    Type: String
                     
   parentStack:
     Type: String
@@ -233,18 +218,6 @@ Resources:
         
       
       
-      LambdaConfig:
-        
-        
-        
-        
-        
-          PostConfirmation: !Ref functionpahina96b0423b96b0423bPostConfirmationArn
-        
-        
-        
-        
-      
       
       AutoVerifiedAttributes: !Ref autoVerifiedAttributes
       
@@ -275,52 +248,11 @@ Resources:
     
   
     
-  
-  UserPoolPostConfirmationLambdaInvokePermission: 
-    Type: "AWS::Lambda::Permission"
-    DependsOn: UserPool
-    Properties: 
-      Action: "lambda:invokeFunction"
-      Principal: "cognito-idp.amazonaws.com"
-      FunctionName: !Ref functionpahina96b0423b96b0423bPostConfirmationName
-      SourceArn: !GetAtt UserPool.Arn
     
   
    
     
   # Updating lambda role with permissions to Cognito
-  
-  
-  pahina96b0423b96b0423bPostConfirmationAddToGroupCognito:
-    Type: AWS::IAM::Policy
-    Properties:
-      PolicyName: pahina96b0423b96b0423bPostConfirmationAddToGroupCognito
-      PolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-          - Effect: Allow
-            Action:
-            
-              - cognito-idp:AdminAddUserToGroup
-            
-              - cognito-idp:GetGroup
-            
-              - cognito-idp:CreateGroup
-            
-            
-            
-            Resource: !GetAtt
-            
-              - UserPool
-            
-              - Arn
-            
-            
-            
-
-      Roles:
-        - !Join ['',["pahina96b0423b96b0423bPostConfirmation", '-', !Ref env]]
-  
   
   
   UserPoolClientWeb:

@@ -47,9 +47,10 @@ type PahinaUser
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
   notes: [PahinaNote]
-    @connection(name: "PahinaUserNotes", sortField: "updatedAt")
+    @connection(name: "UserStores", sortField: "updatedAt")
     @auth(rules: [{ allow: owner, ownerField: "id" }])
-  stores: [PahinaUserStore] @connection(name: "PahinaUserStores")
+  stores: [PahinaUserStore] @connection(name: "UserStores")
+  ownedProducts: [PahinaUserStoreProduct] @connection(name: "OwnedProducts")
 }
 
 type PahinaMainStore
@@ -61,18 +62,20 @@ type PahinaMainStore
 }
 
 type PahinaUserStore
+  @key(fields: ["ownerId", "skuPrefix"])
   @model(subscriptions: null, mutations: null)
   @auth(
     rules: [
-      { allow: owner, ownerField: "owner", operations: [read] }
+      { allow: owner, ownerField: "ownerId", operations: [read] }
       { allow: groups, groups: ["Admins"] }
     ]
   ) {
-  id: ID!
-  owner: PahinaUser! @connection(name: "PahinaUserStores")
-  products: [PahinaUserStoreProduct]
-    @connection(name: "PahinaUserStoreProducts")
-  skuPrefix: String
+  ownerId: String!
+  skuPrefix: String!
+  owner: PahinaUser! @connection(name: "UserStores", keyField: "ownerId")
+  products: [PahinaUserStoreProduct] @connection(name: "StoreProducts")
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
 }
 
 type PahinaUserStoreProduct
@@ -85,9 +88,10 @@ type PahinaUserStoreProduct
     ]
   ) {
   sku: String!
-  store: PahinaUserStore!
-    @connection(name: "PahinaUserStoreProducts", keyField: "storeId")
   storeId: String!
+  ownerId: String!
+  owner: PahinaUser @connection(name: "OwnedProducts", keyField: "ownerId")
+  store: PahinaUserStore @connection(name: "StoreProducts", keyField: "storeId")
   shopifyProductId: String
   shopifyShopId: String
   onlineStoreUrl: String
@@ -115,8 +119,8 @@ type PahinaNote
     ]
   ) {
   id: ID!
-  author: PahinaUser @connection(name: "PahinaUserNotes")
-  case: PahinaCase @connection(name: "PahinaCases")
+  author: PahinaUser @connection(name: "UserStores")
+  case: PahinaCase @connection(name: "NoteCases")
   promotional: String
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
@@ -143,7 +147,7 @@ type PahinaCase
   link: String
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
-  notes: [PahinaNote] @connection(name: "PahinaCases", sortField: "updatedAt")
+  notes: [PahinaNote] @connection(name: "NoteCases", sortField: "updatedAt")
 }
 
 type Subscription {

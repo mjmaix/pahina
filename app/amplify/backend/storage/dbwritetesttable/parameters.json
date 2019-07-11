@@ -1,7 +1,0 @@
-{
-    "tableName": "dbwritetesttable",
-    "partitionKeyName": "name",
-    "partitionKeyType": "S",
-    "sortKeyName": "value",
-    "sortKeyType": "S"
-}

@@ -68,20 +68,10 @@
   "unauthRoleArn": {
     "Fn::GetAtt": ["UnauthRole", "Arn"]
   },
-  "triggers": "{\"PostConfirmation\":[\"add-to-group\",\"custom\"]}",
-  "PostConfirmation": "pahina96b0423b96b0423bPostConfirmation",
+  "triggers": "{}",
   "parentStack": {
     "Ref": "AWS::StackId"
   },
-  "permissions": [
-    "{\"policyName\":\"AddToGroupCognito\",\"trigger\":\"PostConfirmation\",\"effect\":\"Allow\",\"actions\":[\"cognito-idp:AdminAddUserToGroup\",\"cognito-idp:GetGroup\",\"cognito-idp:CreateGroup\"],\"resource\":{\"paramType\":\"!GetAtt\",\"keys\":[\"UserPool\",\"Arn\"]}}"
-  ],
-  "dependsOn": [
-    {
-      "category": "function",
-      "resourceName": "pahina96b0423b96b0423bPostConfirmation",
-      "triggerProvider": "Cognito",
-      "attributes": ["Arn", "Name"]
-    }
-  ]
+  "permissions": [],
+  "dependsOn": []
 }

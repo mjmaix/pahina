@@ -25,8 +25,27 @@ export const getPahinaUser = `query GetPahinaUser($id: ID!) {
     }
     stores {
       items {
-        id
+        ownerId
         skuPrefix
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    ownedProducts {
+      items {
+        sku
+        storeId
+        ownerId
+        shopifyProductId
+        shopifyShopId
+        onlineStoreUrl
+        onlineStorePreviewUrl
+        handle
+        status
+        rawResponse
+        createdAt
+        updatedAt
       }
       nextToken
     }
@@ -52,6 +71,9 @@ export const listPahinaUsers = `query ListPahinaUsers(
         nextToken
       }
       stores {
+        nextToken
+      }
+      ownedProducts {
         nextToken
       }
     }
@@ -82,9 +104,10 @@ export const listPahinaMainStores = `query ListPahinaMainStores(
   }
 }
 `;
-export const getPahinaUserStore = `query GetPahinaUserStore($id: ID!) {
-  getPahinaUserStore(id: $id) {
-    id
+export const getPahinaUserStore = `query GetPahinaUserStore($ownerId: String!, $skuPrefix: String!) {
+  getPahinaUserStore(ownerId: $ownerId, skuPrefix: $skuPrefix) {
+    ownerId
+    skuPrefix
     owner {
       id
       givenName
@@ -100,11 +123,15 @@ export const getPahinaUserStore = `query GetPahinaUserStore($id: ID!) {
       stores {
         nextToken
       }
+      ownedProducts {
+        nextToken
+      }
     }
     products {
       items {
         sku
         storeId
+        ownerId
         shopifyProductId
         shopifyShopId
         onlineStoreUrl
@@ -117,18 +144,28 @@ export const getPahinaUserStore = `query GetPahinaUserStore($id: ID!) {
       }
       nextToken
     }
-    skuPrefix
+    createdAt
+    updatedAt
   }
 }
 `;
 export const listPahinaUserStores = `query ListPahinaUserStores(
+  $ownerId: String
+  $skuPrefix: ModelStringKeyConditionInput
   $filter: ModelPahinaUserStoreFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listPahinaUserStores(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listPahinaUserStores(
+    ownerId: $ownerId
+    skuPrefix: $skuPrefix
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
     items {
-      id
+      ownerId
+      skuPrefix
       owner {
         id
         givenName
@@ -142,7 +179,8 @@ export const listPahinaUserStores = `query ListPahinaUserStores(
       products {
         nextToken
       }
-      skuPrefix
+      createdAt
+      updatedAt
     }
     nextToken
   }
@@ -151,8 +189,30 @@ export const listPahinaUserStores = `query ListPahinaUserStores(
 export const getPahinaUserStoreProduct = `query GetPahinaUserStoreProduct($storeId: String!, $sku: String!) {
   getPahinaUserStoreProduct(storeId: $storeId, sku: $sku) {
     sku
-    store {
+    storeId
+    ownerId
+    owner {
       id
+      givenName
+      familyName
+      email
+      picture
+      identityId
+      createdAt
+      updatedAt
+      notes {
+        nextToken
+      }
+      stores {
+        nextToken
+      }
+      ownedProducts {
+        nextToken
+      }
+    }
+    store {
+      ownerId
+      skuPrefix
       owner {
         id
         givenName
@@ -166,9 +226,9 @@ export const getPahinaUserStoreProduct = `query GetPahinaUserStoreProduct($store
       products {
         nextToken
       }
-      skuPrefix
+      createdAt
+      updatedAt
     }
-    storeId
     shopifyProductId
     shopifyShopId
     onlineStoreUrl
@@ -197,11 +257,24 @@ export const listPahinaUserStoreProducts = `query ListPahinaUserStoreProducts(
   ) {
     items {
       sku
-      store {
-        id
-        skuPrefix
-      }
       storeId
+      ownerId
+      owner {
+        id
+        givenName
+        familyName
+        email
+        picture
+        identityId
+        createdAt
+        updatedAt
+      }
+      store {
+        ownerId
+        skuPrefix
+        createdAt
+        updatedAt
+      }
       shopifyProductId
       shopifyShopId
       onlineStoreUrl
@@ -232,6 +305,9 @@ export const getPahinaNote = `query GetPahinaNote($id: ID!) {
         nextToken
       }
       stores {
+        nextToken
+      }
+      ownedProducts {
         nextToken
       }
     }
