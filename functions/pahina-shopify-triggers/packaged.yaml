@@ -24,15 +24,18 @@ Parameters:
     Description: Shopify hostname
     Type: String
     Default: freemjabadilla.myshopify.com
+  GraphQLAPIIdOutput:
+    Description: AppSync prefix for API ID Output
+    Type: String
 Mappings:
-  CaseTblStreamArn:
-    ap-southeast-1:
-      dev: arn:aws:dynamodb:ap-southeast-1:991300696177:table/PahinaNote-bafaeahnlnesxg65deloyiar4m-dev/stream/2019-07-08T21:18:53.408
-      prod: ''
   EnvConfigMap:
     BatchSize:
       dev: 2
       prod: 10
+  AmplifyProject:
+    GraphQLAPIIdOutput:
+      dev: 3zapujkk4jen5pg5c6gkouinom
+      prod: ''
 Conditions:
   IsDev:
     Fn::Equals:
@@ -54,17 +57,50 @@ Resources:
   NoteStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-triggers/960f207d44cc7b1ac3152aee67b01e3e
+      CodeUri: s3://pahina-shopify-triggers/96c7d2d52585d8c564bdec1ed9fc09ca
       Runtime: nodejs10.x
       Events:
         StreamEvent:
           Type: DynamoDB
           Properties:
             Stream:
+              Fn::ImportValue:
+                Fn::Join:
+                - ':'
+                - - Fn::FindInMap:
+                    - AmplifyProject
+                    - GraphQLAPIIdOutput
+                    - Ref: EnvType
+                  - GetAtt
+                  - PahinaNoteTable
+                  - StreamArn
+            StartingPosition: TRIM_HORIZON
+            BatchSize:
               Fn::FindInMap:
-              - CaseTblStreamArn
-              - Ref: AWS::Region
+              - EnvConfigMap
+              - BatchSize
               - Ref: EnvType
+            Enabled: true
+  UserStreamFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://pahina-shopify-triggers/5329cff437490a6d900b0c162a25dc0f
+      Runtime: nodejs10.x
+      Events:
+        StreamEvent:
+          Type: DynamoDB
+          Properties:
+            Stream:
+              Fn::ImportValue:
+                Fn::Join:
+                - ':'
+                - - Fn::FindInMap:
+                    - AmplifyProject
+                    - GraphQLAPIIdOutput
+                    - Ref: EnvType
+                  - GetAtt
+                  - PahinaUserTable
+                  - StreamArn
             StartingPosition: TRIM_HORIZON
             BatchSize:
               Fn::FindInMap:
@@ -84,4 +120,16 @@ Outputs:
     Value:
       Fn::GetAtt:
       - NoteStreamFunctionRole
+      - Arn
+  UserStreamFunction:
+    Description: UserStream Function ARN
+    Value:
+      Fn::GetAtt:
+      - UserStreamFunction
+      - Arn
+  UserStreamFunctionIamRole:
+    Description: Implicit IAM Role created for UserStream Function
+    Value:
+      Fn::GetAtt:
+      - UserStreamFunctionRole
       - Arn

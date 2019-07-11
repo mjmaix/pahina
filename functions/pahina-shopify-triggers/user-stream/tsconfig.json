@@ -1,0 +1,15 @@
+{
+  "extends": "../tsconfig.functions.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "typeRoots": ["node_modules/@types"],
+    "types": ["node", "mocha"]
+  },
+  "exclude": [
+    "node_modules",
+    "node_modules/aws-appsync/",
+    "**/tests/*.test.ts",
+    "templates"
+  ]
+}

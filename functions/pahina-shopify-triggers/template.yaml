@@ -24,15 +24,18 @@ Parameters:
     Description: Shopify hostname
     Type: String
     Default: freemjabadilla.myshopify.com
+  GraphQLAPIIdOutput:
+    Description: AppSync prefix for API ID Output
+    Type: String
 Mappings:
-  CaseTblStreamArn:
-    ap-southeast-1:
-      dev: arn:aws:dynamodb:ap-southeast-1:991300696177:table/PahinaNote-bafaeahnlnesxg65deloyiar4m-dev/stream/2019-07-08T21:18:53.408
-      prod: ''
   EnvConfigMap:
     BatchSize:
       dev: 2
       prod: 10
+  AmplifyProject:
+    GraphQLAPIIdOutput:
+      dev: 3zapujkk4jen5pg5c6gkouinom
+      prod: ''
 Conditions:
   IsDev:
     Fn::Equals:
@@ -50,6 +53,7 @@ Globals:
           Ref: ShopifyApiPwd
         SHOPIFY_API_HOSTNAME:
           Ref: ShopifyGqlApiHost
+        
 Resources:
   NoteStreamFunction:
     Type: AWS::Serverless::Function
@@ -61,10 +65,27 @@ Resources:
           Type: DynamoDB
           Properties:
             Stream:
+              Fn::ImportValue:
+                !Join [":", [ !FindInMap [ "AmplifyProject", "GraphQLAPIIdOutput", !Ref EnvType ], "GetAtt", "PahinaNoteTable", "StreamArn" ] ]
+            StartingPosition: TRIM_HORIZON
+            BatchSize:
               Fn::FindInMap:
-              - CaseTblStreamArn
-              - Ref: AWS::Region
+              - EnvConfigMap
+              - BatchSize
               - Ref: EnvType
+            Enabled: true
+  UserStreamFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: user-stream/dist
+      Runtime: nodejs10.x
+      Events:
+        StreamEvent:
+          Type: DynamoDB
+          Properties:
+            Stream:
+              Fn::ImportValue:
+                !Join [":", [ !FindInMap [ "AmplifyProject", "GraphQLAPIIdOutput", !Ref EnvType ], "GetAtt", "PahinaUserTable", "StreamArn" ] ]
             StartingPosition: TRIM_HORIZON
             BatchSize:
               Fn::FindInMap:
@@ -85,3 +106,16 @@ Outputs:
       Fn::GetAtt:
       - NoteStreamFunctionRole
       - Arn
+  UserStreamFunction:
+    Description: UserStream Function ARN
+    Value:
+      Fn::GetAtt:
+      - UserStreamFunction
+      - Arn
+  UserStreamFunctionIamRole:
+    Description: Implicit IAM Role created for UserStream Function
+    Value:
+      Fn::GetAtt:
+      - UserStreamFunctionRole
+      - Arn
+
