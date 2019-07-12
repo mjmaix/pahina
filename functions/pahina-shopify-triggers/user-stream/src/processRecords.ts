@@ -1,5 +1,7 @@
 import { DynamoDBStreamEvent } from 'aws-lambda';
 import { ProcessingError } from './utils/ProcessingError';
+import AwsDynamoDB from './connections/AwsDynamoDB';
+import { DynamoDB } from 'aws-sdk';
 
 export const processRecords = ({ Records }: DynamoDBStreamEvent) => {
   try {
@@ -13,6 +15,19 @@ export const processRecords = ({ Records }: DynamoDBStreamEvent) => {
 
       switch (eventName) {
         case 'INSERT':
+          if (process.env.UserStoreTableName) {
+            const params: DynamoDB.Types.PutItemInput = {
+              TableName: process.env.UserStoreTableName,
+              Item: {
+                ownerId: { N: '001' },
+                skuPrefix: { S: 'Richard Roe' },
+                updatedAt: { S: '2019-05-09T05:57:43.148Z' },
+                createddAt: { S: '2019-04-08T21:15:02.337Z' },
+                __typename: { S: 'PahinaUserStore' },
+              },
+            };
+            AwsDynamoDB.putItem(params);
+          }
           break;
         case 'MODIFY':
           break;

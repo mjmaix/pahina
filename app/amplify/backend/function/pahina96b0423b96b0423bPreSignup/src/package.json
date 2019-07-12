@@ -10,9 +10,7 @@
     "test": "./node_modules/.bin/ts-mocha -p ./tsconfig.json **/*.test.ts",
     "postinstall": "./postinstall.sh"
   },
-  "dependencies": {
-    "short-uuid": "^3.1.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/aws-lambda": "^8.10.27",
     "@types/aws-sdk": "^2.7.0",
