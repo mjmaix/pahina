@@ -1,0 +1,14 @@
+{
+    "trigger": true,
+    "modules": [
+        "custom"
+    ],
+    "parentResource": "pahina96b0423b96b0423b",
+    "functionName": "pahina96b0423b96b0423bPreSignup",
+    "parentStack": "auth",
+    "triggerEnvs": "[]",
+    "triggerTemplate": "PreSignup.json.ejs",
+    "roleName": "pahina96b0423b96b0423bPreSignup",
+    "skipEdit": true,
+    "resourceName": "pahina96b0423b96b0423bPreSignup"
+}
