@@ -1,0 +1,112 @@
+{
+  "Records": [
+    {
+      "eventID": "0e4689f061ec218cba9a64b78f865812",
+      "eventName": "INSERT",
+      "eventVersion": "1.1",
+      "eventSource": "aws:dynamodb",
+      "awsRegion": "ap-southeast-1",
+      "dynamodb": {
+        "ApproximateCreationDateTime": 1562873883,
+        "Keys": {
+          "id": {
+            "S": "0294179a-b996-4c8d-9f4d-5afced805eaf"
+          }
+        },
+        "NewImage": {
+          "pahinaNoteAuthorId": {
+            "S": "b964512a-2d73-43b0-ba4d-7da8f9bf9f12"
+          },
+          "author": {
+            "S": "b964512a-2d73-43b0-ba4d-7da8f9bf9f12"
+          },
+          "pahinaNoteCaseId": {
+            "S": "showdocs/1/33521"
+          },
+          "__typename": {
+            "S": "PahinaNote"
+          },
+          "id": {
+            "S": "0294179a-b996-4c8d-9f4d-5afced805eaf"
+          },
+          "createddAt": {
+            "S": "2017-09-01T22:02:51.716Z"
+          },
+          "priceLevel": {
+            "S": "L_0"
+          },
+          "value": {
+            "S": "Qui aut doloribus ipsam. Quia sunt accusamus. Harum voluptas iusto harum asperiores corporis non occaecati. Suscipit ea qui. Repellat amet officia et odio aut doloremque aut nostrum rerum. Qui laborum laboriosam veritatis nihil rerum.\n \rAliquid nulla adipisci numquam natus aut minus dolores et est. Assumenda accusamus sed nihil magnam. Doloribus sapiente assumenda est praesentium consequuntur maxime adipisci ullam quos. Pariatur dolorum dignissimos."
+          },
+          "promotional": {
+            "S": "Illum magnam quam occaecati dolores aut debitis quisquam est animi. Consequatur aperiam a ut."
+          },
+          "status": {
+            "S": "DRAFT"
+          },
+          "updatedAt": {
+            "S": "2019-03-28T20:06:47.782Z"
+          }
+        },
+        "SequenceNumber": "1724200000000007515233184",
+        "SizeBytes": 877,
+        "StreamViewType": "NEW_AND_OLD_IMAGES"
+      },
+      "eventSourceARN": "arn:aws:dynamodb:ap-southeast-1:991300696177:table/PahinaNote-3zapujkk4jen5pg5c6gkouinom-dev/stream/2019-07-11T10:36:34.003"
+    },
+    {
+      "eventID": "bc4a50e3de968cfebe9d0b7b82b1792b",
+      "eventName": "INSERT",
+      "eventVersion": "1.1",
+      "eventSource": "aws:dynamodb",
+      "awsRegion": "ap-southeast-1",
+      "dynamodb": {
+        "ApproximateCreationDateTime": 1562873883,
+        "Keys": {
+          "id": {
+            "S": "30e30fa2-dfc9-4d44-865b-0cdb8a88b1ea"
+          }
+        },
+        "NewImage": {
+          "pahinaNoteAuthorId": {
+            "S": "b964512a-2d73-43b0-ba4d-7da8f9bf9f12"
+          },
+          "author": {
+            "S": "b964512a-2d73-43b0-ba4d-7da8f9bf9f12"
+          },
+          "pahinaNoteCaseId": {
+            "S": "showdocs/1/33521"
+          },
+          "__typename": {
+            "S": "PahinaNote"
+          },
+          "id": {
+            "S": "30e30fa2-dfc9-4d44-865b-0cdb8a88b1ea"
+          },
+          "createddAt": {
+            "S": "2017-09-01T22:02:51.716Z"
+          },
+          "priceLevel": {
+            "S": "L_0"
+          },
+          "value": {
+            "S": "Reprehenderit mollitia et quia qui voluptate. Reprehenderit rerum optio quo aut. Nemo nulla vel quisquam ducimus numquam impedit eaque beatae aliquam. Repellendus vero qui fugiat asperiores est.\n \rConsectetur tenetur nesciunt veritatis ut. Officiis eos quia qui. Aliquid perspiciatis enim quae veniam voluptatem dolore totam vitae qui. Totam voluptatum id saepe nihil qui voluptate vitae quia.\n \rVeniam non aspernatur et sed voluptas minus tenetur in et. Cupiditate ut quia totam delectus officia ipsa. Quasi blanditiis doloremque. Quia et et."
+          },
+          "promotional": {
+            "S": "Cum error quidem praesentium accusamus ducimus dolorem. Dolor corrupti dolore atque sed aut totam dolore. Eligendi harum consequuntur nam laudantium quo beatae temporibus placeat."
+          },
+          "status": {
+            "S": "DRAFT"
+          },
+          "updatedAt": {
+            "S": "2019-03-28T20:06:47.782Z"
+          }
+        },
+        "SequenceNumber": "1724300000000007515233207",
+        "SizeBytes": 1053,
+        "StreamViewType": "NEW_AND_OLD_IMAGES"
+      },
+      "eventSourceARN": "arn:aws:dynamodb:ap-southeast-1:991300696177:table/PahinaNote-3zapujkk4jen5pg5c6gkouinom-dev/stream/2019-07-11T10:36:34.003"
+    }
+  ]
+}

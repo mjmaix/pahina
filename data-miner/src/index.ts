@@ -9,21 +9,25 @@ import PahinaNoteStep1 from './PahinaNote/step1-faker';
 import PahinaNoteStep2 from './PahinaNote/step2-batch';
 import PahinaNoteStep3 from './PahinaNote/step3-upload';
 
-// TODO:
-// 1. PahinaCaseStep 3 - force past 1or2 years dates to be queries again
-// const PahinaCase = async () => {
-//   await PahinaCaseStep1();
-//   await PahinaCaseStep2();
-//   await PahinaCaseStep3();
-//   await PahinaCaseStep4();
-//   await PahinaCaseStep5();
-//   await PahinaCaseStep6();
-// };
-// PahinaCase();
+const all = async () => {
+  // TODO:
+  // 1. PahinaCaseStep 3 - force past 1or2 years dates to be queries again
+  const PahinaCase = async () => {
+    //   await PahinaCaseStep1();
+    //   await PahinaCaseStep2();
+    //   await PahinaCaseStep3();
+    //   await PahinaCaseStep4();
+    await PahinaCaseStep5();
+    await PahinaCaseStep6();
+  };
+  await PahinaCase();
 
-const PahinaNote = async () => {
-  await PahinaNoteStep1();
-  await PahinaNoteStep2();
-  await PahinaNoteStep3();
+  const PahinaNote = async () => {
+    await PahinaNoteStep1();
+    await PahinaNoteStep2();
+    await PahinaNoteStep3();
+  };
+  await PahinaNote();
 };
-PahinaNote();
+
+all();

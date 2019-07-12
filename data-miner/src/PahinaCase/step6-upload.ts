@@ -9,7 +9,7 @@ import { uploadBatchWrite } from '../tools/uploadBatchWrite';
 
 const asyncRimraf = util.promisify(rimraf);
 const outBatchDir = `${FILES_DIR}/step5/batch`;
-const errorFile = `${FILES_DIR}/step6_error.json`;
+const errorFile = `${FILES_DIR}/error.json`;
 
 async function Step6() {
   const allFiles = fs.readdirSync(outBatchDir, { withFileTypes: true });

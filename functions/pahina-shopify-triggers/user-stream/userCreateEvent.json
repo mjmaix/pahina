@@ -1,0 +1,37 @@
+{
+  "Records": [
+    {
+      "eventID": "6a7e3f207d10c72c70ed392744fd0519",
+      "eventName": "INSERT",
+      "eventVersion": "1.1",
+      "eventSource": "aws:dynamodb",
+      "awsRegion": "ap-southeast-1",
+      "dynamodb": {
+        "ApproximateCreationDateTime": 1562877438,
+        "Keys": {
+          "id": {
+            "S": "test"
+          }
+        },
+        "NewImage": {
+          "familyName": {
+            "S": "Abadilla"
+          },
+          "givenName": {
+            "S": "Michael"
+          },
+          "id": {
+            "S": "test"
+          },
+          "email": {
+            "S": "test@gmail.com"
+          }
+        },
+        "SequenceNumber": "1622800000000015091439675",
+        "SizeBytes": 65,
+        "StreamViewType": "NEW_AND_OLD_IMAGES"
+      },
+      "eventSourceARN": "arn:aws:dynamodb:ap-southeast-1:991300696177:table/PahinaUser-3zapujkk4jen5pg5c6gkouinom-dev/stream/2019-07-11T10:36:31.820"
+    }
+  ]
+}
