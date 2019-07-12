@@ -5,7 +5,7 @@
   "license": "none",
   "private": true,
   "scripts": {
-    "build": "tsc",
+    "build": "tsc --project tsconfig.build.json",
     "clean": "rm -rf dist",
     "test": "./node_modules/.bin/ts-mocha -p ./tsconfig.json **/*.test.ts"
   },

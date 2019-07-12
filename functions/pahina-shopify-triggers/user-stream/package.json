@@ -5,10 +5,11 @@
   "license": "none",
   "private": true,
   "scripts": {
-    "build": "tsc",
+    "build": "tsc --project tsconfig.build.json",
     "clean": "rm -rf dist",
     "test": "./node_modules/.bin/ts-mocha -p ./tsconfig.json **/*.test.ts"
   },
+  "dependencies": {},
   "devDependencies": {
     "@types/aws-lambda": "^8.10.27",
     "@types/chai": "^4.1.7",
@@ -18,6 +19,5 @@
     "mocha": "^6.1.4",
     "ts-mocha": "^6.0.0",
     "typescript": "^3.5.2"
-  },
-  "dependencies": {}
+  }
 }
