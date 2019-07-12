@@ -1,0 +1,15 @@
+{
+  "PahinaUserStore-3zapujkk4jen5pg5c6gkouinom-dev": [
+    {
+      "PutRequest": {
+        "Item": {
+          "ownerId": { "S": "111111" },
+          "skuPrefix": { "S": "SKU1" },
+          "updatedAt": { "S": "2019-05-09T05:57:43.148Z" },
+          "createdAt": { "S": "2019-04-08T21:15:02.337Z" },
+          "__typename": { "S": "PahinaUserStore" }
+        }
+      }
+    }
+  ]
+}

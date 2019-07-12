@@ -1,6 +1,6 @@
 import AWS, { DynamoDB } from 'aws-sdk';
 
-AWS.config.update({ region: 'REGION' });
+AWS.config.update({ region: process.env.R });
 
 class AwsDynamoDB {
   ddb: AWS.DynamoDB;
@@ -9,15 +9,8 @@ class AwsDynamoDB {
   }
 
   putItem = (obj: DynamoDB.Types.PutItemInput) => {
-    return new Promise((resolve, reject) => {
-      this.ddb.putItem(obj, function(err, data) {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(data);
-        }
-      });
-    });
+    console.log('[putItem]', obj);
+    return this.ddb.putItem(obj).promise();
   };
 }
 

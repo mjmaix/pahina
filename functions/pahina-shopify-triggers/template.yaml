@@ -44,7 +44,8 @@ Conditions:
 Globals:
   Function:
     Handler: app.handler
-    Timeout: 3
+    Timeout: 30
+    Runtime: nodejs10.x
     Environment:
       Variables:
         SHOPIFY_API_KEY:
@@ -53,13 +54,14 @@ Globals:
           Ref: ShopifyApiPwd
         SHOPIFY_API_HOSTNAME:
           Ref: ShopifyGqlApiHost
+        REGION: 
+          Ref: AWS::Region
         
 Resources:
   NoteStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: note-stream/dist/src/
-      Runtime: nodejs10.x
+      CodeUri: note-stream/dist
       Events:
         StreamEvent:
           Type: DynamoDB
@@ -77,12 +79,12 @@ Resources:
   UserStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: user-stream/dist/src/
-      Runtime: nodejs10.x
+      CodeUri: user-stream/dist
       Environment:
-        UserStoreTableName:
-          - Fn::ImportValue:
-              !Join [":", [ !FindInMap [ "AmplifyProject", "GraphQLAPIIdOutput", !Ref EnvType ], "GetAtt", "PahinaUserStoreTable", "Name" ] ]
+        Variables:
+          USER_STORE_TABLE_NAME:
+            Fn::ImportValue:
+                !Join [":", [ !FindInMap [ "AmplifyProject", "GraphQLAPIIdOutput", !Ref EnvType ], "GetAtt", "PahinaUserStoreTable", "Name" ] ]
       Policies:
         - DynamoDBCrudPolicy:
             TableName:

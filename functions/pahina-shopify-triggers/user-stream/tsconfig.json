@@ -6,10 +6,5 @@
     "typeRoots": ["node_modules/@types"],
     "types": ["node", "mocha"]
   },
-  "exclude": [
-    "node_modules",
-    "node_modules/aws-appsync/",
-    "**/tests/*.test.ts",
-    "templates"
-  ]
+  "exclude": ["node_modules", "templates"]
 }
