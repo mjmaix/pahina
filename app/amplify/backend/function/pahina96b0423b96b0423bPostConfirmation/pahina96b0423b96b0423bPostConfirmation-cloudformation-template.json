@@ -53,7 +53,7 @@
 		"LambdaFunction": {
 			"Type": "AWS::Lambda::Function",
 			"Metadata": {
-				"aws:asset:path": "./build",
+				"aws:asset:path": "./src",
 				"aws:asset:property": "Code"
 			},
 			"Properties": {
@@ -102,7 +102,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "pahina-dev-20190629201236-deployment",
-					"S3Key": "amplify-builds/pahina96b0423b96b0423bPostConfirmation-735234415a6e416c5639-build.zip"
+					"S3Key": "amplify-builds/pahina96b0423b96b0423bPostConfirmation-6943706d734a56623265-build.zip"
 				}
 			}
 		},

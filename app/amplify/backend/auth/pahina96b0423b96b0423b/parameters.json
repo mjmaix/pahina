@@ -84,7 +84,7 @@
             "Arn"
         ]
     },
-    "triggers": "{\"PostConfirmation\":[\"add-to-group\",\"custom\"],\"PreSignup\":[\"custom\"]}",
+    "triggers": "{\"PostConfirmation\":[\"add-to-group\"]}",
     "parentStack": {
         "Ref": "AWS::StackId"
     },
@@ -100,17 +100,7 @@
                 "Arn",
                 "Name"
             ]
-        },
-        {
-            "category": "function",
-            "resourceName": "pahina96b0423b96b0423bPreSignup",
-            "triggerProvider": "Cognito",
-            "attributes": [
-                "Arn",
-                "Name"
-            ]
         }
     ],
-    "PostConfirmation": "pahina96b0423b96b0423bPostConfirmation",
-    "PreSignup": "pahina96b0423b96b0423bPreSignup"
+    "PostConfirmation": "pahina96b0423b96b0423bPostConfirmation"
 }

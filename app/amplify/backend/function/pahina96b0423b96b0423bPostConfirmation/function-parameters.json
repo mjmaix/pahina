@@ -1,8 +1,7 @@
 {
     "trigger": true,
     "modules": [
-        "add-to-group",
-        "custom"
+        "add-to-group"
     ],
     "parentResource": "pahina96b0423b96b0423b",
     "functionName": "pahina96b0423b96b0423bPostConfirmation",

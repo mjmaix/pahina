@@ -41,14 +41,12 @@ type PahinaUser
   id: ID!
   givenName: String!
   familyName: String!
-  email: String! @auth(rules: [{ allow: owner, ownerField: "id" }])
+  email: String!
   picture: String
   identityId: String
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
-  notes: [PahinaNote]
-    @connection(name: "UserStores", sortField: "updatedAt")
-    @auth(rules: [{ allow: owner, ownerField: "id" }])
+  notes: [PahinaNote] @connection(name: "UserStores", sortField: "updatedAt")
   stores: [PahinaUserStore] @connection(name: "UserStores")
   ownedProducts: [PahinaUserStoreProduct] @connection(name: "OwnedProducts")
 }
