@@ -61,7 +61,7 @@ Resources:
   NoteStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: note-stream/dist
+      CodeUri: note-stream/lib
       Events:
         StreamEvent:
           Type: DynamoDB
@@ -79,7 +79,7 @@ Resources:
   UserStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: user-stream/dist
+      CodeUri: user-stream/lib
       Environment:
         Variables:
           USER_STORE_TABLE_NAME:
@@ -90,6 +90,9 @@ Resources:
             TableName:
               Fn::ImportValue:
                   !Join [":", [ !FindInMap [ "AmplifyProject", "GraphQLAPIIdOutput", !Ref EnvType ], "GetAtt", "PahinaUserStoreTable", "Name" ] ]
+        # - AppSyncCrudPolicy:
+        #     GraphQLAPIId:
+        #       !FindInMap [ "AmplifyProject", "GraphQLAPIIdOutput", !Ref EnvType ]
       Events:
         StreamEvent:
           Type: DynamoDB

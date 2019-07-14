@@ -1,7 +1,7 @@
 import chai from 'chai';
 
-import * as func from '../src/processRecords';
-import { ProcessingError } from '../src/utils/ProcessingError';
+import * as func from '../processRecords';
+import { ProcessingError } from '../utils/ProcessingError';
 
 const { expect } = chai;
 

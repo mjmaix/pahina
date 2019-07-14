@@ -62,7 +62,7 @@ Resources:
   NoteStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-triggers/ba3445e021182d39bc63856cc2b8281c
+      CodeUri: s3://pahina-shopify-triggers/a8ccf354ca52853844dbc34d243127d8
       Events:
         StreamEvent:
           Type: DynamoDB
@@ -88,7 +88,7 @@ Resources:
   UserStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-triggers/f22d3f44f05e168b7ec15fd5847c9a9f
+      CodeUri: s3://pahina-shopify-triggers/9e59b4ad6992ebdebc2543342dd61c90
       Environment:
         Variables:
           USER_STORE_TABLE_NAME:

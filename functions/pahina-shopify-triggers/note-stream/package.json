@@ -1,13 +1,14 @@
 {
   "name": "note-stream",
   "version": "1.0.0",
-  "main": "dist/src/app.js",
+  "main": "lib/app.js",
   "license": "none",
   "private": true,
   "scripts": {
     "build": "tsc --project tsconfig.build.json",
-    "clean": "rm -rf dist",
-    "test": "./node_modules/.bin/ts-mocha -p ./tsconfig.json **/*.test.ts"
+    "clean": "rm -rf lib",
+    "test": "./node_modules/.bin/ts-mocha -p ./tsconfig.json **/*.test.ts",
+    "copy:node_modules": "cp -R node_modules lib/node_modules"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.27",

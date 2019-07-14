@@ -22,3 +22,6 @@ sam deploy \
 --region $REGION \
 --parameter-overrides \
    EnvType=$ENV_TYPE
+
+sh ./post-deploy.sh note-stream
+sh ./post-deploy.sh user-stream

@@ -59,7 +59,7 @@ Resources:
   ProductsFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: products/dist/
+      CodeUri: products/lib/
       Runtime: nodejs10.x
       Events:
         ProductsEvent:

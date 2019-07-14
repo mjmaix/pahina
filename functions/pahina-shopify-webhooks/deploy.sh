@@ -23,3 +23,4 @@ sam deploy \
    EnvType=$ENV_TYPE
 
 
+sh ./post-deploy.sh products
