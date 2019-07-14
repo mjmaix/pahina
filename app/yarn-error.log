@@ -1,8 +1,8 @@
 Arguments: 
-  /usr/local/Cellar/node/12.6.0/bin/node /usr/local/Cellar/yarn/1.17.0/libexec/bin/yarn.js add -D @types/short-uuid
+  /usr/local/Cellar/node/12.6.0/bin/node /usr/local/Cellar/yarn/1.17.0/libexec/bin/yarn.js
 
 PATH: 
-  /Users/mjabadilla/.rvm/gems/ruby-2.5.1/bin:/Users/mjabadilla/.rvm/gems/ruby-2.5.1@global/bin:/Users/mjabadilla/.rvm/rubies/ruby-2.5.1/bin:/Users/mjabadilla/.fastlane/bin:/Users/mjabadilla/Library/Python/2.7/bin:/usr/local/opt/openssl/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/Users/mjabadilla/.local/bin::/Users/mjabadilla/Library/Android/sdk/emulator:/Users/mjabadilla/Library/Android/sdk/platform-tools:/Users/mjabadilla/Library/Android/sdk/tools:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/MacGPG2/bin:/Users/mjabadilla/.rvm/gems/ruby-2.5.1/bin:/Users/mjabadilla/.rvm/gems/ruby-2.5.1@global/bin:/Users/mjabadilla/.rvm/rubies/ruby-2.5.1/bin:/Users/mjabadilla/.fastlane/bin:/Users/mjabadilla/Library/Python/2.7/bin:/usr/local/opt/openssl/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/Users/mjabadilla/.local/bin:/Users/mjabadilla/Library/Android/sdk/emulator:/Users/mjabadilla/Library/Android/sdk/platform-tools:/Users/mjabadilla/Library/Android/sdk/tools:/Users/mjabadilla/.rvm/bin
+  /Users/mjabadilla/.pyenv/plugins/pyenv-virtualenv/shims:/Users/mjabadilla/.pyenv/shims:/Users/mjabadilla/.pyenv/bin:/Users/mjabadilla/.rvm/gems/ruby-2.5.1/bin:/Users/mjabadilla/.rvm/gems/ruby-2.5.1@global/bin:/Users/mjabadilla/.rvm/rubies/ruby-2.5.1/bin:/Users/mjabadilla/.fastlane/bin:/Users/mjabadilla/Library/Python/2.7/bin:/usr/local/opt/openssl/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/Users/mjabadilla/.local/bin::/Users/mjabadilla/Library/Android/sdk/emulator:/Users/mjabadilla/Library/Android/sdk/platform-tools:/Users/mjabadilla/Library/Android/sdk/tools:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/MacGPG2/bin:/Users/mjabadilla/.pyenv/plugins/pyenv-virtualenv/shims:/Users/mjabadilla/.pyenv/shims:/Users/mjabadilla/.pyenv/bin:/Users/mjabadilla/.rvm/gems/ruby-2.5.1/bin:/Users/mjabadilla/.rvm/gems/ruby-2.5.1@global/bin:/Users/mjabadilla/.rvm/rubies/ruby-2.5.1/bin:/Users/mjabadilla/.fastlane/bin:/Users/mjabadilla/Library/Python/2.7/bin:/usr/local/opt/openssl/bin:/Applications/Postgres.app/Contents/Versions/latest/bin:/Users/mjabadilla/.local/bin:/Users/mjabadilla/Library/Android/sdk/emulator:/Users/mjabadilla/Library/Android/sdk/platform-tools:/Users/mjabadilla/Library/Android/sdk/tools:/Users/mjabadilla/.rvm/bin
 
 Yarn version: 
   1.17.0
@@ -14,17 +14,17 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2fshort-uuid: Not found
-      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.17.0/libexec/lib/cli.js:66823:18)
-      at Request.self.callback (/usr/local/Cellar/yarn/1.17.0/libexec/lib/cli.js:140439:22)
+  Error: https://github.com/expo/react-native/archive/sdk-33.0.7.tar.gz: Request failed "404 Not Found"
+      at ResponseError.ExtendableBuiltin (/usr/local/Cellar/yarn/1.17.0/libexec/lib/cli.js:696:66)
+      at new ResponseError (/usr/local/Cellar/yarn/1.17.0/libexec/lib/cli.js:802:124)
+      at Request.<anonymous> (/usr/local/Cellar/yarn/1.17.0/libexec/lib/cli.js:66893:16)
       at Request.emit (events.js:203:13)
-      at Request.<anonymous> (/usr/local/Cellar/yarn/1.17.0/libexec/lib/cli.js:141411:10)
-      at Request.emit (events.js:203:13)
-      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.17.0/libexec/lib/cli.js:141333:12)
-      at Object.onceWrapper (events.js:291:20)
-      at IncomingMessage.emit (events.js:208:15)
-      at endReadableNT (_stream_readable.js:1154:12)
-      at processTicksAndRejections (internal/process/task_queues.js:77:11)
+      at Request.module.exports.Request.onRequestResponse (/usr/local/Cellar/yarn/1.17.0/libexec/lib/cli.js:141316:10)
+      at ClientRequest.emit (events.js:208:15)
+      at HTTPParser.parserOnIncomingClient [as onIncoming] (_http_client.js:565:23)
+      at HTTPParser.parserOnHeadersComplete (_http_common.js:116:17)
+      at TLSSocket.socketOnData (_http_client.js:452:22)
+      at TLSSocket.emit (events.js:203:13)
 
 npm manifest: 
   {
@@ -46,47 +46,46 @@ npm manifest:
       "web:start": "cd ../web && yarn start"
     },
     "dependencies": {
-      "apollo-client": "^2.6.3",
-      "aws-amplify": "^1.1.29",
-      "aws-amplify-react-native": "2.1.13",
-      "aws-appsync": "^1.8.1",
-      "expo": "33.0.6",
-      "formik": "1.5.7",
-      "graphql-tag": "^2.10.1",
-      "hex-to-rgb": "^1.0.1",
-      "lodash": "^4.17.11",
-      "patch-package": "^6.1.2",
-      "react": "16.8.3",
-      "react-apollo": "^2.5.6",
+      "apollo-client": "2.6.3",
+      "aws-amplify": "1.1.30",
+      "aws-amplify-react-native": "2.1.14",
+      "aws-appsync": "1.8.1",
+      "expo": "33.0.7",
+      "formik": "1.5.8",
+      "graphql-tag": "2.10.1",
+      "hex-to-rgb": "1.0.1",
+      "lodash": "4.17.14",
+      "react": "16.8.6",
+      "react-apollo": "2.5.8",
       "react-dom": "16.8.6",
-      "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
-      "react-native-animatable": "^1.3.2",
+      "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.7.tar.gz",
+      "react-native-animatable": "1.3.2",
       "react-native-elements": "1.1.0",
-      "react-native-keyboard-aware-scroll-view": "^0.8.0",
-      "react-native-mime-types": "^2.2.1",
-      "react-native-qrcode-svg": "^5.1.2",
-      "react-native-web": "0.11.4",
-      "react-navigation": "3.11.0",
-      "short-uuid": "^3.1.1",
-      "styled-components": "4.3.1",
+      "react-native-keyboard-aware-scroll-view": "0.8.0",
+      "react-native-mime-types": "2.2.1",
+      "react-native-qrcode-svg": "5.1.2",
+      "react-native-web": "0.11.5",
+      "react-navigation": "3.11.1",
+      "styled-components": "4.3.2",
       "yup": "0.27.0"
     },
     "devDependencies": {
-      "@types/base-64": "^0.1.3",
-      "@types/react": "16.8.20",
-      "@types/react-native": "0.57.63",
-      "@types/styled-components": "^4.1.16",
-      "@types/yup": "0.26.16",
-      "babel-plugin-styled-components": "1.10.1",
+      "@types/base-64": "0.1.3",
+      "@types/react": "16.8.23",
+      "@types/react-native": "0.60.0",
+      "@types/styled-components": "4.1.18",
+      "@types/yup": "0.26.21",
+      "babel-plugin-styled-components": "1.10.6",
       "babel-preset-expo": "5.2.0",
-      "react-native-testing-library": "^1.9.1",
+      "patch-package": "6.1.2",
+      "react-native-testing-library": "1.9.1",
       "tslint": "5.17.0",
       "tslint-config-prettier": "1.18.0",
       "tslint-react": "4.0.0",
       "tslint-react-hooks": "2.1.1",
       "typescript": "3.5.2",
       "typescript-styled-plugin": "0.14.0",
-      "utility-types": "^3.7.0"
+      "utility-types": "3.7.0"
     }
   }
 
@@ -1389,11 +1388,6 @@ Lockfile:
     version "0.3.1"
     resolved "https://registry.yarnpkg.com/ansi/-/ansi-0.3.1.tgz#0c42d4fb17160d5a9af1e484bace1c66922c1b21"
     integrity sha1-DELU+xcWDVqa8eSEus4cZpIsGyE=
-  
-  any-base@^1.1.0:
-    version "1.1.0"
-    resolved "https://registry.yarnpkg.com/any-base/-/any-base-1.1.0.tgz#ae101a62bc08a597b4c9ab5b7089d456630549fe"
-    integrity sha512-uMgjozySS8adZZYePpaWs8cxB9/kdzmpX6SgJZ+wbz1K5eYk5QMYDVJaZKhxyIHUdnnJkfR7SVgStgH7LkGUyg==
   
   anymatch@^2.0.0:
     version "2.0.0"
@@ -6902,14 +6896,6 @@ Lockfile:
     version "0.1.1"
     resolved "https://registry.yarnpkg.com/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
     integrity sha512-vFwSUfQvqybiICwZY5+DAWIPLKsWO31Q91JSKl3UYv+K5c2QRPzn0qzec6QPu1Qc9eHYItiP3NdJqNVqetYAww==
-  
-  short-uuid@^3.1.1:
-    version "3.1.1"
-    resolved "https://registry.yarnpkg.com/short-uuid/-/short-uuid-3.1.1.tgz#3ff427074b5fa7822c3793994d18a7a82e2f73a4"
-    integrity sha512-7dI69xtJYpTIbg44R6JSgrbDtZFuZ9vAwwmnF/L0PinykbFrhQ7V8omKsQcVw1TP0nYJ7uQp1PN6/aVMkzQFGQ==
-    dependencies:
-      any-base "^1.1.0"
-      uuid "^3.3.2"
   
   signal-exit@^3.0.0, signal-exit@^3.0.2:
     version "3.0.2"

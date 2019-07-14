@@ -1,6 +1,6 @@
 #!/bin/sh -x
 
-sh ./prep-module.sh products
+sh ./prep-module.sh products || { echo "products prep failed" ; exit 1; }
 
 echo 'Build and Tests are passing'
 

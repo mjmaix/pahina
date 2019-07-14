@@ -1,6 +1,6 @@
 # NOTE:
 #  generated mutation/queries does not exclude field specific auth
-#  active: Boolean @auth(rules: [{ allow: groups, groups: ["Admins"] }])
+#  active: Boolean @auth(rules: [{ allow: groups, groups: ["Admin"] }])
 
 enum PahinaNoteStatus {
   DRAFT
@@ -35,7 +35,7 @@ type PahinaUser
   @auth(
     rules: [
       { allow: owner, ownerField: "id", operations: [create, update, read] }
-      { allow: groups, groups: ["Admins"] }
+      { allow: groups, groups: ["Admin"] }
     ]
   ) {
   id: ID!
@@ -53,7 +53,7 @@ type PahinaUser
 
 type PahinaMainStore
   @model(subscriptions: null, mutations: null)
-  @auth(rules: [{ allow: groups, groups: ["Admins"] }]) {
+  @auth(rules: [{ allow: groups, groups: ["Admin"] }]) {
   id: ID!
   digitalPublicationId: String
   digitalLocationId: String
@@ -65,7 +65,7 @@ type PahinaUserStore
   @auth(
     rules: [
       { allow: owner, ownerField: "ownerId", operations: [read] }
-      { allow: groups, groups: ["Admins"] }
+      { allow: groups, groups: ["Admin"] }
     ]
   ) {
   ownerId: String!
@@ -82,7 +82,7 @@ type PahinaUserStoreProduct
   @auth(
     rules: [
       { allow: owner, ownerField: "owner", operations: [read] }
-      { allow: groups, groups: ["Admins"] }
+      { allow: groups, groups: ["Admin"] }
     ]
   ) {
   sku: String!
@@ -113,7 +113,7 @@ type PahinaNote
   @auth(
     rules: [
       { allow: owner, ownerField: "author", operations: [create, update, read] }
-      { allow: groups, groups: ["Admins"] }
+      { allow: groups, groups: ["Admin"] }
     ]
   ) {
   id: ID!
@@ -131,11 +131,7 @@ type PahinaCase
   @model(subscriptions: null)
   @auth(
     rules: [
-      {
-        allow: groups
-        groups: ["Admins"]
-        operations: [update, create, delete]
-      }
+      { allow: groups, groups: ["Admin"], operations: [update, create, delete] }
     ]
   ) {
   id: ID!

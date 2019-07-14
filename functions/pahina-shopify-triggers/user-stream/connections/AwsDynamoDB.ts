@@ -9,7 +9,7 @@ class AwsDynamoDB {
   }
 
   putItem = (obj: DynamoDB.Types.PutItemInput) => {
-    console.log('[putItem]', obj);
+    console.log('[PutItem]', obj);
     return this.ddb.putItem(obj).promise();
   };
 }

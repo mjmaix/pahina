@@ -1,7 +1,7 @@
 #!/bin/sh -x
 
-sh ./prep-module.sh note-stream
-sh ./prep-module.sh user-stream
+sh ./prep-module.sh note-stream || { echo "note-stream prep failed" ; exit 1; }
+sh ./prep-module.sh user-stream|| { echo "user-stream prep failed" ; exit 1; }
 
 echo 'Build and Tests are passing'
 

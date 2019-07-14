@@ -101,11 +101,7 @@ Resources:
               Fn::ImportValue:
                 !Join [":", [ !FindInMap [ "AmplifyProject", "GraphQLAPIIdOutput", !Ref EnvType ], "GetAtt", "PahinaUserTable", "StreamArn" ] ]
             StartingPosition: TRIM_HORIZON
-            BatchSize:
-              Fn::FindInMap:
-              - EnvConfigMap
-              - BatchSize
-              - Ref: EnvType
+            BatchSize: 1
             Enabled: true
   
 Outputs:
