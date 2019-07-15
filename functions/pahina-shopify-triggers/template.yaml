@@ -24,7 +24,7 @@ Parameters:
   ShopifyGqlApiHost:
     Description: Shopify hostname
     Type: String
-    Default: freemjabadilla.myshopify.com
+    Default: 'freelitemjabadilla.myshopify.com' 
 Mappings:
   EnvConfigMap:
     BatchSize:
@@ -32,7 +32,7 @@ Mappings:
       prod: 10
   AmplifyProject:
     GraphQLAPIIdOutput:
-      dev: 3zapujkk4jen5pg5c6gkouinom
+      dev: 3bhpj3dbivcpfmp7olov6zcody
       prod: ''
 Conditions:
   IsDev:

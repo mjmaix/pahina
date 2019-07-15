@@ -12,7 +12,7 @@ Parameters:
       - dev
       - prod
       - test 
-
+      - NONE
   ShopifyApiKey:
     Description: 'Shopify API Key'
     Type: AWS::SSM::Parameter::Value<String>
@@ -26,7 +26,7 @@ Parameters:
   ShopifyApiHost:
     Description: 'Shopify hostname'
     Type: String
-    Default: 'freemjabadilla.myshopify.com' 
+    Default: 'freelitemjabadilla.myshopify.com' 
 
   ShopifyApiVersion:
     Description: 'Shopify API version'
@@ -43,11 +43,13 @@ Mappings:
 
 Conditions: 
   IsDev: !Equals [ !Ref EnvType, dev ]
+  ShouldNotCreateEnvResources:
+    Fn::Equals: [ !Ref EnvType, "NONE"]
     
 Globals:
   Function:
     Handler: app.handler
-    Timeout: 3
+    Timeout: 30
     Environment: 
       Variables:
         SHOPIFY_API_KEY: !Ref ShopifyApiKey
