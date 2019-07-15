@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { MAX_BATCH_UPLOAD } from '../PahinaCase/config';
 
 export class DataPool<T> {
   data: T[];
@@ -25,14 +26,15 @@ export class DataPool<T> {
 
   hasNext = () => {
     const { data } = this;
-    return data.length > 0;
+    return data.length > 0 && MAX_BATCH_UPLOAD > this.ctr;
   };
 
   remainingIteration = () => {
     const { data, batchSize: size } = this;
     const mod = data.length % size ? 1 : 0;
     const totalFiles = Math.floor(data.length / size);
-    return totalFiles + mod;
+    const totalWithMod = totalFiles + mod;
+    return MAX_BATCH_UPLOAD < totalWithMod ? MAX_BATCH_UPLOAD : totalWithMod;
   };
 
   counter = () => {

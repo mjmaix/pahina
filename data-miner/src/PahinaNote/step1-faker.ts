@@ -10,7 +10,7 @@ const asyncExec = util.promisify(exec);
 const asyncRimraf = util.promisify(rimraf);
 
 async function Step1() {
-  const pahinaNoteCaseId = 'showdocs/1/33521';
+  const pahinaNoteCaseId = 'showdocs/1/61557';
   const username = 'b964512a-2d73-43b0-ba4d-7da8f9bf9f12';
   const outFile = `${FILES_DIR}/step1.json`;
 

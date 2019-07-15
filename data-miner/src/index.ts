@@ -17,8 +17,8 @@ const all = async () => {
     //   await PahinaCaseStep2();
     //   await PahinaCaseStep3();
     //   await PahinaCaseStep4();
-    await PahinaCaseStep5();
-    await PahinaCaseStep6();
+    // await PahinaCaseStep5();
+    // await PahinaCaseStep6();
   };
   await PahinaCase();
 
