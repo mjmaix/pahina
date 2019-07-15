@@ -1,7 +1,7 @@
 #!/bin/sh -x
 
 sh ./prep-module.sh note-stream || { echo "note-stream prep failed" ; exit 1; }
-sh ./prep-module.sh user-stream|| { echo "user-stream prep failed" ; exit 1; }
+sh ./prep-module.sh user-stream || { echo "user-stream prep failed" ; exit 1; }
 
 echo 'Build and Tests are passing'
 
@@ -13,7 +13,7 @@ REGION=ap-southeast-1
 
 sam package \
 --output-template-file $OUTPUT_FILE \
---s3-bucket $BUCKET
+--s3-bucket $BUCKET || { echo "sam package failed" ; exit 1; }
 
 sam deploy \
 --template-file $OUTPUT_FILE \
@@ -21,7 +21,8 @@ sam deploy \
 --capabilities CAPABILITY_IAM \
 --region $REGION \
 --parameter-overrides \
-   EnvType=$ENV_TYPE
+   EnvType=$ENV_TYPE \
+ || { echo "sam deploy failed" ; exit 1; }
 
 sh ./post-deploy.sh note-stream
 sh ./post-deploy.sh user-stream

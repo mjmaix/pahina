@@ -13,18 +13,16 @@ Parameters:
     - prod
     - test
     - NONE
-  ShopifyApiKey:
-    Description: Shopify API Key
-    Type: AWS::SSM::Parameter::Value<String>
-    Default: shpy_freemjabadilla_gql_api_key
-  ShopifyApiPwd:
-    Description: Shopify password
-    Type: AWS::SSM::Parameter::Value<String>
-    Default: shpy_freemjabadilla_gql_api_pwd
-  ShopifyGqlApiHost:
+  ShopifyApiHost:
     Description: Shopify hostname
     Type: String
     Default: freelitemjabadilla.myshopify.com
+  ShopifyApiVersion:
+    Description: Shopify API version
+    Type: String
+    Default: 2019-07
+    AllowedValues:
+    - 2019-07
 Mappings:
   EnvConfigMap:
     BatchSize:
@@ -50,19 +48,18 @@ Globals:
     Runtime: nodejs10.x
     Environment:
       Variables:
-        SHOPIFY_API_KEY:
-          Ref: ShopifyApiKey
-        SHOPIFY_API_PWD:
-          Ref: ShopifyApiPwd
         SHOPIFY_API_HOSTNAME:
-          Ref: ShopifyGqlApiHost
+          Ref: ShopifyApiHost
         REGION:
           Ref: AWS::Region
+        ENV:
+          Ref: EnvType
 Resources:
   NoteStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-triggers/c90929d21ebabc2e8911cdd600c26e8a
+      CodeUri: s3://pahina-shopify-triggers/188044b689cbf13cf57df08acef69322
+      Timeout: 240
       Events:
         StreamEvent:
           Type: DynamoDB
@@ -85,10 +82,80 @@ Resources:
               - BatchSize
               - Ref: EnvType
             Enabled: true
+      Environment:
+        Variables:
+          SHOPIFY_API_HOSTNAME:
+            Ref: ShopifyApiHost
+          SHOPIFY_API_VERSION:
+            Ref: ShopifyApiVersion
+          USER_TABLE_NAME:
+            Fn::ImportValue:
+              Fn::Join:
+              - ':'
+              - - Fn::FindInMap:
+                  - AmplifyProject
+                  - GraphQLAPIIdOutput
+                  - Ref: EnvType
+                - GetAtt
+                - PahinaUserTable
+                - Name
+          USER_STORE_TABLE_NAME:
+            Fn::ImportValue:
+              Fn::Join:
+              - ':'
+              - - Fn::FindInMap:
+                  - AmplifyProject
+                  - GraphQLAPIIdOutput
+                  - Ref: EnvType
+                - GetAtt
+                - PahinaUserStoreTable
+                - Name
+          USER_STORE_PRODUCT_TABLE_NAME:
+            Fn::ImportValue:
+              Fn::Join:
+              - ':'
+              - - Fn::FindInMap:
+                  - AmplifyProject
+                  - GraphQLAPIIdOutput
+                  - Ref: EnvType
+                - GetAtt
+                - PahinaUserStoreProductTable
+                - Name
+      Policies:
+      - SSMParameterReadPolicy:
+          ParameterName: /freelitemjabadilla.myshopify.com/dev/ApiKey
+      - SSMParameterReadPolicy:
+          ParameterName: /freelitemjabadilla.myshopify.com/dev/Password
+      - SSMParameterReadPolicy:
+          ParameterName: /freelitemjabadilla.myshopify.com/dev/SharedSecret
+      - DynamoDBCrudPolicy:
+          TableName:
+            Fn::ImportValue:
+              Fn::Join:
+              - ':'
+              - - Fn::FindInMap:
+                  - AmplifyProject
+                  - GraphQLAPIIdOutput
+                  - Ref: EnvType
+                - GetAtt
+                - PahinaCaseTable
+                - Name
+      - DynamoDBCrudPolicy:
+          TableName:
+            Fn::ImportValue:
+              Fn::Join:
+              - ':'
+              - - Fn::FindInMap:
+                  - AmplifyProject
+                  - GraphQLAPIIdOutput
+                  - Ref: EnvType
+                - GetAtt
+                - PahinaUserTable
+                - Name
   UserStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-triggers/1df6f3d4ca9aa5c69a893d1f19890b22
+      CodeUri: s3://pahina-shopify-triggers/ae3639e13dad9f7a5d8c064b329a0313
       Environment:
         Variables:
           USER_STORE_TABLE_NAME:

@@ -11,7 +11,7 @@ const asyncRimraf = util.promisify(rimraf);
 
 async function Step1() {
   const pahinaNoteCaseId = 'showdocs/1/61557';
-  const username = 'b964512a-2d73-43b0-ba4d-7da8f9bf9f12';
+  const username = '50d5d9e7-703f-469e-9297-982e9dd9351e';
   const outFile = `${FILES_DIR}/step1.json`;
 
   const updatedAt = faker.date.past().toISOString();

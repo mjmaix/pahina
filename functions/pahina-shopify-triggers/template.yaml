@@ -13,22 +13,22 @@ Parameters:
     - prod
     - test
     - NONE
-  ShopifyApiKey:
-    Description: Shopify API Key
-    Type: AWS::SSM::Parameter::Value<String>
-    Default: shpy_freemjabadilla_gql_api_key
-  ShopifyApiPwd:
-    Description: Shopify password
-    Type: AWS::SSM::Parameter::Value<String>
-    Default: shpy_freemjabadilla_gql_api_pwd
-  ShopifyGqlApiHost:
-    Description: Shopify hostname
+
+  ShopifyApiHost:
+    Description: 'Shopify hostname'
     Type: String
     Default: 'freelitemjabadilla.myshopify.com' 
+
+  ShopifyApiVersion:
+    Description: 'Shopify API version'
+    Type: String
+    Default: '2019-07'
+    AllowedValues: 
+      - 2019-07
 Mappings:
   EnvConfigMap:
     BatchSize:
-      dev: 2
+      dev: 1
       prod: 10
   AmplifyProject:
     GraphQLAPIIdOutput:
@@ -48,27 +48,31 @@ Globals:
     Runtime: nodejs10.x
     Environment:
       Variables:
-        SHOPIFY_API_KEY:
-          Ref: ShopifyApiKey
-        SHOPIFY_API_PWD:
-          Ref: ShopifyApiPwd
-        SHOPIFY_API_HOSTNAME:
-          Ref: ShopifyGqlApiHost
-        REGION: 
-          Ref: AWS::Region
+        SHOPIFY_API_HOSTNAME: !Ref ShopifyApiHost
+        REGION: !Ref AWS::Region
+        ENV: !Ref EnvType
         
 Resources:
   NoteStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: note-stream/lib
+      Timeout: 240
       Events:
         StreamEvent:
           Type: DynamoDB
           Properties:
             Stream:
               Fn::ImportValue:
-                !Join [":", [ !FindInMap [ "AmplifyProject", "GraphQLAPIIdOutput", !Ref EnvType ], "GetAtt", "PahinaNoteTable", "StreamArn" ] ]
+                !Join
+                  - ":"
+                  - - !FindInMap
+                      - "AmplifyProject"
+                      - "GraphQLAPIIdOutput"
+                      - !Ref EnvType
+                    - "GetAtt"
+                    - "PahinaNoteTable"
+                    - "StreamArn"
             StartingPosition: TRIM_HORIZON
             BatchSize:
               Fn::FindInMap:
@@ -76,6 +80,76 @@ Resources:
               - BatchSize
               - Ref: EnvType
             Enabled: true
+      Environment: 
+        Variables:
+          SHOPIFY_API_HOSTNAME: !Ref ShopifyApiHost
+          SHOPIFY_API_VERSION: !Ref ShopifyApiVersion
+          USER_TABLE_NAME:
+            Fn::ImportValue:
+              !Join 
+                - ":"
+                - - !FindInMap 
+                    - "AmplifyProject"
+                    - "GraphQLAPIIdOutput"
+                    - !Ref EnvType
+                  - "GetAtt"
+                  - "PahinaUserTable"
+                  - "Name"
+          USER_STORE_TABLE_NAME:
+            Fn::ImportValue:
+              !Join 
+                - ":"
+                - - !FindInMap 
+                    - "AmplifyProject"
+                    - "GraphQLAPIIdOutput"
+                    - !Ref EnvType
+                  - "GetAtt"
+                  - "PahinaUserStoreTable"
+                  - "Name"
+          USER_STORE_PRODUCT_TABLE_NAME:
+            Fn::ImportValue:
+              !Join 
+                - ":"
+                - - !FindInMap 
+                    - "AmplifyProject"
+                    - "GraphQLAPIIdOutput"
+                    - !Ref EnvType
+                  - "GetAtt"
+                  - "PahinaUserStoreProductTable"
+                  - "Name"
+      Policies:
+        # - SSMParameterReadPolicy:
+        #     ParameterName: !Sub "/${!Ref ShopifyApiHost}/${!Ref EnvType}/*"
+        - SSMParameterReadPolicy:
+            ParameterName: "/freelitemjabadilla.myshopify.com/dev/ApiKey"
+        - SSMParameterReadPolicy:
+            ParameterName: "/freelitemjabadilla.myshopify.com/dev/Password"
+        - SSMParameterReadPolicy:
+            ParameterName: "/freelitemjabadilla.myshopify.com/dev/SharedSecret"
+        - DynamoDBCrudPolicy:
+            TableName:
+              Fn::ImportValue:
+                !Join 
+                  - ":"
+                  - - !FindInMap 
+                      - "AmplifyProject"
+                      - "GraphQLAPIIdOutput"
+                      - !Ref EnvType
+                    - "GetAtt"
+                    - "PahinaCaseTable"
+                    - "Name"
+        - DynamoDBCrudPolicy:
+            TableName:
+              Fn::ImportValue:
+                !Join 
+                  - ":"
+                  - - !FindInMap 
+                      - "AmplifyProject"
+                      - "GraphQLAPIIdOutput"
+                      - !Ref EnvType
+                    - "GetAtt"
+                    - "PahinaUserTable"
+                    - "Name"
   UserStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -84,22 +158,43 @@ Resources:
         Variables:
           USER_STORE_TABLE_NAME:
             Fn::ImportValue:
-                !Join [":", [ !FindInMap [ "AmplifyProject", "GraphQLAPIIdOutput", !Ref EnvType ], "GetAtt", "PahinaUserStoreTable", "Name" ] ]
+              !Join 
+                - ":"
+                - - !FindInMap 
+                    - "AmplifyProject"
+                    - "GraphQLAPIIdOutput"
+                    - !Ref EnvType
+                  - "GetAtt"
+                  - "PahinaUserStoreTable"
+                  - "Name"
       Policies:
         - DynamoDBCrudPolicy:
             TableName:
               Fn::ImportValue:
-                  !Join [":", [ !FindInMap [ "AmplifyProject", "GraphQLAPIIdOutput", !Ref EnvType ], "GetAtt", "PahinaUserStoreTable", "Name" ] ]
-        # - AppSyncCrudPolicy:
-        #     GraphQLAPIId:
-        #       !FindInMap [ "AmplifyProject", "GraphQLAPIIdOutput", !Ref EnvType ]
+                !Join 
+                  - ":"
+                  - - !FindInMap 
+                      - "AmplifyProject"
+                      - "GraphQLAPIIdOutput"
+                      - !Ref EnvType
+                    - "GetAtt"
+                    - "PahinaUserStoreTable"
+                    - "Name"
       Events:
         StreamEvent:
           Type: DynamoDB
           Properties:
             Stream:
               Fn::ImportValue:
-                !Join [":", [ !FindInMap [ "AmplifyProject", "GraphQLAPIIdOutput", !Ref EnvType ], "GetAtt", "PahinaUserTable", "StreamArn" ] ]
+                !Join 
+                  - ":"
+                  - - !FindInMap 
+                      - "AmplifyProject"
+                      - "GraphQLAPIIdOutput"
+                      - !Ref EnvType
+                    - "GetAtt"
+                    - "PahinaUserTable"
+                    - "StreamArn"
             StartingPosition: TRIM_HORIZON
             BatchSize: 1
             Enabled: true
