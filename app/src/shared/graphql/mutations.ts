@@ -46,6 +46,7 @@ export const createPahinaUser = `mutation CreatePahinaUser($input: CreatePahinaU
         rawResponse
         createdAt
         updatedAt
+        digitalSignature
       }
       nextToken
     }
@@ -97,6 +98,7 @@ export const updatePahinaUser = `mutation UpdatePahinaUser($input: UpdatePahinaU
         rawResponse
         createdAt
         updatedAt
+        digitalSignature
       }
       nextToken
     }
@@ -148,6 +150,7 @@ export const deletePahinaUser = `mutation DeletePahinaUser($input: DeletePahinaU
         rawResponse
         createdAt
         updatedAt
+        digitalSignature
       }
       nextToken
     }

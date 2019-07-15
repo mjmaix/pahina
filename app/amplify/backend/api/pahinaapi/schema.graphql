@@ -99,6 +99,7 @@ type PahinaUserStoreProduct
   rawResponse: String
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
+  digitalSignature: String
 }
 
 type PahinaNote

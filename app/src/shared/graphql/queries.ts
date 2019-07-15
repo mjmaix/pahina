@@ -46,6 +46,7 @@ export const getPahinaUser = `query GetPahinaUser($id: ID!) {
         rawResponse
         createdAt
         updatedAt
+        digitalSignature
       }
       nextToken
     }
@@ -141,6 +142,7 @@ export const getPahinaUserStore = `query GetPahinaUserStore($ownerId: String!, $
         rawResponse
         createdAt
         updatedAt
+        digitalSignature
       }
       nextToken
     }
@@ -238,6 +240,7 @@ export const getPahinaUserStoreProduct = `query GetPahinaUserStoreProduct($store
     rawResponse
     createdAt
     updatedAt
+    digitalSignature
   }
 }
 `;
@@ -284,6 +287,7 @@ export const listPahinaUserStoreProducts = `query ListPahinaUserStoreProducts(
       rawResponse
       createdAt
       updatedAt
+      digitalSignature
     }
     nextToken
   }
