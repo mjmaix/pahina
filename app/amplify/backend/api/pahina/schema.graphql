@@ -2,6 +2,11 @@
 #  generated mutation/queries does not exclude field specific auth
 #  active: Boolean @auth(rules: [{ allow: groups, groups: ["Admin"] }])
 
+# type Eraser @model {
+#   id: ID!
+#   name: String
+# }
+
 enum PahinaNoteStatus {
   DRAFT
   PUBLISHED
@@ -24,9 +29,8 @@ enum PahinaPriceLevel {
 }
 
 enum PahinaStoreProductStatus {
-  SENT
-  CREATING
   CREATED
+  SENT
   FAILED
 }
 
@@ -78,14 +82,13 @@ type PahinaUserStore
 
 type PahinaUserStoreProduct
   @model(subscriptions: null, mutations: null)
-  @key(fields: ["storeId", "sku"])
   @auth(
     rules: [
       { allow: owner, ownerField: "owner", operations: [read] }
       { allow: groups, groups: ["Admin"] }
     ]
   ) {
-  sku: String!
+  id: ID!
   storeId: String!
   ownerId: String!
   owner: PahinaUser @connection(name: "OwnedProducts", keyField: "ownerId")
@@ -118,14 +121,20 @@ type PahinaNote
     ]
   ) {
   id: ID!
-  author: PahinaUser @connection(name: "UserStores")
-  case: PahinaCase @connection(name: "NoteCases")
+  author: PahinaUser @connection(name: "UserStores", keyField: "authorId")
+  authorId: String
+  case: PahinaCase @connection(name: "NoteCases", keyField: "caseId")
+  caseId: String
   promotional: String
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
   status: PahinaNoteStatus
   priceLevel: PahinaPriceLevel
   value: String
+  caseTitle: String
+  caseCode: String
+  caseDate: String
+  caseLink: String
 }
 
 type PahinaCase

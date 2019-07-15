@@ -13,12 +13,18 @@ export const onCreatePahinaCase = `subscription OnCreatePahinaCase {
     notes {
       items {
         id
+        authorId
+        caseId
         promotional
         createdAt
         updatedAt
         status
         priceLevel
         value
+        caseTitle
+        caseCode
+        caseDate
+        caseLink
       }
       nextToken
     }

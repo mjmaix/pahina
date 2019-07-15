@@ -14,12 +14,18 @@ export const createPahinaUser = `mutation CreatePahinaUser($input: CreatePahinaU
     notes {
       items {
         id
+        authorId
+        caseId
         promotional
         createdAt
         updatedAt
         status
         priceLevel
         value
+        caseTitle
+        caseCode
+        caseDate
+        caseLink
       }
       nextToken
     }
@@ -34,7 +40,7 @@ export const createPahinaUser = `mutation CreatePahinaUser($input: CreatePahinaU
     }
     ownedProducts {
       items {
-        sku
+        id
         storeId
         ownerId
         shopifyProductId
@@ -66,12 +72,18 @@ export const updatePahinaUser = `mutation UpdatePahinaUser($input: UpdatePahinaU
     notes {
       items {
         id
+        authorId
+        caseId
         promotional
         createdAt
         updatedAt
         status
         priceLevel
         value
+        caseTitle
+        caseCode
+        caseDate
+        caseLink
       }
       nextToken
     }
@@ -86,7 +98,7 @@ export const updatePahinaUser = `mutation UpdatePahinaUser($input: UpdatePahinaU
     }
     ownedProducts {
       items {
-        sku
+        id
         storeId
         ownerId
         shopifyProductId
@@ -118,12 +130,18 @@ export const deletePahinaUser = `mutation DeletePahinaUser($input: DeletePahinaU
     notes {
       items {
         id
+        authorId
+        caseId
         promotional
         createdAt
         updatedAt
         status
         priceLevel
         value
+        caseTitle
+        caseCode
+        caseDate
+        caseLink
       }
       nextToken
     }
@@ -138,7 +156,7 @@ export const deletePahinaUser = `mutation DeletePahinaUser($input: DeletePahinaU
     }
     ownedProducts {
       items {
-        sku
+        id
         storeId
         ownerId
         shopifyProductId
@@ -179,6 +197,7 @@ export const createPahinaNote = `mutation CreatePahinaNote($input: CreatePahinaN
         nextToken
       }
     }
+    authorId
     case {
       id
       title
@@ -191,12 +210,17 @@ export const createPahinaNote = `mutation CreatePahinaNote($input: CreatePahinaN
         nextToken
       }
     }
+    caseId
     promotional
     createdAt
     updatedAt
     status
     priceLevel
     value
+    caseTitle
+    caseCode
+    caseDate
+    caseLink
   }
 }
 `;
@@ -222,6 +246,7 @@ export const updatePahinaNote = `mutation UpdatePahinaNote($input: UpdatePahinaN
         nextToken
       }
     }
+    authorId
     case {
       id
       title
@@ -234,12 +259,17 @@ export const updatePahinaNote = `mutation UpdatePahinaNote($input: UpdatePahinaN
         nextToken
       }
     }
+    caseId
     promotional
     createdAt
     updatedAt
     status
     priceLevel
     value
+    caseTitle
+    caseCode
+    caseDate
+    caseLink
   }
 }
 `;
@@ -265,6 +295,7 @@ export const deletePahinaNote = `mutation DeletePahinaNote($input: DeletePahinaN
         nextToken
       }
     }
+    authorId
     case {
       id
       title
@@ -277,12 +308,17 @@ export const deletePahinaNote = `mutation DeletePahinaNote($input: DeletePahinaN
         nextToken
       }
     }
+    caseId
     promotional
     createdAt
     updatedAt
     status
     priceLevel
     value
+    caseTitle
+    caseCode
+    caseDate
+    caseLink
   }
 }
 `;
@@ -298,12 +334,18 @@ export const createPahinaCase = `mutation CreatePahinaCase($input: CreatePahinaC
     notes {
       items {
         id
+        authorId
+        caseId
         promotional
         createdAt
         updatedAt
         status
         priceLevel
         value
+        caseTitle
+        caseCode
+        caseDate
+        caseLink
       }
       nextToken
     }
@@ -322,12 +364,18 @@ export const updatePahinaCase = `mutation UpdatePahinaCase($input: UpdatePahinaC
     notes {
       items {
         id
+        authorId
+        caseId
         promotional
         createdAt
         updatedAt
         status
         priceLevel
         value
+        caseTitle
+        caseCode
+        caseDate
+        caseLink
       }
       nextToken
     }
@@ -346,12 +394,18 @@ export const deletePahinaCase = `mutation DeletePahinaCase($input: DeletePahinaC
     notes {
       items {
         id
+        authorId
+        caseId
         promotional
         createdAt
         updatedAt
         status
         priceLevel
         value
+        caseTitle
+        caseCode
+        caseDate
+        caseLink
       }
       nextToken
     }

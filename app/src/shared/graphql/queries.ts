@@ -14,12 +14,18 @@ export const getPahinaUser = `query GetPahinaUser($id: ID!) {
     notes {
       items {
         id
+        authorId
+        caseId
         promotional
         createdAt
         updatedAt
         status
         priceLevel
         value
+        caseTitle
+        caseCode
+        caseDate
+        caseLink
       }
       nextToken
     }
@@ -34,7 +40,7 @@ export const getPahinaUser = `query GetPahinaUser($id: ID!) {
     }
     ownedProducts {
       items {
-        sku
+        id
         storeId
         ownerId
         shopifyProductId
@@ -130,7 +136,7 @@ export const getPahinaUserStore = `query GetPahinaUserStore($ownerId: String!, $
     }
     products {
       items {
-        sku
+        id
         storeId
         ownerId
         shopifyProductId
@@ -188,9 +194,9 @@ export const listPahinaUserStores = `query ListPahinaUserStores(
   }
 }
 `;
-export const getPahinaUserStoreProduct = `query GetPahinaUserStoreProduct($storeId: String!, $sku: String!) {
-  getPahinaUserStoreProduct(storeId: $storeId, sku: $sku) {
-    sku
+export const getPahinaUserStoreProduct = `query GetPahinaUserStoreProduct($id: ID!) {
+  getPahinaUserStoreProduct(id: $id) {
+    id
     storeId
     ownerId
     owner {
@@ -245,21 +251,17 @@ export const getPahinaUserStoreProduct = `query GetPahinaUserStoreProduct($store
 }
 `;
 export const listPahinaUserStoreProducts = `query ListPahinaUserStoreProducts(
-  $storeId: String
-  $sku: ModelStringKeyConditionInput
   $filter: ModelPahinaUserStoreProductFilterInput
   $limit: Int
   $nextToken: String
 ) {
   listPahinaUserStoreProducts(
-    storeId: $storeId
-    sku: $sku
     filter: $filter
     limit: $limit
     nextToken: $nextToken
   ) {
     items {
-      sku
+      id
       storeId
       ownerId
       owner {
@@ -315,6 +317,7 @@ export const getPahinaNote = `query GetPahinaNote($id: ID!) {
         nextToken
       }
     }
+    authorId
     case {
       id
       title
@@ -327,12 +330,17 @@ export const getPahinaNote = `query GetPahinaNote($id: ID!) {
         nextToken
       }
     }
+    caseId
     promotional
     createdAt
     updatedAt
     status
     priceLevel
     value
+    caseTitle
+    caseCode
+    caseDate
+    caseLink
   }
 }
 `;
@@ -354,6 +362,7 @@ export const listPahinaNotes = `query ListPahinaNotes(
         createdAt
         updatedAt
       }
+      authorId
       case {
         id
         title
@@ -363,12 +372,17 @@ export const listPahinaNotes = `query ListPahinaNotes(
         createdAt
         updatedAt
       }
+      caseId
       promotional
       createdAt
       updatedAt
       status
       priceLevel
       value
+      caseTitle
+      caseCode
+      caseDate
+      caseLink
     }
     nextToken
   }
@@ -386,12 +400,18 @@ export const getPahinaCase = `query GetPahinaCase($id: ID!) {
     notes {
       items {
         id
+        authorId
+        caseId
         promotional
         createdAt
         updatedAt
         status
         priceLevel
         value
+        caseTitle
+        caseCode
+        caseDate
+        caseLink
       }
       nextToken
     }

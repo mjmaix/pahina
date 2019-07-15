@@ -1,53 +1,53 @@
 {
-    "auth": {
-        "pahina96b0423b96b0423b": {
-            "service": "Cognito",
-            "providerPlugin": "awscloudformation",
-            "dependsOn": [
-                {
-                    "category": "function",
-                    "resourceName": "pahina96b0423b96b0423bPostConfirmation",
-                    "triggerProvider": "Cognito",
-                    "attributes": [
-                        "Arn",
-                        "Name"
-                    ]
-                }
-            ]
-        }
-    },
-    "analytics": {
-        "pahina": {
-            "service": "Pinpoint",
-            "providerPlugin": "awscloudformation"
-        }
-    },
-    "storage": {
-        "s32353429e": {
-            "service": "S3",
-            "providerPlugin": "awscloudformation"
-        }
-    },
-    "api": {
-        "pahinaapi": {
-            "service": "AppSync",
-            "providerPlugin": "awscloudformation",
-            "output": {
-                "securityType": "AMAZON_COGNITO_USER_POOLS"
-            }
-        }
-    },
-    "hosting": {
-        "S3AndCloudFront": {
-            "service": "S3AndCloudFront",
-            "providerPlugin": "awscloudformation"
-        }
-    },
-    "function": {
-        "pahina96b0423b96b0423bPostConfirmation": {
-            "service": "Lambda",
-            "providerPlugin": "awscloudformation",
-            "build": true
-        }
-    }
+	"auth": {
+		"pahina96b0423b96b0423b": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [
+				{
+					"category": "function",
+					"resourceName": "pahina96b0423b96b0423bPostConfirmation",
+					"triggerProvider": "Cognito",
+					"attributes": [
+						"Arn",
+						"Name"
+					]
+				}
+			]
+		}
+	},
+	"analytics": {
+		"pahina": {
+			"service": "Pinpoint",
+			"providerPlugin": "awscloudformation"
+		}
+	},
+	"storage": {
+		"s32353429e": {
+			"service": "S3",
+			"providerPlugin": "awscloudformation"
+		}
+	},
+	"api": {
+		"pahina": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"securityType": "AMAZON_COGNITO_USER_POOLS"
+			}
+		}
+	},
+	"hosting": {
+		"S3AndCloudFront": {
+			"service": "S3AndCloudFront",
+			"providerPlugin": "awscloudformation"
+		}
+	},
+	"function": {
+		"pahina96b0423b96b0423bPostConfirmation": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true
+		}
+	}
 }
