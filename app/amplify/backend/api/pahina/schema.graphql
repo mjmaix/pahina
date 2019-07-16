@@ -50,9 +50,20 @@ type PahinaUser
   identityId: String
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
-  notes: [PahinaNote] @connection(name: "UserStores", sortField: "updatedAt")
-  stores: [PahinaUserStore] @connection(name: "UserStores")
-  ownedProducts: [PahinaUserStoreProduct] @connection(name: "OwnedProducts")
+  notes: [PahinaNote]
+    @connection(
+      name: "UserStores"
+      keyField: "authorId"
+      sortField: "updatedAt"
+    )
+  stores: [PahinaUserStore]
+    @connection(name: "UserStores", keyField: "ownerId", sortField: "updatedAt")
+  ownedProducts: [PahinaUserStoreProduct]
+    @connection(
+      name: "OwnedProducts"
+      keyField: "ownerId"
+      sortField: "updatedAt"
+    )
 }
 
 type PahinaMainStore
@@ -64,14 +75,19 @@ type PahinaMainStore
 }
 
 type PahinaUserStore
-  @key(fields: ["ownerId", "skuPrefix"])
   @model(subscriptions: null, mutations: null)
+  @key(
+    name: "ByOwner"
+    fields: ["ownerId", "updatedAt"]
+    queryField: "storeByOwner"
+  )
   @auth(
     rules: [
       { allow: owner, ownerField: "ownerId", operations: [read] }
       { allow: groups, groups: ["Admin"] }
     ]
   ) {
+  id: ID!
   ownerId: String!
   skuPrefix: String!
   owner: PahinaUser! @connection(name: "UserStores", keyField: "ownerId")
@@ -84,15 +100,25 @@ type PahinaUserStoreProduct
   @model(subscriptions: null, mutations: null)
   @auth(
     rules: [
-      { allow: owner, ownerField: "owner", operations: [read] }
+      { allow: owner, ownerField: "ownerId", operations: [read] }
       { allow: groups, groups: ["Admin"] }
     ]
   ) {
   id: ID!
   storeId: String!
   ownerId: String!
-  owner: PahinaUser @connection(name: "OwnedProducts", keyField: "ownerId")
-  store: PahinaUserStore @connection(name: "StoreProducts", keyField: "storeId")
+  owner: PahinaUser
+    @connection(
+      name: "OwnedProducts"
+      keyField: "ownerId"
+      sortField: "updatedAt"
+    )
+  store: PahinaUserStore
+    @connection(
+      name: "StoreProducts"
+      keyField: "storeId"
+      sortField: "updatedAt"
+    )
   shopifyProductId: String
   shopifyShopId: String
   onlineStoreUrl: String
@@ -116,14 +142,24 @@ type PahinaNote
   )
   @auth(
     rules: [
-      { allow: owner, ownerField: "author", operations: [create, update, read] }
+      {
+        allow: owner
+        ownerField: "authorId"
+        operations: [create, update, read]
+      }
       { allow: groups, groups: ["Admin"] }
     ]
   ) {
   id: ID!
-  author: PahinaUser @connection(name: "UserStores", keyField: "authorId")
-  authorId: String
-  case: PahinaCase @connection(name: "NoteCases", keyField: "caseId")
+  author: PahinaUser
+    @connection(
+      name: "UserStores"
+      keyField: "authorId"
+      sortField: "updatedAt"
+    )
+  authorId: String!
+  case: PahinaCase
+    @connection(name: "NoteCases", keyField: "caseId", sortField: "updatedAt")
   caseId: String
   promotional: String
   createdAt: AWSDateTime
@@ -151,7 +187,8 @@ type PahinaCase
   link: String
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
-  notes: [PahinaNote] @connection(name: "NoteCases", sortField: "updatedAt")
+  notes: [PahinaNote]
+    @connection(name: "NoteCases", keyField: "caseId", sortField: "updatedAt")
 }
 
 type Subscription {

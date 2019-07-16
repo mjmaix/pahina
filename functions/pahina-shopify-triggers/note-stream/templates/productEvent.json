@@ -52,7 +52,7 @@
         "SizeBytes": 877,
         "StreamViewType": "NEW_AND_OLD_IMAGES"
       },
-      "eventSourceARN": "arn:aws:dynamodb:ap-southeast-1:991300696177:table/PahinaNote-3bhpj3dbivcpfmp7olov6zcody-dev/stream/2019-07-11T10:36:34.003"
+      "eventSourceARN": "arn:aws:dynamodb:ap-southeast-1:991300696177:table/PahinaNote-wcr4sllqcvfnfnfnqxmjupxv5m-dev/stream/2019-07-11T10:36:34.003"
     },
     {
       "eventID": "bc4a50e3de968cfebe9d0b7b82b1792b",
@@ -106,7 +106,7 @@
         "SizeBytes": 1053,
         "StreamViewType": "NEW_AND_OLD_IMAGES"
       },
-      "eventSourceARN": "arn:aws:dynamodb:ap-southeast-1:991300696177:table/PahinaNote-3bhpj3dbivcpfmp7olov6zcody-dev/stream/2019-07-11T10:36:34.003"
+      "eventSourceARN": "arn:aws:dynamodb:ap-southeast-1:991300696177:table/PahinaNote-wcr4sllqcvfnfnfnqxmjupxv5m-dev/stream/2019-07-11T10:36:34.003"
     }
   ]
 }

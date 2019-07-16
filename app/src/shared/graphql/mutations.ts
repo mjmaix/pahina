@@ -31,6 +31,7 @@ export const createPahinaUser = `mutation CreatePahinaUser($input: CreatePahinaU
     }
     stores {
       items {
+        id
         ownerId
         skuPrefix
         createdAt
@@ -89,6 +90,7 @@ export const updatePahinaUser = `mutation UpdatePahinaUser($input: UpdatePahinaU
     }
     stores {
       items {
+        id
         ownerId
         skuPrefix
         createdAt
@@ -147,6 +149,7 @@ export const deletePahinaUser = `mutation DeletePahinaUser($input: DeletePahinaU
     }
     stores {
       items {
+        id
         ownerId
         skuPrefix
         createdAt

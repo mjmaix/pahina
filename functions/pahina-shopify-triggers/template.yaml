@@ -32,7 +32,7 @@ Mappings:
       prod: 10
   AmplifyProject:
     GraphQLAPIIdOutput:
-      dev: 3bhpj3dbivcpfmp7olov6zcody
+      dev: wcr4sllqcvfnfnfnqxmjupxv5m
       prod: ''
 Conditions:
   IsDev:

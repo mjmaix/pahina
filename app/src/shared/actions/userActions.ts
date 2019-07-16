@@ -42,6 +42,7 @@ export const handleGetAppSyncUser = async (
         notesNextToken,
       },
     });
+
     return response.data;
   } catch (e) {
     logRecord({

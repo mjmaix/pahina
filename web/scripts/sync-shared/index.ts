@@ -1,4 +1,5 @@
 import process from 'process';
+import { exec } from 'child_process';
 import yargs from 'yargs';
 import rimraf from 'rimraf';
 import util from 'util';
@@ -17,6 +18,8 @@ const APP = `${projRootDir}/app/src`;
 const WEB = `${projRootDir}/web/src`;
 const SHARED = `shared`;
 
+const AWS_EXPORTS_SRC = `${APP}/aws-exports.js`;
+const AWS_EXPORTS_DEST = `${WEB}/aws-exports.js`;
 const SYNC_SOURCE = `${APP}/${SHARED}`;
 const SYNC_DEST = `${WEB}`;
 const RIMRAF_CLEAN = `${WEB}/${SHARED}`;
@@ -27,7 +30,9 @@ const RIMRAF_CLEAN = `${WEB}/${SHARED}`;
  * 2. Run sync
  */
 const rimrafAsync = util.promisify(rimraf);
+const execAsync = util.promisify(exec);
 
 rimrafAsync(RIMRAF_CLEAN, {})
+  .then(() => execAsync(`cp ${AWS_EXPORTS_SRC} ${AWS_EXPORTS_DEST}`))
   .then(() => sync(SYNC_SOURCE, SYNC_DEST))
   .catch((err: Error) => console.log(err));

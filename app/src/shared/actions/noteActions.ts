@@ -16,7 +16,6 @@ import {
   PahinaNoteStatus,
 } from '../API';
 import { getPahinaNote } from '../graphql/queries';
-import { AppCognitoUser } from '../types';
 import { updatePahinaNote, createPahinaNote } from '../graphql/mutations';
 
 export const handleGetPahinaNote = async (noteId: string) => {
@@ -41,10 +40,7 @@ export const handleGetPahinaNote = async (noteId: string) => {
   return null;
 };
 
-export const handleUpdatePahinaNote = async (
-  user: AppCognitoUser,
-  data: UpdatePahinaNoteInput,
-) => {
+export const handleUpdatePahinaNote = async (data: UpdatePahinaNoteInput) => {
   logInfo('[START]', 'handleUpdatePahinaNote');
 
   try {
@@ -62,7 +58,7 @@ export const handleUpdatePahinaNote = async (
           id: data.id,
           promotional: data.promotional,
           status: updateStatus,
-          authorId: user.getUsername(),
+          authorId: data.authorId,
           caseId: data.caseId,
           value: data.value,
         },
@@ -135,10 +131,7 @@ export const handlDeletePahinaNote = async (noteId: string) => {
   }
 };
 
-export const handleCreatePahinaNote = async (
-  user: AppCognitoUser,
-  data: CreatePahinaNoteInput,
-) => {
+export const handleCreatePahinaNote = async (data: CreatePahinaNoteInput) => {
   logInfo('[START]', 'handleCreatePahinaNote');
   try {
     const response = await apollo.mutate<
@@ -151,7 +144,7 @@ export const handleCreatePahinaNote = async (
           id: data.id,
           promotional: data.promotional,
           status: data.status || PahinaNoteStatus.DRAFT,
-          authorId: user.getUsername(),
+          authorId: data.authorId,
           caseId: data.caseId,
           value: data.value,
         },
