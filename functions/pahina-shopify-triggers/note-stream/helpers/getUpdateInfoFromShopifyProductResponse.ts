@@ -1,12 +1,6 @@
-import {
-  PutItemInput,
-  AttributeValue,
-  PahinaStoreProductStatus,
-  ShopifyPostProductResponse,
-  PahinaUserStoreProductRecord,
-} from '../types';
 import { ProcessingError } from '../utils/ProcessingError';
 import { isoNow } from '../utils/simpleUtils';
+import { PahinaStoreProductStatus } from './constants';
 
 interface JsonResponse {
   body: any;
@@ -14,7 +8,7 @@ interface JsonResponse {
 }
 
 export async function getUpdateInfoFromShopifyProductResponse(
-  product: PahinaUserStoreProductRecord,
+  product: ProductRecord,
   { body, headers }: JsonResponse,
 ) {
   if (!process.env.USER_STORE_PRODUCT_TABLE_NAME) {

@@ -6,6 +6,7 @@
     "strict": true,
     "types": ["node"],
     "esModuleInterop": true,
-    "inlineSourceMap": true
+    "inlineSourceMap": true,
+    "typeRoots": ["typings"]
   }
 }

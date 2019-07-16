@@ -3,16 +3,16 @@ import { StreamRecord } from 'aws-lambda';
 import { ProcessingError } from './utils/ProcessingError';
 import { pretty } from './utils/simpleUtils';
 
-import { PahinaNoteRecord, PahinaNoteStatus } from './types';
 import { publishProduct } from './helpers/actionPublish';
+import { PahinaNoteStatus } from './helpers/constants';
 
 export const processModifiedRecord = async (Record: StreamRecord) => {
   if (!Record.NewImage || !Record.OldImage) {
     throw new ProcessingError('NewImage or OldImage is empty, not an edit!');
   }
 
-  const note = (Record.NewImage as unknown) as PahinaNoteRecord;
-  const oldNote = (Record.OldImage as unknown) as PahinaNoteRecord;
+  const note = (Record.NewImage as unknown) as NoteRecord;
+  const oldNote = (Record.OldImage as unknown) as NoteRecord;
 
   const oldStatus = oldNote.status.S;
   const newStatus = note.status.S;

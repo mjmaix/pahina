@@ -58,7 +58,7 @@ Resources:
   NoteStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-triggers/e7136627dab4bbb633f1be119b6f3cef
+      CodeUri: s3://pahina-shopify-triggers/58284f85417ffa1bc5463875bab5ca37
       Timeout: 240
       Events:
         StreamEvent:
@@ -110,6 +110,17 @@ Resources:
                 - GetAtt
                 - PahinaUserStoreTable
                 - Name
+          CASE_TABLE_NAME:
+            Fn::ImportValue:
+              Fn::Join:
+              - ':'
+              - - Fn::FindInMap:
+                  - AmplifyProject
+                  - GraphQLAPIIdOutput
+                  - Ref: EnvType
+                - GetAtt
+                - PahinaCaseTable
+                - Name
           USER_STORE_PRODUCT_TABLE_NAME:
             Fn::ImportValue:
               Fn::Join:
@@ -123,11 +134,29 @@ Resources:
                 - Name
       Policies:
       - SSMParameterReadPolicy:
-          ParameterName: /freelitemjabadilla.myshopify.com/dev/ApiKey
+          ParameterName:
+            Fn::Sub:
+            - /${host}/${env}/ApiKey
+            - host:
+                Ref: ShopifyApiHost
+              env:
+                Ref: EnvType
       - SSMParameterReadPolicy:
-          ParameterName: /freelitemjabadilla.myshopify.com/dev/Password
+          ParameterName:
+            Fn::Sub:
+            - /${host}/${env}/Password
+            - host:
+                Ref: ShopifyApiHost
+              env:
+                Ref: EnvType
       - SSMParameterReadPolicy:
-          ParameterName: /freelitemjabadilla.myshopify.com/dev/SharedSecret
+          ParameterName:
+            Fn::Sub:
+            - /${host}/${env}/SharedSecret
+            - host:
+                Ref: ShopifyApiHost
+              env:
+                Ref: EnvType
       - DynamoDBCrudPolicy:
           TableName:
             Fn::ImportValue:
@@ -152,10 +181,22 @@ Resources:
                 - GetAtt
                 - PahinaUserTable
                 - Name
+      - DynamoDBCrudPolicy:
+          TableName:
+            Fn::ImportValue:
+              Fn::Join:
+              - ':'
+              - - Fn::FindInMap:
+                  - AmplifyProject
+                  - GraphQLAPIIdOutput
+                  - Ref: EnvType
+                - GetAtt
+                - PahinaUserStoreTable
+                - Name
   UserStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-triggers/4a4f5c23e3c4ef671665ca0ee4736c4d
+      CodeUri: s3://pahina-shopify-triggers/311dd3ca0e236640445c8d7f96eb5621
       Environment:
         Variables:
           USER_STORE_TABLE_NAME:

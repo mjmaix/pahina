@@ -106,6 +106,17 @@ Resources:
                   - "GetAtt"
                   - "PahinaUserStoreTable"
                   - "Name"
+          CASE_TABLE_NAME:
+            Fn::ImportValue:
+              !Join 
+                - ":"
+                - - !FindInMap 
+                    - "AmplifyProject"
+                    - "GraphQLAPIIdOutput"
+                    - !Ref EnvType
+                  - "GetAtt"
+                  - "PahinaCaseTable"
+                  - "Name"
           USER_STORE_PRODUCT_TABLE_NAME:
             Fn::ImportValue:
               !Join 
@@ -121,11 +132,11 @@ Resources:
         # - SSMParameterReadPolicy:
         #     ParameterName: !Sub "/${!Ref ShopifyApiHost}/${!Ref EnvType}/*"
         - SSMParameterReadPolicy:
-            ParameterName: "/freelitemjabadilla.myshopify.com/dev/ApiKey"
+            ParameterName: !Sub [ "/${host}/${env}/ApiKey", { "host": !Ref ShopifyApiHost, env: !Ref EnvType}]
         - SSMParameterReadPolicy:
-            ParameterName: "/freelitemjabadilla.myshopify.com/dev/Password"
+            ParameterName: !Sub [ "/${host}/${env}/Password", { "host": !Ref ShopifyApiHost, env: !Ref EnvType}]
         - SSMParameterReadPolicy:
-            ParameterName: "/freelitemjabadilla.myshopify.com/dev/SharedSecret"
+            ParameterName: !Sub [ "/${host}/${env}/SharedSecret", { "host": !Ref ShopifyApiHost, env: !Ref EnvType}]
         - DynamoDBCrudPolicy:
             TableName:
               Fn::ImportValue:
@@ -149,6 +160,18 @@ Resources:
                       - !Ref EnvType
                     - "GetAtt"
                     - "PahinaUserTable"
+                    - "Name"
+        - DynamoDBCrudPolicy:
+            TableName:
+              Fn::ImportValue:
+                !Join 
+                  - ":"
+                  - - !FindInMap 
+                      - "AmplifyProject"
+                      - "GraphQLAPIIdOutput"
+                      - !Ref EnvType
+                    - "GetAtt"
+                    - "PahinaUserStoreTable"
                     - "Name"
   UserStreamFunction:
     Type: AWS::Serverless::Function

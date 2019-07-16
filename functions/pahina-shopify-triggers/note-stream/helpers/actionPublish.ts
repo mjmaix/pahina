@@ -1,12 +1,4 @@
-import {
-  PahinaNoteRecord,
-  PahinaUserRecord,
-  PahinaStoreRecord,
-  PahinaUserStoreProductRecord,
-  PutItemInput,
-  PutItemOutput,
-} from '../types';
-import { fetchUserStore } from './getUserStore';
+import { fetchRequiredData } from './fetchRequiredData';
 import { ProcessingError } from '../utils/ProcessingError';
 import { generateUserStoreProduct } from './generateUserStoreProduct';
 import { pretty } from '../utils/simpleUtils';
@@ -17,25 +9,34 @@ import AwsDynamoDB from '../connections/AwsDynamoDB';
 import { getUpdateInfoFromShopifyProductResponse as getUpdateInfoFromShopify } from './getUpdateInfoFromShopifyProductResponse';
 import { validateShopifyResponse } from './validateShopifyResponse';
 
-export const publishProduct = async (note: PahinaNoteRecord) => {
-  let user: PahinaUserRecord | null = null;
-  let store: PahinaStoreRecord | null = null;
-  ({ store, user } = await fetchUserStore(note));
+export const publishProduct = async (note: NoteRecord) => {
+  let userRecord: UserRecord | null = null;
+  let caseRecord: CaseRecord | null = null;
+  let storeRecord: PahinaStoreRecord | null = null;
+  ({ storeRecord, userRecord, caseRecord } = await fetchRequiredData(note));
 
-  if (!user) {
+  if (!userRecord) {
     throw new ProcessingError('Failed to get User');
   }
 
-  if (!store) {
+  if (!storeRecord) {
     throw new ProcessingError('Failed to get UserStore');
   }
 
-  const product = await saveProductOnDb(store, note);
+  if (!caseRecord) {
+    throw new ProcessingError('Failed to get Case');
+  }
+
+  const product = await saveProductOnDb(storeRecord, note);
   if (!product) {
     throw new ProcessingError('Failed to insert/retrieve UserStoreProduct');
   }
 
-  const postProductResp = await sendShopifyPostProduct(user, note); // throws error if digital sig is not expected
+  const postProductResp = await sendShopifyPostProduct(
+    userRecord,
+    caseRecord,
+    note,
+  ); // throws error if digital sig is not expected
   if (!postProductResp) {
     throw new ProcessingError('Failed post product to Shopify');
   }
@@ -50,14 +51,15 @@ export const publishProduct = async (note: PahinaNoteRecord) => {
 };
 
 const sendShopifyPostProduct = async (
-  user: PahinaUserRecord,
-  note: PahinaNoteRecord,
+  user: UserRecord,
+  caseRec: CaseRecord,
+  note: NoteRecord,
 ) => {
   let digitalSig = null;
   let resp: Response | null = null;
   const sharedSecret = await Shopify.getSharedSecret();
   try {
-    const postData = generateShopifyProduct(user, note);
+    const postData = generateShopifyProduct(user, note, caseRec);
     digitalSig = hmacEncrypt(sharedSecret, JSON.stringify(postData));
     resp = await Shopify.postProduct(postData);
 
@@ -73,17 +75,14 @@ const sendShopifyPostProduct = async (
   return resp;
 };
 
-const saveProductOnDb = async (
-  store: PahinaStoreRecord,
-  note: PahinaNoteRecord,
-) => {
-  let product: PahinaUserStoreProductRecord | null = null;
+const saveProductOnDb = async (store: PahinaStoreRecord, note: NoteRecord) => {
+  let product: ProductRecord | null = null;
 
   const params: PutItemInput = generateUserStoreProduct(store, note);
   try {
     const data: PutItemOutput = await AwsDynamoDB.putItem(params);
     console.log('[SUCCESS] put UserStoreProduct', pretty(data));
-    product = (data as unknown) as PahinaUserStoreProductRecord;
+    product = (data as unknown) as ProductRecord;
   } catch (err) {
     console.log('[ERROR] put UserStoreProduct', err);
   }
@@ -92,11 +91,11 @@ const saveProductOnDb = async (
 };
 
 const saveShopifyResponseOnDb = async (
-  product: PahinaUserStoreProductRecord,
+  product: ProductRecord,
   resp: Response,
 ) => {
   const { body, headers } = await resp.json();
-  let savedProduct: PahinaUserStoreProductRecord | null = null;
+  let savedProduct: ProductRecord | null = null;
   try {
     const params: PutItemInput = await getUpdateInfoFromShopify(product, {
       body,
@@ -104,7 +103,7 @@ const saveShopifyResponseOnDb = async (
     });
     const data: PutItemOutput = await AwsDynamoDB.putItem(params);
     console.log('[SUCCESS] save post response UserStoreProduct', pretty(data));
-    savedProduct = data as PahinaUserStoreProductRecord;
+    savedProduct = data as ProductRecord;
   } catch (err) {
     console.log('[ERROR] save post response UserStoreProduct', err);
   }

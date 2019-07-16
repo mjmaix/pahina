@@ -1,17 +1,16 @@
-import { PahinaUserRecord, PahinaNoteRecord } from '../types';
-
 import { isoNow } from '../utils/simpleUtils';
 
 export function generateShopifyProduct(
-  user: PahinaUserRecord,
-  note: PahinaNoteRecord,
+  user: UserRecord,
+  note: NoteRecord,
+  caseRec: CaseRecord,
 ) {
   const productType = 'Case Digest';
   const vendor = `${user.givenName.S} ${user.familyName.S}`;
-  const caseCode = note.caseCode.S;
-  const caseTitle = note.caseTitle.S;
-  const caseLink = note.caseLink.S;
-  const caseDate = note.caseDate.S;
+  const caseCode = caseRec.code.S;
+  const caseTitle = caseRec.title.S;
+  const caseLink = caseRec.link.S;
+  const caseDate = caseRec.date.S;
   let html = '';
   html += `<p>${caseTitle}</p>`;
   html += `<p>${caseCode}</p>`;

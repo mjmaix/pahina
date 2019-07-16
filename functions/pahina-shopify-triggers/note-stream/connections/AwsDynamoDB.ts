@@ -18,6 +18,11 @@ class AwsDynamoDB {
     return this.ddb.getItem(obj).promise();
   };
 
+  query = (obj: DynamoDB.Types.QueryInput) => {
+    console.log('[Query', obj);
+    return this.ddb.query(obj).promise();
+  };
+
   batchGetItem = (obj: DynamoDB.Types.BatchGetItemInput) => {
     console.log('[batchGetItem]', obj);
     return this.ddb.batchGetItem(obj).promise();

@@ -1,12 +1,6 @@
-import {
-  PutItemInput,
-  PahinaStoreRecord,
-  PahinaNoteRecord,
-  AttributeValue,
-  PahinaStoreProductStatus,
-} from '../types';
 import { ProcessingError } from '../utils/ProcessingError';
 import { isoNow } from '../utils/simpleUtils';
+import { PahinaStoreProductStatus } from './constants';
 
 /**
  *
@@ -16,7 +10,7 @@ import { isoNow } from '../utils/simpleUtils';
  */
 export function generateUserStoreProduct(
   store: PahinaStoreRecord,
-  image: PahinaNoteRecord,
+  image: NoteRecord,
 ) {
   if (!process.env.USER_STORE_PRODUCT_TABLE_NAME) {
     throw new ProcessingError('USER_STORE_PRODUCT_TABLE_NAME is empty ');
