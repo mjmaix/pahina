@@ -12,6 +12,7 @@ import PahinaNoteStep3 from './PahinaNote/step3-upload';
 const all = async () => {
   // TODO:
   // 1. PahinaCaseStep 3 - force past 1or2 years dates to be queries again
+  // 2. Convert to CLI to use individually, yargs
   const PahinaCase = async () => {
     //   await PahinaCaseStep1();
     //   await PahinaCaseStep2();
