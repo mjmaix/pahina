@@ -1,55 +1,87 @@
 {
   "Records": [
     {
-      "eventID": "98705ef274049f399d776a042f6efc62",
-      "eventName": "INSERT",
+      "eventID": "2d28e3a1c25b90a760f629a1d2ca95e6",
+      "eventName": "MODIFY",
       "eventVersion": "1.1",
       "eventSource": "aws:dynamodb",
       "awsRegion": "ap-southeast-1",
       "dynamodb": {
-        "ApproximateCreationDateTime": 1562168058,
+        "ApproximateCreationDateTime": 1563295517,
         "Keys": {
           "id": {
-            "S": "abc22"
+            "S": "7043ade8-2fe9-4732-bc25-11107ddde447"
           }
         },
         "NewImage": {
-          "createdAt": {
-            "S": "2019-06-30T18:59:18.402Z"
-          },
-          "pahinaNoteAuthorId": {
-            "S": "b964512a-2d73-43b0-ba4d-7da8f9bf9f12"
-          },
-          "author": {
-            "S": "b964512a-2d73-43b0-ba4d-7da8f9bf9f12"
-          },
-          "pahinaNoteCaseId": {
-            "S": "showdocs/10/38662"
-          },
           "__typename": {
             "S": "PahinaNote"
           },
+          "caseId": {
+            "S": "showdocs/1/61557"
+          },
           "id": {
-            "S": "abc22"
+            "S": "7043ade8-2fe9-4732-bc25-11107ddde447"
+          },
+          "authorId": {
+            "S": "50d5d9e7-703f-469e-9297-982e9dd9351e"
+          },
+          "createddAt": {
+            "S": "2018-04-30T10:36:36.752Z"
+          },
+          "priceLevel": {
+            "S": "L_0"
           },
           "value": {
-            "S": "Test 1"
+            "S": "Dolorem distinctio voluptatem. Libero consequatur alias nisi. Repudiandae dolorum consequatur quo vitae dolores. Autem facere fugit eaque dicta voluptatem cumque ab blanditiis atque. In quasi quia eligendi. Explicabo dolorem sequi autem rem adipisci laborum ipsa culpa.\n \rEt magni qui numquam deleniti minima alias a odit totam. Accusamus delectus et corrupti corrupti non at qui consequatur qui. Vel vero provident laboriosam quo incidunt. Et error id ut in est tempora iste. Et molestiae autem illo.\n \rSit aliquid temporibus. Cum aliquam occaecati. Blanditiis dolor culpa perspiciatis praesentium consequatur quia. Commodi nam vel recusandae ea accusamus voluptatem accusantium aliquid et. Harum est ullam voluptatem recusandae natus aperiam alias. Laboriosam id illo non."
           },
           "promotional": {
-            "S": "I want to trigger pahina-note-create function"
+            "S": "Deserunt qui eum vel. Perspiciatis libero odio ea doloremque id in earum. Nulla et ut tempore qui magni saepe."
+          },
+          "status": {
+            "S": "PUBLISHED"
+          },
+          "updatedAt": {
+            "S": "2019-07-16T16:45:16.622Z"
+          }
+        },
+        "OldImage": {
+          "__typename": {
+            "S": "PahinaNote"
+          },
+          "caseId": {
+            "S": "showdocs/1/61557"
+          },
+          "id": {
+            "S": "7043ade8-2fe9-4732-bc25-11107ddde447"
+          },
+          "authorId": {
+            "S": "50d5d9e7-703f-469e-9297-982e9dd9351e"
+          },
+          "createddAt": {
+            "S": "2018-04-30T10:36:36.752Z"
+          },
+          "priceLevel": {
+            "S": "L_0"
+          },
+          "value": {
+            "S": "Dolorem distinctio voluptatem. Libero consequatur alias nisi. Repudiandae dolorum consequatur quo vitae dolores. Autem facere fugit eaque dicta voluptatem cumque ab blanditiis atque. In quasi quia eligendi. Explicabo dolorem sequi autem rem adipisci laborum ipsa culpa.\n \rEt magni qui numquam deleniti minima alias a odit totam. Accusamus delectus et corrupti corrupti non at qui consequatur qui. Vel vero provident laboriosam quo incidunt. Et error id ut in est tempora iste. Et molestiae autem illo.\n \rSit aliquid temporibus. Cum aliquam occaecati. Blanditiis dolor culpa perspiciatis praesentium consequatur quia. Commodi nam vel recusandae ea accusamus voluptatem accusantium aliquid et. Harum est ullam voluptatem recusandae natus aperiam alias. Laboriosam id illo non."
+          },
+          "promotional": {
+            "S": "Deserunt qui eum vel. Perspiciatis libero odio ea doloremque id in earum. Nulla et ut tempore qui magni saepe."
           },
           "status": {
             "S": "DRAFT"
           },
           "updatedAt": {
-            "S": "2019-06-30T18:59:18.402Z"
+            "S": "2018-12-23T16:55:40.130Z"
           }
         },
-        "SequenceNumber": "19269400000000007459054066",
-        "SizeBytes": 307,
+        "SequenceNumber": "1800000000015315820937",
+        "SizeBytes": 2272,
         "StreamViewType": "NEW_AND_OLD_IMAGES"
       },
-      "eventSourceARN": "arn:aws:dynamodb:ap-southeast-1:991300696177:table/PahinaNote-kmn6vrmi4falhppz6x5fmm4dty-dev/stream/2019-06-29T12:24:26.303"
+      "eventSourceARN": "arn:aws:dynamodb:ap-southeast-1:991300696177:table/PahinaNote-kbpidncxhven5asuuuyqocnffm-dev/stream/2019-07-16T16:20:55.203"
     }
   ]
 }

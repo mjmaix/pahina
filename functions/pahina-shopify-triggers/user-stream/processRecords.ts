@@ -4,6 +4,7 @@ import { DynamoDB } from 'aws-sdk';
 import { ProcessingError } from './utils/ProcessingError';
 import { isoNow } from './utils/simpleUtils';
 import { generateSkuPrefix } from './generate-sku-prefix';
+import short from 'short-uuid';
 
 export const processRecords = async ({ Records }: DynamoDBStreamEvent) => {
   try {
@@ -23,11 +24,10 @@ export const processRecords = async ({ Records }: DynamoDBStreamEvent) => {
               const params: DynamoDB.Types.PutItemInput = {
                 TableName: process.env.USER_STORE_TABLE_NAME,
                 Item: {
+                  id: { S: short.uuid().toString() },
                   ownerId: image['id'],
                   skuPrefix: { S: generateSkuPrefix() },
-                  // @ts-ignore
                   updatedAt: { S: isoNow() },
-                  // @ts-ignore
                   createdAt: { S: isoNow() },
                   __typename: { S: 'PahinaUserStore' },
                 },

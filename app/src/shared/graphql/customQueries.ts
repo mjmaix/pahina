@@ -19,17 +19,13 @@ export const getPahinaUserSortedNotes = `query GetPahinaUserSortedNotes($id: ID!
         status
         priceLevel
         value
-        caseTitle
-        caseCode
-        caseDate
-        caseLink
       }
       nextToken
     }
     stores {
       items {
+        id
         ownerId
-        skuPrefix
         createdAt
         updatedAt
       }

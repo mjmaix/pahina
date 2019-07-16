@@ -76,15 +76,19 @@ type PahinaMainStore
 
 type PahinaUserStore
   @model(subscriptions: null, mutations: null)
-  @key(fields: ["ownerId", "skuPrefix"])
+  @key(
+    name: "ByOwnerId"
+    fields: ["ownerId", "updatedAt"]
+    queryField: "byOwnerId"
+  )
   @auth(
     rules: [
       { allow: owner, ownerField: "ownerId", operations: [read] }
       { allow: groups, groups: ["Admin"] }
     ]
   ) {
+  id: ID!
   ownerId: String!
-  skuPrefix: String!
   owner: PahinaUser! @connection(name: "UserStores", keyField: "ownerId")
   products: [PahinaUserStoreProduct] @connection(name: "StoreProducts")
   createdAt: AWSDateTime
@@ -162,10 +166,6 @@ type PahinaNote
   status: PahinaNoteStatus
   priceLevel: PahinaPriceLevel
   value: String
-  caseTitle: String
-  caseCode: String
-  caseDate: String
-  caseLink: String
 }
 
 type PahinaCase

@@ -1,7 +1,7 @@
 import short from 'short-uuid';
 
 const skuTranslator = short(
-  'ABCDEFHJKMNPQRSTUVWXYZabcdefghjkmnqrstuvwxyz01234567890',
+  'ABCDEFHJKMNPQRSTUVWXYZabcdefghjkmnqrstuvwxyz023456789',
 );
 
 export const generateSkuPrefix = () => {

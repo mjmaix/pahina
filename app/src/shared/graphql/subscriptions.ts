@@ -21,10 +21,6 @@ export const onCreatePahinaCase = `subscription OnCreatePahinaCase {
         status
         priceLevel
         value
-        caseTitle
-        caseCode
-        caseDate
-        caseLink
       }
       nextToken
     }
