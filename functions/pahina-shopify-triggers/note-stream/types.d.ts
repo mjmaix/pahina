@@ -89,3 +89,62 @@ export enum PahinaStoreProductStatus {
   SENT = 'SENT',
   FAILED = 'FAILED',
 }
+
+interface ShopifyPostProductVariantResponse {
+  id: number;
+  product_id: number;
+  title: string;
+  price: string;
+  sku: string;
+  position: number;
+  inventory_policy: 'continue' | 'deny';
+  compare_at_price: null;
+  fulfillment_service: 'manual';
+  inventory_management: null;
+  option1: string;
+  option2: null;
+  option3: null;
+  created_at: string;
+  updated_at: string;
+  taxable: true;
+  barcode: null;
+  grams: number;
+  image_id: null;
+  weight: number;
+  weight_unit: string;
+  inventory_item_id: number;
+  inventory_quantity: number;
+  old_inventory_quantity: number;
+  requires_shipping: false;
+  admin_graphql_api_id: string;
+}
+
+interface ShopifyPostProductOptionResponse {
+  id: number;
+  product_id: number;
+  name: string;
+  position: number;
+  values: string[];
+}
+
+interface ShopifyPostProductResponse {
+  product: {
+    id: number;
+    title: string;
+    body_html: string;
+    vendor: string;
+    product_type: string;
+    created_at: string;
+    handle: string;
+    updated_at: string;
+    published_at: string;
+    template_suffix: string | null;
+    tags: string;
+    published_scope: 'global' | 'web';
+    admin_graphql_api_id: string;
+    variants: ShopifyPostProductVariantResponse[];
+    options: ShopifyPostProductOptionResponse[];
+    images: [];
+    image: string | null;
+  };
+}
