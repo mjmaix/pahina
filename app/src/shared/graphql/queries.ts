@@ -31,7 +31,6 @@ export const getPahinaUser = `query GetPahinaUser($id: ID!) {
     }
     stores {
       items {
-        id
         ownerId
         skuPrefix
         createdAt
@@ -112,9 +111,8 @@ export const listPahinaMainStores = `query ListPahinaMainStores(
   }
 }
 `;
-export const getPahinaUserStore = `query GetPahinaUserStore($id: ID!) {
-  getPahinaUserStore(id: $id) {
-    id
+export const getPahinaUserStore = `query GetPahinaUserStore($ownerId: String!, $skuPrefix: String!) {
+  getPahinaUserStore(ownerId: $ownerId, skuPrefix: $skuPrefix) {
     ownerId
     skuPrefix
     owner {
@@ -160,13 +158,20 @@ export const getPahinaUserStore = `query GetPahinaUserStore($id: ID!) {
 }
 `;
 export const listPahinaUserStores = `query ListPahinaUserStores(
+  $ownerId: String
+  $skuPrefix: ModelStringKeyConditionInput
   $filter: ModelPahinaUserStoreFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listPahinaUserStores(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listPahinaUserStores(
+    ownerId: $ownerId
+    skuPrefix: $skuPrefix
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
     items {
-      id
       ownerId
       skuPrefix
       owner {
@@ -214,7 +219,6 @@ export const getPahinaUserStoreProduct = `query GetPahinaUserStoreProduct($id: I
       }
     }
     store {
-      id
       ownerId
       skuPrefix
       owner {
@@ -271,7 +275,6 @@ export const listPahinaUserStoreProducts = `query ListPahinaUserStoreProducts(
         updatedAt
       }
       store {
-        id
         ownerId
         skuPrefix
         createdAt
@@ -432,44 +435,6 @@ export const listPahinaCases = `query ListPahinaCases(
       notes {
         nextToken
       }
-    }
-    nextToken
-  }
-}
-`;
-export const storeByOwner = `query StoreByOwner(
-  $ownerId: String
-  $updatedAt: ModelStringKeyConditionInput
-  $filter: ModelPahinaUserStoreFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  storeByOwner(
-    ownerId: $ownerId
-    updatedAt: $updatedAt
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-  ) {
-    items {
-      id
-      ownerId
-      skuPrefix
-      owner {
-        id
-        givenName
-        familyName
-        email
-        picture
-        identityId
-        createdAt
-        updatedAt
-      }
-      products {
-        nextToken
-      }
-      createdAt
-      updatedAt
     }
     nextToken
   }

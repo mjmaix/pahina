@@ -31,7 +31,7 @@
         "SizeBytes": 65,
         "StreamViewType": "NEW_AND_OLD_IMAGES"
       },
-      "eventSourceARN": "arn:aws:dynamodb:ap-southeast-1:991300696177:table/PahinaUser-wcr4sllqcvfnfnfnqxmjupxv5m-dev/stream/2019-07-11T10:36:31.820"
+      "eventSourceARN": "arn:aws:dynamodb:ap-southeast-1:991300696177:table/PahinaUser-qljbda6ysjbvvkl6tm53ohjgey-dev/stream/2019-07-11T10:36:31.820"
     }
   ]
 }

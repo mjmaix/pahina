@@ -1,6 +1,6 @@
 import { PahinaUserRecord, PahinaNoteRecord } from '../types';
 
-import { utcNow } from '../utils/simpleUtils';
+import { isoNow } from '../utils/simpleUtils';
 
 export function generateShopifyProduct(
   user: PahinaUserRecord,
@@ -26,7 +26,7 @@ export function generateShopifyProduct(
       product_type: productType,
       tags: [caseCode, vendor],
       published_scope: 'global',
-      published_at: utcNow(),
+      published_at: isoNow(),
       variants: [
         {
           option1: 'Paid',

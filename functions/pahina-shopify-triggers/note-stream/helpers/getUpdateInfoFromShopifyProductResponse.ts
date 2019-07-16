@@ -6,7 +6,7 @@ import {
   PahinaUserStoreProductRecord,
 } from '../types';
 import { ProcessingError } from '../utils/ProcessingError';
-import { utcNow } from '../utils/simpleUtils';
+import { isoNow } from '../utils/simpleUtils';
 
 interface JsonResponse {
   body: any;
@@ -29,7 +29,7 @@ export async function getUpdateInfoFromShopifyProductResponse(
   const shopifyProductId = { S: postProduct.id.toString() } as AttributeValue;
   const shopifyShopId = { S: headers['X-ShopId'] } as AttributeValue;
   const status = { S: PahinaStoreProductStatus.CREATED } as AttributeValue;
-  const updatedAt = { S: utcNow() } as AttributeValue;
+  const updatedAt = { S: isoNow() } as AttributeValue;
   const id = product.id;
 
   return {

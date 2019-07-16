@@ -6,7 +6,7 @@ import {
   PahinaStoreProductStatus,
 } from '../types';
 import { ProcessingError } from '../utils/ProcessingError';
-import { utcNow } from '../utils/simpleUtils';
+import { isoNow } from '../utils/simpleUtils';
 
 /**
  *
@@ -25,8 +25,8 @@ export function generateUserStoreProduct(
   const ownerId = image['pahinaNoteAuthorId'] as AttributeValue;
   const storeId = store.id;
   const status = { S: PahinaStoreProductStatus.CREATED } as AttributeValue;
-  const createdAt = { S: utcNow() } as AttributeValue;
-  const updatedAt = { S: utcNow() } as AttributeValue;
+  const createdAt = { S: isoNow() } as AttributeValue;
+  const updatedAt = { S: isoNow() } as AttributeValue;
   const __typename = { S: 'PahinaUserStoreProduct' } as AttributeValue;
 
   return {

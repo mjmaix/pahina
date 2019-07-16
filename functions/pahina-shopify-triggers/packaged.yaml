@@ -30,7 +30,7 @@ Mappings:
       prod: 10
   AmplifyProject:
     GraphQLAPIIdOutput:
-      dev: wcr4sllqcvfnfnfnqxmjupxv5m
+      dev: qljbda6ysjbvvkl6tm53ohjgey
       prod: ''
 Conditions:
   IsDev:
@@ -58,7 +58,7 @@ Resources:
   NoteStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-triggers/27423bd4cbdd25774674d4e8f3242ddd
+      CodeUri: s3://pahina-shopify-triggers/e7136627dab4bbb633f1be119b6f3cef
       Timeout: 240
       Events:
         StreamEvent:
@@ -155,7 +155,7 @@ Resources:
   UserStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-triggers/dd1a0ab5ec6f64497fa0254d99c006ad
+      CodeUri: s3://pahina-shopify-triggers/4a4f5c23e3c4ef671665ca0ee4736c4d
       Environment:
         Variables:
           USER_STORE_TABLE_NAME:

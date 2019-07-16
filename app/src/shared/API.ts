@@ -166,8 +166,17 @@ export type ModelPahinaMainStoreFilterInput = {
   not?: ModelPahinaMainStoreFilterInput | null,
 };
 
+export type ModelStringKeyConditionInput = {
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+};
+
 export type ModelPahinaUserStoreFilterInput = {
-  id?: ModelIDFilterInput | null,
   ownerId?: ModelStringFilterInput | null,
   skuPrefix?: ModelStringFilterInput | null,
   createdAt?: ModelStringFilterInput | null,
@@ -241,16 +250,6 @@ export type ModelPahinaCaseFilterInput = {
   and?: Array< ModelPahinaCaseFilterInput | null > | null,
   or?: Array< ModelPahinaCaseFilterInput | null > | null,
   not?: ModelPahinaCaseFilterInput | null,
-};
-
-export type ModelStringKeyConditionInput = {
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
 };
 
 export type GetPahinaUserSortedNotesQueryVariables = {
@@ -362,7 +361,6 @@ export type CreatePahinaUserMutation = {
       __typename: "ModelPahinaUserStoreConnection",
       items:  Array< {
         __typename: "PahinaUserStore",
-        id: string,
         ownerId: string,
         skuPrefix: string,
         createdAt: string | null,
@@ -432,7 +430,6 @@ export type UpdatePahinaUserMutation = {
       __typename: "ModelPahinaUserStoreConnection",
       items:  Array< {
         __typename: "PahinaUserStore",
-        id: string,
         ownerId: string,
         skuPrefix: string,
         createdAt: string | null,
@@ -502,7 +499,6 @@ export type DeletePahinaUserMutation = {
       __typename: "ModelPahinaUserStoreConnection",
       items:  Array< {
         __typename: "PahinaUserStore",
-        id: string,
         ownerId: string,
         skuPrefix: string,
         createdAt: string | null,
@@ -863,7 +859,6 @@ export type GetPahinaUserQuery = {
       __typename: "ModelPahinaUserStoreConnection",
       items:  Array< {
         __typename: "PahinaUserStore",
-        id: string,
         ownerId: string,
         skuPrefix: string,
         createdAt: string | null,
@@ -963,13 +958,13 @@ export type ListPahinaMainStoresQuery = {
 };
 
 export type GetPahinaUserStoreQueryVariables = {
-  id: string,
+  ownerId: string,
+  skuPrefix: string,
 };
 
 export type GetPahinaUserStoreQuery = {
   getPahinaUserStore:  {
     __typename: "PahinaUserStore",
-    id: string,
     ownerId: string,
     skuPrefix: string,
     owner:  {
@@ -1021,6 +1016,8 @@ export type GetPahinaUserStoreQuery = {
 };
 
 export type ListPahinaUserStoresQueryVariables = {
+  ownerId?: string | null,
+  skuPrefix?: ModelStringKeyConditionInput | null,
   filter?: ModelPahinaUserStoreFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
@@ -1031,7 +1028,6 @@ export type ListPahinaUserStoresQuery = {
     __typename: "ModelPahinaUserStoreConnection",
     items:  Array< {
       __typename: "PahinaUserStore",
-      id: string,
       ownerId: string,
       skuPrefix: string,
       owner:  {
@@ -1091,7 +1087,6 @@ export type GetPahinaUserStoreProductQuery = {
     } | null,
     store:  {
       __typename: "PahinaUserStore",
-      id: string,
       ownerId: string,
       skuPrefix: string,
       owner:  {
@@ -1152,7 +1147,6 @@ export type ListPahinaUserStoreProductsQuery = {
       } | null,
       store:  {
         __typename: "PahinaUserStore",
-        id: string,
         ownerId: string,
         skuPrefix: string,
         createdAt: string | null,
@@ -1342,44 +1336,6 @@ export type ListPahinaCasesQuery = {
         __typename: "ModelPahinaNoteConnection",
         nextToken: string | null,
       } | null,
-    } | null > | null,
-    nextToken: string | null,
-  } | null,
-};
-
-export type StoreByOwnerQueryVariables = {
-  ownerId?: string | null,
-  updatedAt?: ModelStringKeyConditionInput | null,
-  filter?: ModelPahinaUserStoreFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type StoreByOwnerQuery = {
-  storeByOwner:  {
-    __typename: "ModelPahinaUserStoreConnection",
-    items:  Array< {
-      __typename: "PahinaUserStore",
-      id: string,
-      ownerId: string,
-      skuPrefix: string,
-      owner:  {
-        __typename: "PahinaUser",
-        id: string,
-        givenName: string,
-        familyName: string,
-        email: string,
-        picture: string | null,
-        identityId: string | null,
-        createdAt: string | null,
-        updatedAt: string | null,
-      },
-      products:  {
-        __typename: "ModelPahinaUserStoreProductConnection",
-        nextToken: string | null,
-      } | null,
-      createdAt: string | null,
-      updatedAt: string | null,
     } | null > | null,
     nextToken: string | null,
   } | null,

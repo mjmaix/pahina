@@ -76,18 +76,13 @@ type PahinaMainStore
 
 type PahinaUserStore
   @model(subscriptions: null, mutations: null)
-  @key(
-    name: "ByOwner"
-    fields: ["ownerId", "updatedAt"]
-    queryField: "storeByOwner"
-  )
+  @key(fields: ["ownerId", "skuPrefix"])
   @auth(
     rules: [
       { allow: owner, ownerField: "ownerId", operations: [read] }
       { allow: groups, groups: ["Admin"] }
     ]
   ) {
-  id: ID!
   ownerId: String!
   skuPrefix: String!
   owner: PahinaUser! @connection(name: "UserStores", keyField: "ownerId")

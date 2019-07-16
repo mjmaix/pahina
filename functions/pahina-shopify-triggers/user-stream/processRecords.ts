@@ -2,6 +2,7 @@ import { DynamoDBStreamEvent } from 'aws-lambda';
 import AwsDynamoDB from './connections/AwsDynamoDB';
 import { DynamoDB } from 'aws-sdk';
 import { ProcessingError } from './utils/ProcessingError';
+import { isoNow } from './utils/simpleUtils';
 import { generateSkuPrefix } from './generate-sku-prefix';
 
 export const processRecords = async ({ Records }: DynamoDBStreamEvent) => {
@@ -25,9 +26,9 @@ export const processRecords = async ({ Records }: DynamoDBStreamEvent) => {
                   ownerId: image['id'],
                   skuPrefix: { S: generateSkuPrefix() },
                   // @ts-ignore
-                  updatedAt: { S: new Date(Date.now()).toString() },
+                  updatedAt: { S: isoNow() },
                   // @ts-ignore
-                  createdAt: { S: new Date(Date.now()).toString() },
+                  createdAt: { S: isoNow() },
                   __typename: { S: 'PahinaUserStore' },
                 },
               };
