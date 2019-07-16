@@ -173,6 +173,18 @@ Resources:
                     - "GetAtt"
                     - "PahinaUserStoreTable"
                     - "Name"
+        - DynamoDBCrudPolicy:
+            TableName:
+              Fn::ImportValue:
+                !Join 
+                  - ":"
+                  - - !FindInMap 
+                      - "AmplifyProject"
+                      - "GraphQLAPIIdOutput"
+                      - !Ref EnvType
+                    - "GetAtt"
+                    - "PahinaUserStoreProductTable"
+                    - "Name"
   UserStreamFunction:
     Type: AWS::Serverless::Function
     Properties:

@@ -58,7 +58,7 @@ Resources:
   NoteStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-triggers/58284f85417ffa1bc5463875bab5ca37
+      CodeUri: s3://pahina-shopify-triggers/d1c2a43ef65bc76648da6652a5d6c9eb
       Timeout: 240
       Events:
         StreamEvent:
@@ -193,10 +193,22 @@ Resources:
                 - GetAtt
                 - PahinaUserStoreTable
                 - Name
+      - DynamoDBCrudPolicy:
+          TableName:
+            Fn::ImportValue:
+              Fn::Join:
+              - ':'
+              - - Fn::FindInMap:
+                  - AmplifyProject
+                  - GraphQLAPIIdOutput
+                  - Ref: EnvType
+                - GetAtt
+                - PahinaUserStoreProductTable
+                - Name
   UserStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-triggers/311dd3ca0e236640445c8d7f96eb5621
+      CodeUri: s3://pahina-shopify-triggers/a77ce99297f8c5cfaf145cfe8937dd8a
       Environment:
         Variables:
           USER_STORE_TABLE_NAME:
