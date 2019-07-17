@@ -28,17 +28,20 @@ export function generateShopifyProduct(
       published_at: isoNow(),
       variants: [
         {
+          option1: 'Free',
+          price: '0.00',
+          compare_at_price: '100.00',
+          inventory_management: 'shopify',
+          inventory_policy: 'deny',
+          inventory_quantity: 5,
+          requires_shipping: false,
+          taxable: false,
+        },
+        {
           option1: 'Paid',
           price: '100.00',
           inventory_policy: 'continue',
           inventory_quantity: 0,
-          requires_shipping: false,
-        },
-        {
-          option1: 'Free',
-          price: '0.00',
-          inventory_policy: 'deny',
-          inventory_quantity: 5,
           requires_shipping: false,
         },
       ],

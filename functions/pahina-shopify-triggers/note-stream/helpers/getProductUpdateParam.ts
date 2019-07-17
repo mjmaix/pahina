@@ -38,6 +38,7 @@ export async function getProductUpdateParam(
     Action: 'PUT',
     Value: { S: isoNow() },
   } as AttributeValueUpdate;
+
   const id = product.id;
 
   const obj = {

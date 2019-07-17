@@ -1,4 +1,5 @@
 import AWS, { DynamoDB } from 'aws-sdk';
+import { pretty } from '../utils/simpleUtils';
 
 AWS.config.update({ region: process.env.R });
 
@@ -9,22 +10,22 @@ class AwsDynamoDB {
   }
 
   putItem = (obj: DynamoDB.Types.PutItemInput) => {
-    console.log('[PutItem]', obj);
+    console.log('[PutItem]', pretty(obj));
     return this.ddb.putItem(obj).promise();
   };
 
   updateItem = (obj: DynamoDB.Types.UpdateItemInput) => {
-    console.log('[UpdateItem]', obj);
+    console.log('[UpdateItem]', pretty(obj));
     return this.ddb.updateItem(obj).promise();
   };
 
   getItem = (obj: DynamoDB.Types.GetItemInput) => {
-    console.log('[GetItem]', obj);
+    console.log('[GetItem]', pretty(obj));
     return this.ddb.getItem(obj).promise();
   };
 
   query = (obj: DynamoDB.Types.QueryInput) => {
-    console.log('[Query', obj);
+    console.log('[Query]', pretty(obj));
     return this.ddb.query(obj).promise();
   };
 
