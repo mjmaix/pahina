@@ -46,7 +46,10 @@ class Shopify {
     const resourceUrl = `${this.url}/products.json`;
     const body = JSON.stringify(data);
 
-    console.log(`[INFO] post body`, data);
+    console.log(
+      `[INFO] post body URL: ${process.env.ENV !== 'prod' ? resourceUrl : ''}`,
+      body,
+    );
 
     return fetch(resourceUrl, {
       method: 'POST',

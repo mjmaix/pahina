@@ -43,6 +43,7 @@ Conditions:
     Fn::Equals: [ !Ref EnvType, "NONE"]
 Globals:
   Function:
+    Tracing: Active
     Handler: app.handler
     Timeout: 30
     Runtime: nodejs10.x
@@ -57,6 +58,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: note-stream/lib
+      MemorySize: 256
       Timeout: 240
       Events:
         StreamEvent:

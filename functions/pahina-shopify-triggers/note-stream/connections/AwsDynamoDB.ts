@@ -13,6 +13,11 @@ class AwsDynamoDB {
     return this.ddb.putItem(obj).promise();
   };
 
+  updateItem = (obj: DynamoDB.Types.UpdateItemInput) => {
+    console.log('[UpdateItem]', obj);
+    return this.ddb.updateItem(obj).promise();
+  };
+
   getItem = (obj: DynamoDB.Types.GetItemInput) => {
     console.log('[GetItem]', obj);
     return this.ddb.getItem(obj).promise();

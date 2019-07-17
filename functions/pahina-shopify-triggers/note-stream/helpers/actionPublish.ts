@@ -5,7 +5,7 @@ import { pretty } from '../utils/simpleUtils';
 import { generateShopifyProduct } from './getShopifyProduct';
 import Shopify from '../connections/Shopify';
 import AwsDynamoDB from '../connections/AwsDynamoDB';
-import { getUpdateInfoFromShopifyProductResponse as getUpdateInfoFromShopify } from './getUpdateInfoFromShopifyProductResponse';
+import { getProductUpdateParam } from './getProductUpdateParam';
 import { Response } from 'node-fetch';
 
 export const publishProduct = async (note: NoteRecord) => {
@@ -40,10 +40,7 @@ export const publishProduct = async (note: NoteRecord) => {
     throw new ProcessingError('Failed post product to Shopify');
   }
 
-  const updatedProduct = await saveShopifyResponseOnDb(
-    product,
-    postProductResp,
-  );
+  const updatedProduct = await updateProductOnDb(product, postProductResp);
   if (!updatedProduct) {
     throw new ProcessingError('Failed to update UserStoreProduct');
   }
@@ -62,17 +59,22 @@ const sendShopifyPostProduct = async (
     const postData = generateShopifyProduct(user, note, caseRec);
     // digitalSig = hmacEncrypt(sharedSecret, JSON.stringify(postData));
     resp = await Shopify.postProduct(postData);
-
-    console.log('[SUCCESS] create product on Shopify', pretty(resp));
+    const body = await resp.json();
+    const headers = resp.headers.raw();
+    console.log(
+      '[SUCCESS] create product on Shopify',
+      pretty(headers),
+      pretty(body),
+    );
+    return { body, headers };
   } catch (err) {
-    console.log('[ERROR] create product on Shopify', err);
+    console.log('[ERROR] create product on Shopify', pretty(err));
+    return resp;
   }
 
   // if (resp && digitalSig) {
   //   await validateShopifyResponse(resp, digitalSig); // throw if error
   // }
-
-  return resp;
 };
 
 const saveProductOnDb = async (store: PahinaStoreRecord, note: NoteRecord) => {
@@ -82,7 +84,7 @@ const saveProductOnDb = async (store: PahinaStoreRecord, note: NoteRecord) => {
   try {
     const data: PutItemOutput = await AwsDynamoDB.putItem(params);
     console.log('[SUCCESS] put UserStoreProduct', pretty(data));
-    product = (data as unknown) as ProductRecord;
+    product = (params.Item as unknown) as ProductRecord;
   } catch (err) {
     console.log('[ERROR] put UserStoreProduct', err);
   }
@@ -90,18 +92,17 @@ const saveProductOnDb = async (store: PahinaStoreRecord, note: NoteRecord) => {
   return product;
 };
 
-const saveShopifyResponseOnDb = async (
+const updateProductOnDb = async (
   product: ProductRecord,
-  resp: Response,
+  { body, headers }: any,
 ) => {
-  const { body, headers } = await resp.json();
   let savedProduct: ProductRecord | null = null;
   try {
-    const params: PutItemInput = await getUpdateInfoFromShopify(product, {
+    const params: UpdateItemInput = await getProductUpdateParam(product, {
       body,
       headers,
     });
-    const data: PutItemOutput = await AwsDynamoDB.putItem(params);
+    const data: UpdateItemOutput = await AwsDynamoDB.updateItem(params);
     console.log('[SUCCESS] save post response UserStoreProduct', pretty(data));
     savedProduct = data as ProductRecord;
   } catch (err) {

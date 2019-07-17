@@ -35,5 +35,6 @@ export function generateUserStoreProduct(
       createdAt,
       __typename,
     },
+    ReturnValues: 'NONE',
   } as PutItemInput;
 }

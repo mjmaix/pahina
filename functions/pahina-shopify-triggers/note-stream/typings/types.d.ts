@@ -4,6 +4,8 @@ declare global {
   type AttributeValue = DynamoDB.AttributeValue;
   type PutItemInput = DynamoDB.Types.PutItemInput;
   type PutItemOutput = DynamoDB.Types.PutItemOutput;
+  type UpdateItemInput = DynamoDB.Types.UpdateItemInput;
+  type UpdateItemOutput = DynamoDB.Types.UpdateItemOutput;
   type BatchGetItemOutput = DynamoDB.Types.BatchGetItemOutput;
   type BatchGetItemInput = DynamoDB.Types.BatchGetItemInput;
   type GetItemInput = DynamoDB.Types.GetItemInput;
