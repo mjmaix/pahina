@@ -129,14 +129,23 @@ Resources:
                   - "PahinaUserStoreProductTable"
                   - "Name"
       Policies:
-        # - SSMParameterReadPolicy:
-        #     ParameterName: !Sub "/${!Ref ShopifyApiHost}/${!Ref EnvType}/*"
-        - SSMParameterReadPolicy:
-            ParameterName: !Sub [ "/${host}/${env}/ApiKey", { "host": !Ref ShopifyApiHost, env: !Ref EnvType}]
-        - SSMParameterReadPolicy:
-            ParameterName: !Sub [ "/${host}/${env}/Password", { "host": !Ref ShopifyApiHost, env: !Ref EnvType}]
-        - SSMParameterReadPolicy:
-            ParameterName: !Sub [ "/${host}/${env}/SharedSecret", { "host": !Ref ShopifyApiHost, env: !Ref EnvType}]
+        - Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Action:
+            - ssm:DescribeParameters
+            Resource: "*"
+          - Sid: VisualEditor1
+            Effect: Allow
+            Action:
+            - ssm:GetParameters
+            - ssm:GetParameter
+            Resource: !Sub [ "arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}/*", { "host": !Ref ShopifyApiHost, "env": !Ref EnvType }]
+          - Sid: VisualEditor2
+            Effect: Allow
+            Action:
+            - ssm:GetParametersByPath
+            Resource: !Sub [ "arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}", { "host": !Ref ShopifyApiHost, "env": !Ref EnvType }]
         - DynamoDBCrudPolicy:
             TableName:
               Fn::ImportValue:

@@ -25,12 +25,11 @@ class Shopify {
   }
 
   init = async () => {
-    const { apiVersion, hostname, keyPath, keyMatcher } = this;
+    const { apiVersion, hostname, keyPath } = this;
+    await AwsSSM.fetchPath(keyPath); // pre fetch path
 
-    const SsmParams = await AwsSSM.getParams(keyPath);
-
-    const accessToken = SsmParams.Parameters.find(keyMatcher('ApiKey'));
-    const password = SsmParams.Parameters.find(keyMatcher('Password'));
+    const accessToken = await AwsSSM.getParams(`${keyPath}/ApiKey`);
+    const password = await AwsSSM.getParams(`${keyPath}/Password`);
 
     this.url = `https://${accessToken}:${password}@${hostname}/admin/api/${apiVersion}`;
   };
@@ -55,20 +54,17 @@ class Shopify {
   };
 
   getSharedSecret = async () => {
-    const SsmParams = await AwsSSM.getParams(this.keyPath);
+    if (!this.url) {
+      await this.init();
+    }
+    const sharedSecret = await AwsSSM.getParams(`${this.keyPath}/SharedSecret`);
 
-    const sharedSecret = SsmParams.Parameters.find(
-      this.keyMatcher('SharedSecret'),
-    );
-    if (!sharedSecret || !sharedSecret.Value) {
-      throw new ProcessingError('SharedSecret was provided');
+    if (!sharedSecret) {
+      throw new ProcessingError('SharedSecret was not provided');
     }
 
-    return sharedSecret.Value;
+    return sharedSecret.toString();
   };
-
-  keyMatcher = (name: string) => (e: AWS.SSM.Parameter) =>
-    e.Name === `${this.keyPath}/${name}`;
 }
 
 const instance = new Shopify();

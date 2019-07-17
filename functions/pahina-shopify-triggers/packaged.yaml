@@ -58,7 +58,7 @@ Resources:
   NoteStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-triggers/d1c2a43ef65bc76648da6652a5d6c9eb
+      CodeUri: s3://pahina-shopify-triggers/cd24d1430d3ed45ab9690d3406ef492a
       Timeout: 240
       Events:
         StreamEvent:
@@ -133,26 +133,31 @@ Resources:
                 - PahinaUserStoreProductTable
                 - Name
       Policies:
-      - SSMParameterReadPolicy:
-          ParameterName:
+      - Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Action:
+          - ssm:DescribeParameters
+          Resource: '*'
+        - Sid: VisualEditor1
+          Effect: Allow
+          Action:
+          - ssm:GetParameters
+          - ssm:GetParameter
+          Resource:
             Fn::Sub:
-            - /${host}/${env}/ApiKey
+            - arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}/*
             - host:
                 Ref: ShopifyApiHost
               env:
                 Ref: EnvType
-      - SSMParameterReadPolicy:
-          ParameterName:
+        - Sid: VisualEditor2
+          Effect: Allow
+          Action:
+          - ssm:GetParametersByPath
+          Resource:
             Fn::Sub:
-            - /${host}/${env}/Password
-            - host:
-                Ref: ShopifyApiHost
-              env:
-                Ref: EnvType
-      - SSMParameterReadPolicy:
-          ParameterName:
-            Fn::Sub:
-            - /${host}/${env}/SharedSecret
+            - arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}
             - host:
                 Ref: ShopifyApiHost
               env:
@@ -208,7 +213,7 @@ Resources:
   UserStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-triggers/a77ce99297f8c5cfaf145cfe8937dd8a
+      CodeUri: s3://pahina-shopify-triggers/2a71d7a4ebbaa8c9ae71a21ed378afec
       Environment:
         Variables:
           USER_STORE_TABLE_NAME:
