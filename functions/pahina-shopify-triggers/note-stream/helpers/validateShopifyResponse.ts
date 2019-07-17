@@ -1,5 +1,7 @@
 import { ProcessingError } from '../utils/ProcessingError';
 
+import { Response } from 'node-fetch';
+
 export const validateShopifyResponse = async (
   resp: Response,
   expectedSig: string,

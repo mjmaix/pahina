@@ -19,7 +19,7 @@ export function generateShopifyProduct(
   html += `<p>${note.promotional.S}</p>`;
   return {
     product: {
-      title: `${caseCode} ${caseTitle} - ${productType} written by ${vendor}`,
+      title: `${productType} by ${vendor}, ${caseCode} - ${caseDate}`,
       body_html: html,
       vendor: vendor,
       product_type: productType,

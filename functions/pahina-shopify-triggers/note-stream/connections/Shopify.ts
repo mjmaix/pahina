@@ -1,3 +1,4 @@
+import fetch from 'node-fetch';
 import AwsSSM from './AwsSSM';
 import { ProcessingError } from '../utils/ProcessingError';
 
@@ -42,14 +43,17 @@ class Shopify {
       throw new ProcessingError('Shopify URL not available');
     }
 
-    return fetch(this.url, {
+    const resourceUrl = `${this.url}/products.json`;
+    const body = JSON.stringify(data);
+
+    console.log(`[INFO] post body`, data);
+
+    return fetch(resourceUrl, {
       method: 'POST',
-      mode: 'cors',
-      cache: 'no-cache',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body,
     });
   };
 

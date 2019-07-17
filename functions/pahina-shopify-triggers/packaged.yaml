@@ -58,7 +58,7 @@ Resources:
   NoteStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-triggers/cd24d1430d3ed45ab9690d3406ef492a
+      CodeUri: s3://pahina-shopify-triggers/b2e91314c3bfb54605901af2e3ea2944
       Timeout: 240
       Events:
         StreamEvent:
@@ -213,7 +213,7 @@ Resources:
   UserStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-triggers/2a71d7a4ebbaa8c9ae71a21ed378afec
+      CodeUri: s3://pahina-shopify-triggers/3f46c824309bd4591242a94e9446a402
       Environment:
         Variables:
           USER_STORE_TABLE_NAME:

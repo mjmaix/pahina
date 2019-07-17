@@ -3,11 +3,10 @@ import { ProcessingError } from '../utils/ProcessingError';
 import { generateUserStoreProduct } from './generateUserStoreProduct';
 import { pretty } from '../utils/simpleUtils';
 import { generateShopifyProduct } from './getShopifyProduct';
-import { hmacEncrypt } from '../utils/hmac';
 import Shopify from '../connections/Shopify';
 import AwsDynamoDB from '../connections/AwsDynamoDB';
 import { getUpdateInfoFromShopifyProductResponse as getUpdateInfoFromShopify } from './getUpdateInfoFromShopifyProductResponse';
-import { validateShopifyResponse } from './validateShopifyResponse';
+import { Response } from 'node-fetch';
 
 export const publishProduct = async (note: NoteRecord) => {
   let userRecord: UserRecord | null = null;
@@ -55,12 +54,13 @@ const sendShopifyPostProduct = async (
   caseRec: CaseRecord,
   note: NoteRecord,
 ) => {
-  let digitalSig = null;
+  // NOTE: does not need to check digital sig since this is not a webhook
+  // let digitalSig = null;
   let resp: Response | null = null;
-  const sharedSecret = await Shopify.getSharedSecret();
+  // const sharedSecret = await Shopify.getSharedSecret();
   try {
     const postData = generateShopifyProduct(user, note, caseRec);
-    digitalSig = hmacEncrypt(sharedSecret, JSON.stringify(postData));
+    // digitalSig = hmacEncrypt(sharedSecret, JSON.stringify(postData));
     resp = await Shopify.postProduct(postData);
 
     console.log('[SUCCESS] create product on Shopify', pretty(resp));
@@ -68,9 +68,9 @@ const sendShopifyPostProduct = async (
     console.log('[ERROR] create product on Shopify', err);
   }
 
-  if (resp && digitalSig) {
-    await validateShopifyResponse(resp, digitalSig); // throw if error
-  }
+  // if (resp && digitalSig) {
+  //   await validateShopifyResponse(resp, digitalSig); // throw if error
+  // }
 
   return resp;
 };
