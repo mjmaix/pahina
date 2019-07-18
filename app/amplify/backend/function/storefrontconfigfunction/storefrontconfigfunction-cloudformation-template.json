@@ -33,6 +33,9 @@
 			},
 			"Properties": {
 				"Handler": "index.handler",
+				"TracingConfig": {
+					"Mode": "Active"
+				},
 				"FunctionName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
@@ -112,6 +115,9 @@
 						}
 					]
 				},
+				"ManagedPolicyArns": [
+					"arn:aws:iam::aws:policy/AWSXrayWriteOnlyAccess"
+				],
 				"AssumeRolePolicyDocument": {
 					"Version": "2012-10-17",
 					"Statement": [
