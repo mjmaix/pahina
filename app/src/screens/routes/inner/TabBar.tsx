@@ -6,7 +6,7 @@ import {
 import { ThemedComponentProps } from 'styled-components';
 
 import { Mappings } from '../mappings';
-import MoreStack from './MoreStack';
+import AccountStack from './AccountStack';
 import { IconWithBadge, TabBarComponent } from '../../../components';
 
 const navBarOptions: BottomTabNavigatorConfig = {
@@ -35,8 +35,8 @@ const navBarOptions: BottomTabNavigatorConfig = {
 
 const NavBar = createBottomTabNavigator(
   {
-    MoreStack: {
-      screen: MoreStack,
+    AccountStack: {
+      screen: AccountStack,
     },
   },
   navBarOptions,

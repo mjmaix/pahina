@@ -50,7 +50,7 @@ export type ScreenName =
   | 'AuthLoading'
   | 'App'
   | 'Auth'
-  | 'MoreStack'
+  | 'AccountStack'
   | 'MfaStack';
 
 interface Mapping {
@@ -144,7 +144,7 @@ export const Mappings: Mappings = {
     screen: BusyOverlayScreen,
     icon: { name: '', type: 'feather' },
   },
-  MoreStack: {
+  AccountStack: {
     screen: null,
     icon: StyleGuide.userIcon,
   },

@@ -58,7 +58,7 @@ const routeConfigMap: StackRouteConfigMap = {
   },
 };
 
-const MoreStack = createStackNavigator(routeConfigMap, {
+const AccountStack = createStackNavigator(routeConfigMap, {
   defaultNavigationOptions: ({
     screenProps,
     navigation,
@@ -73,7 +73,7 @@ const MoreStack = createStackNavigator(routeConfigMap, {
   },
 });
 
-MoreStack.navigationOptions = ({ navigation }: NavigationScreenProps) => {
+AccountStack.navigationOptions = ({ navigation }: NavigationScreenProps) => {
   let tabBarVisible = true;
   if (navigation.state.index > 0) {
     tabBarVisible = false;
@@ -84,4 +84,4 @@ MoreStack.navigationOptions = ({ navigation }: NavigationScreenProps) => {
   };
 };
 
-export default MoreStack;
+export default AccountStack;
