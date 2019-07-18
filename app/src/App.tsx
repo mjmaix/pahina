@@ -7,30 +7,38 @@ import {
   ThemeProvider as RneThemeProvider,
   Theme,
 } from 'react-native-elements';
-import { ThemeProvider as ScThemeProvider } from 'styled-components';
+import {
+  ThemeProvider as ScThemeProvider,
+  DefaultTheme,
+} from 'styled-components';
 
 import { STORAGE_KEY, ThemeName, ThemeHelper } from './themes';
 import { NavigationService } from './utils';
-import { AppRoutes } from './screens/routes';
-import { logInfo, logError } from './shared';
+import { logInfo, logError, Storefront } from './shared';
 import { handleGetStorefrontConfig } from './shared/actions/functionActions';
+import { StorefrontProvider } from './stores/contexts/StorefrontStore';
+import { AppRoutes } from './screens/routes';
 
 interface AppState {
   theme?: Theme;
   isThemeReady: boolean;
+  storefrontConfig?: Storefront | null;
 }
 
 const initialState = {
   theme: ThemeHelper.get(),
   isThemeReady: false,
+  storefrontConfig: undefined,
 };
 
 export default class App extends Component<{}, AppState> {
-  public readonly state = initialState;
+  public readonly state: AppState = initialState;
 
   public componentWillMount() {
     handleGetStorefrontConfig().then(resp => {
-      console.log('TODO: save to context');
+      if (resp) {
+        this.setState({ storefrontConfig: resp.getStorefrontConfig });
+      }
     });
 
     ThemeHelper.addListener(theme => this.setState({ theme }));
@@ -56,25 +64,28 @@ export default class App extends Component<{}, AppState> {
   }
 
   public render() {
-    const { isThemeReady } = this.state;
-    if (!isThemeReady) {
+    const { isThemeReady, storefrontConfig, theme } = this.state;
+    if (!isThemeReady || !theme) {
       return <ActivityIndicator />;
     }
-    const { theme } = this.state;
 
     return (
-      <ScThemeProvider theme={theme}>
+      <ScThemeProvider theme={(theme as unknown) as DefaultTheme}>
         <RneThemeProvider theme={theme}>
-          <AppRoutes
-            screenProps={{
-              theme: this.state.theme,
-            }}
-            ref={navigatorRef => {
-              if (navigatorRef) {
-                NavigationService.setTopLevelNavigator(navigatorRef);
-              }
-            }}
-          />
+          <StorefrontProvider
+            value={{ data: storefrontConfig, isReady: !!storefrontConfig }}
+          >
+            <AppRoutes
+              screenProps={{
+                theme: this.state.theme,
+              }}
+              ref={navigatorRef => {
+                if (navigatorRef) {
+                  NavigationService.setTopLevelNavigator(navigatorRef);
+                }
+              }}
+            />
+          </StorefrontProvider>
         </RneThemeProvider>
       </ScThemeProvider>
     );
