@@ -1,1 +1,1 @@
-export * from './ClUserStore';
+export * from './UserStore';
