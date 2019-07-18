@@ -13,6 +13,7 @@ import { STORAGE_KEY, ThemeName, ThemeHelper } from './themes';
 import { NavigationService } from './utils';
 import { AppRoutes } from './screens/routes';
 import { logInfo, logError } from './shared';
+import { handleGetStorefrontConfig } from './shared/actions/functionActions';
 
 interface AppState {
   theme?: Theme;
@@ -28,6 +29,10 @@ export default class App extends Component<{}, AppState> {
   public readonly state = initialState;
 
   public componentWillMount() {
+    handleGetStorefrontConfig().then(resp => {
+      console.log('TODO: save to context');
+    });
+
     ThemeHelper.addListener(theme => this.setState({ theme }));
   }
 

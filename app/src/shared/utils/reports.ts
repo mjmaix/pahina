@@ -10,7 +10,8 @@ export type RecordName =
   | 'GetUserError'
   | 'CreateUserError'
   | 'UpdateUserError'
-  | 'PermissionsCameraRollDenied';
+  | 'PermissionsCameraRollDenied'
+  | 'GetStorefrontApi';
 export interface Record {
   name: RecordName;
   attributes?: {

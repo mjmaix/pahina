@@ -1,6 +1,12 @@
 // tslint:disable
 // this is an auto generated file. This will be overwritten
 
+export const getStorefrontConfig = `query GetStorefrontConfig {
+  getStorefrontConfig {
+    accessToken
+  }
+}
+`;
 export const getPahinaUser = `query GetPahinaUser($id: ID!) {
   getPahinaUser(id: $id) {
     id

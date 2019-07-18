@@ -189,3 +189,12 @@ type PahinaCase
 type Subscription {
   onCreatePahinaCase: PahinaCase @aws_subscribe(mutations: ["createPahinaCase"])
 }
+
+type StorefrontConfig {
+  accessToken: String
+}
+
+type Query {
+  getStorefrontConfig: StorefrontConfig
+    @function(name: "storefrontconfigfunction-${env}")
+}

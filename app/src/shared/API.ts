@@ -768,6 +768,13 @@ export type DeletePahinaCaseMutation = {
   } | null,
 };
 
+export type GetStorefrontConfigQuery = {
+  getStorefrontConfig:  {
+    __typename: "StorefrontConfig",
+    accessToken: string | null,
+  } | null,
+};
+
 export type GetPahinaUserQueryVariables = {
   id: string,
 };
