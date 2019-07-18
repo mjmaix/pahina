@@ -1,7 +1,7 @@
 import { createStackNavigator } from 'react-navigation';
 
 import ModalsStack from './ModalStack';
-import TabBarStack from './TabBar';
+import TabBarStack from './Drawer';
 
 const AppStack = createStackNavigator(
   {

@@ -21,6 +21,11 @@ import {
   ConfirmSignUpScreen,
   VerifyContactScreen,
   BusyOverlayScreen,
+  ProductDetailScreen,
+  ProductsScreen,
+  CartScreen,
+  DecisionsScreen,
+  PledgeScreen,
 } from '..';
 import { StyleGuide } from '../../themes';
 
@@ -46,11 +51,18 @@ export type ScreenName =
   | 'Confirm'
   | 'VerifyContact'
   | 'Busy'
+  | 'Shop'
+  | 'Product'
+  | 'Cart'
+  | 'Decisions'
+  | 'Pledge'
   // parents
   | 'AuthLoading'
   | 'App'
   | 'Auth'
   | 'AccountStack'
+  | 'ShopifyStack'
+  | 'Drawer'
   | 'MfaStack';
 
 interface Mapping {
@@ -143,6 +155,34 @@ export const Mappings: Mappings = {
   Busy: {
     screen: BusyOverlayScreen,
     icon: { name: '', type: 'feather' },
+  },
+  Shop: {
+    screen: ProductsScreen,
+    icon: { name: 'shopping-bag', type: 'feather' },
+  },
+  Cart: {
+    screen: CartScreen,
+    icon: { name: 'shopping-cart', type: 'feather' },
+  },
+  Pledge: {
+    screen: PledgeScreen,
+    icon: { name: 'pushpino', type: 'antdesign' },
+  },
+  Decisions: {
+    screen: DecisionsScreen,
+    icon: { name: 'balance-scale', type: 'fontawesome' },
+  },
+  Product: {
+    screen: ProductDetailScreen,
+    icon: { name: '', type: 'fontawesome' },
+  },
+  Drawer: {
+    screen: null,
+    icon: { name: 'reorder', type: 'fontawesome' },
+  },
+  ShopifyStack: {
+    screen: null,
+    icon: { name: 'shopify', type: 'material-community' },
   },
   AccountStack: {
     screen: null,

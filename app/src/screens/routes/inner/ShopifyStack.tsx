@@ -8,12 +8,12 @@ import { NavigationService } from '../../../utils';
 import { updateStatusBarStyle } from '../../../utils/StatusBarService';
 
 const routeConfigMap: StackRouteConfigMap = {
-  Profile: {
-    screen: Mappings.Profile.screen,
+  Shop: {
+    screen: Mappings.Shop.screen,
     navigationOptions: ({ screenProps }: NavigationScreenProps) => {
       const { theme } = screenProps as ThemedComponentProps;
       return {
-        title: 'Profile',
+        title: 'Shop Notes',
         headerLeft: (
           <HeaderIcon
             icon={{
@@ -26,48 +26,30 @@ const routeConfigMap: StackRouteConfigMap = {
         headerRight: (
           <HeaderIcon
             icon={{
-              ...Mappings.Settings.icon,
+              ...Mappings.Shop.icon,
               iconStyle: { color: theme.colors.primary },
             }}
-            onPress={() => NavigationService.navigate('Settings')}
+            onPress={() => NavigationService.navigate('Cart')}
           />
         ),
       };
     },
   },
-  Settings: {
-    screen: Mappings.Settings.screen,
+  Cart: {
+    screen: Mappings.Cart.screen,
     navigationOptions: () => ({
-      title: 'Settings',
+      title: 'Cart',
     }),
   },
-  SelectTheme: {
-    screen: Mappings.SelectTheme.screen,
+  Product: {
+    screen: Mappings.Product.screen,
     navigationOptions: () => ({
-      title: 'Select theme',
-    }),
-  },
-  Change: {
-    screen: Mappings.Change.screen,
-    navigationOptions: () => ({
-      title: 'Change password',
-    }),
-  },
-  VerifyContact: {
-    screen: Mappings.VerifyContact.screen,
-    navigationOptions: () => ({
-      title: 'Verify',
-    }),
-  },
-  SelectMfa: {
-    screen: Mappings.SelectMfa.screen,
-    navigationOptions: () => ({
-      title: 'Configure MFA',
+      title: 'Product',
     }),
   },
 };
 
-const AccountStack = createStackNavigator(routeConfigMap, {
+const ShopifyStack = createStackNavigator(routeConfigMap, {
   defaultNavigationOptions: ({
     screenProps,
     navigation,
@@ -82,7 +64,7 @@ const AccountStack = createStackNavigator(routeConfigMap, {
   },
 });
 
-AccountStack.navigationOptions = ({ navigation }: NavigationScreenProps) => {
+ShopifyStack.navigationOptions = ({ navigation }: NavigationScreenProps) => {
   let tabBarVisible = true;
   if (navigation.state.index > 0) {
     tabBarVisible = false;
@@ -93,4 +75,4 @@ AccountStack.navigationOptions = ({ navigation }: NavigationScreenProps) => {
   };
 };
 
-export default AccountStack;
+export default ShopifyStack;

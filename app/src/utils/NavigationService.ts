@@ -1,6 +1,7 @@
 import {
   NavigationActions,
   NavigationContainerComponent,
+  DrawerActions,
 } from 'react-navigation';
 import { ScreenName } from '../screens/routes/mappings';
 
@@ -27,8 +28,15 @@ function goBack() {
   }
 }
 
+function toggleDrawer() {
+  if (navigator) {
+    navigator.dispatch(DrawerActions.toggleDrawer());
+  }
+}
+
 export const NavigationService = {
   goBack,
   navigate,
   setTopLevelNavigator,
+  toggleDrawer,
 };
