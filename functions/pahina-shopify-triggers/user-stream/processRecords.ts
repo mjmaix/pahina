@@ -1,4 +1,4 @@
-import { DynamoDBStreamEvent } from 'aws-lambda';
+import { DynamoDBStreamEvent, StreamRecord } from 'aws-lambda';
 import AwsDynamoDB from './connections/AwsDynamoDB';
 import { DynamoDB } from 'aws-sdk';
 import { ProcessingError } from './utils/ProcessingError';
@@ -19,27 +19,7 @@ export const processRecords = async ({ Records }: DynamoDBStreamEvent) => {
 
         switch (eventName) {
           case 'INSERT':
-            const image = dynamodb.NewImage;
-            if (process.env.USER_STORE_TABLE_NAME && image) {
-              const params: DynamoDB.Types.PutItemInput = {
-                TableName: process.env.USER_STORE_TABLE_NAME,
-                Item: {
-                  id: { S: short.uuid().toString() },
-                  ownerId: image['id'],
-                  skuPrefix: { S: generateSkuPrefix() },
-                  updatedAt: { S: isoNow() },
-                  createdAt: { S: isoNow() },
-                  __typename: { S: 'PahinaUserStore' },
-                },
-              };
-
-              try {
-                const data = await AwsDynamoDB.putItem(params);
-                console.log('[SUCCESS]', data);
-              } catch (err) {
-                console.log('[ERROR]', err);
-              }
-            }
+            await saveUserStore(dynamodb);
             break;
           case 'MODIFY':
             break;
@@ -54,3 +34,26 @@ export const processRecords = async ({ Records }: DynamoDBStreamEvent) => {
     throw err;
   }
 };
+
+async function saveUserStore(dynamodb: StreamRecord) {
+  const image = dynamodb.NewImage;
+  if (process.env.USER_STORE_TABLE_NAME && image) {
+    const params: DynamoDB.Types.PutItemInput = {
+      TableName: process.env.USER_STORE_TABLE_NAME,
+      Item: {
+        id: { S: short.uuid().toString() },
+        ownerId: image['id'],
+        skuPrefix: { S: generateSkuPrefix() },
+        updatedAt: { S: isoNow() },
+        createdAt: { S: isoNow() },
+        __typename: { S: 'PahinaUserStore' },
+      },
+    };
+    try {
+      const data = await AwsDynamoDB.putItem(params);
+      console.log('[SUCCESS]', data);
+    } catch (err) {
+      console.log('[ERROR]', err);
+    }
+  }
+}
