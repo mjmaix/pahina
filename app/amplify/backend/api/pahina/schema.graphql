@@ -44,7 +44,6 @@ type PahinaUser
   ) {
   id: ID!
   identityId: String
-  shopifyCustomerId: String
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
   notes: [PahinaNote]
