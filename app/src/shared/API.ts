@@ -31,6 +31,63 @@ export enum PahinaStoreProductStatus {
 }
 
 
+export type ShopifyCustomerInput = {
+  id?: string | null,
+  addresses?: Array< ShopifyMailingAddressInput > | null,
+  email?: string | null,
+  firstName?: string | null,
+  lastName?: string | null,
+  note?: string | null,
+  phone?: string | null,
+  tags?: Array< string > | null,
+};
+
+export type ShopifyMailingAddressInput = {
+  id?: string | null,
+  firstName?: string | null,
+  lastName?: string | null,
+  phone?: string | null,
+  address1?: string | null,
+  address2?: string | null,
+  company?: string | null,
+  province?: string | null,
+  provinceCode?: string | null,
+  city?: string | null,
+  zip?: string | null,
+  country?: string | null,
+  countryCode?: string | null,
+};
+
+export enum ShopifyMetafieldOwnerType {
+  SHOP = "SHOP",
+  BLOG = "BLOG",
+  COLLECTION = "COLLECTION",
+  CUSTOMER = "CUSTOMER",
+  DRAFTORDER = "DRAFTORDER",
+  ORDER = "ORDER",
+  PAGE = "PAGE",
+  PRODUCT = "PRODUCT",
+  PRODUCTIMAGE = "PRODUCTIMAGE",
+  PRODUCTVARIANT = "PRODUCTVARIANT",
+  ARTICLE = "ARTICLE",
+}
+
+
+export enum ShopifyMetafieldValueType {
+  INTEGER = "INTEGER",
+  JSON_STRING = "JSON_STRING",
+  STRING = "STRING",
+}
+
+
+export enum ShopifyCustomerState {
+  DECLINED = "DECLINED",
+  DISABLED = "DISABLED",
+  ENABLED = "ENABLED",
+  INVITED = "INVITED",
+}
+
+
 export type CreatePahinaUserInput = {
   id?: string | null,
   givenName: string,
@@ -40,6 +97,7 @@ export type CreatePahinaUserInput = {
   identityId?: string | null,
   createdAt?: string | null,
   updatedAt?: string | null,
+  shopifyCustomerId?: string | null,
 };
 
 export type UpdatePahinaUserInput = {
@@ -51,6 +109,7 @@ export type UpdatePahinaUserInput = {
   identityId?: string | null,
   createdAt?: string | null,
   updatedAt?: string | null,
+  shopifyCustomerId?: string | null,
 };
 
 export type DeletePahinaUserInput = {
@@ -118,6 +177,7 @@ export type ModelPahinaUserFilterInput = {
   identityId?: ModelStringFilterInput | null,
   createdAt?: ModelStringFilterInput | null,
   updatedAt?: ModelStringFilterInput | null,
+  shopifyCustomerId?: ModelStringFilterInput | null,
   and?: Array< ModelPahinaUserFilterInput | null > | null,
   or?: Array< ModelPahinaUserFilterInput | null > | null,
   not?: ModelPahinaUserFilterInput | null,
@@ -306,6 +366,78 @@ export type GetPahinaUserSortedNotesQuery = {
   } | null,
 };
 
+export type UpdateShopifyCustomerMutationVariables = {
+  input: ShopifyCustomerInput,
+};
+
+export type UpdateShopifyCustomerMutation = {
+  updateShopifyCustomer:  {
+    __typename: "ShopifyCustomer",
+    id: string,
+    displayName: string,
+    firstName: string | null,
+    lastName: string | null,
+    email: string | null,
+    addresses:  Array< {
+      __typename: "ShopifyMailingAddress",
+      id: string,
+      name: string | null,
+      firstName: string | null,
+      lastName: string | null,
+      phone: string | null,
+      address1: string | null,
+      address2: string | null,
+      company: string | null,
+      city: string | null,
+      province: string | null,
+      provinceCode: string | null,
+      zip: string | null,
+      country: string | null,
+      countryCodeV2: string | null,
+      formatted: Array< string >,
+      formattedArea: string | null,
+      longitude: number | null,
+      latitude: number | null,
+    } >,
+    createdAt: string,
+    ShopifyCustomerState: string,
+    defaultAddress:  {
+      __typename: "ShopifyMailingAddress",
+      id: string,
+      name: string | null,
+      firstName: string | null,
+      lastName: string | null,
+      phone: string | null,
+      address1: string | null,
+      address2: string | null,
+      company: string | null,
+      city: string | null,
+      province: string | null,
+      provinceCode: string | null,
+      zip: string | null,
+      country: string | null,
+      countryCodeV2: string | null,
+      formatted: Array< string >,
+      formattedArea: string | null,
+      longitude: number | null,
+      latitude: number | null,
+    } | null,
+    metafield:  {
+      __typename: "ShopifyMetaField",
+      id: string,
+      description: string | null,
+      key: string,
+      namespace: string,
+      ownerType: ShopifyMetafieldOwnerType | null,
+      value: string,
+      valueType: ShopifyMetafieldValueType,
+    } | null,
+    phone: string | null,
+    state: ShopifyCustomerState | null,
+    tags: Array< string >,
+  } | null,
+};
+
 export type CreatePahinaUserMutationVariables = {
   input: CreatePahinaUserInput,
 };
@@ -368,6 +500,7 @@ export type CreatePahinaUserMutation = {
       } | null > | null,
       nextToken: string | null,
     } | null,
+    shopifyCustomerId: string | null,
   } | null,
 };
 
@@ -433,6 +566,7 @@ export type UpdatePahinaUserMutation = {
       } | null > | null,
       nextToken: string | null,
     } | null,
+    shopifyCustomerId: string | null,
   } | null,
 };
 
@@ -498,6 +632,7 @@ export type DeletePahinaUserMutation = {
       } | null > | null,
       nextToken: string | null,
     } | null,
+    shopifyCustomerId: string | null,
   } | null,
 };
 
@@ -531,6 +666,7 @@ export type CreatePahinaNoteMutation = {
         __typename: "ModelPahinaUserStoreProductConnection",
         nextToken: string | null,
       } | null,
+      shopifyCustomerId: string | null,
     } | null,
     authorId: string,
     case:  {
@@ -587,6 +723,7 @@ export type UpdatePahinaNoteMutation = {
         __typename: "ModelPahinaUserStoreProductConnection",
         nextToken: string | null,
       } | null,
+      shopifyCustomerId: string | null,
     } | null,
     authorId: string,
     case:  {
@@ -643,6 +780,7 @@ export type DeletePahinaNoteMutation = {
         __typename: "ModelPahinaUserStoreProductConnection",
         nextToken: string | null,
       } | null,
+      shopifyCustomerId: string | null,
     } | null,
     authorId: string,
     case:  {
@@ -768,10 +906,82 @@ export type DeletePahinaCaseMutation = {
   } | null,
 };
 
-export type GetStorefrontConfigQuery = {
-  getStorefrontConfig:  {
-    __typename: "StorefrontConfig",
+export type GetShopifyStorefrontConfigQuery = {
+  getShopifyStorefrontConfig:  {
+    __typename: "ShopifyStorefrontConfig",
     accessToken: string | null,
+  } | null,
+};
+
+export type GetShopifyCustomerQueryVariables = {
+  id: string,
+};
+
+export type GetShopifyCustomerQuery = {
+  getShopifyCustomer:  {
+    __typename: "ShopifyCustomer",
+    id: string,
+    displayName: string,
+    firstName: string | null,
+    lastName: string | null,
+    email: string | null,
+    addresses:  Array< {
+      __typename: "ShopifyMailingAddress",
+      id: string,
+      name: string | null,
+      firstName: string | null,
+      lastName: string | null,
+      phone: string | null,
+      address1: string | null,
+      address2: string | null,
+      company: string | null,
+      city: string | null,
+      province: string | null,
+      provinceCode: string | null,
+      zip: string | null,
+      country: string | null,
+      countryCodeV2: string | null,
+      formatted: Array< string >,
+      formattedArea: string | null,
+      longitude: number | null,
+      latitude: number | null,
+    } >,
+    createdAt: string,
+    ShopifyCustomerState: string,
+    defaultAddress:  {
+      __typename: "ShopifyMailingAddress",
+      id: string,
+      name: string | null,
+      firstName: string | null,
+      lastName: string | null,
+      phone: string | null,
+      address1: string | null,
+      address2: string | null,
+      company: string | null,
+      city: string | null,
+      province: string | null,
+      provinceCode: string | null,
+      zip: string | null,
+      country: string | null,
+      countryCodeV2: string | null,
+      formatted: Array< string >,
+      formattedArea: string | null,
+      longitude: number | null,
+      latitude: number | null,
+    } | null,
+    metafield:  {
+      __typename: "ShopifyMetaField",
+      id: string,
+      description: string | null,
+      key: string,
+      namespace: string,
+      ownerType: ShopifyMetafieldOwnerType | null,
+      value: string,
+      valueType: ShopifyMetafieldValueType,
+    } | null,
+    phone: string | null,
+    state: ShopifyCustomerState | null,
+    tags: Array< string >,
   } | null,
 };
 
@@ -837,6 +1047,7 @@ export type GetPahinaUserQuery = {
       } | null > | null,
       nextToken: string | null,
     } | null,
+    shopifyCustomerId: string | null,
   } | null,
 };
 
@@ -871,6 +1082,7 @@ export type ListPahinaUsersQuery = {
         __typename: "ModelPahinaUserStoreProductConnection",
         nextToken: string | null,
       } | null,
+      shopifyCustomerId: string | null,
     } | null > | null,
     nextToken: string | null,
   } | null,
@@ -939,6 +1151,7 @@ export type GetPahinaUserStoreQuery = {
         __typename: "ModelPahinaUserStoreProductConnection",
         nextToken: string | null,
       } | null,
+      shopifyCustomerId: string | null,
     },
     products:  {
       __typename: "ModelPahinaUserStoreProductConnection",
@@ -988,6 +1201,7 @@ export type ListPahinaUserStoresQuery = {
         identityId: string | null,
         createdAt: string | null,
         updatedAt: string | null,
+        shopifyCustomerId: string | null,
       },
       products:  {
         __typename: "ModelPahinaUserStoreProductConnection",
@@ -1032,6 +1246,7 @@ export type GetPahinaUserStoreProductQuery = {
         __typename: "ModelPahinaUserStoreProductConnection",
         nextToken: string | null,
       } | null,
+      shopifyCustomerId: string | null,
     } | null,
     store:  {
       __typename: "PahinaUserStore",
@@ -1047,6 +1262,7 @@ export type GetPahinaUserStoreProductQuery = {
         identityId: string | null,
         createdAt: string | null,
         updatedAt: string | null,
+        shopifyCustomerId: string | null,
       },
       products:  {
         __typename: "ModelPahinaUserStoreProductConnection",
@@ -1092,6 +1308,7 @@ export type ListPahinaUserStoreProductsQuery = {
         identityId: string | null,
         createdAt: string | null,
         updatedAt: string | null,
+        shopifyCustomerId: string | null,
       } | null,
       store:  {
         __typename: "PahinaUserStore",
@@ -1145,6 +1362,7 @@ export type GetPahinaNoteQuery = {
         __typename: "ModelPahinaUserStoreProductConnection",
         nextToken: string | null,
       } | null,
+      shopifyCustomerId: string | null,
     } | null,
     authorId: string,
     case:  {
@@ -1193,6 +1411,7 @@ export type ListPahinaNotesQuery = {
         identityId: string | null,
         createdAt: string | null,
         updatedAt: string | null,
+        shopifyCustomerId: string | null,
       } | null,
       authorId: string,
       case:  {
@@ -1302,6 +1521,7 @@ export type ByOwnerIdQuery = {
         identityId: string | null,
         createdAt: string | null,
         updatedAt: string | null,
+        shopifyCustomerId: string | null,
       },
       products:  {
         __typename: "ModelPahinaUserStoreProductConnection",

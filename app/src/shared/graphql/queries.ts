@@ -1,9 +1,73 @@
 // tslint:disable
 // this is an auto generated file. This will be overwritten
 
-export const getStorefrontConfig = `query GetStorefrontConfig {
-  getStorefrontConfig {
+export const getShopifyStorefrontConfig = `query GetShopifyStorefrontConfig {
+  getShopifyStorefrontConfig {
     accessToken
+  }
+}
+`;
+export const getShopifyCustomer = `query GetShopifyCustomer($id: ID!) {
+  getShopifyCustomer(id: $id) {
+    id
+    displayName
+    firstName
+    lastName
+    email
+    addresses {
+      id
+      name
+      firstName
+      lastName
+      phone
+      address1
+      address2
+      company
+      city
+      province
+      provinceCode
+      zip
+      country
+      countryCodeV2
+      formatted
+      formattedArea
+      longitude
+      latitude
+    }
+    createdAt
+    ShopifyCustomerState
+    defaultAddress {
+      id
+      name
+      firstName
+      lastName
+      phone
+      address1
+      address2
+      company
+      city
+      province
+      provinceCode
+      zip
+      country
+      countryCodeV2
+      formatted
+      formattedArea
+      longitude
+      latitude
+    }
+    metafield {
+      id
+      description
+      key
+      namespace
+      ownerType
+      value
+      valueType
+    }
+    phone
+    state
+    tags
   }
 }
 `;
@@ -58,6 +122,7 @@ export const getPahinaUser = `query GetPahinaUser($id: ID!) {
       }
       nextToken
     }
+    shopifyCustomerId
   }
 }
 `;
@@ -85,6 +150,7 @@ export const listPahinaUsers = `query ListPahinaUsers(
       ownedProducts {
         nextToken
       }
+      shopifyCustomerId
     }
     nextToken
   }
@@ -135,6 +201,7 @@ export const getPahinaUserStore = `query GetPahinaUserStore($id: ID!) {
       ownedProducts {
         nextToken
       }
+      shopifyCustomerId
     }
     products {
       items {
@@ -177,6 +244,7 @@ export const listPahinaUserStores = `query ListPahinaUserStores(
         identityId
         createdAt
         updatedAt
+        shopifyCustomerId
       }
       products {
         nextToken
@@ -211,6 +279,7 @@ export const getPahinaUserStoreProduct = `query GetPahinaUserStoreProduct($id: I
       ownedProducts {
         nextToken
       }
+      shopifyCustomerId
     }
     store {
       id
@@ -224,6 +293,7 @@ export const getPahinaUserStoreProduct = `query GetPahinaUserStoreProduct($id: I
         identityId
         createdAt
         updatedAt
+        shopifyCustomerId
       }
       products {
         nextToken
@@ -267,6 +337,7 @@ export const listPahinaUserStoreProducts = `query ListPahinaUserStoreProducts(
         identityId
         createdAt
         updatedAt
+        shopifyCustomerId
       }
       store {
         id
@@ -310,6 +381,7 @@ export const getPahinaNote = `query GetPahinaNote($id: ID!) {
       ownedProducts {
         nextToken
       }
+      shopifyCustomerId
     }
     authorId
     case {
@@ -351,6 +423,7 @@ export const listPahinaNotes = `query ListPahinaNotes(
         identityId
         createdAt
         updatedAt
+        shopifyCustomerId
       }
       authorId
       case {
@@ -448,6 +521,7 @@ export const byOwnerId = `query ByOwnerId(
         identityId
         createdAt
         updatedAt
+        shopifyCustomerId
       }
       products {
         nextToken

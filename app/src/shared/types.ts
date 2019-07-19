@@ -5,8 +5,7 @@ import {
   GetPahinaUserSortedNotesQuery,
   GetPahinaCaseQuery,
   ListPahinaCasesQuery,
-  GetStorefrontApiQuery,
-  GetStorefrontConfigQuery,
+  GetShopifyStorefrontConfigQuery,
 } from './API';
 
 /**
@@ -110,8 +109,8 @@ export type PahinaNote =
   | ModelFromListQuery<ListPahinaCasesQuery, 'listPahinaCases'>;
 
 export type Storefront = ModelFromGetQuery<
-  GetStorefrontConfigQuery,
-  'getStorefrontConfig'
+  GetShopifyStorefrontConfigQuery,
+  'getShopifyStorefrontConfig'
 >;
 /**
  * Others

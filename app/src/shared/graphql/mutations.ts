@@ -1,6 +1,70 @@
 // tslint:disable
 // this is an auto generated file. This will be overwritten
 
+export const updateShopifyCustomer = `mutation UpdateShopifyCustomer($input: ShopifyCustomerInput!) {
+  updateShopifyCustomer(input: $input) {
+    id
+    displayName
+    firstName
+    lastName
+    email
+    addresses {
+      id
+      name
+      firstName
+      lastName
+      phone
+      address1
+      address2
+      company
+      city
+      province
+      provinceCode
+      zip
+      country
+      countryCodeV2
+      formatted
+      formattedArea
+      longitude
+      latitude
+    }
+    createdAt
+    ShopifyCustomerState
+    defaultAddress {
+      id
+      name
+      firstName
+      lastName
+      phone
+      address1
+      address2
+      company
+      city
+      province
+      provinceCode
+      zip
+      country
+      countryCodeV2
+      formatted
+      formattedArea
+      longitude
+      latitude
+    }
+    metafield {
+      id
+      description
+      key
+      namespace
+      ownerType
+      value
+      valueType
+    }
+    phone
+    state
+    tags
+  }
+}
+`;
 export const createPahinaUser = `mutation CreatePahinaUser($input: CreatePahinaUserInput!) {
   createPahinaUser(input: $input) {
     id
@@ -52,6 +116,7 @@ export const createPahinaUser = `mutation CreatePahinaUser($input: CreatePahinaU
       }
       nextToken
     }
+    shopifyCustomerId
   }
 }
 `;
@@ -106,6 +171,7 @@ export const updatePahinaUser = `mutation UpdatePahinaUser($input: UpdatePahinaU
       }
       nextToken
     }
+    shopifyCustomerId
   }
 }
 `;
@@ -160,6 +226,7 @@ export const deletePahinaUser = `mutation DeletePahinaUser($input: DeletePahinaU
       }
       nextToken
     }
+    shopifyCustomerId
   }
 }
 `;
@@ -184,6 +251,7 @@ export const createPahinaNote = `mutation CreatePahinaNote($input: CreatePahinaN
       ownedProducts {
         nextToken
       }
+      shopifyCustomerId
     }
     authorId
     case {
@@ -229,6 +297,7 @@ export const updatePahinaNote = `mutation UpdatePahinaNote($input: UpdatePahinaN
       ownedProducts {
         nextToken
       }
+      shopifyCustomerId
     }
     authorId
     case {
@@ -274,6 +343,7 @@ export const deletePahinaNote = `mutation DeletePahinaNote($input: DeletePahinaN
       ownedProducts {
         nextToken
       }
+      shopifyCustomerId
     }
     authorId
     case {

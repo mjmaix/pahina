@@ -64,6 +64,7 @@ type PahinaUser
       keyField: "ownerId"
       sortField: "updatedAt"
     )
+  shopifyCustomerId: String
 }
 
 type PahinaMainStore
@@ -186,15 +187,138 @@ type PahinaCase
     @connection(name: "NoteCases", keyField: "caseId", sortField: "updatedAt")
 }
 
+###
+# None Model types
+###
+
+# https://help.shopify.com/en/api/graphql-admin-api/reference/enum/metafieldownertype
+enum ShopifyMetafieldOwnerType {
+  SHOP
+  BLOG
+  COLLECTION
+  CUSTOMER
+  DRAFTORDER
+  ORDER
+  PAGE
+  PRODUCT
+  PRODUCTIMAGE
+  PRODUCTVARIANT
+  ARTICLE
+}
+
+# https://help.shopify.com/en/api/graphql-admin-api/reference/enum/metafieldvaluetype
+enum ShopifyMetafieldValueType {
+  INTEGER
+  JSON_STRING
+  STRING
+}
+# https://help.shopify.com/en/api/graphql-admin-api/reference/enum/customerstate
+enum ShopifyCustomerState {
+  DECLINED
+  DISABLED
+  ENABLED
+  INVITED
+}
+# https://help.shopify.com/en/api/graphql-admin-api/reference/object/metafield
+type ShopifyMetaField {
+  id: ID!
+  description: String
+  key: String!
+  namespace: String!
+  ownerType: ShopifyMetafieldOwnerType
+  value: String!
+  valueType: ShopifyMetafieldValueType!
+}
+
+# https://help.shopify.com/en/api/graphql-admin-api/reference/object/mailingaddress
+type ShopifyMailingAddress {
+  id: ID!
+  name: String
+  firstName: String
+  lastName: String
+  phone: String
+  address1: String
+  address2: String
+  company: String
+  city: String
+  province: String
+  provinceCode: String
+  zip: String
+  country: String
+  countryCodeV2: String
+  formatted: [String!]!
+  formattedArea: String
+  longitude: Float
+  latitude: Float
+}
+
+# https://help.shopify.com/en/api/graphql-admin-api/reference/object/customer
+type ShopifyCustomer {
+  id: ID!
+  displayName: String!
+  firstName: String
+  lastName: String
+  email: String
+  addresses: [ShopifyMailingAddress!]!
+  createdAt: AWSDateTime!
+  ShopifyCustomerState: AWSDateTime!
+  defaultAddress: ShopifyMailingAddress
+  # image: TODO:
+  metafield: ShopifyMetaField
+  phone: String
+  state: ShopifyCustomerState
+  tags: [String!]!
+}
+
+# https://help.shopify.com/en/api/graphql-admin-api/reference/input-object/customerinput
+input ShopifyCustomerInput {
+  id: ID
+  addresses: [ShopifyMailingAddressInput!]
+  email: String
+  firstName: String
+  lastName: String
+  note: String
+  phone: String
+  tags: [String!]
+}
+
+# https://help.shopify.com/en/api/graphql-admin-api/reference/input-object/mailingaddressinput
+input ShopifyMailingAddressInput {
+  id: ID
+  firstName: String
+  lastName: String
+  phone: String
+  address1: String
+  address2: String
+  company: String
+  province: String
+  provinceCode: String
+  city: String
+  zip: String
+  country: String
+  countryCode: String
+}
+
+type ShopifyStorefrontConfig {
+  accessToken: String
+}
+
+###
+# None Model types end
+###
+
 type Subscription {
   onCreatePahinaCase: PahinaCase @aws_subscribe(mutations: ["createPahinaCase"])
 }
 
-type StorefrontConfig {
-  accessToken: String
+type Query {
+  getShopifyStorefrontConfig: ShopifyStorefrontConfig
+    @function(name: "storefrontconfigfunction-${env}")
+  getShopifyCustomer(id: ID!): ShopifyCustomer
+    @function(name: "pahinaqueryshopifycustomerfunction-${env}") #FIXME: add owner verification
 }
 
-type Query {
-  getStorefrontConfig: StorefrontConfig
-    @function(name: "storefrontconfigfunction-${env}")
+type Mutation {
+  updateShopifyCustomer(input: ShopifyCustomerInput!): ShopifyCustomer
+    @function(name: "pahinaupdateshopifycustomerfunction-${env}") #FIXME: add owner verification
 }
