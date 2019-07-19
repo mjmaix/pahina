@@ -161,8 +161,9 @@ class ProfileScreen extends Component<Props, typeof InitialState> {
               <StyledFormRow>
                 <FormikInputInjector dataKey="email" formProps={fProps}>
                   <StyledTextInput
+                    editable={false}
                     as={EmailInput}
-                    label="Email"
+                    label="Email (uneditable)"
                     placeholder=""
                   />
                 </FormikInputInjector>
@@ -186,7 +187,7 @@ class ProfileScreen extends Component<Props, typeof InitialState> {
                 </FormikInputInjector>
               </StyledFormRow>
 
-              <StyledFormRow>
+              {/* <StyledFormRow>
                 <FormikInputInjector dataKey="phone_number" formProps={fProps}>
                   <StyledTextInput
                     label="Mobile"
@@ -195,7 +196,7 @@ class ProfileScreen extends Component<Props, typeof InitialState> {
                     textContentType="telephoneNumber"
                   />
                 </FormikInputInjector>
-              </StyledFormRow>
+              </StyledFormRow> */}
 
               <StyledFormRow>
                 <MemoFormikFormErrorText {...fProps} />
