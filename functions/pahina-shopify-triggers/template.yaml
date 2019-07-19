@@ -34,6 +34,9 @@ Mappings:
     GraphQLAPIIdOutput:
       dev: kbpidncxhven5asuuuyqocnffm
       prod: ''
+    UserPoolId:
+      dev: ap-southeast-1_1CQQvDhhM
+      prod: ''
 Conditions:
   IsDev:
     Fn::Equals:
@@ -50,9 +53,11 @@ Globals:
     Environment:
       Variables:
         SHOPIFY_API_HOSTNAME: !Ref ShopifyApiHost
+        SHOPIFY_API_VERSION: !Ref ShopifyApiVersion
+        USER_POOL_ID: !FindInMap [AmplifyProject, UserPoolId, !Ref EnvType]
         REGION: !Ref AWS::Region
         ENV: !Ref EnvType
-        
+
 Resources:
   NoteStreamFunction:
     Type: AWS::Serverless::Function
@@ -84,8 +89,6 @@ Resources:
             Enabled: true
       Environment: 
         Variables:
-          SHOPIFY_API_HOSTNAME: !Ref ShopifyApiHost
-          SHOPIFY_API_VERSION: !Ref ShopifyApiVersion
           USER_TABLE_NAME:
             Fn::ImportValue:
               !Join 
@@ -131,23 +134,6 @@ Resources:
                   - "PahinaUserStoreProductTable"
                   - "Name"
       Policies:
-        - Version: '2012-10-17'
-          Statement:
-          - Effect: Allow
-            Action:
-            - ssm:DescribeParameters
-            Resource: "*"
-          - Sid: VisualEditor1
-            Effect: Allow
-            Action:
-            - ssm:GetParameters
-            - ssm:GetParameter
-            Resource: !Sub [ "arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}/*", { "host": !Ref ShopifyApiHost, "env": !Ref EnvType }]
-          - Sid: VisualEditor2
-            Effect: Allow
-            Action:
-            - ssm:GetParametersByPath
-            Resource: !Sub [ "arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}", { "host": !Ref ShopifyApiHost, "env": !Ref EnvType }]
         - DynamoDBCrudPolicy:
             TableName:
               Fn::ImportValue:
@@ -196,6 +182,32 @@ Resources:
                     - "GetAtt"
                     - "PahinaUserStoreProductTable"
                     - "Name"
+        - Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Action:
+            - ssm:DescribeParameters
+            Resource: "*"
+          - Sid: VisualEditor1
+            Effect: Allow
+            Action:
+            - ssm:GetParameters
+            - ssm:GetParameter
+            Resource: !Sub [ "arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}/*", { "host": !Ref ShopifyApiHost, "env": !Ref EnvType }]
+          - Sid: VisualEditor2
+            Effect: Allow
+            Action:
+            - ssm:GetParametersByPath
+            Resource: !Sub
+              - arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}
+              - { "host": !Ref ShopifyApiHost, "env": !Ref EnvType }
+          - Sid: VisualEditor3
+            Effect: Allow
+            Action:
+            - cognito-idp:AdminGetUser
+            Resource: !Sub
+              - arn:aws:cognito-idp:${AWS::Region}:${AWS::AccountId}:userpool/${poolid}
+              - { "poolid": !FindInMap [AmplifyProject, UserPoolId, !Ref EnvType] }
   UserStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -226,6 +238,32 @@ Resources:
                     - "GetAtt"
                     - "PahinaUserStoreTable"
                     - "Name"
+        - Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Action:
+            - ssm:DescribeParameters
+            Resource: "*"
+          - Sid: VisualEditor1
+            Effect: Allow
+            Action:
+            - ssm:GetParameters
+            - ssm:GetParameter
+            Resource: !Sub [ "arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}/*", { "host": !Ref ShopifyApiHost, "env": !Ref EnvType }]
+          - Sid: VisualEditor2
+            Effect: Allow
+            Action:
+            - ssm:GetParametersByPath
+            Resource: !Sub
+              - arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}
+              - { "host": !Ref ShopifyApiHost, "env": !Ref EnvType }
+          - Sid: VisualEditor3
+            Effect: Allow
+            Action:
+            - cognito-idp:AdminGetUser
+            Resource: !Sub
+              - arn:aws:cognito-idp:${AWS::Region}:${AWS::AccountId}:userpool/${poolid}
+              - { "poolid": !FindInMap [AmplifyProject, UserPoolId, !Ref EnvType] }
       Events:
         StreamEvent:
           Type: DynamoDB

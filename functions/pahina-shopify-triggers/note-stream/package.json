@@ -14,6 +14,7 @@
     "@types/aws-lambda": "^8.10.27",
     "@types/bluebird": "^3.5.27",
     "@types/chai": "^4.1.7",
+    "@types/lodash.keyby": "^4.6.6",
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.0.12",
     "@types/node-fetch": "^2.3.7",
@@ -25,6 +26,7 @@
   },
   "dependencies": {
     "bluebird": "^3.5.5",
+    "lodash.keyby": "^4.6.0",
     "node-fetch": "^2.6.0",
     "uuid": "^3.3.2"
   }

@@ -9,10 +9,16 @@ import { getProductUpdateParam } from './getProductUpdateParam';
 import { Response } from 'node-fetch';
 
 export const publishProduct = async (note: NoteRecord) => {
+  let cognitoUser: CognitoUser | null = null;
   let userRecord: UserRecord | null = null;
   let caseRecord: CaseRecord | null = null;
   let storeRecord: PahinaStoreRecord | null = null;
-  ({ storeRecord, userRecord, caseRecord } = await fetchRequiredData(note));
+  ({
+    cognitoUser,
+    storeRecord,
+    userRecord,
+    caseRecord,
+  } = await fetchRequiredData(note));
 
   if (!userRecord) {
     throw new ProcessingError('Failed to get User');
@@ -32,7 +38,7 @@ export const publishProduct = async (note: NoteRecord) => {
   }
 
   const postProductResp = await sendShopifyPostProduct(
-    userRecord,
+    cognitoUser,
     caseRecord,
     note,
   ); // throws error if digital sig is not expected
@@ -47,7 +53,7 @@ export const publishProduct = async (note: NoteRecord) => {
 };
 
 const sendShopifyPostProduct = async (
-  user: UserRecord,
+  user: CognitoUser,
   caseRec: CaseRecord,
   note: NoteRecord,
 ) => {
@@ -58,7 +64,7 @@ const sendShopifyPostProduct = async (
   try {
     const postData = generateShopifyProduct(user, note, caseRec);
     // digitalSig = hmacEncrypt(sharedSecret, JSON.stringify(postData));
-    resp = await Shopify.postProduct(postData);
+    resp = await Shopify.postCreate<{ product: any }>(postData, 'products');
     const body = await resp.json();
     const headers = resp.headers.raw();
     console.log(
@@ -69,7 +75,7 @@ const sendShopifyPostProduct = async (
     return { body, headers };
   } catch (err) {
     console.log('[ERROR] create product on Shopify', pretty(err));
-    return resp;
+    throw err;
   }
 
   // if (resp && digitalSig) {

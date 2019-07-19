@@ -1,12 +1,14 @@
 import { isoNow } from '../utils/simpleUtils';
 
 export function generateShopifyProduct(
-  user: UserRecord,
+  user: CognitoUser,
   note: NoteRecord,
   caseRec: CaseRecord,
 ) {
   const productType = 'Case Digest';
-  const vendor = `${user.givenName.S} ${user.familyName.S}`;
+  const vendor = `${user.userAttributes.given_name.Value} ${
+    user.userAttributes.family_name.Value
+  }`;
   const caseCode = caseRec.code.S;
   const caseTitle = caseRec.title.S;
   const caseLink = caseRec.link.S;

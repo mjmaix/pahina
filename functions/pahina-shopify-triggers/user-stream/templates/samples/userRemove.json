@@ -1,0 +1,40 @@
+{
+  "Records": [
+    {
+      "eventID": "e4bb9d655516e559904830d034b51b95",
+      "eventName": "REMOVE",
+      "eventVersion": "1.1",
+      "eventSource": "aws:dynamodb",
+      "awsRegion": "ap-southeast-1",
+      "dynamodb": {
+        "ApproximateCreationDateTime": 1563560427,
+        "Keys": {
+          "id": {
+            "S": "17e5da59-4bc5-47a0-96b0-f14466737a87"
+          }
+        },
+        "OldImage": {
+          "createdAt": {
+            "S": "2019-07-19T14:17:12.212Z"
+          },
+          "identityId": {
+            "S": "ap-southeast-1:2679512a-061d-414e-ad11-e0c1fa5e199e"
+          },
+          "__typename": {
+            "S": "PahinaUser"
+          },
+          "id": {
+            "S": "17e5da59-4bc5-47a0-96b0-f14466737a87"
+          },
+          "updatedAt": {
+            "S": "2019-07-19T14:17:12.212Z"
+          }
+        },
+        "SequenceNumber": "14079300000000006136050090",
+        "SizeBytes": 223,
+        "StreamViewType": "NEW_AND_OLD_IMAGES"
+      },
+      "eventSourceARN": "arn:aws:dynamodb:ap-southeast-1:991300696177:table/PahinaUser-kbpidncxhven5asuuuyqocnffm-dev/stream/2019-07-16T18:35:13.872"
+    }
+  ]
+}

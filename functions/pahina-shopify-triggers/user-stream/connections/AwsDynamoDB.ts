@@ -1,7 +1,7 @@
 import AWS, { DynamoDB } from 'aws-sdk';
 import { pretty } from '../utils/simpleUtils';
 
-AWS.config.update({ region: process.env.R });
+AWS.config.update({ region: process.env.REGION });
 
 class AwsDynamoDB {
   ddb: AWS.DynamoDB;
