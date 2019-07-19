@@ -22,10 +22,6 @@ export const handleCreateAppSyncUser = async (
   logInfo('[START]', 'handleCreateAppSyncUser');
   const newUser = {
     id: user.getUsername(),
-    email: user.attributes.email,
-    familyName: user.attributes.family_name,
-    givenName: user.attributes.given_name,
-    picture: user.attributes.picture,
     identityId,
   };
   try {
@@ -57,8 +53,6 @@ export const handleUpdateAppSyncUser = async (
   try {
     const newUser = {
       id: user.getUsername(),
-      email: user.attributes.email,
-      familyName: user.attributes.family_name,
       givenName: user.attributes.given_name,
       picture: user.attributes.picture,
       identityId,

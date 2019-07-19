@@ -68,11 +68,8 @@ export const updateShopifyCustomer = `mutation UpdateShopifyCustomer($input: Sho
 export const createPahinaUser = `mutation CreatePahinaUser($input: CreatePahinaUserInput!) {
   createPahinaUser(input: $input) {
     id
-    givenName
-    familyName
-    email
-    picture
     identityId
+    shopifyCustomerId
     createdAt
     updatedAt
     notes {
@@ -116,18 +113,14 @@ export const createPahinaUser = `mutation CreatePahinaUser($input: CreatePahinaU
       }
       nextToken
     }
-    shopifyCustomerId
   }
 }
 `;
 export const updatePahinaUser = `mutation UpdatePahinaUser($input: UpdatePahinaUserInput!) {
   updatePahinaUser(input: $input) {
     id
-    givenName
-    familyName
-    email
-    picture
     identityId
+    shopifyCustomerId
     createdAt
     updatedAt
     notes {
@@ -171,18 +164,14 @@ export const updatePahinaUser = `mutation UpdatePahinaUser($input: UpdatePahinaU
       }
       nextToken
     }
-    shopifyCustomerId
   }
 }
 `;
 export const deletePahinaUser = `mutation DeletePahinaUser($input: DeletePahinaUserInput!) {
   deletePahinaUser(input: $input) {
     id
-    givenName
-    familyName
-    email
-    picture
     identityId
+    shopifyCustomerId
     createdAt
     updatedAt
     notes {
@@ -226,7 +215,6 @@ export const deletePahinaUser = `mutation DeletePahinaUser($input: DeletePahinaU
       }
       nextToken
     }
-    shopifyCustomerId
   }
 }
 `;
@@ -235,11 +223,8 @@ export const createPahinaNote = `mutation CreatePahinaNote($input: CreatePahinaN
     id
     author {
       id
-      givenName
-      familyName
-      email
-      picture
       identityId
+      shopifyCustomerId
       createdAt
       updatedAt
       notes {
@@ -251,7 +236,6 @@ export const createPahinaNote = `mutation CreatePahinaNote($input: CreatePahinaN
       ownedProducts {
         nextToken
       }
-      shopifyCustomerId
     }
     authorId
     case {
@@ -281,11 +265,8 @@ export const updatePahinaNote = `mutation UpdatePahinaNote($input: UpdatePahinaN
     id
     author {
       id
-      givenName
-      familyName
-      email
-      picture
       identityId
+      shopifyCustomerId
       createdAt
       updatedAt
       notes {
@@ -297,7 +278,6 @@ export const updatePahinaNote = `mutation UpdatePahinaNote($input: UpdatePahinaN
       ownedProducts {
         nextToken
       }
-      shopifyCustomerId
     }
     authorId
     case {
@@ -327,11 +307,8 @@ export const deletePahinaNote = `mutation DeletePahinaNote($input: DeletePahinaN
     id
     author {
       id
-      givenName
-      familyName
-      email
-      picture
       identityId
+      shopifyCustomerId
       createdAt
       updatedAt
       notes {
@@ -343,7 +320,6 @@ export const deletePahinaNote = `mutation DeletePahinaNote($input: DeletePahinaN
       ownedProducts {
         nextToken
       }
-      shopifyCustomerId
     }
     authorId
     case {

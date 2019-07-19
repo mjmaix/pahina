@@ -43,11 +43,8 @@ type PahinaUser
     ]
   ) {
   id: ID!
-  givenName: String!
-  familyName: String!
-  email: String!
-  picture: String
   identityId: String
+  shopifyCustomerId: String
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
   notes: [PahinaNote]
@@ -64,7 +61,6 @@ type PahinaUser
       keyField: "ownerId"
       sortField: "updatedAt"
     )
-  shopifyCustomerId: String
 }
 
 type PahinaMainStore

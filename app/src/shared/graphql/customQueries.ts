@@ -1,10 +1,6 @@
 export const getPahinaUserSortedNotes = `query GetPahinaUserSortedNotes($id: ID!, $notesNextToken: String) {
   getPahinaUser(id: $id) {
     id
-    givenName
-    familyName
-    email
-    picture
     identityId
     createdAt
     updatedAt

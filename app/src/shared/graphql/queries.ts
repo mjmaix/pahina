@@ -74,11 +74,8 @@ export const getShopifyCustomer = `query GetShopifyCustomer($id: ID!) {
 export const getPahinaUser = `query GetPahinaUser($id: ID!) {
   getPahinaUser(id: $id) {
     id
-    givenName
-    familyName
-    email
-    picture
     identityId
+    shopifyCustomerId
     createdAt
     updatedAt
     notes {
@@ -122,7 +119,6 @@ export const getPahinaUser = `query GetPahinaUser($id: ID!) {
       }
       nextToken
     }
-    shopifyCustomerId
   }
 }
 `;
@@ -134,11 +130,8 @@ export const listPahinaUsers = `query ListPahinaUsers(
   listPahinaUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      givenName
-      familyName
-      email
-      picture
       identityId
+      shopifyCustomerId
       createdAt
       updatedAt
       notes {
@@ -150,7 +143,6 @@ export const listPahinaUsers = `query ListPahinaUsers(
       ownedProducts {
         nextToken
       }
-      shopifyCustomerId
     }
     nextToken
   }
@@ -185,11 +177,8 @@ export const getPahinaUserStore = `query GetPahinaUserStore($id: ID!) {
     ownerId
     owner {
       id
-      givenName
-      familyName
-      email
-      picture
       identityId
+      shopifyCustomerId
       createdAt
       updatedAt
       notes {
@@ -201,7 +190,6 @@ export const getPahinaUserStore = `query GetPahinaUserStore($id: ID!) {
       ownedProducts {
         nextToken
       }
-      shopifyCustomerId
     }
     products {
       items {
@@ -237,14 +225,10 @@ export const listPahinaUserStores = `query ListPahinaUserStores(
       ownerId
       owner {
         id
-        givenName
-        familyName
-        email
-        picture
         identityId
+        shopifyCustomerId
         createdAt
         updatedAt
-        shopifyCustomerId
       }
       products {
         nextToken
@@ -263,11 +247,8 @@ export const getPahinaUserStoreProduct = `query GetPahinaUserStoreProduct($id: I
     ownerId
     owner {
       id
-      givenName
-      familyName
-      email
-      picture
       identityId
+      shopifyCustomerId
       createdAt
       updatedAt
       notes {
@@ -279,21 +260,16 @@ export const getPahinaUserStoreProduct = `query GetPahinaUserStoreProduct($id: I
       ownedProducts {
         nextToken
       }
-      shopifyCustomerId
     }
     store {
       id
       ownerId
       owner {
         id
-        givenName
-        familyName
-        email
-        picture
         identityId
+        shopifyCustomerId
         createdAt
         updatedAt
-        shopifyCustomerId
       }
       products {
         nextToken
@@ -330,14 +306,10 @@ export const listPahinaUserStoreProducts = `query ListPahinaUserStoreProducts(
       ownerId
       owner {
         id
-        givenName
-        familyName
-        email
-        picture
         identityId
+        shopifyCustomerId
         createdAt
         updatedAt
-        shopifyCustomerId
       }
       store {
         id
@@ -365,11 +337,8 @@ export const getPahinaNote = `query GetPahinaNote($id: ID!) {
     id
     author {
       id
-      givenName
-      familyName
-      email
-      picture
       identityId
+      shopifyCustomerId
       createdAt
       updatedAt
       notes {
@@ -381,7 +350,6 @@ export const getPahinaNote = `query GetPahinaNote($id: ID!) {
       ownedProducts {
         nextToken
       }
-      shopifyCustomerId
     }
     authorId
     case {
@@ -416,14 +384,10 @@ export const listPahinaNotes = `query ListPahinaNotes(
       id
       author {
         id
-        givenName
-        familyName
-        email
-        picture
         identityId
+        shopifyCustomerId
         createdAt
         updatedAt
-        shopifyCustomerId
       }
       authorId
       case {
@@ -514,14 +478,10 @@ export const byOwnerId = `query ByOwnerId(
       ownerId
       owner {
         id
-        givenName
-        familyName
-        email
-        picture
         identityId
+        shopifyCustomerId
         createdAt
         updatedAt
-        shopifyCustomerId
       }
       products {
         nextToken
