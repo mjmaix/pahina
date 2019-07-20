@@ -69,9 +69,11 @@ Resources:
   NoteStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-triggers/21db3d51956fafde98244889cc9a6d58
+      CodeUri: s3://pahina-shopify-triggers/0079700a6c275638912abea9406b4880
       MemorySize: 256
       Timeout: 240
+      Layers:
+      - Ref: ConnectionsDepLayer
       Events:
         StreamEvent:
           Type: DynamoDB
@@ -233,7 +235,9 @@ Resources:
   UserStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-triggers/af82d2c65ba55c12d06228e16472ee0d
+      CodeUri: s3://pahina-shopify-triggers/dabfa7959610e7f926d909fd0c495a83
+      Layers:
+      - Ref: ConnectionsDepLayer
       Environment:
         Variables:
           USER_STORE_TABLE_NAME:
@@ -319,6 +323,17 @@ Resources:
             StartingPosition: TRIM_HORIZON
             BatchSize: 1
             Enabled: true
+  ConnectionsDepLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: connections-dependencies
+      Description: Connection library for interacting with AWS services
+      ContentUri: s3://pahina-shopify-triggers/f1e0cd0d74dacd65f4f2985bcef87ff0
+      CompatibleRuntimes:
+      - nodejs6.10
+      - nodejs8.10
+      LicenseInfo: UNLICENSED
+      RetentionPolicy: Retain
 Outputs:
   NoteStreamFunction:
     Description: NoteStream Function ARN

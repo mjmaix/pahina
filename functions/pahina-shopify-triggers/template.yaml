@@ -65,6 +65,8 @@ Resources:
       CodeUri: note-stream/lib
       MemorySize: 256
       Timeout: 240
+      Layers:
+        - !Ref ConnectionsDepLayer
       Events:
         StreamEvent:
           Type: DynamoDB
@@ -212,6 +214,8 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: user-stream/lib
+      Layers:
+        - !Ref ConnectionsDepLayer
       Environment:
         Variables:
           USER_STORE_TABLE_NAME:
@@ -282,7 +286,17 @@ Resources:
             StartingPosition: TRIM_HORIZON
             BatchSize: 1
             Enabled: true
-  
+  ConnectionsDepLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+        LayerName: connections-dependencies
+        Description: Connection library for interacting with AWS services
+        ContentUri: dependencies/
+        CompatibleRuntimes:
+          - nodejs6.10
+          - nodejs8.10
+        LicenseInfo: 'UNLICENSED'
+        RetentionPolicy: Retain
 Outputs:
   NoteStreamFunction:
     Description: NoteStream Function ARN
