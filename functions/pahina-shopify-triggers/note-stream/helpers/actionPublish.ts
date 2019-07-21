@@ -1,12 +1,16 @@
+import { PromiseType } from 'utility-types';
+
+import ShopifyRest from '../../shared/shopify/ShopifyRest';
+import { ProcessingError } from '../../shared/utils/ProcessingError';
+import AwsDynamoDB from '../../shared/aws/AwsDynamoDB';
+import { pretty } from '../../shared/utils/simpleUtils';
+
 import { fetchRequiredData } from './fetchRequiredData';
-import { ProcessingError } from '../utils/ProcessingError';
 import { generateUserStoreProduct } from './generateUserStoreProduct';
-import { pretty } from '../utils/simpleUtils';
 import { generateShopifyProduct } from './getShopifyProduct';
-import Shopify from '../connections/Shopify';
-import AwsDynamoDB from '../connections/AwsDynamoDB';
 import { getProductUpdateParam } from './getProductUpdateParam';
-import { Response } from 'node-fetch';
+
+type Response = PromiseType<ReturnType<typeof ShopifyRest.postCreate>>;
 
 export const publishProduct = async (note: NoteRecord) => {
   let cognitoUser: CognitoUser | null = null;
@@ -64,7 +68,7 @@ const sendShopifyPostProduct = async (
   try {
     const postData = generateShopifyProduct(user, note, caseRec);
     // digitalSig = hmacEncrypt(sharedSecret, JSON.stringify(postData));
-    resp = await Shopify.postCreate<{ product: any }>(postData, 'products');
+    resp = await ShopifyRest.postCreate<{ product: any }>(postData, 'products');
     const body = await resp.json();
     const headers = resp.headers.raw();
     console.log(

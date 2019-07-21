@@ -1,5 +1,6 @@
-import { ProcessingError } from '../utils/ProcessingError';
-import { isoNow, pretty } from '../utils/simpleUtils';
+import { ProcessingError } from '../../shared/utils/ProcessingError';
+import { isoNow, pretty } from '../../shared/utils/simpleUtils';
+
 import { PahinaStoreProductStatus } from './constants';
 import { AttributeValueUpdate } from 'aws-sdk/clients/dynamodb';
 

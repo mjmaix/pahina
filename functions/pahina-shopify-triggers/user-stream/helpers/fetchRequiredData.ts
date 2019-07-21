@@ -1,6 +1,6 @@
-import AwsCognitoIdentity from '../connections/AwsCognitoIdentity';
-import { ProcessingError } from '../utils/ProcessingError';
-import { pretty } from '../utils/simpleUtils';
+import AwsCognitoIdentity from '../../shared/aws/AwsCognitoIdentity';
+import { ProcessingError } from '../../shared/utils/ProcessingError';
+import { pretty } from '../../shared/utils/simpleUtils';
 
 import keyBy from 'lodash.keyby';
 

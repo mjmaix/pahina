@@ -1,11 +1,12 @@
 import { StreamRecord } from 'aws-lambda';
-
-import { ProcessingError } from './utils/ProcessingError';
-import AwsDynamoDB from './connections/AwsDynamoDB';
 import { DynamoDB } from 'aws-sdk';
-import { isoNow } from './utils/simpleUtils';
-import { generateSkuPrefix } from './generate-sku-prefix';
 import short from 'short-uuid';
+
+import { ProcessingError } from '../shared/utils/ProcessingError';
+import AwsDynamoDB from '../shared/aws/AwsDynamoDB';
+import { isoNow } from '../shared/utils/simpleUtils';
+
+import { generateSkuPrefix } from './generate-sku-prefix';
 import { createCustomer } from './helpers/actionCreateCustomer';
 
 export const processInsertRecord = async (Record: StreamRecord) => {

@@ -47,7 +47,6 @@ Conditions:
 Globals:
   Function:
     Tracing: Active
-    Handler: app.handler
     Timeout: 30
     Runtime: nodejs10.x
     Environment:
@@ -69,7 +68,8 @@ Resources:
   NoteStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-triggers/21db3d51956fafde98244889cc9a6d58
+      CodeUri: s3://pahina-shopify-triggers/55afff1c6a8877fa2c453ab212e4f3bf
+      Handler: note-stream/app.handler
       MemorySize: 256
       Timeout: 240
       Events:
@@ -233,7 +233,8 @@ Resources:
   UserStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-triggers/af82d2c65ba55c12d06228e16472ee0d
+      CodeUri: s3://pahina-shopify-triggers/8b770e9537d7efdfe21ab05a08ba7a27
+      Handler: user-stream/app.handler
       Environment:
         Variables:
           USER_STORE_TABLE_NAME:

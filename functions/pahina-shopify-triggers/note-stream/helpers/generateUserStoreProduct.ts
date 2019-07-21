@@ -1,7 +1,9 @@
-import { ProcessingError } from '../utils/ProcessingError';
-import { isoNow } from '../utils/simpleUtils';
-import { PahinaStoreProductStatus } from './constants';
 import uuid from 'uuid';
+
+import { ProcessingError } from '../../shared/utils/ProcessingError';
+import { isoNow } from '../../shared/utils/simpleUtils';
+
+import { PahinaStoreProductStatus } from './constants';
 
 /**
  *

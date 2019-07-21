@@ -1,6 +1,8 @@
-import { ProcessingError } from '../utils/ProcessingError';
+import { PromiseType } from 'utility-types';
+import { ProcessingError } from '../../shared/utils/ProcessingError';
+import ShopifyRest from '../../shared/shopify/ShopifyRest';
 
-import { Response } from 'node-fetch';
+type Response = PromiseType<ReturnType<typeof ShopifyRest.postCreate>>;
 
 export const validateShopifyResponse = async (
   resp: Response,

@@ -1,9 +1,13 @@
-import { Response } from 'node-fetch';
-import { ProcessingError } from '../utils/ProcessingError';
-import Shopify from '../connections/Shopify';
-import { pretty } from '../utils/simpleUtils';
+import { PromiseType } from 'utility-types';
+
+import { ProcessingError } from '../../shared/utils/ProcessingError';
+import ShopifyRest from '../../shared/shopify/ShopifyRest';
+import { pretty } from '../../shared/utils/simpleUtils';
+
 import { fetchRequiredData } from './fetchRequiredData';
 import { generateShopifyCustomer } from './generateShopifyCustomer';
+
+type Response = PromiseType<ReturnType<typeof ShopifyRest.postCreate>>;
 
 export const createCustomer = async (userRecord: UserRecord) => {
   const postCustomerResp = await sendShopifyPostCustomer(userRecord);
@@ -13,7 +17,7 @@ export const createCustomer = async (userRecord: UserRecord) => {
 };
 
 const sendShopifyPostCustomer = async (userRecord: UserRecord) => {
-  let resp: Response | null = null;
+  let resp: Response;
   let cognitoUser: CognitoUser | null = null;
   try {
     ({ cognitoUser } = await fetchRequiredData(userRecord));
@@ -27,7 +31,10 @@ const sendShopifyPostCustomer = async (userRecord: UserRecord) => {
 
   try {
     const postData = generateShopifyCustomer(cognitoUser);
-    resp = await Shopify.postCreate<{ customer: any }>(postData, 'customers');
+    resp = await ShopifyRest.postCreate<{ customer: any }>(
+      postData,
+      'customers',
+    );
     const body = await resp.json();
     const headers = resp.headers.raw();
     console.log(

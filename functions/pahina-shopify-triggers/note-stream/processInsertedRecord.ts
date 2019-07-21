@@ -1,5 +1,5 @@
 import { StreamRecord } from 'aws-lambda';
-import { ProcessingError } from './utils/ProcessingError';
+import { ProcessingError } from '../shared/utils/ProcessingError';
 
 export const processInsertedRecord = async (Record: StreamRecord) => {
   if (!Record.NewImage) {

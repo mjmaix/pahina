@@ -6,6 +6,5 @@
     "typeRoots": ["node_modules/@types"],
     "types": ["node", "mocha"]
   },
-  "exclude": ["node_modules", "templates"],
-  "include": ["../shared", "../user-stream"]
+  "exclude": ["node_modules"]
 }

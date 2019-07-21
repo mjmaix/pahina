@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "test": "./node_modules/.bin/ts-mocha -p ./tsconfig.json **/*.test.ts"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.30",
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.6.8",
+    "@types/node-fetch": "^2.3.7",
+    "chai": "^4.2.0",
+    "mocha": "^6.2.0",
+    "ts-mocha": "^6.0.0",
+    "typescript": "^3.5.3"
+  },
+  "peerDependencies": {
+    "node-fetch": "*"
+  }
+}

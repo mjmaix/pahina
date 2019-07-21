@@ -1,8 +1,10 @@
 import { DynamoDBStreamEvent } from 'aws-lambda';
+
+import { ProcessingError } from '../shared/utils/ProcessingError';
+
 import { processInsertedRecord } from './processInsertedRecord';
 import { processModifiedRecord } from './processModifiedRecord';
 import { makeGqlRemove as processRemovedRecord } from './processRemovedRecord';
-import { ProcessingError } from './utils/ProcessingError';
 
 import bluebird from 'bluebird';
 

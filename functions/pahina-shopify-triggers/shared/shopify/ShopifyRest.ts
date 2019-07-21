@@ -1,8 +1,8 @@
-import fetch from 'node-fetch';
-import AwsSSM from './AwsSSM';
+import AwsSSM from '../aws/AwsSSM';
 import { ProcessingError } from '../utils/ProcessingError';
+import { jsonPost } from '../utils/jsonPost';
 
-class Shopify {
+class ShopifyRest {
   url?: string;
   hostname: string;
   apiVersion: string;
@@ -63,20 +63,6 @@ class Shopify {
   };
 }
 
-const instance = new Shopify();
+const instance = new ShopifyRest();
 
 export default instance;
-
-function jsonPost(resourceUrl: string, body: string) {
-  console.log(
-    `[INFO] post body URL: ${process.env.ENV !== 'prod' ? resourceUrl : ''}`,
-    body,
-  );
-  return fetch(resourceUrl, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body,
-  });
-}

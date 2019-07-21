@@ -22,7 +22,8 @@
     "chai": "^4.2.0",
     "mocha": "^6.1.4",
     "ts-mocha": "^6.0.0",
-    "typescript": "^3.5.2"
+    "typescript": "^3.5.2",
+    "utility-types": "^3.7.0"
   },
   "dependencies": {
     "bluebird": "^3.5.5",

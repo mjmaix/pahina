@@ -1,4 +1,4 @@
-import { ProcessingError } from '../utils/ProcessingError';
+import { ProcessingError } from '../../shared/utils/ProcessingError';
 
 export function getBatchParams(image: NoteRecord) {
   if (!process.env.USER_TABLE_NAME) {

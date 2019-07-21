@@ -1,8 +1,9 @@
 import keyBy from 'lodash.keyby';
-import AwsDynamoDB from '../connections/AwsDynamoDB';
-import AwsCognitoIdentity from '../connections/AwsCognitoIdentity';
-import { ProcessingError } from '../utils/ProcessingError';
-import { pretty } from '../utils/simpleUtils';
+
+import AwsDynamoDB from '../../shared/aws/AwsDynamoDB';
+import AwsCognitoIdentity from '../../shared/aws/AwsCognitoIdentity';
+import { ProcessingError } from '../../shared/utils/ProcessingError';
+import { pretty } from '../../shared/utils/simpleUtils';
 
 import { getBatchParams } from './getBatchParams';
 import { getUserStoreQueryParam } from './getUserStoreQueryParam';

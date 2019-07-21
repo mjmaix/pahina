@@ -1,5 +1,7 @@
 #!/bin/sh -x
 
+
+sh ./prep-module-shared.sh || { echo "shared prep failed" ; exit 1; }
 sh ./prep-module.sh note-stream || { echo "note-stream prep failed" ; exit 1; }
 sh ./prep-module.sh user-stream || { echo "user-stream prep failed" ; exit 1; }
 
@@ -24,5 +26,6 @@ sam deploy \
    EnvType=$ENV_TYPE \
  || { echo "sam deploy failed" ; exit 1; }
 
+# no need to post-deploy shared since shared/node_modules is not used by other projects
 sh ./post-deploy.sh note-stream
 sh ./post-deploy.sh user-stream
