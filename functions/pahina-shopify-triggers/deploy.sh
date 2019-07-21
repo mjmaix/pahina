@@ -26,6 +26,6 @@ sam deploy \
    EnvType=$ENV_TYPE \
  || { echo "sam deploy failed" ; exit 1; }
 
-# no need to post-deploy shared since shared/node_modules is not used by other projects
+# no need to post-deploy shared since shared/node_modules is not used by other projectsl
 sh ./post-deploy.sh note-stream
 sh ./post-deploy.sh user-stream
