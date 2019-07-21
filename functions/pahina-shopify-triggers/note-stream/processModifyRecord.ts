@@ -6,7 +6,7 @@ import { pretty } from '../shared/utils/simpleUtils';
 import { publishProduct } from './helpers/actionPublish';
 import { PahinaNoteStatus } from './helpers/constants';
 
-export const processModifiedRecord = async (Record: StreamRecord) => {
+export const processModifyRecord = async (Record: StreamRecord) => {
   if (!Record.NewImage || !Record.OldImage) {
     throw new ProcessingError('NewImage or OldImage is empty, not an edit!');
   }

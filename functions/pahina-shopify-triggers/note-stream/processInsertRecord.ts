@@ -1,7 +1,7 @@
 import { StreamRecord } from 'aws-lambda';
 import { ProcessingError } from '../shared/utils/ProcessingError';
 
-export const processInsertedRecord = async (Record: StreamRecord) => {
+export const processInsertRecord = async (Record: StreamRecord) => {
   if (!Record.NewImage) {
     throw new ProcessingError('NewImage is empty, not an insert!');
   }
