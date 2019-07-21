@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "build": "tsc --project tsconfig.build.json",
+    "clean": "rm -rf lib",
+    "test": "./node_modules/.bin/ts-mocha -p ./tsconfig.json **/*.test.ts",
+    "copy:node_modules": "cp -R nodejs/node_modules ./lib/nodejs/node_modules"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.30",
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.6.8",
+    "chai": "^4.2.0",
+    "ts-mocha": "^6.0.0",
+    "typescript": "^3.5.3"
+  }
+}

@@ -291,10 +291,10 @@ Resources:
     Properties:
         LayerName: connections-dependencies
         Description: Connection library for interacting with AWS services
-        ContentUri: dependencies/
+        ContentUri: dependencies/lib
         CompatibleRuntimes:
-          - nodejs6.10
           - nodejs8.10
+          - nodejs10.x
         LicenseInfo: 'UNLICENSED'
         RetentionPolicy: Retain
 Outputs:
