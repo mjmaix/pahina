@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "commonjs",
+    "strict": true,
+    "types": ["node"],
+    "esModuleInterop": true,
+    "inlineSourceMap": true,
+    "typeRoots": ["typings"]
+  }
+}

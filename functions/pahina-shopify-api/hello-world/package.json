@@ -1,0 +1,34 @@
+{
+  "name": "hello-world",
+  "version": "1.0.0",
+  "main": "lib/app.js",
+  "license": "none",
+  "private": true,
+  "scripts": {
+    "build": "tsc --project tsconfig.build.json",
+    "clean": "rm -rf lib",
+    "test": "./node_modules/.bin/ts-mocha -p ./tsconfig.json **/*.test.ts",
+    "copy:node_modules": "cp -R node_modules lib/node_modules"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.27",
+    "@types/bluebird": "^3.5.27",
+    "@types/chai": "^4.1.7",
+    "@types/lodash.keyby": "^4.6.6",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.0.12",
+    "@types/node-fetch": "^2.3.7",
+    "@types/uuid": "^3.4.5",
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4",
+    "ts-mocha": "^6.0.0",
+    "typescript": "^3.5.2",
+    "utility-types": "^3.7.0"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.5",
+    "lodash.keyby": "^4.6.0",
+    "node-fetch": "^2.6.0",
+    "uuid": "^3.3.2"
+  }
+}
