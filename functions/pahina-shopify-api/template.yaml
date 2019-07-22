@@ -40,6 +40,9 @@ Resources:
     Properties:
       StageName: !Ref EnvType
       Cors: "'*'"
+      TracingEnabled: true
+      Variables:
+        ENV: !Ref EnvType
       Auth:
         DefaultAuthorizer: PahinaCognitoAuthorizer
         Authorizers:

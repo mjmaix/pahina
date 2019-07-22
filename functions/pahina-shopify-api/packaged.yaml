@@ -44,6 +44,10 @@ Resources:
       StageName:
         Ref: EnvType
       Cors: '''*'''
+      TracingEnabled: true
+      Variables:
+        ENV:
+          Ref: EnvType
       Auth:
         DefaultAuthorizer: PahinaCognitoAuthorizer
         Authorizers:
@@ -56,7 +60,7 @@ Resources:
   HelloWorldFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-api/01d9b6b7dccd4f5fe88a2576be545914
+      CodeUri: s3://pahina-shopify-api/ff1ed84f76391e0e13d97a2c2d34e50b
       Handler: hello-world/app.lambdaHandler
       Runtime: nodejs10.x
       Events:
