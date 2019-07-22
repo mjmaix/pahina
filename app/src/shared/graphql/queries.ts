@@ -33,6 +33,7 @@ export const getShopifyCustomer = `query GetShopifyCustomer($id: ID!) {
       formattedArea
       longitude
       latitude
+      default
     }
     createdAt
     ShopifyCustomerState
@@ -55,6 +56,7 @@ export const getShopifyCustomer = `query GetShopifyCustomer($id: ID!) {
       formattedArea
       longitude
       latitude
+      default
     }
     metafield {
       id
@@ -75,7 +77,6 @@ export const getPahinaUser = `query GetPahinaUser($id: ID!) {
   getPahinaUser(id: $id) {
     id
     identityId
-    shopifyCustomerId
     createdAt
     updatedAt
     notes {
@@ -131,7 +132,6 @@ export const listPahinaUsers = `query ListPahinaUsers(
     items {
       id
       identityId
-      shopifyCustomerId
       createdAt
       updatedAt
       notes {
@@ -178,7 +178,6 @@ export const getPahinaUserStore = `query GetPahinaUserStore($id: ID!) {
     owner {
       id
       identityId
-      shopifyCustomerId
       createdAt
       updatedAt
       notes {
@@ -226,7 +225,6 @@ export const listPahinaUserStores = `query ListPahinaUserStores(
       owner {
         id
         identityId
-        shopifyCustomerId
         createdAt
         updatedAt
       }
@@ -248,7 +246,6 @@ export const getPahinaUserStoreProduct = `query GetPahinaUserStoreProduct($id: I
     owner {
       id
       identityId
-      shopifyCustomerId
       createdAt
       updatedAt
       notes {
@@ -267,7 +264,6 @@ export const getPahinaUserStoreProduct = `query GetPahinaUserStoreProduct($id: I
       owner {
         id
         identityId
-        shopifyCustomerId
         createdAt
         updatedAt
       }
@@ -307,7 +303,6 @@ export const listPahinaUserStoreProducts = `query ListPahinaUserStoreProducts(
       owner {
         id
         identityId
-        shopifyCustomerId
         createdAt
         updatedAt
       }
@@ -338,7 +333,6 @@ export const getPahinaNote = `query GetPahinaNote($id: ID!) {
     author {
       id
       identityId
-      shopifyCustomerId
       createdAt
       updatedAt
       notes {
@@ -385,7 +379,6 @@ export const listPahinaNotes = `query ListPahinaNotes(
       author {
         id
         identityId
-        shopifyCustomerId
         createdAt
         updatedAt
       }
@@ -479,7 +472,6 @@ export const byOwnerId = `query ByOwnerId(
       owner {
         id
         identityId
-        shopifyCustomerId
         createdAt
         updatedAt
       }

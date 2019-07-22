@@ -91,7 +91,6 @@ export enum ShopifyCustomerState {
 export type CreatePahinaUserInput = {
   id?: string | null,
   identityId?: string | null,
-  shopifyCustomerId?: string | null,
   createdAt?: string | null,
   updatedAt?: string | null,
 };
@@ -99,7 +98,6 @@ export type CreatePahinaUserInput = {
 export type UpdatePahinaUserInput = {
   id: string,
   identityId?: string | null,
-  shopifyCustomerId?: string | null,
   createdAt?: string | null,
   updatedAt?: string | null,
 };
@@ -163,7 +161,6 @@ export type DeletePahinaCaseInput = {
 export type ModelPahinaUserFilterInput = {
   id?: ModelIDFilterInput | null,
   identityId?: ModelStringFilterInput | null,
-  shopifyCustomerId?: ModelStringFilterInput | null,
   createdAt?: ModelStringFilterInput | null,
   updatedAt?: ModelStringFilterInput | null,
   and?: Array< ModelPahinaUserFilterInput | null > | null,
@@ -382,6 +379,7 @@ export type UpdateShopifyCustomerMutation = {
       formattedArea: string | null,
       longitude: number | null,
       latitude: number | null,
+      default: boolean | null,
     } >,
     createdAt: string,
     ShopifyCustomerState: string,
@@ -405,6 +403,7 @@ export type UpdateShopifyCustomerMutation = {
       formattedArea: string | null,
       longitude: number | null,
       latitude: number | null,
+      default: boolean | null,
     } | null,
     metafield:  {
       __typename: "ShopifyMetaField",
@@ -431,7 +430,6 @@ export type CreatePahinaUserMutation = {
     __typename: "PahinaUser",
     id: string,
     identityId: string | null,
-    shopifyCustomerId: string | null,
     createdAt: string | null,
     updatedAt: string | null,
     notes:  {
@@ -493,7 +491,6 @@ export type UpdatePahinaUserMutation = {
     __typename: "PahinaUser",
     id: string,
     identityId: string | null,
-    shopifyCustomerId: string | null,
     createdAt: string | null,
     updatedAt: string | null,
     notes:  {
@@ -555,7 +552,6 @@ export type DeletePahinaUserMutation = {
     __typename: "PahinaUser",
     id: string,
     identityId: string | null,
-    shopifyCustomerId: string | null,
     createdAt: string | null,
     updatedAt: string | null,
     notes:  {
@@ -620,7 +616,6 @@ export type CreatePahinaNoteMutation = {
       __typename: "PahinaUser",
       id: string,
       identityId: string | null,
-      shopifyCustomerId: string | null,
       createdAt: string | null,
       updatedAt: string | null,
       notes:  {
@@ -673,7 +668,6 @@ export type UpdatePahinaNoteMutation = {
       __typename: "PahinaUser",
       id: string,
       identityId: string | null,
-      shopifyCustomerId: string | null,
       createdAt: string | null,
       updatedAt: string | null,
       notes:  {
@@ -726,7 +720,6 @@ export type DeletePahinaNoteMutation = {
       __typename: "PahinaUser",
       id: string,
       identityId: string | null,
-      shopifyCustomerId: string | null,
       createdAt: string | null,
       updatedAt: string | null,
       notes:  {
@@ -905,6 +898,7 @@ export type GetShopifyCustomerQuery = {
       formattedArea: string | null,
       longitude: number | null,
       latitude: number | null,
+      default: boolean | null,
     } >,
     createdAt: string,
     ShopifyCustomerState: string,
@@ -928,6 +922,7 @@ export type GetShopifyCustomerQuery = {
       formattedArea: string | null,
       longitude: number | null,
       latitude: number | null,
+      default: boolean | null,
     } | null,
     metafield:  {
       __typename: "ShopifyMetaField",
@@ -954,7 +949,6 @@ export type GetPahinaUserQuery = {
     __typename: "PahinaUser",
     id: string,
     identityId: string | null,
-    shopifyCustomerId: string | null,
     createdAt: string | null,
     updatedAt: string | null,
     notes:  {
@@ -1020,7 +1014,6 @@ export type ListPahinaUsersQuery = {
       __typename: "PahinaUser",
       id: string,
       identityId: string | null,
-      shopifyCustomerId: string | null,
       createdAt: string | null,
       updatedAt: string | null,
       notes:  {
@@ -1085,7 +1078,6 @@ export type GetPahinaUserStoreQuery = {
       __typename: "PahinaUser",
       id: string,
       identityId: string | null,
-      shopifyCustomerId: string | null,
       createdAt: string | null,
       updatedAt: string | null,
       notes:  {
@@ -1143,7 +1135,6 @@ export type ListPahinaUserStoresQuery = {
         __typename: "PahinaUser",
         id: string,
         identityId: string | null,
-        shopifyCustomerId: string | null,
         createdAt: string | null,
         updatedAt: string | null,
       },
@@ -1172,7 +1163,6 @@ export type GetPahinaUserStoreProductQuery = {
       __typename: "PahinaUser",
       id: string,
       identityId: string | null,
-      shopifyCustomerId: string | null,
       createdAt: string | null,
       updatedAt: string | null,
       notes:  {
@@ -1196,7 +1186,6 @@ export type GetPahinaUserStoreProductQuery = {
         __typename: "PahinaUser",
         id: string,
         identityId: string | null,
-        shopifyCustomerId: string | null,
         createdAt: string | null,
         updatedAt: string | null,
       },
@@ -1238,7 +1227,6 @@ export type ListPahinaUserStoreProductsQuery = {
         __typename: "PahinaUser",
         id: string,
         identityId: string | null,
-        shopifyCustomerId: string | null,
         createdAt: string | null,
         updatedAt: string | null,
       } | null,
@@ -1276,7 +1264,6 @@ export type GetPahinaNoteQuery = {
       __typename: "PahinaUser",
       id: string,
       identityId: string | null,
-      shopifyCustomerId: string | null,
       createdAt: string | null,
       updatedAt: string | null,
       notes:  {
@@ -1333,7 +1320,6 @@ export type ListPahinaNotesQuery = {
         __typename: "PahinaUser",
         id: string,
         identityId: string | null,
-        shopifyCustomerId: string | null,
         createdAt: string | null,
         updatedAt: string | null,
       } | null,
@@ -1439,7 +1425,6 @@ export type ByOwnerIdQuery = {
         __typename: "PahinaUser",
         id: string,
         identityId: string | null,
-        shopifyCustomerId: string | null,
         createdAt: string | null,
         updatedAt: string | null,
       },

@@ -27,6 +27,7 @@ export const updateShopifyCustomer = `mutation UpdateShopifyCustomer($input: Sho
       formattedArea
       longitude
       latitude
+      default
     }
     createdAt
     ShopifyCustomerState
@@ -49,6 +50,7 @@ export const updateShopifyCustomer = `mutation UpdateShopifyCustomer($input: Sho
       formattedArea
       longitude
       latitude
+      default
     }
     metafield {
       id
@@ -69,7 +71,6 @@ export const createPahinaUser = `mutation CreatePahinaUser($input: CreatePahinaU
   createPahinaUser(input: $input) {
     id
     identityId
-    shopifyCustomerId
     createdAt
     updatedAt
     notes {
@@ -120,7 +121,6 @@ export const updatePahinaUser = `mutation UpdatePahinaUser($input: UpdatePahinaU
   updatePahinaUser(input: $input) {
     id
     identityId
-    shopifyCustomerId
     createdAt
     updatedAt
     notes {
@@ -171,7 +171,6 @@ export const deletePahinaUser = `mutation DeletePahinaUser($input: DeletePahinaU
   deletePahinaUser(input: $input) {
     id
     identityId
-    shopifyCustomerId
     createdAt
     updatedAt
     notes {
@@ -224,7 +223,6 @@ export const createPahinaNote = `mutation CreatePahinaNote($input: CreatePahinaN
     author {
       id
       identityId
-      shopifyCustomerId
       createdAt
       updatedAt
       notes {
@@ -266,7 +264,6 @@ export const updatePahinaNote = `mutation UpdatePahinaNote($input: UpdatePahinaN
     author {
       id
       identityId
-      shopifyCustomerId
       createdAt
       updatedAt
       notes {
@@ -308,7 +305,6 @@ export const deletePahinaNote = `mutation DeletePahinaNote($input: DeletePahinaN
     author {
       id
       identityId
-      shopifyCustomerId
       createdAt
       updatedAt
       notes {
