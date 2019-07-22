@@ -245,6 +245,7 @@ type ShopifyMailingAddress {
   formattedArea: String
   longitude: Float
   latitude: Float
+  default: Boolean
 }
 
 # https://help.shopify.com/en/api/graphql-admin-api/reference/object/customer

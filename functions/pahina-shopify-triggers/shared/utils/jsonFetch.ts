@@ -13,3 +13,17 @@ export function jsonPost(resourceUrl: string, body: string) {
     body,
   });
 }
+
+export function jsonPut(resourceUrl: string, body: string) {
+  console.log(
+    `[INFO] put body URL: ${process.env.ENV !== 'prod' ? resourceUrl : ''}`,
+    body,
+  );
+  return fetch(resourceUrl, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body,
+  });
+}

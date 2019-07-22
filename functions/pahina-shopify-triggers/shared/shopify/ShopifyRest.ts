@@ -1,6 +1,6 @@
 import AwsSSM from '../aws/AwsSSM';
 import { ProcessingError } from '../utils/ProcessingError';
-import { jsonPost } from '../utils/jsonPost';
+import { jsonPost, jsonPut } from '../utils/jsonFetch';
 
 class ShopifyRest {
   url?: string;
@@ -35,7 +35,7 @@ class ShopifyRest {
     this.url = `https://${accessToken}:${password}@${hostname}/admin/api/${apiVersion}`;
   };
 
-  postCreate = async <D>(data: D, resource: string) => {
+  post = async <D>(data: D, resource: string) => {
     if (!this.url) {
       await this.init();
     }
@@ -47,6 +47,20 @@ class ShopifyRest {
     const body = JSON.stringify(data);
 
     return jsonPost(resourceUrl, body);
+  };
+
+  put = async <D>(data: D, resource: string, resouce_id: string) => {
+    if (!this.url) {
+      await this.init();
+    }
+    if (!this.url) {
+      throw new ProcessingError('Shopify URL not available');
+    }
+
+    const resourceUrl = `${this.url}/${resource}/${resouce_id}.json`;
+    const body = JSON.stringify(data);
+
+    return jsonPut(resourceUrl, body);
   };
 
   getSharedSecret = async () => {

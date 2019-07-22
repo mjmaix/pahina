@@ -7,9 +7,9 @@ import { pretty } from '../../shared/utils/simpleUtils';
 import { fetchRequiredData } from './fetchRequiredData';
 import { generateShopifyCustomer } from './generateShopifyCustomer';
 
-type Response = PromiseType<ReturnType<typeof ShopifyRest.postCreate>>;
+type Response = PromiseType<ReturnType<typeof ShopifyRest.post>>;
 
-export const createCustomer = async (userRecord: UserRecord) => {
+export const createShopifyCustomer = async (userRecord: UserRecord) => {
   const postCustomerResp = await sendShopifyPostCustomer(userRecord);
   if (!postCustomerResp) {
     throw new ProcessingError('Failed to post customer to Shopify');
@@ -31,10 +31,7 @@ const sendShopifyPostCustomer = async (userRecord: UserRecord) => {
 
   try {
     const postData = generateShopifyCustomer(cognitoUser);
-    resp = await ShopifyRest.postCreate<{ customer: any }>(
-      postData,
-      'customers',
-    );
+    resp = await ShopifyRest.post<{ customer: any }>(postData, 'customers');
     const body = await resp.json();
     const headers = resp.headers.raw();
     console.log(
