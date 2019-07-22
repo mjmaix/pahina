@@ -105,30 +105,25 @@ Resources:
                 - "xray:PutTraceSegments"
                 - "xray:PutTelemetryRecords"
                 Resource: "*"
-              # - Effect: Allow
-              #   Action:
-              #   - ssm:DescribeParameters
-              #   Resource: "*"
-              # - Sid: VisualEditor1
-              #   Effect: Allow
-              #   Action:
-              #   - ssm:GetParameters
-              #   - ssm:GetParameter
-              #   Resource: !Sub [ "arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}/*", { "host": !Ref ShopifyApiHost, "env": !Ref EnvType }]
-              # - Sid: VisualEditor2
-              #   Effect: Allow
-              #   Action:
-              #   - ssm:GetParametersByPath
-              #   Resource: !Sub
-              #     - arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}
-              #     - { "host": !Ref ShopifyApiHost, "env": !Ref EnvType }
-              # - Sid: VisualEditor3
-              #   Effect: Allow
-              #   Action:
-              #   - cognito-idp:AdminGetUser
-              #   Resource: !Sub
-              #     - arn:aws:cognito-idp:${AWS::Region}:${AWS::AccountId}:userpool/${poolid}
-              # - { "poolid": !FindInMap [AmplifyProject, UserPoolId, !Ref EnvType] }
+              - Effect: Allow
+                Action:
+                - ssm:DescribeParameters
+                Resource: "*"
+              - Sid: VisualEditor1
+                Effect: Allow
+                Action:
+                - ssm:GetParameters
+                - ssm:GetParameter
+                Resource: !Sub
+                  - "arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}/*"
+                  - { "host": !Ref ShopifyApiHost, "env": !Ref EnvType }
+              - Sid: VisualEditor2
+                Effect: Allow
+                Action:
+                - ssm:GetParametersByPath
+                Resource: !Sub
+                  - arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}
+                  - { "host": !Ref ShopifyApiHost, "env": !Ref EnvType }
 
   PahinaRestApi:
     Type: AWS::Serverless::Api

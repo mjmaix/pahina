@@ -114,6 +114,33 @@ Resources:
             - xray:PutTraceSegments
             - xray:PutTelemetryRecords
             Resource: '*'
+          - Effect: Allow
+            Action:
+            - ssm:DescribeParameters
+            Resource: '*'
+          - Sid: VisualEditor1
+            Effect: Allow
+            Action:
+            - ssm:GetParameters
+            - ssm:GetParameter
+            Resource:
+              Fn::Sub:
+              - arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}/*
+              - host:
+                  Ref: ShopifyApiHost
+                env:
+                  Ref: EnvType
+          - Sid: VisualEditor2
+            Effect: Allow
+            Action:
+            - ssm:GetParametersByPath
+            Resource:
+              Fn::Sub:
+              - arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}
+              - host:
+                  Ref: ShopifyApiHost
+                env:
+                  Ref: EnvType
   PahinaRestApi:
     Type: AWS::Serverless::Api
     Properties:
@@ -162,7 +189,7 @@ Resources:
         - ${FunctionName}-Address-${env}
         - env:
             Ref: EnvType
-      CodeUri: s3://pahina-shopify-api/6ee63dc6f3c172fca91c284f725066fa
+      CodeUri: s3://pahina-shopify-api/acc3d1992dc06999f06ed7cfc2dedd0a
       Handler: shopify-address-lambda/app.lambdaHandler
       Role:
         Fn::GetAtt:
