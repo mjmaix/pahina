@@ -1,0 +1,100 @@
+{
+  "resource": "/hello",
+  "path": "/hello",
+  "httpMethod": "GET",
+  "headers": {
+    "Accept": "*/*",
+    "Authorization": "Bearer eyJraWQiOiJsSXJUalBKSTVKaEFGRkpIeHU5TVRxSmRGOXhGTjJhNjNaVlNack1vNG5zPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI1MGQ1ZDllNy03MDNmLTQ2OWUtOTI5Ny05ODJlOWRkOTM1MWUiLCJjb2duaXRvOmdyb3VwcyI6WyJNZW1iZXIiXSwiZW1haWxfdmVyaWZpZWQiOnRydWUsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC5hcC1zb3V0aGVhc3QtMS5hbWF6b25hd3MuY29tXC9hcC1zb3V0aGVhc3QtMV8xQ1FRdkRoaE0iLCJwaG9uZV9udW1iZXJfdmVyaWZpZWQiOmZhbHNlLCJjb2duaXRvOnVzZXJuYW1lIjoiNTBkNWQ5ZTctNzAzZi00NjllLTkyOTctOTgyZTlkZDkzNTFlIiwiZ2l2ZW5fbmFtZSI6Ik1pY2hhZWwgSmFtZXMiLCJhdWQiOiI1ZmtpdGRqZWM4Z2FsODZ2dXMxcTljcDkxcSIsImV2ZW50X2lkIjoiMzViMjQxMGItYTIzOS00MzQ5LTkwNTktNDNkMGMwZTkyOTU5IiwidG9rZW5fdXNlIjoiaWQiLCJhdXRoX3RpbWUiOjE1NjM3OTM0NjAsImV4cCI6MTU2Mzc5NzA2MSwiaWF0IjoxNTYzNzkzNDYxLCJmYW1pbHlfbmFtZSI6IkFiYWRpbGxhIiwiZW1haWwiOiJtakBtamFiYWRpbGxhLmNvbSJ9.kdzdSOeSx8UZzYXJuqJ1sRL_neSXzKwgmvBT7cEzaV8nDIuiPAsOogtOhW7xx1Z0zGh4htkQm8Wb7UJ6x14AI3M5GqtgtVz13BmYzAlDDzDcLGH1pESxBhH5j6CEktum3aSQlUM8scMvD9O4cEjJtFRdefbu91Ed2TX5xxkFVRug-u9lH0Ia8zRAbAWb_6BAuxTjV961cVFJnqarzcoA34ZZGheYssYTub1VUz1z5Op2qV2kIMyFIBW9F5cmONp5rQc5s7fAdOb4bEifVZiY5H9o9-Emlo8xiIzOGTxTsx3L3ob6IUXQ8AeJ-lO7FMOzzKsEhzhHPEv5dhbDv_b8-A",
+    "CloudFront-Forwarded-Proto": "https",
+    "CloudFront-Is-Desktop-Viewer": "true",
+    "CloudFront-Is-Mobile-Viewer": "false",
+    "CloudFront-Is-SmartTV-Viewer": "false",
+    "CloudFront-Is-Tablet-Viewer": "false",
+    "CloudFront-Viewer-Country": "PH",
+    "Host": "isu157h9t7.execute-api.ap-southeast-1.amazonaws.com",
+    "User-Agent": "insomnia/6.5.4",
+    "Via": "1.1 f92eab68beb1e6605042ec06f0941a64.cloudfront.net (CloudFront)",
+    "X-Amz-Cf-Id": "DlOD2BUMziX6Mz5_JTFLzHQ9U6KpB60F1Fp82kpXPvJpoxW0nS4mCA==",
+    "X-Amzn-Trace-Id": "Root=1-5d359fee-77109bee2749504aac10266a",
+    "X-Forwarded-For": "112.201.174.60, 64.252.136.141",
+    "X-Forwarded-Port": "443",
+    "X-Forwarded-Proto": "https"
+  },
+  "multiValueHeaders": {
+    "Accept": ["*/*"],
+    "Authorization": [
+      "Bearer eyJraWQiOiJsSXJUalBKSTVKaEFGRkpIeHU5TVRxSmRGOXhGTjJhNjNaVlNack1vNG5zPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiI1MGQ1ZDllNy03MDNmLTQ2OWUtOTI5Ny05ODJlOWRkOTM1MWUiLCJjb2duaXRvOmdyb3VwcyI6WyJNZW1iZXIiXSwiZW1haWxfdmVyaWZpZWQiOnRydWUsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC5hcC1zb3V0aGVhc3QtMS5hbWF6b25hd3MuY29tXC9hcC1zb3V0aGVhc3QtMV8xQ1FRdkRoaE0iLCJwaG9uZV9udW1iZXJfdmVyaWZpZWQiOmZhbHNlLCJjb2duaXRvOnVzZXJuYW1lIjoiNTBkNWQ5ZTctNzAzZi00NjllLTkyOTctOTgyZTlkZDkzNTFlIiwiZ2l2ZW5fbmFtZSI6Ik1pY2hhZWwgSmFtZXMiLCJhdWQiOiI1ZmtpdGRqZWM4Z2FsODZ2dXMxcTljcDkxcSIsImV2ZW50X2lkIjoiMzViMjQxMGItYTIzOS00MzQ5LTkwNTktNDNkMGMwZTkyOTU5IiwidG9rZW5fdXNlIjoiaWQiLCJhdXRoX3RpbWUiOjE1NjM3OTM0NjAsImV4cCI6MTU2Mzc5NzA2MSwiaWF0IjoxNTYzNzkzNDYxLCJmYW1pbHlfbmFtZSI6IkFiYWRpbGxhIiwiZW1haWwiOiJtakBtamFiYWRpbGxhLmNvbSJ9.kdzdSOeSx8UZzYXJuqJ1sRL_neSXzKwgmvBT7cEzaV8nDIuiPAsOogtOhW7xx1Z0zGh4htkQm8Wb7UJ6x14AI3M5GqtgtVz13BmYzAlDDzDcLGH1pESxBhH5j6CEktum3aSQlUM8scMvD9O4cEjJtFRdefbu91Ed2TX5xxkFVRug-u9lH0Ia8zRAbAWb_6BAuxTjV961cVFJnqarzcoA34ZZGheYssYTub1VUz1z5Op2qV2kIMyFIBW9F5cmONp5rQc5s7fAdOb4bEifVZiY5H9o9-Emlo8xiIzOGTxTsx3L3ob6IUXQ8AeJ-lO7FMOzzKsEhzhHPEv5dhbDv_b8-A"
+    ],
+    "CloudFront-Forwarded-Proto": ["https"],
+    "CloudFront-Is-Desktop-Viewer": ["true"],
+    "CloudFront-Is-Mobile-Viewer": ["false"],
+    "CloudFront-Is-SmartTV-Viewer": ["false"],
+    "CloudFront-Is-Tablet-Viewer": ["false"],
+    "CloudFront-Viewer-Country": ["PH"],
+    "Host": ["isu157h9t7.execute-api.ap-southeast-1.amazonaws.com"],
+    "User-Agent": ["insomnia/6.5.4"],
+    "Via": ["1.1 f92eab68beb1e6605042ec06f0941a64.cloudfront.net (CloudFront)"],
+    "X-Amz-Cf-Id": ["DlOD2BUMziX6Mz5_JTFLzHQ9U6KpB60F1Fp82kpXPvJpoxW0nS4mCA=="],
+    "X-Amzn-Trace-Id": ["Root=1-5d359fee-77109bee2749504aac10266a"],
+    "X-Forwarded-For": ["112.201.174.60, 64.252.136.141"],
+    "X-Forwarded-Port": ["443"],
+    "X-Forwarded-Proto": ["https"]
+  },
+  "queryStringParameters": null,
+  "multiValueQueryStringParameters": null,
+  "pathParameters": null,
+  "stageVariables": {
+    "ENV": "dev"
+  },
+  "requestContext": {
+    "resourceId": "4namcc",
+    "authorizer": {
+      "claims": {
+        "sub": "50d5d9e7-703f-469e-9297-982e9dd9351e",
+        "cognito:groups": "Member",
+        "email_verified": "true",
+        "iss": "https://cognito-idp.ap-southeast-1.amazonaws.com/ap-southeast-1_1CQQvDhhM",
+        "phone_number_verified": "false",
+        "cognito:username": "50d5d9e7-703f-469e-9297-982e9dd9351e",
+        "given_name": "Michael James",
+        "aud": "5fkitdjec8gal86vus1q9cp91q",
+        "event_id": "35b2410b-a239-4349-9059-43d0c0e92959",
+        "token_use": "id",
+        "auth_time": "1563793460",
+        "exp": "Mon Jul 22 12:04:21 UTC 2019",
+        "iat": "Mon Jul 22 11:04:21 UTC 2019",
+        "family_name": "Abadilla",
+        "email": "mj@mjabadilla.com"
+      }
+    },
+    "resourcePath": "/hello",
+    "httpMethod": "GET",
+    "extendedRequestId": "dOXtMFjnSQ0FUxw=",
+    "requestTime": "22/Jul/2019:11:37:18 +0000",
+    "path": "/dev/hello",
+    "accountId": "991300696177",
+    "protocol": "HTTP/1.1",
+    "stage": "dev",
+    "domainPrefix": "isu157h9t7",
+    "requestTimeEpoch": 1563795438010,
+    "requestId": "0f5831db-ac75-11e9-8860-7f71cec89ff2",
+    "identity": {
+      "cognitoIdentityPoolId": null,
+      "accountId": null,
+      "cognitoIdentityId": null,
+      "caller": null,
+      "sourceIp": "112.201.174.60",
+      "principalOrgId": null,
+      "accessKey": null,
+      "cognitoAuthenticationType": null,
+      "cognitoAuthenticationProvider": null,
+      "userArn": null,
+      "userAgent": "insomnia/6.5.4",
+      "user": null
+    },
+    "domainName": "isu157h9t7.execute-api.ap-southeast-1.amazonaws.com",
+    "apiId": "isu157h9t7"
+  },
+  "body": null,
+  "isBase64Encoded": false
+}

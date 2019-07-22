@@ -70,9 +70,61 @@ Resources:
             RestApiId: !Ref PahinaRestApi
             Path: /hello
             Method: post
+  ReadAddressFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: customer-address/lib
+      Handler: customer-address/app.read
+      Runtime: nodejs10.x
+      Events:
+        ReadAddress:
+          Type: Api
+          Properties:
+            RestApiId: !Ref PahinaRestApi
+            Path: /addresses
+            Method: get
+  DefaultAddressFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: customer-address/lib
+      Handler: customer-address/app.default
+      Runtime: nodejs10.x
+      Events:
+        MakeDefault:
+          Type: Api
+          Properties:
+            RestApiId: !Ref PahinaRestApi
+            Path: /addresses/default
+            Method: put
+  CreateAddressFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: customer-address/lib
+      Handler: customer-address/app.create
+      Runtime: nodejs10.x
+      Events:
+        CreateAddress:
+          Type: Api
+          Properties:
+            RestApiId: !Ref PahinaRestApi
+            Path: /addresses/create
+            Method: post
+  DeleteAddressFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: customer-address/lib
+      Handler: customer-address/app.delete
+      Runtime: nodejs10.x
+      Events:
+        DeleteAddress:
+          Type: Api
+          Properties:
+            RestApiId: !Ref PahinaRestApi
+            Path: /addresses/delete
+            Method: delete
 
 Outputs:
-  GetSampleApi:
+  SampleApi:
     Description: "API Gateway endpoint URL for Prod stage for Hello World function"
     Value: !Sub 
       - "https://${PahinaRestApi}.execute-api.${AWS::Region}.amazonaws.com/${env}/hello/"
@@ -83,3 +135,51 @@ Outputs:
   SampleFunctionIamRole:
     Description: "Implicit IAM Role created for Hello World function"
     Value: !GetAtt SampleFunctionRole.Arn
+
+  ReadAddressApi:
+    Description: "API Gateway endpoint URL for Prod stage for Read Address function"
+    Value: !Sub 
+      - "https://${PahinaRestApi}.execute-api.${AWS::Region}.amazonaws.com/${env}/customers/"
+      - { env: !Ref EnvType }
+  ReadAddressFunction:
+    Description: "Read Address Lambda Function ARN"
+    Value: !GetAtt ReadAddressFunction.Arn
+  ReadAddressFunctionIamRole:
+    Description: "Implicit IAM Role created for Read Address function"
+    Value: !GetAtt ReadAddressFunctionRole.Arn
+
+  DefaultAddressApi:
+    Description: "API Gateway endpoint URL for Prod stage for Default Address function"
+    Value: !Sub 
+      - "https://${PahinaRestApi}.execute-api.${AWS::Region}.amazonaws.com/${env}/customers/default"
+      - { env: !Ref EnvType }
+  DefaultAddressFunction:
+    Description: "Default Address Lambda Function ARN"
+    Value: !GetAtt DefaultAddressFunction.Arn
+  DefaultAddressFunctionIamRole:
+    Description: "Implicit IAM Role created for Default Address function"
+    Value: !GetAtt DefaultAddressFunction.Arn
+
+  CreateAddressApi:
+    Description: "API Gateway endpoint URL for Prod stage for Create Address function"
+    Value: !Sub 
+      - "https://${PahinaRestApi}.execute-api.${AWS::Region}.amazonaws.com/${env}/customers/create"
+      - { env: !Ref EnvType }
+  CreateAddressFunction:
+    Description: "Create Address Lambda Function ARN"
+    Value: !GetAtt ReadAddressFunction.Arn
+  CreateAddressFunctionIamRole:
+    Description: "Implicit IAM Role created for Create Address function"
+    Value: !GetAtt CreateAddressFunctionRole.Arn
+
+  DeleteAddressApi:
+    Description: "API Gateway endpoint URL for Prod stage for Delete Address function"
+    Value: !Sub 
+      - "https://${PahinaRestApi}.execute-api.${AWS::Region}.amazonaws.com/${env}/customers/delete"
+      - { env: !Ref EnvType }
+  DeleteAddressFunction:
+    Description: "Delete Address Lambda Function ARN"
+    Value: !GetAtt DeleteAddressFunction.Arn
+  DeleteAddressFunctionIamRole:
+    Description: "Implicit IAM Role created for Delete Address function"
+    Value: !GetAtt DeleteAddressFunctionRole.Arn

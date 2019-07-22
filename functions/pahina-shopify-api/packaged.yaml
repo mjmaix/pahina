@@ -64,7 +64,7 @@ Resources:
   SampleFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-api/2feaee03313a41d60fdfd060a367a7ea
+      CodeUri: s3://pahina-shopify-api/59c25a6abae0cc242620952376607c11
       Handler: sample/app.lambdaHandler
       Runtime: nodejs10.x
       Events:
@@ -82,8 +82,64 @@ Resources:
               Ref: PahinaRestApi
             Path: /hello
             Method: post
+  ReadAddressFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://pahina-shopify-api/c4d150e6722936e00e532abeeddb2bed
+      Handler: customer-address/app.read
+      Runtime: nodejs10.x
+      Events:
+        ReadAddress:
+          Type: Api
+          Properties:
+            RestApiId:
+              Ref: PahinaRestApi
+            Path: /addresses
+            Method: get
+  DefaultAddressFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://pahina-shopify-api/c4d150e6722936e00e532abeeddb2bed
+      Handler: customer-address/app.default
+      Runtime: nodejs10.x
+      Events:
+        MakeDefault:
+          Type: Api
+          Properties:
+            RestApiId:
+              Ref: PahinaRestApi
+            Path: /addresses/default
+            Method: put
+  CreateAddressFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://pahina-shopify-api/c4d150e6722936e00e532abeeddb2bed
+      Handler: customer-address/app.create
+      Runtime: nodejs10.x
+      Events:
+        CreateAddress:
+          Type: Api
+          Properties:
+            RestApiId:
+              Ref: PahinaRestApi
+            Path: /addresses/create
+            Method: post
+  DeleteAddressFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://pahina-shopify-api/c4d150e6722936e00e532abeeddb2bed
+      Handler: customer-address/app.delete
+      Runtime: nodejs10.x
+      Events:
+        DeleteAddress:
+          Type: Api
+          Properties:
+            RestApiId:
+              Ref: PahinaRestApi
+            Path: /addresses/delete
+            Method: delete
 Outputs:
-  GetSampleApi:
+  SampleApi:
     Description: API Gateway endpoint URL for Prod stage for Hello World function
     Value:
       Fn::Sub:
@@ -101,4 +157,80 @@ Outputs:
     Value:
       Fn::GetAtt:
       - SampleFunctionRole
+      - Arn
+  ReadAddressApi:
+    Description: API Gateway endpoint URL for Prod stage for Read Address function
+    Value:
+      Fn::Sub:
+      - https://${PahinaRestApi}.execute-api.${AWS::Region}.amazonaws.com/${env}/customers/
+      - env:
+          Ref: EnvType
+  ReadAddressFunction:
+    Description: Read Address Lambda Function ARN
+    Value:
+      Fn::GetAtt:
+      - ReadAddressFunction
+      - Arn
+  ReadAddressFunctionIamRole:
+    Description: Implicit IAM Role created for Read Address function
+    Value:
+      Fn::GetAtt:
+      - ReadAddressFunctionRole
+      - Arn
+  DefaultAddressApi:
+    Description: API Gateway endpoint URL for Prod stage for Default Address function
+    Value:
+      Fn::Sub:
+      - https://${PahinaRestApi}.execute-api.${AWS::Region}.amazonaws.com/${env}/customers/default
+      - env:
+          Ref: EnvType
+  DefaultAddressFunction:
+    Description: Default Address Lambda Function ARN
+    Value:
+      Fn::GetAtt:
+      - DefaultAddressFunction
+      - Arn
+  DefaultAddressFunctionIamRole:
+    Description: Implicit IAM Role created for Default Address function
+    Value:
+      Fn::GetAtt:
+      - DefaultAddressFunction
+      - Arn
+  CreateAddressApi:
+    Description: API Gateway endpoint URL for Prod stage for Create Address function
+    Value:
+      Fn::Sub:
+      - https://${PahinaRestApi}.execute-api.${AWS::Region}.amazonaws.com/${env}/customers/create
+      - env:
+          Ref: EnvType
+  CreateAddressFunction:
+    Description: Create Address Lambda Function ARN
+    Value:
+      Fn::GetAtt:
+      - ReadAddressFunction
+      - Arn
+  CreateAddressFunctionIamRole:
+    Description: Implicit IAM Role created for Create Address function
+    Value:
+      Fn::GetAtt:
+      - CreateAddressFunctionRole
+      - Arn
+  DeleteAddressApi:
+    Description: API Gateway endpoint URL for Prod stage for Delete Address function
+    Value:
+      Fn::Sub:
+      - https://${PahinaRestApi}.execute-api.${AWS::Region}.amazonaws.com/${env}/customers/delete
+      - env:
+          Ref: EnvType
+  DeleteAddressFunction:
+    Description: Delete Address Lambda Function ARN
+    Value:
+      Fn::GetAtt:
+      - DeleteAddressFunction
+      - Arn
+  DeleteAddressFunctionIamRole:
+    Description: Implicit IAM Role created for Delete Address function
+    Value:
+      Fn::GetAtt:
+      - DeleteAddressFunctionRole
       - Arn

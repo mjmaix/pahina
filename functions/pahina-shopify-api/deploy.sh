@@ -2,6 +2,7 @@
 
 
 sh ./prep-module.sh sample || { echo "sample prep failed" ; exit 1; }
+sh ./prep-module.sh customer-address || { echo "customer-address prep failed" ; exit 1; }
 
 echo 'Build and Tests are passing'
 
@@ -25,3 +26,4 @@ sam deploy \
  || { echo "sam deploy failed" ; exit 1; }
 
 sh ./post-deploy.sh sample
+sh ./post-deploy.sh customer-address
