@@ -6,6 +6,14 @@ Description: >
   Sample SAM Template for sam-app
 
 Parameters:
+  FunctionName:
+    Type: String
+    Default: pahina-shopify-api
+    Description: The Lambda Function Name
+  AutoPublishAliasName:
+    Type: String
+    Default: current
+    Description: The alias used for Auto Publishing
   EnvType:
     Description: Environment for this function
     Type: String
@@ -45,6 +53,7 @@ Globals:
     Tracing: Active
     Timeout: 30
     Runtime: nodejs10.x
+    AutoPublishAlias: !Ref AutoPublishAliasName
     Environment:
       Variables:
         REGION: !Ref AWS::Region
@@ -54,6 +63,73 @@ Globals:
         SHOPIFY_API_VERSION: !Ref ShopifyApiVersion
 
 Resources:
+  PahinaAPILambdaPermission:
+    DependsOn : SampleFunction
+    Type: "AWS::Lambda::Permission"
+    Properties:
+      Action: lambda:InvokeFunction
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${PahinaRestApi}/*"
+      FunctionName:
+        !Sub
+        - ${FuncArn}:current
+        - { FuncArn: !GetAtt SampleFunction.Arn }
+      Principal: apigateway.amazonaws.com
+  FunctionIAMRole:
+   Type: "AWS::IAM::Role"
+   Properties:
+     Path: "/"
+     ManagedPolicyArns:
+         - "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+     AssumeRolePolicyDocument:
+       Version: "2012-10-17"
+       Statement:
+         -
+           Effect: "Allow"
+           Action:
+             - "sts:AssumeRole"
+           Principal:
+             Service:
+               - "lambda.amazonaws.com"
+     Policies: # Inline Policies
+       -
+         PolicyName: "LambdaExecutionRole"
+         PolicyDocument:
+           Version: "2012-10-17"
+           Statement:
+              - Effect: "Allow"
+                Action:
+                  - "logs:*"
+                Resource: "*"
+              - Effect: Allow
+                Action:
+                - "xray:PutTraceSegments"
+                - "xray:PutTelemetryRecords"
+                Resource: "*"
+              # - Effect: Allow
+              #   Action:
+              #   - ssm:DescribeParameters
+              #   Resource: "*"
+              # - Sid: VisualEditor1
+              #   Effect: Allow
+              #   Action:
+              #   - ssm:GetParameters
+              #   - ssm:GetParameter
+              #   Resource: !Sub [ "arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}/*", { "host": !Ref ShopifyApiHost, "env": !Ref EnvType }]
+              # - Sid: VisualEditor2
+              #   Effect: Allow
+              #   Action:
+              #   - ssm:GetParametersByPath
+              #   Resource: !Sub
+              #     - arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}
+              #     - { "host": !Ref ShopifyApiHost, "env": !Ref EnvType }
+              # - Sid: VisualEditor3
+              #   Effect: Allow
+              #   Action:
+              #   - cognito-idp:AdminGetUser
+              #   Resource: !Sub
+              #     - arn:aws:cognito-idp:${AWS::Region}:${AWS::AccountId}:userpool/${poolid}
+              # - { "poolid": !FindInMap [AmplifyProject, UserPoolId, !Ref EnvType] }
+
   PahinaRestApi:
     Type: AWS::Serverless::Api
     Properties:
@@ -65,238 +141,50 @@ Resources:
             UserPoolArn: !Sub
               - arn:aws:cognito-idp:${AWS::Region}:${AWS::AccountId}:userpool/${poolId} 
               - { poolId: !FindInMap [ AmplifyProject, UserPoolId, !Ref EnvType ] }
+      DefinitionBody:
+        swagger: 2.0
+        info:
+          title: !Sub
+            - API-${name}-${env}
+            - { env: !Ref EnvType, name: !Ref FunctionName }
+        paths:
+          /{proxy+}:
+            x-amazon-apigateway-any-method:
+              produces:
+                - application/json
+              x-amazon-apigateway-integration:
+                uri:
+                  !Sub "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${SampleFunction.Arn}:${AutoPublishAliasName}/invocations"
+                passthroughBehavior: when_no_match
+                httpMethod: POST
+                type: aws_proxy
   SampleFunction:
     Type: AWS::Serverless::Function
     Properties:
+      AutoPublishAlias: !Ref AutoPublishAliasName
+      FunctionName: !Sub
+        - ${FunctionName}-${env}
+        - { env: !Ref EnvType }
       CodeUri: sample/lib
       Handler: sample/app.lambdaHandler
       Events:
-        GetSample:
+        AnyRequest:
           Type: Api
           Properties:
+            Path: /
+            Method: ANY
             RestApiId: !Ref PahinaRestApi
-            Path: /hello
-            Method: get
-        PostSample:
-          Type: Api
-          Properties:
-            RestApiId: !Ref PahinaRestApi
-            Path: /hello
-            Method: post
-  ReadAddressFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: customer-address/lib
-      Handler: customer-address/app.read
-      Events:
-        ReadAddress:
-          Type: Api
-          Properties:
-            RestApiId: !Ref PahinaRestApi
-            Path: /addresses
-            Method: get
-      Policies:
-        - Version: '2012-10-17'
-          Statement:
-          - Effect: Allow
-            Action:
-            - ssm:DescribeParameters
-            Resource: "*"
-          - Sid: VisualEditor1
-            Effect: Allow
-            Action:
-            - ssm:GetParameters
-            - ssm:GetParameter
-            Resource: !Sub [ "arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}/*", { "host": !Ref ShopifyApiHost, "env": !Ref EnvType }]
-          - Sid: VisualEditor2
-            Effect: Allow
-            Action:
-            - ssm:GetParametersByPath
-            Resource: !Sub
-              - arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}
-              - { "host": !Ref ShopifyApiHost, "env": !Ref EnvType }
-          - Sid: VisualEditor3
-            Effect: Allow
-            Action:
-            - cognito-idp:AdminGetUser
-            Resource: !Sub
-              - arn:aws:cognito-idp:${AWS::Region}:${AWS::AccountId}:userpool/${poolid}
-              - { "poolid": !FindInMap [AmplifyProject, UserPoolId, !Ref EnvType] }
-  DefaultAddressFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: customer-address/lib
-      Handler: customer-address/app.default
-      Events:
-        MakeDefault:
-          Type: Api
-          Properties:
-            RestApiId: !Ref PahinaRestApi
-            Path: /addresses/default
-            Method: put
-      Policies:
-        - Version: '2012-10-17'
-          Statement:
-          - Effect: Allow
-            Action:
-            - ssm:DescribeParameters
-            Resource: "*"
-          - Sid: VisualEditor1
-            Effect: Allow
-            Action:
-            - ssm:GetParameters
-            - ssm:GetParameter
-            Resource: !Sub [ "arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}/*", { "host": !Ref ShopifyApiHost, "env": !Ref EnvType }]
-          - Sid: VisualEditor2
-            Effect: Allow
-            Action:
-            - ssm:GetParametersByPath
-            Resource: !Sub
-              - arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}
-              - { "host": !Ref ShopifyApiHost, "env": !Ref EnvType }
-          - Sid: VisualEditor3
-            Effect: Allow
-            Action:
-            - cognito-idp:AdminGetUser
-            Resource: !Sub
-              - arn:aws:cognito-idp:${AWS::Region}:${AWS::AccountId}:userpool/${poolid}
-              - { "poolid": !FindInMap [AmplifyProject, UserPoolId, !Ref EnvType] }
-  CreateAddressFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: customer-address/lib
-      Handler: customer-address/app.create
-      Events:
-        CreateAddress:
-          Type: Api
-          Properties:
-            RestApiId: !Ref PahinaRestApi
-            Path: /addresses/create
-            Method: post
-      Policies:
-        - Version: '2012-10-17'
-          Statement:
-          - Effect: Allow
-            Action:
-            - ssm:DescribeParameters
-            Resource: "*"
-          - Sid: VisualEditor1
-            Effect: Allow
-            Action:
-            - ssm:GetParameters
-            - ssm:GetParameter
-            Resource: !Sub [ "arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}/*", { "host": !Ref ShopifyApiHost, "env": !Ref EnvType }]
-          - Sid: VisualEditor2
-            Effect: Allow
-            Action:
-            - ssm:GetParametersByPath
-            Resource: !Sub
-              - arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}
-              - { "host": !Ref ShopifyApiHost, "env": !Ref EnvType }
-          - Sid: VisualEditor3
-            Effect: Allow
-            Action:
-            - cognito-idp:AdminGetUser
-            Resource: !Sub
-              - arn:aws:cognito-idp:${AWS::Region}:${AWS::AccountId}:userpool/${poolid}
-              - { "poolid": !FindInMap [AmplifyProject, UserPoolId, !Ref EnvType] }
-  DeleteAddressFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      CodeUri: customer-address/lib
-      Handler: customer-address/app.delete
-      Events:
-        DeleteAddress:
-          Type: Api
-          Properties:
-            RestApiId: !Ref PahinaRestApi
-            Path: /addresses/delete
-            Method: delete
-      Policies:
-        - Version: '2012-10-17'
-          Statement:
-          - Effect: Allow
-            Action:
-            - ssm:DescribeParameters
-            Resource: "*"
-          - Sid: VisualEditor1
-            Effect: Allow
-            Action:
-            - ssm:GetParameters
-            - ssm:GetParameter
-            Resource: !Sub [ "arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}/*", { "host": !Ref ShopifyApiHost, "env": !Ref EnvType }]
-          - Sid: VisualEditor2
-            Effect: Allow
-            Action:
-            - ssm:GetParametersByPath
-            Resource: !Sub
-              - arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}
-              - { "host": !Ref ShopifyApiHost, "env": !Ref EnvType }
-          - Sid: VisualEditor3
-            Effect: Allow
-            Action:
-            - cognito-idp:AdminGetUser
-            Resource: !Sub
-              - arn:aws:cognito-idp:${AWS::Region}:${AWS::AccountId}:userpool/${poolid}
-              - { "poolid": !FindInMap [AmplifyProject, UserPoolId, !Ref EnvType] }
+      Role: !GetAtt FunctionIAMRole.Arn
 
 Outputs:
   SampleApi:
-    Description: "API Gateway endpoint URL for Prod stage for Hello World function"
+    Description: "API Gateway endpoint URL for Prod stage for Sample function"
     Value: !Sub 
       - "https://${PahinaRestApi}.execute-api.${AWS::Region}.amazonaws.com/${env}/hello/"
       - { env: !Ref EnvType }
   SampleFunction:
-    Description: "Hello World Lambda Function ARN"
+    Description: "Sample Lambda Function ARN"
     Value: !GetAtt SampleFunction.Arn
-  SampleFunctionIamRole:
-    Description: "Implicit IAM Role created for Hello World function"
-    Value: !GetAtt SampleFunctionRole.Arn
-
-  ReadAddressApi:
-    Description: "API Gateway endpoint URL for Prod stage for Read Address function"
-    Value: !Sub 
-      - "https://${PahinaRestApi}.execute-api.${AWS::Region}.amazonaws.com/${env}/customers/"
-      - { env: !Ref EnvType }
-  ReadAddressFunction:
-    Description: "Read Address Lambda Function ARN"
-    Value: !GetAtt ReadAddressFunction.Arn
-  ReadAddressFunctionIamRole:
-    Description: "Implicit IAM Role created for Read Address function"
-    Value: !GetAtt ReadAddressFunctionRole.Arn
-
-  DefaultAddressApi:
-    Description: "API Gateway endpoint URL for Prod stage for Default Address function"
-    Value: !Sub 
-      - "https://${PahinaRestApi}.execute-api.${AWS::Region}.amazonaws.com/${env}/customers/default"
-      - { env: !Ref EnvType }
-  DefaultAddressFunction:
-    Description: "Default Address Lambda Function ARN"
-    Value: !GetAtt DefaultAddressFunction.Arn
-  DefaultAddressFunctionIamRole:
-    Description: "Implicit IAM Role created for Default Address function"
-    Value: !GetAtt DefaultAddressFunction.Arn
-
-  CreateAddressApi:
-    Description: "API Gateway endpoint URL for Prod stage for Create Address function"
-    Value: !Sub 
-      - "https://${PahinaRestApi}.execute-api.${AWS::Region}.amazonaws.com/${env}/customers/create"
-      - { env: !Ref EnvType }
-  CreateAddressFunction:
-    Description: "Create Address Lambda Function ARN"
-    Value: !GetAtt ReadAddressFunction.Arn
-  CreateAddressFunctionIamRole:
-    Description: "Implicit IAM Role created for Create Address function"
-    Value: !GetAtt CreateAddressFunctionRole.Arn
-
-  DeleteAddressApi:
-    Description: "API Gateway endpoint URL for Prod stage for Delete Address function"
-    Value: !Sub 
-      - "https://${PahinaRestApi}.execute-api.${AWS::Region}.amazonaws.com/${env}/customers/delete"
-      - { env: !Ref EnvType }
-  DeleteAddressFunction:
-    Description: "Delete Address Lambda Function ARN"
-    Value: !GetAtt DeleteAddressFunction.Arn
-  DeleteAddressFunctionIamRole:
-    Description: "Implicit IAM Role created for Delete Address function"
-    Value: !GetAtt DeleteAddressFunctionRole.Arn
+  FunctionIAMRole:
+    Description: "Managed IAM Role created for Sample function"
+    Value: !GetAtt FunctionIAMRole.Arn
