@@ -4,12 +4,31 @@ Description: >
   sam-app
 
   Sample SAM Template for sam-app
+
+Parameters:
+  EnvType:
+    Description: Environment for this function
+    Type: String
+    Default: dev
+    AllowedValues:
+    - dev
+    - prod
+    - test
+    - NONE
   
 Globals:
   Function:
     Timeout: 3
+    Environment:
+      Variables:
+        REGION: !Ref AWS::Region
+        ENV: !Ref EnvType
 
 Resources:
+  PahinaRestApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: !Ref EnvType
   HelloWorldFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -20,13 +39,16 @@ Resources:
         HelloWorld:
           Type: Api
           Properties:
+            RestApiId: !Ref PahinaRestApi
             Path: /hello
             Method: get
 
 Outputs:
   HelloWorldApi:
     Description: "API Gateway endpoint URL for Prod stage for Hello World function"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/"
+    Value: !Sub 
+      - "https://${PahinaRestApi}.execute-api.${AWS::Region}.amazonaws.com/${env}/hello/"
+      - { env: !Ref EnvType }
   HelloWorldFunction:
     Description: "Hello World Lambda Function ARN"
     Value: !GetAtt HelloWorldFunction.Arn

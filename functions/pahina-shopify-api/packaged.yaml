@@ -5,27 +5,53 @@ Description: 'sam-app
   Sample SAM Template for sam-app
 
   '
+Parameters:
+  EnvType:
+    Description: Environment for this function
+    Type: String
+    Default: dev
+    AllowedValues:
+    - dev
+    - prod
+    - test
+    - NONE
 Globals:
   Function:
     Timeout: 3
+    Environment:
+      Variables:
+        REGION:
+          Ref: AWS::Region
+        ENV:
+          Ref: EnvType
 Resources:
+  PahinaRestApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName:
+        Ref: EnvType
   HelloWorldFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-api/c41444d28f81e909ac35575eae76e59d
+      CodeUri: s3://pahina-shopify-api/e5c674a12fb4e9ff43bc48725b8b635f
       Handler: hello-world/app.lambdaHandler
       Runtime: nodejs10.x
       Events:
         HelloWorld:
           Type: Api
           Properties:
+            RestApiId:
+              Ref: PahinaRestApi
             Path: /hello
             Method: get
 Outputs:
   HelloWorldApi:
     Description: API Gateway endpoint URL for Prod stage for Hello World function
     Value:
-      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/
+      Fn::Sub:
+      - https://${PahinaRestApi}.execute-api.${AWS::Region}.amazonaws.com/${env}/hello/
+      - env:
+          Ref: EnvType
   HelloWorldFunction:
     Description: Hello World Lambda Function ARN
     Value:
