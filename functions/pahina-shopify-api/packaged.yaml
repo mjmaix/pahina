@@ -15,6 +15,16 @@ Parameters:
     - prod
     - test
     - NONE
+  ShopifyApiHost:
+    Description: Shopify hostname
+    Type: String
+    Default: freelitemjabadilla.myshopify.com
+  ShopifyApiVersion:
+    Description: Shopify API version
+    Type: String
+    Default: 2019-07
+    AllowedValues:
+    - 2019-07
 Mappings:
   AmplifyProject:
     UserPoolId:
@@ -31,7 +41,9 @@ Globals:
       ENV:
         Ref: EnvType
   Function:
-    Timeout: 3
+    Tracing: Active
+    Timeout: 30
+    Runtime: nodejs10.x
     Environment:
       Variables:
         REGION:
@@ -43,6 +55,10 @@ Globals:
           - AmplifyProject
           - UserPoolClientId
           - Ref: EnvType
+        SHOPIFY_API_HOSTNAME:
+          Ref: ShopifyApiHost
+        SHOPIFY_API_VERSION:
+          Ref: ShopifyApiVersion
 Resources:
   PahinaRestApi:
     Type: AWS::Serverless::Api
@@ -64,9 +80,8 @@ Resources:
   SampleFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-api/59c25a6abae0cc242620952376607c11
+      CodeUri: s3://pahina-shopify-api/da32a0f487be8562660f5f484b791ee7
       Handler: sample/app.lambdaHandler
-      Runtime: nodejs10.x
       Events:
         GetSample:
           Type: Api
@@ -85,9 +100,8 @@ Resources:
   ReadAddressFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-api/c4d150e6722936e00e532abeeddb2bed
+      CodeUri: s3://pahina-shopify-api/3577a330111c05e92adf20d3ab4fba46
       Handler: customer-address/app.read
-      Runtime: nodejs10.x
       Events:
         ReadAddress:
           Type: Api
@@ -96,12 +110,53 @@ Resources:
               Ref: PahinaRestApi
             Path: /addresses
             Method: get
+      Policies:
+      - Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Action:
+          - ssm:DescribeParameters
+          Resource: '*'
+        - Sid: VisualEditor1
+          Effect: Allow
+          Action:
+          - ssm:GetParameters
+          - ssm:GetParameter
+          Resource:
+            Fn::Sub:
+            - arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}/*
+            - host:
+                Ref: ShopifyApiHost
+              env:
+                Ref: EnvType
+        - Sid: VisualEditor2
+          Effect: Allow
+          Action:
+          - ssm:GetParametersByPath
+          Resource:
+            Fn::Sub:
+            - arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}
+            - host:
+                Ref: ShopifyApiHost
+              env:
+                Ref: EnvType
+        - Sid: VisualEditor3
+          Effect: Allow
+          Action:
+          - cognito-idp:AdminGetUser
+          Resource:
+            Fn::Sub:
+            - arn:aws:cognito-idp:${AWS::Region}:${AWS::AccountId}:userpool/${poolid}
+            - poolid:
+                Fn::FindInMap:
+                - AmplifyProject
+                - UserPoolId
+                - Ref: EnvType
   DefaultAddressFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-api/c4d150e6722936e00e532abeeddb2bed
+      CodeUri: s3://pahina-shopify-api/3577a330111c05e92adf20d3ab4fba46
       Handler: customer-address/app.default
-      Runtime: nodejs10.x
       Events:
         MakeDefault:
           Type: Api
@@ -110,12 +165,53 @@ Resources:
               Ref: PahinaRestApi
             Path: /addresses/default
             Method: put
+      Policies:
+      - Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Action:
+          - ssm:DescribeParameters
+          Resource: '*'
+        - Sid: VisualEditor1
+          Effect: Allow
+          Action:
+          - ssm:GetParameters
+          - ssm:GetParameter
+          Resource:
+            Fn::Sub:
+            - arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}/*
+            - host:
+                Ref: ShopifyApiHost
+              env:
+                Ref: EnvType
+        - Sid: VisualEditor2
+          Effect: Allow
+          Action:
+          - ssm:GetParametersByPath
+          Resource:
+            Fn::Sub:
+            - arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}
+            - host:
+                Ref: ShopifyApiHost
+              env:
+                Ref: EnvType
+        - Sid: VisualEditor3
+          Effect: Allow
+          Action:
+          - cognito-idp:AdminGetUser
+          Resource:
+            Fn::Sub:
+            - arn:aws:cognito-idp:${AWS::Region}:${AWS::AccountId}:userpool/${poolid}
+            - poolid:
+                Fn::FindInMap:
+                - AmplifyProject
+                - UserPoolId
+                - Ref: EnvType
   CreateAddressFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-api/c4d150e6722936e00e532abeeddb2bed
+      CodeUri: s3://pahina-shopify-api/3577a330111c05e92adf20d3ab4fba46
       Handler: customer-address/app.create
-      Runtime: nodejs10.x
       Events:
         CreateAddress:
           Type: Api
@@ -124,12 +220,53 @@ Resources:
               Ref: PahinaRestApi
             Path: /addresses/create
             Method: post
+      Policies:
+      - Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Action:
+          - ssm:DescribeParameters
+          Resource: '*'
+        - Sid: VisualEditor1
+          Effect: Allow
+          Action:
+          - ssm:GetParameters
+          - ssm:GetParameter
+          Resource:
+            Fn::Sub:
+            - arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}/*
+            - host:
+                Ref: ShopifyApiHost
+              env:
+                Ref: EnvType
+        - Sid: VisualEditor2
+          Effect: Allow
+          Action:
+          - ssm:GetParametersByPath
+          Resource:
+            Fn::Sub:
+            - arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}
+            - host:
+                Ref: ShopifyApiHost
+              env:
+                Ref: EnvType
+        - Sid: VisualEditor3
+          Effect: Allow
+          Action:
+          - cognito-idp:AdminGetUser
+          Resource:
+            Fn::Sub:
+            - arn:aws:cognito-idp:${AWS::Region}:${AWS::AccountId}:userpool/${poolid}
+            - poolid:
+                Fn::FindInMap:
+                - AmplifyProject
+                - UserPoolId
+                - Ref: EnvType
   DeleteAddressFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-api/c4d150e6722936e00e532abeeddb2bed
+      CodeUri: s3://pahina-shopify-api/3577a330111c05e92adf20d3ab4fba46
       Handler: customer-address/app.delete
-      Runtime: nodejs10.x
       Events:
         DeleteAddress:
           Type: Api
@@ -138,6 +275,48 @@ Resources:
               Ref: PahinaRestApi
             Path: /addresses/delete
             Method: delete
+      Policies:
+      - Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Action:
+          - ssm:DescribeParameters
+          Resource: '*'
+        - Sid: VisualEditor1
+          Effect: Allow
+          Action:
+          - ssm:GetParameters
+          - ssm:GetParameter
+          Resource:
+            Fn::Sub:
+            - arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}/*
+            - host:
+                Ref: ShopifyApiHost
+              env:
+                Ref: EnvType
+        - Sid: VisualEditor2
+          Effect: Allow
+          Action:
+          - ssm:GetParametersByPath
+          Resource:
+            Fn::Sub:
+            - arn:aws:ssm:${AWS::Region}:*:parameter/${host}/${env}
+            - host:
+                Ref: ShopifyApiHost
+              env:
+                Ref: EnvType
+        - Sid: VisualEditor3
+          Effect: Allow
+          Action:
+          - cognito-idp:AdminGetUser
+          Resource:
+            Fn::Sub:
+            - arn:aws:cognito-idp:${AWS::Region}:${AWS::AccountId}:userpool/${poolid}
+            - poolid:
+                Fn::FindInMap:
+                - AmplifyProject
+                - UserPoolId
+                - Ref: EnvType
 Outputs:
   SampleApi:
     Description: API Gateway endpoint URL for Prod stage for Hello World function

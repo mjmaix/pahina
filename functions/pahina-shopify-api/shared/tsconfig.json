@@ -1,0 +1,10 @@
+{
+  "extends": "../tsconfig.functions.json",
+  "compilerOptions": {
+    "outDir": "./lib",
+    "baseUrl": "./",
+    "typeRoots": ["node_modules/@types"],
+    "types": ["node", "mocha"]
+  },
+  "exclude": ["node_modules"]
+}
