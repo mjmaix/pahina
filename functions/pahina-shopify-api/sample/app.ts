@@ -1,5 +1,7 @@
 import { APIGatewayEvent, Context } from 'aws-lambda';
 
+import { pretty } from '../shared/utils/simpleUtils';
+
 // const axios = require('axios')
 // const url = 'http://checkip.amazonaws.com/';
 let response;
@@ -16,7 +18,10 @@ let response;
  * @returns {Object} object - API Gateway Lambda Proxy Output Format
  *
  */
+
 exports.lambdaHandler = async (event: APIGatewayEvent, context: Context) => {
+  console.log('[EVENT]', pretty(event));
+  console.log('[CONTEXT]', pretty(context));
   try {
     // const ret = await axios(url);
     response = {

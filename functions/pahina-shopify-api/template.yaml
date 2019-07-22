@@ -51,29 +51,35 @@ Resources:
             UserPoolArn: !Sub
               - arn:aws:cognito-idp:${AWS::Region}:${AWS::AccountId}:userpool/${poolId} 
               - { poolId: !FindInMap [ AmplifyProject, UserPoolId, !Ref EnvType ] }
-  HelloWorldFunction:
+  SampleFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: hello-world/lib
-      Handler: hello-world/app.lambdaHandler
+      CodeUri: sample/lib
+      Handler: sample/app.lambdaHandler
       Runtime: nodejs10.x
       Events:
-        HelloWorld:
+        GetSample:
           Type: Api
           Properties:
             RestApiId: !Ref PahinaRestApi
             Path: /hello
             Method: get
+        PostSample:
+          Type: Api
+          Properties:
+            RestApiId: !Ref PahinaRestApi
+            Path: /hello
+            Method: post
 
 Outputs:
-  HelloWorldApi:
+  GetSampleApi:
     Description: "API Gateway endpoint URL for Prod stage for Hello World function"
     Value: !Sub 
       - "https://${PahinaRestApi}.execute-api.${AWS::Region}.amazonaws.com/${env}/hello/"
       - { env: !Ref EnvType }
-  HelloWorldFunction:
+  SampleFunction:
     Description: "Hello World Lambda Function ARN"
-    Value: !GetAtt HelloWorldFunction.Arn
-  HelloWorldFunctionIamRole:
+    Value: !GetAtt SampleFunction.Arn
+  SampleFunctionIamRole:
     Description: "Implicit IAM Role created for Hello World function"
-    Value: !GetAtt HelloWorldFunctionRole.Arn
+    Value: !GetAtt SampleFunctionRole.Arn

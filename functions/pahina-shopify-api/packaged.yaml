@@ -61,37 +61,44 @@ Resources:
                   - AmplifyProject
                   - UserPoolId
                   - Ref: EnvType
-  HelloWorldFunction:
+  SampleFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-api/72749b7cb6b9c1692724f27077c78bcd
-      Handler: hello-world/app.lambdaHandler
+      CodeUri: s3://pahina-shopify-api/2feaee03313a41d60fdfd060a367a7ea
+      Handler: sample/app.lambdaHandler
       Runtime: nodejs10.x
       Events:
-        HelloWorld:
+        GetSample:
           Type: Api
           Properties:
             RestApiId:
               Ref: PahinaRestApi
             Path: /hello
             Method: get
+        PostSample:
+          Type: Api
+          Properties:
+            RestApiId:
+              Ref: PahinaRestApi
+            Path: /hello
+            Method: post
 Outputs:
-  HelloWorldApi:
+  GetSampleApi:
     Description: API Gateway endpoint URL for Prod stage for Hello World function
     Value:
       Fn::Sub:
       - https://${PahinaRestApi}.execute-api.${AWS::Region}.amazonaws.com/${env}/hello/
       - env:
           Ref: EnvType
-  HelloWorldFunction:
+  SampleFunction:
     Description: Hello World Lambda Function ARN
     Value:
       Fn::GetAtt:
-      - HelloWorldFunction
+      - SampleFunction
       - Arn
-  HelloWorldFunctionIamRole:
+  SampleFunctionIamRole:
     Description: Implicit IAM Role created for Hello World function
     Value:
       Fn::GetAtt:
-      - HelloWorldFunctionRole
+      - SampleFunctionRole
       - Arn
