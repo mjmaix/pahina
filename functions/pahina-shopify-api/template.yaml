@@ -18,14 +18,19 @@ Parameters:
 
 Mappings:
   AmplifyProject:
-    UserPoolArn:
-      dev: arn:aws:cognito-idp:ap-southeast-1:991300696177:userpool/ap-southeast-1_1CQQvDhhM
+    UserPoolId:
+      dev: ap-southeast-1_1CQQvDhhM
       prod: ''
     UserPoolClientId:
       dev: 5fkitdjec8gal86vus1q9cp91q
       prod: ''
   
 Globals:
+  Api:
+    Cors: "'*'"
+    TracingEnabled: true
+    Variables:
+      ENV: !Ref EnvType
   Function:
     Timeout: 3
     Environment:
@@ -39,15 +44,13 @@ Resources:
     Type: AWS::Serverless::Api
     Properties:
       StageName: !Ref EnvType
-      Cors: "'*'"
-      TracingEnabled: true
-      Variables:
-        ENV: !Ref EnvType
       Auth:
         DefaultAuthorizer: PahinaCognitoAuthorizer
         Authorizers:
           PahinaCognitoAuthorizer:
-            UserPoolArn: !FindInMap [ AmplifyProject, UserPoolArn, !Ref EnvType]
+            UserPoolArn: !Sub
+              - arn:aws:cognito-idp:${AWS::Region}:${AWS::AccountId}:userpool/${poolId} 
+              - { poolId: !FindInMap [ AmplifyProject, UserPoolId, !Ref EnvType ] }
   HelloWorldFunction:
     Type: AWS::Serverless::Function
     Properties:
