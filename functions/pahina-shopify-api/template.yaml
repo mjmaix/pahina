@@ -64,7 +64,7 @@ Globals:
 
 Resources:
   PahinaAPILambdaPermission:
-    DependsOn : SampleFunction
+    DependsOn : AddressFunction
     Type: "AWS::Lambda::Permission"
     Properties:
       Action: lambda:InvokeFunction
@@ -72,7 +72,7 @@ Resources:
       FunctionName:
         !Sub
         - ${FuncArn}:current
-        - { FuncArn: !GetAtt SampleFunction.Arn }
+        - { FuncArn: !GetAtt AddressFunction.Arn }
       Principal: apigateway.amazonaws.com
   FunctionIAMRole:
    Type: "AWS::IAM::Role"
@@ -148,43 +148,43 @@ Resources:
             - API-${name}-${env}
             - { env: !Ref EnvType, name: !Ref FunctionName }
         paths:
-          /{proxy+}:
+          /addresses/{proxy+}:
             x-amazon-apigateway-any-method:
               produces:
                 - application/json
               x-amazon-apigateway-integration:
                 uri:
-                  !Sub "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${SampleFunction.Arn}:${AutoPublishAliasName}/invocations"
+                  !Sub "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${AddressFunction.Arn}:${AutoPublishAliasName}/invocations"
                 passthroughBehavior: when_no_match
                 httpMethod: POST
                 type: aws_proxy
-  SampleFunction:
+  AddressFunction:
     Type: AWS::Serverless::Function
     Properties:
       AutoPublishAlias: !Ref AutoPublishAliasName
       FunctionName: !Sub
-        - ${FunctionName}-${env}
+        - ${FunctionName}-Address-${env}
         - { env: !Ref EnvType }
-      CodeUri: sample/lib
-      Handler: sample/app.lambdaHandler
-      Events:
-        AnyRequest:
-          Type: Api
-          Properties:
-            Path: /
-            Method: ANY
-            RestApiId: !Ref PahinaRestApi
+      CodeUri: shopify-address-lambda/lib
+      Handler: shopify-address-lambda/app.lambdaHandler
+      # Events:
+      #   AnyRequest:
+      #     Type: Api
+      #     Properties:
+      #       Path: /addresses
+      #       Method: ANY
+      #       RestApiId: !Ref PahinaRestApi
       Role: !GetAtt FunctionIAMRole.Arn
 
 Outputs:
-  SampleApi:
-    Description: "API Gateway endpoint URL for Prod stage for Sample function"
+  AddressApi:
+    Description: "API Gateway endpoint URL for Prod stage for Address function"
     Value: !Sub 
       - "https://${PahinaRestApi}.execute-api.${AWS::Region}.amazonaws.com/${env}/hello/"
       - { env: !Ref EnvType }
-  SampleFunction:
-    Description: "Sample Lambda Function ARN"
-    Value: !GetAtt SampleFunction.Arn
+  AddressFunction:
+    Description: "Address Lambda Function ARN"
+    Value: !GetAtt AddressFunction.Arn
   FunctionIAMRole:
-    Description: "Managed IAM Role created for Sample function"
+    Description: "Managed IAM Role created for Address function"
     Value: !GetAtt FunctionIAMRole.Arn

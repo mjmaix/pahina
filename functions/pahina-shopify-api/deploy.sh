@@ -1,7 +1,7 @@
 #!/bin/sh -x
 
 
-sh ./prep-module.sh sample || { echo "sample prep failed" ; exit 1; }
+sh ./prep-module.sh shopify-address-lambda || { echo "shopify-address-lambda prep failed" ; exit 1; }
 
 echo 'Build and Tests are passing'
 
@@ -24,4 +24,4 @@ sam deploy \
    EnvType=$ENV_TYPE \
  || { echo "sam deploy failed" ; exit 1; }
 
-sh ./post-deploy.sh sample
+sh ./post-deploy.sh shopify-address-lambda

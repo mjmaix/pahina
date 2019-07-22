@@ -71,7 +71,7 @@ Globals:
           Ref: ShopifyApiVersion
 Resources:
   PahinaAPILambdaPermission:
-    DependsOn: SampleFunction
+    DependsOn: AddressFunction
     Type: AWS::Lambda::Permission
     Properties:
       Action: lambda:InvokeFunction
@@ -82,7 +82,7 @@ Resources:
         - ${FuncArn}:current
         - FuncArn:
             Fn::GetAtt:
-            - SampleFunction
+            - AddressFunction
             - Arn
       Principal: apigateway.amazonaws.com
   FunctionIAMRole:
@@ -142,56 +142,48 @@ Resources:
               name:
                 Ref: FunctionName
         paths:
-          /{proxy+}:
+          /addresses/{proxy+}:
             x-amazon-apigateway-any-method:
               produces:
               - application/json
               x-amazon-apigateway-integration:
                 uri:
-                  Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${SampleFunction.Arn}:${AutoPublishAliasName}/invocations
+                  Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${AddressFunction.Arn}:${AutoPublishAliasName}/invocations
                 passthroughBehavior: when_no_match
                 httpMethod: POST
                 type: aws_proxy
-  SampleFunction:
+  AddressFunction:
     Type: AWS::Serverless::Function
     Properties:
       AutoPublishAlias:
         Ref: AutoPublishAliasName
       FunctionName:
         Fn::Sub:
-        - ${FunctionName}-${env}
+        - ${FunctionName}-Address-${env}
         - env:
             Ref: EnvType
-      CodeUri: s3://pahina-shopify-api/61a3c0c2845d22c9329d7f5a6bf48eb3
-      Handler: sample/app.lambdaHandler
-      Events:
-        AnyRequest:
-          Type: Api
-          Properties:
-            Path: /
-            Method: ANY
-            RestApiId:
-              Ref: PahinaRestApi
+      CodeUri: s3://pahina-shopify-api/6ee63dc6f3c172fca91c284f725066fa
+      Handler: shopify-address-lambda/app.lambdaHandler
       Role:
         Fn::GetAtt:
         - FunctionIAMRole
         - Arn
 Outputs:
-  SampleApi:
-    Description: API Gateway endpoint URL for Prod stage for Sample function
+  AddressApi:
+    Description: API Gateway endpoint URL for Prod stage for Address function
     Value:
       Fn::Sub:
       - https://${PahinaRestApi}.execute-api.${AWS::Region}.amazonaws.com/${env}/hello/
       - env:
           Ref: EnvType
-  SampleFunction:
-    Description: Sample Lambda Function ARN
+  AddressFunction:
+    Description: Address Lambda Function ARN
     Value:
       Fn::GetAtt:
-      - SampleFunction
+      - AddressFunction
       - Arn
   FunctionIAMRole:
-    Description: Managed IAM Role created for Sample function
+    Description: Managed IAM Role created for Address function
     Value:
       Fn::GetAtt:
       - FunctionIAMRole
