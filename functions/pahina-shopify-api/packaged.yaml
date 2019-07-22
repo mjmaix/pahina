@@ -15,6 +15,14 @@ Parameters:
     - prod
     - test
     - NONE
+Mappings:
+  AmplifyProject:
+    UserPoolArn:
+      dev: arn:aws:cognito-idp:ap-southeast-1:991300696177:userpool/ap-southeast-1_1CQQvDhhM
+      prod: ''
+    UserPoolClientId:
+      dev: 5fkitdjec8gal86vus1q9cp91q
+      prod: ''
 Globals:
   Function:
     Timeout: 3
@@ -24,16 +32,31 @@ Globals:
           Ref: AWS::Region
         ENV:
           Ref: EnvType
+        COGNITO_USER_POOL_CLIENT_ID:
+          Fn::FindInMap:
+          - AmplifyProject
+          - UserPoolClientId
+          - Ref: EnvType
 Resources:
   PahinaRestApi:
     Type: AWS::Serverless::Api
     Properties:
       StageName:
         Ref: EnvType
+      Cors: '''*'''
+      Auth:
+        DefaultAuthorizer: PahinaCognitoAuthorizer
+        Authorizers:
+          PahinaCognitoAuthorizer:
+            UserPoolArn:
+              Fn::FindInMap:
+              - AmplifyProject
+              - UserPoolArn
+              - Ref: EnvType
   HelloWorldFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-api/e5c674a12fb4e9ff43bc48725b8b635f
+      CodeUri: s3://pahina-shopify-api/01d9b6b7dccd4f5fe88a2576be545914
       Handler: hello-world/app.lambdaHandler
       Runtime: nodejs10.x
       Events:

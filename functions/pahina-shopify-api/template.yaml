@@ -15,6 +15,15 @@ Parameters:
     - prod
     - test
     - NONE
+
+Mappings:
+  AmplifyProject:
+    UserPoolArn:
+      dev: arn:aws:cognito-idp:ap-southeast-1:991300696177:userpool/ap-southeast-1_1CQQvDhhM
+      prod: ''
+    UserPoolClientId:
+      dev: 5fkitdjec8gal86vus1q9cp91q
+      prod: ''
   
 Globals:
   Function:
@@ -23,12 +32,19 @@ Globals:
       Variables:
         REGION: !Ref AWS::Region
         ENV: !Ref EnvType
+        COGNITO_USER_POOL_CLIENT_ID: !FindInMap [ AmplifyProject, UserPoolClientId, !Ref EnvType ]
 
 Resources:
   PahinaRestApi:
     Type: AWS::Serverless::Api
     Properties:
       StageName: !Ref EnvType
+      Cors: "'*'"
+      Auth:
+        DefaultAuthorizer: PahinaCognitoAuthorizer
+        Authorizers:
+          PahinaCognitoAuthorizer:
+            UserPoolArn: !FindInMap [ AmplifyProject, UserPoolArn, !Ref EnvType]
   HelloWorldFunction:
     Type: AWS::Serverless::Function
     Properties:
