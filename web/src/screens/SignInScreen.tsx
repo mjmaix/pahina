@@ -64,7 +64,11 @@ class SignInScreen extends Component<RouteComponentProps, typeof initialState> {
               if (user.challengeName) {
                 // Should complete registration using app
               } else if (!user.challengeName) {
-                await handleAppSyncUserCreate();
+                try {
+                  await handleAppSyncUserCreate();
+                } catch (err) {
+                  // TODO: clean this up. not a problem if conditional check error
+                }
               }
               window.location.reload();
             } catch (err) {
