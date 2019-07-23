@@ -1,1 +1,0 @@
-1. Should not add "dependencies" here. Use "peerDependencies" to indicate requirements
