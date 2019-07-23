@@ -179,6 +179,16 @@ Resources:
                 passthroughBehavior: when_no_match
                 httpMethod: POST
                 type: aws_proxy
+          /addresses:
+            x-amazon-apigateway-any-method:
+              produces:
+              - application/json
+              x-amazon-apigateway-integration:
+                uri:
+                  Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${AddressFunction.Arn}:${AutoPublishAliasName}/invocations
+                passthroughBehavior: when_no_match
+                httpMethod: POST
+                type: aws_proxy
   AddressFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -189,7 +199,7 @@ Resources:
         - ${FunctionName}-Address-${env}
         - env:
             Ref: EnvType
-      CodeUri: s3://pahina-shopify-api/22ecfb9162b4a5303778915a4fbc9e8a
+      CodeUri: s3://pahina-shopify-api/ca9eafd362e050b85d9ad4a4b630e3b1
       Handler: pahina-shopify-api/shopify-address-lambda/app.lambdaHandler
       Role:
         Fn::GetAtt:
