@@ -1,6 +1,7 @@
 import AwsSSM from '../aws/AwsSSM';
 import { ProcessingError } from '../utils/ProcessingError';
-import { jsonPost, jsonPut } from '../utils/jsonFetch';
+import { jsonPost, jsonPut, jsonGet, jsonDelete } from '../utils/jsonFetch';
+import { pretty } from '../utils';
 
 class ShopifyRest {
   url?: string;
@@ -46,10 +47,32 @@ class ShopifyRest {
     const resourceUrl = `${this.url}/${resource}.json`;
     const body = JSON.stringify(data);
 
+    if (this.env !== 'prod') {
+      console.log(`[DEBUG] post url`, resourceUrl, pretty(body));
+    }
+
     return jsonPost(resourceUrl, body);
   };
 
-  put = async <D>(data: D, resource: string, resouce_id: string) => {
+  put = async <D>(data: D, path: string) => {
+    if (!this.url) {
+      await this.init();
+    }
+    if (!this.url) {
+      throw new ProcessingError('Shopify URL not available');
+    }
+
+    const resourceUrl = `${this.url}/${path}.json`;
+    const body = JSON.stringify(data);
+
+    if (this.env !== 'prod') {
+      console.log(`[DEBUG] put url`, resourceUrl, pretty(body));
+    }
+
+    return jsonPut(resourceUrl, body);
+  };
+
+  delete = async (resource: string, resouce_id: string) => {
     if (!this.url) {
       await this.init();
     }
@@ -58,9 +81,32 @@ class ShopifyRest {
     }
 
     const resourceUrl = `${this.url}/${resource}/${resouce_id}.json`;
-    const body = JSON.stringify(data);
 
-    return jsonPut(resourceUrl, body);
+    if (this.env !== 'prod') {
+      console.log(`[DEBUG] delete url`, resourceUrl);
+    }
+
+    return jsonDelete(resourceUrl);
+  };
+
+  get = async (path: string, queryString?: string) => {
+    if (!this.url) {
+      await this.init();
+    }
+    if (!this.url) {
+      throw new ProcessingError('Shopify URL not available');
+    }
+
+    let resourceUrl = `${this.url}/${path}.json`;
+    if (queryString) {
+      resourceUrl = `${resourceUrl}?${queryString}`;
+    }
+
+    if (this.env !== 'prod') {
+      console.log(`[DEBUG] get url`, resourceUrl);
+    }
+
+    return jsonGet(resourceUrl);
   };
 
   getSharedSecret = async () => {

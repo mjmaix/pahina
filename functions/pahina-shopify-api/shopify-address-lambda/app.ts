@@ -1,40 +1,161 @@
-import { APIGatewayEvent, Context } from 'aws-lambda';
+import {
+  APIGatewayEvent,
+  Context,
+  APIGatewayProxyHandler,
+  APIGatewayProxyResult,
+} from 'aws-lambda';
 
-import { pretty } from '../../shared/utils/simpleUtils';
+import {
+  ERR_400_BAD_REQUEST,
+  ERR_401_UNAUTHORIZED,
+  ERR_500_INTERNAL_SERVER_ERROR,
+} from './utils';
+import {
+  getCustomerAddresses,
+  updateCustomerAddress,
+  createCustomerAddress,
+  makeDefaultCustomerAddress,
+  deleteCustomerAddress,
+} from './helpers';
+import { pretty, ConfigError } from '../../shared/utils';
 
-// const axios = require('axios')
-// const url = 'http://checkip.amazonaws.com/';
-let response;
+const ADDRESS_ID_POSITION = 3;
+let response: APIGatewayProxyResult;
 
-/**
- *
- * Event doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-input-format
- * @param {Object} event - API Gateway Lambda Proxy Input Format
- *
- * Context doc: https://docs.aws.amazon.com/lambda/latest/dg/nodejs-prog-model-context.html
- * @param {Object} context
- *
- * Return doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html
- * @returns {Object} object - API Gateway Lambda Proxy Output Format
- *
- */
+const lambdaHandler: APIGatewayProxyHandler = async (
+  event: APIGatewayEvent,
+  context: Context,
+) => {
+  if (!process.env.ENV) {
+    throw new ConfigError('ENV is empty');
+  }
 
-exports.lambdaHandler = async (event: APIGatewayEvent, context: Context) => {
   console.log('[EVENT]', pretty(event));
   console.log('[CONTEXT]', pretty(context));
-  try {
-    // const ret = await axios(url);
-    response = {
-      statusCode: 200,
-      body: JSON.stringify({
-        message: 'hello world',
-        // location: ret.data.trim()
-      }),
-    };
-  } catch (err) {
-    console.log(err);
-    return err;
+
+  const { authorizer, path } = event.requestContext;
+  if (!authorizer) {
+    return ERR_401_UNAUTHORIZED;
+  }
+
+  if (!path.startsWith(`/${process.env.ENV}/addresses`)) {
+    console.log('[DEBUG] path', path);
+    response = ERR_400_BAD_REQUEST;
+    return response;
+  }
+
+  const user = authorizer.claims as AuthorizerClaims;
+
+  const method = event.httpMethod;
+  switch (method) {
+    case 'GET': {
+      console.log('[GET] request start');
+      response = await getActions(user);
+      break;
+    }
+    case 'POST': {
+      if (!event.body) {
+        response = ERR_400_BAD_REQUEST;
+      } else {
+        try {
+          console.log('[POST] request start');
+          const body = JSON.parse(event.body);
+
+          response = await postAction(body, user);
+        } catch (err) {
+          console.log('[ERROR]', pretty(err));
+          response = ERR_500_INTERNAL_SERVER_ERROR;
+        }
+      }
+
+      break;
+    }
+    case 'PUT': {
+      console.log('[PUT] request start');
+      const parsePath = path.split('/'); // "/dev/addresses/2275595124845" => ["", "dev", "addresses", "2275595124845"]
+      const addressId = parsePath[ADDRESS_ID_POSITION];
+      const isMakeDefault = parsePath[ADDRESS_ID_POSITION + 1] === 'default';
+
+      if (isMakeDefault) {
+        response = await makeDefaultAction(user, addressId);
+      } else {
+        if (!event.body) {
+          response = ERR_400_BAD_REQUEST;
+        } else {
+          const body = JSON.parse(event.body);
+          response = await updateActions(body, user, addressId);
+        }
+      }
+      break;
+    }
+    case 'DELETE': {
+      console.log('[DELETE] request start');
+      response = await deletAction(path, user);
+      break;
+    }
+    default: {
+      console.log(`[${method}] not supported`);
+      response = ERR_400_BAD_REQUEST;
+      break;
+    }
   }
 
   return response;
 };
+
+export { lambdaHandler };
+
+async function makeDefaultAction(user: AuthorizerClaims, addressId: string) {
+  const makeDefaultResp = await makeDefaultCustomerAddress(user, addressId);
+  const customerAddress = await makeDefaultResp.json();
+  response = {
+    statusCode: 200,
+    body: JSON.stringify(customerAddress),
+  };
+  return response;
+}
+
+async function updateActions(
+  body: any,
+  user: AuthorizerClaims,
+  addressId: string,
+) {
+  const updateResp = await updateCustomerAddress(user, addressId, body);
+  const customerAddress = await updateResp.json();
+  response = {
+    statusCode: 200,
+    body: JSON.stringify(customerAddress),
+  };
+  return response;
+}
+
+async function getActions(user: AuthorizerClaims) {
+  const addresses = await getCustomerAddresses(user);
+  response = {
+    statusCode: 200,
+    body: JSON.stringify(addresses),
+  };
+  return response;
+}
+
+async function deletAction(path: string, user: AuthorizerClaims) {
+  const parsePath = path.split('/');
+  const addressId = parsePath[ADDRESS_ID_POSITION];
+  const deleteResp = await deleteCustomerAddress(user, addressId);
+  const customerAddress = await deleteResp.json();
+  response = {
+    statusCode: 200,
+    body: JSON.stringify(customerAddress),
+  };
+  return response;
+}
+
+async function postAction(body: any, user: AuthorizerClaims) {
+  const createResp = await createCustomerAddress(user, body);
+  const customerAddress = await createResp.json();
+  response = {
+    statusCode: 200,
+    body: JSON.stringify(customerAddress),
+  };
+  return response;
+}

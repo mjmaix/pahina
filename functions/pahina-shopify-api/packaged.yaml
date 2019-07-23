@@ -199,7 +199,7 @@ Resources:
         - ${FunctionName}-Address-${env}
         - env:
             Ref: EnvType
-      CodeUri: s3://pahina-shopify-api/ca9eafd362e050b85d9ad4a4b630e3b1
+      CodeUri: s3://pahina-shopify-api/9d7d1c8102889c0f1141709a7e601933
       Handler: pahina-shopify-api/shopify-address-lambda/app.lambdaHandler
       Role:
         Fn::GetAtt:

@@ -88,9 +88,58 @@ declare global {
     given_name: AttributeType;
     phone?: AttributeType;
   }
+
+  /**
+   * API Gateway
+   */
+
+  interface AuthorizerClaims {
+    sub: string;
+    'cognito:groups': string;
+    email_verified: string;
+    iss: string;
+    phone_number_verified: 'false';
+    'cognito:username': string;
+    given_name: string;
+    aud: string;
+    event_id: string;
+    token_use: string;
+    auth_time: string;
+    exp: string;
+    iat: string;
+    family_name: string;
+    email: string;
+  }
   /**
    * Shopify
    */
+
+  interface ShopifyCustomer {
+    id: number;
+    email: string;
+    accepts_marketing: false;
+    created_at: string;
+    updated_at: string;
+    first_name: string;
+    last_name: string;
+    orders_count: number;
+    state: string;
+    total_spent: string;
+    last_order_id: null;
+    note: null;
+    verified_email: true;
+    multipass_identifier: null;
+    tax_exempt: false;
+    phone: null;
+    tags: string;
+    last_order_name: null;
+    currency: string;
+    addresses: [];
+    accepts_marketing_updated_at: string;
+    marketing_opt_in_level: null;
+    tax_exemptions: [];
+    admin_graphql_api_id: string;
+  }
 
   interface ShopifyPostProductVariantResponse {
     id: number;
