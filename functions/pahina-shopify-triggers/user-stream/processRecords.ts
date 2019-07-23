@@ -1,6 +1,6 @@
 import { DynamoDBStreamEvent } from 'aws-lambda';
 
-import { ProcessingError } from '../shared/utils/ProcessingError';
+import { ProcessingError } from '../../shared/utils/ProcessingError';
 import { processInsertRecord } from './processInsertRecord';
 
 export const processRecords = async ({ Records }: DynamoDBStreamEvent) => {

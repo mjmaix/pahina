@@ -1,9 +1,9 @@
 import { DynamoDB } from 'aws-sdk';
 import short from 'short-uuid';
 
-import { ProcessingError } from '../../shared/utils/ProcessingError';
-import { isoNow } from '../../shared/utils/simpleUtils';
-import AwsDynamoDB from '../../shared/aws/AwsDynamoDB';
+import { ProcessingError } from '../../../shared/utils/ProcessingError';
+import { isoNow } from '../../../shared/utils/simpleUtils';
+import AwsDynamoDB from '../../../shared/aws/AwsDynamoDB';
 
 import { generateSkuPrefix } from '../generate-sku-prefix';
 

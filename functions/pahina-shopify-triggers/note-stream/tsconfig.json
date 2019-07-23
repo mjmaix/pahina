@@ -7,5 +7,5 @@
     "types": ["node", "mocha"]
   },
   "exclude": ["node_modules", "templates"],
-  "include": ["../shared", "../note-stream"]
+  "include": ["../../shared", "../note-stream"]
 }

@@ -1,4 +1,4 @@
-import { ProcessingError } from '../../shared/utils/ProcessingError';
+import { ProcessingError } from '../../../shared/utils/ProcessingError';
 
 export function getUserStoreQueryParam(image: NoteRecord) {
   if (!process.env.USER_STORE_TABLE_NAME) {

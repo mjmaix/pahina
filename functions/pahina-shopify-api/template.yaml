@@ -161,7 +161,7 @@ Resources:
         - ${FunctionName}-Address-${env}
         - { env: !Ref EnvType }
       CodeUri: shopify-address-lambda/lib
-      Handler: shopify-address-lambda/app.lambdaHandler
+      Handler: pahina-shopify-api/shopify-address-lambda/app.lambdaHandler
       # Events:
       #   AnyRequest:
       #     Type: Api

@@ -1,8 +1,8 @@
 import { PromiseType } from 'utility-types';
 
-import { ProcessingError } from '../../shared/utils/ProcessingError';
-import ShopifyRest from '../../shared/shopify/ShopifyRest';
-import { pretty } from '../../shared/utils/simpleUtils';
+import { ProcessingError } from '../../../shared/utils/ProcessingError';
+import ShopifyRest from '../../../shared/shopify/ShopifyRest';
+import { pretty } from '../../../shared/utils/simpleUtils';
 
 import { fetchRequiredData } from './fetchRequiredData';
 import { generateShopifyCustomer } from './generateShopifyCustomer';

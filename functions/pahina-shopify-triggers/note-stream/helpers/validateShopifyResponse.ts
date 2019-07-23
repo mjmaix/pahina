@@ -1,6 +1,6 @@
 import { PromiseType } from 'utility-types';
-import { ProcessingError } from '../../shared/utils/ProcessingError';
-import ShopifyRest from '../../shared/shopify/ShopifyRest';
+import { ProcessingError } from '../../../shared/utils/ProcessingError';
+import ShopifyRest from '../../../shared/shopify/ShopifyRest';
 
 type Response = PromiseType<ReturnType<typeof ShopifyRest.post>>;
 

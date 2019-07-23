@@ -1,9 +1,9 @@
 import { PromiseType } from 'utility-types';
 
-import ShopifyRest from '../../shared/shopify/ShopifyRest';
-import { ProcessingError } from '../../shared/utils/ProcessingError';
-import AwsDynamoDB from '../../shared/aws/AwsDynamoDB';
-import { pretty } from '../../shared/utils/simpleUtils';
+import ShopifyRest from '../../../shared/shopify/ShopifyRest';
+import { ProcessingError } from '../../../shared/utils/ProcessingError';
+import AwsDynamoDB from '../../../shared/aws/AwsDynamoDB';
+import { pretty } from '../../../shared/utils/simpleUtils';
 
 import { fetchRequiredData } from './fetchRequiredData';
 import { generateUserStoreProduct } from './generateUserStoreProduct';

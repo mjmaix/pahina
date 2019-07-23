@@ -1,4 +1,4 @@
-import { ProcessingError } from '../../shared/utils/ProcessingError';
+import { ProcessingError } from '../../../shared/utils/ProcessingError';
 
 export function generateShopifyCustomer(
   cognitoUser: CognitoUser,

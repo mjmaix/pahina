@@ -189,8 +189,8 @@ Resources:
         - ${FunctionName}-Address-${env}
         - env:
             Ref: EnvType
-      CodeUri: s3://pahina-shopify-api/acc3d1992dc06999f06ed7cfc2dedd0a
-      Handler: shopify-address-lambda/app.lambdaHandler
+      CodeUri: s3://pahina-shopify-api/4741396f38ec44958a3d852961678188
+      Handler: pahina-shopify-api/shopify-address-lambda/app.lambdaHandler
       Role:
         Fn::GetAtt:
         - FunctionIAMRole

@@ -1,4 +1,4 @@
-import { isoNow } from '../../shared/utils/simpleUtils';
+import { isoNow } from '../../../shared/utils/simpleUtils';
 
 export function generateShopifyProduct(
   user: CognitoUser,

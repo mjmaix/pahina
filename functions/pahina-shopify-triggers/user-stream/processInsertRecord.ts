@@ -1,6 +1,6 @@
 import { StreamRecord } from 'aws-lambda';
 
-import { ProcessingError } from '../shared/utils/ProcessingError';
+import { ProcessingError } from '../../shared/utils/ProcessingError';
 
 import { createShopifyCustomer } from './helpers/createShopifyCustomer';
 import { createAppUser } from './helpers/createAppUser';

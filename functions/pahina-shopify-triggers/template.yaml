@@ -62,7 +62,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: note-stream/lib
-      Handler: note-stream/app.handler
+      Handler: pahina-shopify-triggers/note-stream/app.handler
       MemorySize: 256
       Timeout: 240
       Events:
@@ -212,7 +212,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: user-stream/lib
-      Handler: user-stream/app.handler
+      Handler: pahina-shopify-triggers/user-stream/app.handler
       Environment:
         Variables:
           USER_STORE_TABLE_NAME:

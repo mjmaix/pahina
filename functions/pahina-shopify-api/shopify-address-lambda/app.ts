@@ -1,6 +1,6 @@
 import { APIGatewayEvent, Context } from 'aws-lambda';
 
-import { pretty } from '../shared/utils/simpleUtils';
+import { pretty } from '../../shared/utils/simpleUtils';
 
 // const axios = require('axios')
 // const url = 'http://checkip.amazonaws.com/';

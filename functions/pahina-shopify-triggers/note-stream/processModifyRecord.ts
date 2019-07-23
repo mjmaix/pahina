@@ -1,7 +1,7 @@
 import { StreamRecord } from 'aws-lambda';
 
-import { ProcessingError } from '../shared/utils/ProcessingError';
-import { pretty } from '../shared/utils/simpleUtils';
+import { ProcessingError } from '../../shared/utils/ProcessingError';
+import { pretty } from '../../shared/utils/simpleUtils';
 
 import { publishProduct } from './helpers/actionPublish';
 import { PahinaNoteStatus } from './helpers/constants';
