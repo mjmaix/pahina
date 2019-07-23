@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import logo from '../logo.svg';
 import './Dashboard.css';
 import './Screen.css';
+import { Auth } from 'aws-amplify';
 
 const Dashboard: React.FC = () => {
+  useEffect(() => {
+    Auth.currentSession().then(currentSession => {
+      console.log(
+        'currentSession.getIdToken().getJwtToken()',
+        currentSession.getIdToken().getJwtToken(),
+      );
+    });
+  });
   return (
     <div className="Screen App">
       {

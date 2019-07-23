@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withAuthenticator } from 'aws-amplify-react';
-import { Hub, Auth } from 'aws-amplify';
+import { Hub } from 'aws-amplify';
 import { HubCallback } from '@aws-amplify/core/lib/Hub';
 
 import { SignInScreen } from './screens/SignInScreen';
@@ -19,11 +19,6 @@ class AuthenticatedApp extends Component {
     logInfo('[START]', 'authListener');
     switch (data.payload.event) {
       case 'signIn':
-        const currentSession = await Auth.currentSession();
-        console.log(
-          'currentSession.getIdToken().getJwtToken()',
-          currentSession.getIdToken().getJwtToken(),
-        );
         break;
       case 'signOut':
         break;
