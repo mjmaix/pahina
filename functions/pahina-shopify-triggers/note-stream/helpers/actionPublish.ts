@@ -10,7 +10,7 @@ import { generateUserStoreProduct } from './generateUserStoreProduct';
 import { generateShopifyProduct } from './getShopifyProduct';
 import { getProductUpdateParam } from './getProductUpdateParam';
 
-type Response = PromiseType<ReturnType<typeof ShopifyRest.postCreate>>;
+type Response = PromiseType<ReturnType<typeof ShopifyRest.post>>;
 
 export const publishProduct = async (note: NoteRecord) => {
   let cognitoUser: CognitoUser | null = null;
@@ -68,7 +68,7 @@ const sendShopifyPostProduct = async (
   try {
     const postData = generateShopifyProduct(user, note, caseRec);
     // digitalSig = hmacEncrypt(sharedSecret, JSON.stringify(postData));
-    resp = await ShopifyRest.postCreate<{ product: any }>(postData, 'products');
+    resp = await ShopifyRest.post<{ product: any }>(postData, 'products');
     const body = await resp.json();
     const headers = resp.headers.raw();
     console.log(

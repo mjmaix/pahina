@@ -68,7 +68,7 @@ Resources:
   NoteStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-triggers/55afff1c6a8877fa2c453ab212e4f3bf
+      CodeUri: s3://pahina-shopify-triggers/7e10d126ca4217e2c3ada266a2380af1
       Handler: note-stream/app.handler
       MemorySize: 256
       Timeout: 240
@@ -233,7 +233,7 @@ Resources:
   UserStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-triggers/8b770e9537d7efdfe21ab05a08ba7a27
+      CodeUri: s3://pahina-shopify-triggers/702355c35398cc4c5407301ba087cd71
       Handler: user-stream/app.handler
       Environment:
         Variables:
