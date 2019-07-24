@@ -5,16 +5,15 @@ import { ThemedComponentProps, withTheme } from 'styled-components';
 
 import BannerImage from '../../../assets/splash.png';
 import {
-  Header,
   StyledButton,
   StyledFormContainer,
   StyledFormOverImageContainer,
   StyledFormRow,
   StyledScreenContainer,
   StyledView,
+  BrandHeader,
 } from '../../components';
 import { NavigationService } from '../../utils';
-import { BRAND_NAME } from '../../utils/constants';
 
 type Props = NavigationScreenProps & ThemedComponentProps;
 
@@ -31,20 +30,7 @@ class SignInChoicesScreen extends Component<Props> {
       >
         <StyledScreenContainer>
           <StyledFormOverImageContainer>
-            <Header
-              title={BRAND_NAME}
-              headerStyle={{
-                color: theme.colors.primary,
-                shadowColor: theme.colors.primarytext,
-                shadowOffset: {
-                  width: 0,
-                  height: 2,
-                },
-                shadowOpacity: 0.25,
-                shadowRadius: 3.84,
-                elevation: 5,
-              }}
-            />
+            <BrandHeader />
             <StyledFormContainer
               as={StyledView} /* prevent scroll but retain form style*/
             >

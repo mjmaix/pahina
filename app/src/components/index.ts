@@ -10,3 +10,4 @@ export * from './Lists';
 export * from './Navigation';
 export * from './SearchBars';
 export * from './Styled';
+export * from './Brand';
