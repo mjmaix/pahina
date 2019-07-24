@@ -36,6 +36,7 @@ export const containerStyles = StyleSheet.create({
   transparent: {
     backgroundColor: 'rgba(0, 0, 0, 0.0)',
   },
+  darken: { backgroundColor: 'rgba(0,0,0,0.1)' },
 });
 
 export const otherStyles = {

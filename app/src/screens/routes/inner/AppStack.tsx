@@ -1,11 +1,11 @@
 import { createStackNavigator } from 'react-navigation';
 
 import ModalsStack from './ModalStack';
-import TabBarStack from './Drawer';
+import Drawer from './Drawer';
 
 const AppStack = createStackNavigator(
   {
-    TabBarStack: { screen: TabBarStack },
+    Drawer: { screen: Drawer },
     Modals: { screen: ModalsStack },
   },
   {

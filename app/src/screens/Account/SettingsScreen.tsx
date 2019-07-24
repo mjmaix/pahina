@@ -7,8 +7,10 @@ import {
   GapListItem,
   StyledListItem,
   ListItemExentendProps,
+  containerStyles,
 } from '../../components';
 import { handleSignOutAsync } from '../../stores';
+import { container } from '@aws-amplify/ui';
 
 type Props = NavigationScreenProps;
 
@@ -111,7 +113,7 @@ const renderItem: ListRenderItem<any> = ({ item, index }) => {
 const SettingsScreen = (props: Props) => {
   return (
     <SectionList
-      style={{ backgroundColor: 'rgba(0,0,0,0.1)' }}
+      style={containerStyles.darken}
       keyExtractor={(item, i: number) => i.toString()}
       stickySectionHeadersEnabled={false}
       sections={sections}
