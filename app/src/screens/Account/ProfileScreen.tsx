@@ -9,6 +9,7 @@ import { StyleGuide } from '../../themes';
 import {
   handleAppSyncUserUpdate,
   handlePressVerifyContact,
+  handleSignOutAsync,
 } from '../../stores';
 import {
   FormikButtonInjector,
@@ -37,7 +38,6 @@ import {
   handleGetCurrentUserAttrs,
   handleCheckContactVerified,
   UpdateProfileSchema,
-  handleSignOut,
   logInfo,
   WrapKnownExceptions,
   handleUpdateProfile,
@@ -127,7 +127,7 @@ class ProfileScreen extends Component<Props, typeof InitialState> {
         )}
         <StyledButton
           label="Sign out"
-          onPress={this.handleSignOutAsync}
+          onPress={handleSignOutAsync}
           type="clear"
         />
       </Fragment>
@@ -214,15 +214,6 @@ class ProfileScreen extends Component<Props, typeof InitialState> {
         }}
       </Formik>
     );
-  };
-
-  private handleSignOutAsync = async () => {
-    try {
-      await handleSignOut();
-      alertOk(() => NavigationService.navigate('Auth'));
-    } catch (err) {
-      alertFail(() => null, err);
-    }
   };
 
   private handlePressChangePassword = () => {

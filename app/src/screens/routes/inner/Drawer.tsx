@@ -1,3 +1,5 @@
+import React from 'react';
+import { View, Alert } from 'react-native';
 import { createDrawerNavigator, DrawerNavigatorConfig } from 'react-navigation';
 
 import AccountStack from './AccountStack';
@@ -14,13 +16,22 @@ const NavBar = createDrawerNavigator(
     ShopStack: {
       screen: ShopifyStack,
       navigationOptions: () => ({
-        title: 'Shop',
+        title: 'Browse/Shop for Notes',
       }),
     },
     DecisionsStack: {
       screen: DecisionStack,
       navigationOptions: () => ({
-        title: 'Court Decisions',
+        title: 'Find Notes by Court Decisions',
+      }),
+    },
+    MyNotes: {
+      screen: () => {
+        Alert.alert('not yet implemented');
+        return <View />;
+      },
+      navigationOptions: () => ({
+        title: 'My Notes',
       }),
     },
     AccountStack: {

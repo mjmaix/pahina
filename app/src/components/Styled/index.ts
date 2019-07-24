@@ -6,5 +6,6 @@ export * from './StyledFormOverImageContainer';
 export * from './StyledScreenContainer';
 export * from './StyledScrollView';
 export * from './StyledTextInput';
+export * from './StyledListItem';
 export * from './StyledView';
 export * from './StyledViews';

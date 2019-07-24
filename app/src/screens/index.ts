@@ -18,6 +18,8 @@ export * from './Account/SettingsScreen';
 export * from './Account/MfaSelectScreen';
 export * from './Account/MfaSmsScreen';
 export * from './Account/MfaTotpScreen';
+export * from './Account/AddressesScreen';
+export * from './Account/AddressFormScreen';
 
 export * from './Common/AuthLoadingScreen';
 export * from './Common/BusyOverlayScreen';

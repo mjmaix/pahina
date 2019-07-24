@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
+import { StyledScreenContainer } from '../../components';
 
 export const CartScreen = () => {
   return (
-    <View>
+    <StyledScreenContainer>
       <Text>Not yet implemented.</Text>
-    </View>
+    </StyledScreenContainer>
   );
 };

@@ -1,14 +1,18 @@
 import React from 'react';
 import { ListRenderItem, Alert } from 'react-native';
-import { ListItem, ListItemProps } from 'react-native-elements';
 import { NavigationScreenProps, SectionList } from 'react-navigation';
 
 import { NavigationService } from '../../utils';
-import { GapListItem } from '../../components';
+import {
+  GapListItem,
+  StyledListItem,
+  ListItemExentendProps,
+} from '../../components';
+import { handleSignOutAsync } from '../../stores';
 
 type Props = NavigationScreenProps;
 
-const accountSection: ListItemProps[] = [
+const accountSection: ListItemExentendProps[] = [
   {
     title: 'Profile',
     onPress: () => NavigationService.navigate('Profile'),
@@ -23,7 +27,7 @@ const accountSection: ListItemProps[] = [
   },
 ];
 
-const securitySection: ListItemProps[] = [
+const securitySection: ListItemExentendProps[] = [
   {
     title: 'Change Password',
     onPress: () => Alert.alert('not yet implemented'),
@@ -38,7 +42,7 @@ const securitySection: ListItemProps[] = [
   },
 ];
 
-const themeSection: ListItemProps[] = [
+const themeSection: ListItemExentendProps[] = [
   {
     title: 'Choose your theme',
     onPress: () => NavigationService.navigate('Profile'),
@@ -47,7 +51,7 @@ const themeSection: ListItemProps[] = [
   },
 ];
 
-const othersSection: ListItemProps[] = [
+const othersSection: ListItemExentendProps[] = [
   {
     title: 'Policies',
     onPress: () => Alert.alert('not yet implemented'),
@@ -68,6 +72,15 @@ const othersSection: ListItemProps[] = [
   },
 ];
 
+const dangerSection: ListItemExentendProps[] = [
+  {
+    title: 'Sign out',
+    onPress: handleSignOutAsync,
+    danger: true,
+    center: true,
+  },
+];
+
 const sections = [
   {
     title: 'Account',
@@ -85,10 +98,14 @@ const sections = [
     title: 'Others',
     data: othersSection,
   },
+  {
+    title: 'Danger',
+    data: dangerSection,
+  },
 ];
 
 const renderItem: ListRenderItem<any> = ({ item, index }) => {
-  return <ListItem key={`${item.title}_${index}`} {...item} />;
+  return <StyledListItem key={`${item.title}_${index}`} {...item} />;
 };
 
 const SettingsScreen = (props: Props) => {

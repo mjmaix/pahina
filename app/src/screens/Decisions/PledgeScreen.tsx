@@ -1,11 +1,11 @@
 import React from 'react';
-import { View } from 'react-native';
 import { Text } from 'react-native-elements';
+import { StyledScreenContainer } from '../../components';
 
 export const PledgeScreen = () => {
   return (
-    <View>
+    <StyledScreenContainer>
       <Text>Not yet implemented.</Text>
-    </View>
+    </StyledScreenContainer>
   );
 };

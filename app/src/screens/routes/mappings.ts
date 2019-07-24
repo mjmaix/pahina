@@ -28,6 +28,8 @@ import {
   PledgeScreen,
 } from '..';
 import { StyleGuide } from '../../themes';
+import { AddressesScreen } from '../Account/AddressesScreen';
+import { AddressFormScreen } from '../Account/AddressFormScreen';
 
 // TODO: rename to RouteName
 export type ScreenName =
@@ -56,6 +58,8 @@ export type ScreenName =
   | 'Cart'
   | 'Decisions'
   | 'Pledge'
+  | 'Addresses'
+  | 'Address'
   // parents
   | 'AuthLoading'
   | 'App'
@@ -151,6 +155,14 @@ export const Mappings: Mappings = {
   VerifyContact: {
     screen: VerifyContactScreen,
     icon: { name: '', type: 'antdesign' },
+  },
+  Addresses: {
+    screen: AddressesScreen,
+    icon: { name: '', type: 'fontawesome' },
+  },
+  Address: {
+    screen: AddressFormScreen,
+    icon: { name: '', type: 'fontawesome' },
   },
   Busy: {
     screen: BusyOverlayScreen,

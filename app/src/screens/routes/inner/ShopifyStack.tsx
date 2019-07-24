@@ -13,25 +13,7 @@ const routeConfigMap: StackRouteConfigMap = {
     navigationOptions: ({ screenProps }: NavigationScreenProps) => {
       const { theme } = screenProps as ThemedComponentProps;
       return {
-        title: 'Shop Notes',
-        headerLeft: (
-          <HeaderIcon
-            icon={{
-              ...Mappings.Drawer.icon,
-              iconStyle: { color: theme.colors.primary },
-            }}
-            onPress={() => NavigationService.toggleDrawer()}
-          />
-        ),
-        headerRight: (
-          <HeaderIcon
-            icon={{
-              ...Mappings.Shop.icon,
-              iconStyle: { color: theme.colors.primary },
-            }}
-            onPress={() => NavigationService.navigate('Cart')}
-          />
-        ),
+        title: 'Browse Notes',
       };
     },
   },
@@ -58,8 +40,29 @@ const ShopifyStack = createStackNavigator(routeConfigMap, {
     navigation.addListener('didFocus', () => {
       updateStatusBarStyle();
     });
+    const isInitial = navigation.isFirstRouteInParent();
     return {
       headerTintColor: theme.colors.primary,
+      headerLeft: isInitial ? (
+        <HeaderIcon
+          icon={{
+            ...Mappings.Drawer.icon,
+            iconStyle: { color: theme.colors.primary },
+          }}
+          onPress={() => NavigationService.toggleDrawer()}
+        />
+      ) : (
+        undefined
+      ),
+      headerRight: (
+        <HeaderIcon
+          icon={{
+            ...Mappings.Cart.icon,
+            iconStyle: { color: theme.colors.primary },
+          }}
+          onPress={() => NavigationService.navigate('Cart')}
+        />
+      ),
     };
   },
 });

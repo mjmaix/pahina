@@ -5,8 +5,9 @@ import {
   handleGetCurrentUser,
   handleGetCurrentIdentityId,
   handleUpdateAppSyncUser,
+  handleSignOut,
 } from '../../shared';
-import { NavigationService } from '../../utils';
+import { NavigationService, alertOk, alertFail } from '../../utils';
 
 export const handlePressVerifyContact = async (contact: CognitoContact) => {
   logInfo('[START]', 'handlePressVerifyContact');
@@ -23,4 +24,13 @@ export const handleAppSyncUserUpdate = async () => {
   const newUser = await handleGetCurrentUser();
   const identityId = await handleGetCurrentIdentityId();
   return handleUpdateAppSyncUser(newUser, identityId);
+};
+
+export const handleSignOutAsync = async () => {
+  try {
+    await handleSignOut();
+    alertOk(() => NavigationService.navigate('Auth'));
+  } catch (err) {
+    alertFail(() => null, err);
+  }
 };

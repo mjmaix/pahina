@@ -47,6 +47,18 @@ const routeConfigMap: StackRouteConfigMap = {
       title: 'Configure MFA',
     }),
   },
+  Addresses: {
+    screen: Mappings.Addresses.screen,
+    navigationOptions: () => ({
+      title: 'Address Book',
+    }),
+  },
+  Address: {
+    screen: Mappings.Address.screen,
+    navigationOptions: () => ({
+      title: 'Address',
+    }),
+  },
 };
 
 const AccountStack = createStackNavigator(routeConfigMap, {
@@ -60,6 +72,7 @@ const AccountStack = createStackNavigator(routeConfigMap, {
     navigation.addListener('didFocus', () => {
       updateStatusBarStyle();
     });
+    const isInitial = navigation.isFirstRouteInParent();
     return {
       headerTintColor: theme.colors.primary,
       headerLeft: navigation.isFirstRouteInParent() ? (
@@ -73,7 +86,7 @@ const AccountStack = createStackNavigator(routeConfigMap, {
       ) : (
         undefined
       ),
-      headerRight: navigation.isFirstRouteInParent() ? (
+      headerRight: isInitial ? (
         <HeaderIcon
           icon={{
             ...Mappings.Settings.icon,
