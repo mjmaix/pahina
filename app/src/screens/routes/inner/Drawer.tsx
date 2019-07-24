@@ -26,7 +26,7 @@ const NavBar = createDrawerNavigator(
     AccountStack: {
       screen: AccountStack,
       navigationOptions: () => ({
-        title: 'Settings/Account',
+        title: 'Settings',
       }),
     },
   },

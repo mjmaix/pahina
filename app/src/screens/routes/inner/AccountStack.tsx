@@ -14,24 +14,6 @@ const routeConfigMap: StackRouteConfigMap = {
       const { theme } = screenProps as ThemedComponentProps;
       return {
         title: 'Profile',
-        headerLeft: (
-          <HeaderIcon
-            icon={{
-              ...Mappings.Drawer.icon,
-              iconStyle: { color: theme.colors.primary },
-            }}
-            onPress={() => NavigationService.toggleDrawer()}
-          />
-        ),
-        headerRight: (
-          <HeaderIcon
-            icon={{
-              ...Mappings.Settings.icon,
-              iconStyle: { color: theme.colors.primary },
-            }}
-            onPress={() => NavigationService.navigate('Settings')}
-          />
-        ),
       };
     },
   },
@@ -68,9 +50,11 @@ const routeConfigMap: StackRouteConfigMap = {
 };
 
 const AccountStack = createStackNavigator(routeConfigMap, {
+  initialRouteName: 'Settings',
   defaultNavigationOptions: ({
     screenProps,
     navigation,
+    navigationOptions,
   }: NavigationScreenProps) => {
     const { theme } = screenProps as ThemedComponentProps;
     navigation.addListener('didFocus', () => {
@@ -78,6 +62,26 @@ const AccountStack = createStackNavigator(routeConfigMap, {
     });
     return {
       headerTintColor: theme.colors.primary,
+      headerLeft: navigation.isFirstRouteInParent() ? (
+        <HeaderIcon
+          icon={{
+            ...Mappings.Drawer.icon,
+            iconStyle: { color: theme.colors.primary },
+          }}
+          onPress={() => NavigationService.toggleDrawer()}
+        />
+      ) : (
+        undefined
+      ),
+      headerRight: navigation.isFirstRouteInParent() ? (
+        <HeaderIcon
+          icon={{
+            ...Mappings.Settings.icon,
+            iconStyle: { color: theme.colors.primary },
+          }}
+          onPress={() => NavigationService.navigate('Settings')}
+        />
+      ) : null,
     };
   },
 });
