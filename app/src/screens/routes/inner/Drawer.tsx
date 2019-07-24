@@ -6,23 +6,33 @@ import AccountStack from './AccountStack';
 import ShopifyStack from './ShopifyStack';
 import DecisionStack from './DecisionStack';
 import { DrawerContentComponent } from '../../../components/';
+import { Icon } from 'react-native-elements';
+import { Mappings } from '../mappings';
+import { IconSize } from '../../../utils';
 
 const navBarOptions: DrawerNavigatorConfig = {
   contentComponent: DrawerContentComponent,
+  defaultNavigationOptions: ({ navigation, screenProps }) => ({
+    drawerIcon: ({ focused, tintColor }) => {
+      const { routeName } = navigation.state;
+      const icon = Mappings[routeName].icon;
+      return <Icon {...icon} size={IconSize.SM} />;
+    },
+  }),
 };
 
 const NavBar = createDrawerNavigator(
   {
-    ShopStack: {
+    ShopifyStack: {
       screen: ShopifyStack,
       navigationOptions: () => ({
-        title: 'Browse/Shop for Notes',
+        title: 'Shop for Notes',
       }),
     },
     DecisionsStack: {
       screen: DecisionStack,
       navigationOptions: () => ({
-        title: 'Find Notes by Court Decisions',
+        title: 'Filter by Court Decisions',
       }),
     },
     MyNotes: {
@@ -31,7 +41,7 @@ const NavBar = createDrawerNavigator(
         return <View />;
       },
       navigationOptions: () => ({
-        title: 'My Notes',
+        title: 'My Notebook',
       }),
     },
     AccountStack: {

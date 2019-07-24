@@ -66,6 +66,8 @@ export type ScreenName =
   | 'Auth'
   | 'AccountStack'
   | 'ShopifyStack'
+  | 'DecisionsStack'
+  | 'MyNotes'
   | 'Drawer'
   | 'MfaStack';
 
@@ -158,11 +160,11 @@ export const Mappings: Mappings = {
   },
   Addresses: {
     screen: AddressesScreen,
-    icon: { name: '', type: 'fontawesome' },
+    icon: { name: '', type: 'font-awesome' },
   },
   Address: {
     screen: AddressFormScreen,
-    icon: { name: '', type: 'fontawesome' },
+    icon: { name: '', type: 'font-awesome' },
   },
   Busy: {
     screen: BusyOverlayScreen,
@@ -182,15 +184,15 @@ export const Mappings: Mappings = {
   },
   Decisions: {
     screen: DecisionsScreen,
-    icon: { name: 'balance-scale', type: 'fontawesome' },
+    icon: { name: 'balance-scale', type: 'font-awesome' },
   },
   Product: {
     screen: ProductDetailScreen,
-    icon: { name: '', type: 'fontawesome' },
+    icon: { name: '', type: 'font-awesome' },
   },
   Drawer: {
     screen: null,
-    icon: { name: 'reorder', type: 'fontawesome' },
+    icon: { name: 'reorder', type: 'font-awesome' },
   },
   ShopifyStack: {
     screen: null,
@@ -198,6 +200,14 @@ export const Mappings: Mappings = {
   },
   AccountStack: {
     screen: null,
-    icon: StyleGuide.userIcon,
+    icon: { type: 'antdesign', name: 'setting' },
+  },
+  DecisionsStack: {
+    screen: null,
+    icon: { name: 'balance-scale', type: 'font-awesome' },
+  },
+  MyNotes: {
+    screen: null,
+    icon: { name: 'notebook', type: 'material-community' },
   },
 };

@@ -16,7 +16,7 @@ export const HeaderIcon = ({
       {...icon}
       onPress={onPress}
       containerStyle={{
-        padding: StyleGuide.gap.regular,
+        padding: StyleGuide.gap.big,
       }}
     />
   );
