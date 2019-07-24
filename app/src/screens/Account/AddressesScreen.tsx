@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import _ from 'lodash';
-import { ListRenderItem, Alert, FlatList } from 'react-native';
+import { ListRenderItem, FlatList, Text } from 'react-native';
 import {
   StyledListItem,
   containerStyles,
@@ -9,8 +9,9 @@ import {
 } from '../../components';
 import { StyleGuide } from '../../themes';
 import { NavigationService } from '../../utils';
+import { ThemedComponentProps, withTheme } from 'styled-components';
 
-interface Props {}
+type Props = ThemedComponentProps;
 interface State {}
 
 const sampleData = {
@@ -58,33 +59,7 @@ const sampleData = {
 
 type Address = typeof sampleData.addresses[0];
 
-const renderItem: ListRenderItem<Address> = ({ item, index }) => {
-  const address = item as Address;
-  const cleanData: ListItemExentendProps = {
-    leftIcon: {
-      name: 'location',
-      type: 'octicon',
-    },
-    rightIcon: {
-      name: 'edit-2',
-      type: 'feather',
-      onPress: () => Alert.alert('not yet implemented'),
-    },
-    // rightSubtitle: 'Edit',
-    title: `${address.first_name} ${address.last_name}`,
-    subtitle: [
-      address.phone,
-      `${address.address1}, ${address.address2}, ${address.city}, ${
-        address.province
-      }`,
-      address.default ? `(Default Billing Address)` : undefined,
-    ].join('\n'),
-    topDivider: true,
-  };
-  return <StyledListItem key={`${address.id}`} {...cleanData} />;
-};
-
-export class AddressesScreen extends Component<Props, State> {
+class AddressesScreen extends Component<Props, State> {
   public render() {
     const sortedAddresses = _.orderBy(
       sampleData.addresses,
@@ -107,9 +82,56 @@ export class AddressesScreen extends Component<Props, State> {
           style={containerStyles.darken}
           keyExtractor={(item: Address, i: number) => (item.id || i).toString()}
           data={sortedAddresses}
-          renderItem={renderItem}
+          renderItem={this.renderItem}
         />
       </Fragment>
     );
   }
+
+  private renderItem: ListRenderItem<Address> = ({ item, index }) => {
+    const {
+      theme: { colors },
+    } = this.props;
+
+    const address = item as Address;
+    const cleanData: ListItemExentendProps = {
+      leftIcon: {
+        name: 'location',
+        type: 'octicon',
+        color: item.default ? colors.primarydark : colors.primarylight,
+      },
+      rightIcon: {
+        name: 'edit-2',
+        type: 'feather',
+        onPress: () => NavigationService.navigate('Address', { address: item }),
+        color: item.default ? colors.primarydark : colors.primarylight,
+      },
+      title: `${address.first_name} ${address.last_name}`,
+      subtitle: (
+        <Text
+          style={{
+            color: colors.grey3,
+            flexDirection: 'column',
+          }}
+        >
+          {!!address.phone && <Text>{address.phone + '\n'}</Text>}
+          <Text>{`${address.address1}, ${address.address2}, ${address.city}, ${
+            address.province
+          }, ${address.country_code}`}</Text>
+          {!!address.default && (
+            <Text
+              style={{ color: colors.success, fontWeight: '500' }}
+            >{`\n(Default Billing Address)`}</Text>
+          )}
+        </Text>
+      ),
+      // subtitleStyle: item.default ? { color: 'green' } : undefined,
+      topDivider: true,
+    };
+    return <StyledListItem key={`${address.id}`} {...cleanData} />;
+  };
 }
+
+const ThemedAddressesScreen = withTheme(AddressesScreen);
+
+export { ThemedAddressesScreen as AddressesScreen };

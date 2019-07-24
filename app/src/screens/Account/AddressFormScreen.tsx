@@ -10,31 +10,25 @@ import {
   FormikButtonInjector,
   StyledButton,
   StyledDangerButton,
+  IconCollection,
 } from '../../components';
 import { AddressModel, AddressSchema } from '../../shared';
 import { Formik, FormikActions } from 'formik';
 import { alertFail, alertOk, NavigationService } from '../../utils';
 import { StyleGuide } from '../../themes';
 import { View, Alert } from 'react-native';
+import { NavigationScreenProps } from 'react-navigation';
+import { ThemedComponentProps } from 'styled-components';
+import { withTheme } from 'styled-components';
 
-interface FormModel {
-  address1: string;
-  address2: string;
-  city: string;
-  first_name: string;
-  last_name: string;
-  phone: string;
-  province: string;
-  country: string;
-  zip: string;
-}
+type FormModel = typeof AddressModel;
 
 const InitialState = { form: AddressModel };
 
-interface Props {}
+type Props = NavigationScreenProps & ThemedComponentProps;
 type State = typeof InitialState;
 
-export class AddressFormScreen extends Component<Props, State> {
+class AddressFormScreen extends Component<Props, State> {
   public readonly state = InitialState;
   public render() {
     return (
@@ -42,6 +36,15 @@ export class AddressFormScreen extends Component<Props, State> {
         <StyledScreenContainer>{this.renderForm()}</StyledScreenContainer>
       </StyledScrollView>
     );
+  }
+
+  public componentDidMount() {
+    const { navigation } = this.props;
+
+    const paramAddress = navigation.getParam('address') as FormModel;
+    if (paramAddress && paramAddress.id) {
+      this.setState({ form: paramAddress });
+    }
   }
 
   private renderForm = () => {
@@ -88,6 +91,8 @@ export class AddressFormScreen extends Component<Props, State> {
                     label="House Number, Building, and Street"
                     textContentType="streetAddressLine1"
                     placeholder="46 Brgy. Del Monte, Osmeña St."
+                    multiline
+                    numberOfLines={3}
                   />
                 </FormikInputInjector>
               </StyledFormRow>
@@ -163,14 +168,49 @@ export class AddressFormScreen extends Component<Props, State> {
   };
 
   private renderExtraButtons = () => {
+    const { form } = this.state;
+    const { theme } = this.props;
+    const { checkTrue, checkFalse } = IconCollection;
+
+    const addMode = !form.id;
+    const currentDefault = !!(form.id && form.default);
+    const checkIcon = currentDefault ? checkTrue : checkFalse;
+    const defaultIconColor = currentDefault
+      ? theme.colors.success
+      : theme.colors.primary;
+    const defaultIcon = { ...checkIcon, color: defaultIconColor };
     return (
       <Fragment>
-        <StyledDangerButton
-          label="Delete address"
-          onPress={() => Alert.alert('not yet implemented')}
-          type="clear"
-        />
+        {!addMode && (
+          <StyledButton
+            label={
+              currentDefault
+                ? 'Default billing address'
+                : 'Make default billing address'
+            }
+            onPress={() => Alert.alert('not yet implemented')}
+            type="outline"
+            disabled={addMode || currentDefault}
+            icon={defaultIcon}
+          />
+        )}
+        {!addMode && (
+          <StyledDangerButton
+            label={
+              currentDefault
+                ? 'Cannot delete default address'
+                : 'Delete address'
+            }
+            onPress={() => Alert.alert('not yet implemented')}
+            type="clear"
+            disabled={addMode || currentDefault}
+          />
+        )}
       </Fragment>
     );
   };
 }
+
+const ThemedAddressFormScreen = withTheme(AddressFormScreen);
+
+export { ThemedAddressFormScreen as AddressFormScreen };

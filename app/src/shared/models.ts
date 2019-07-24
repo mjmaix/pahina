@@ -100,6 +100,7 @@ export const VerifyContactModel = {
 };
 
 export const AddressModel = {
+  id: '',
   address1: '',
   address2: '',
   city: '',
@@ -109,4 +110,5 @@ export const AddressModel = {
   province: '',
   country: '',
   zip: '',
+  default: false,
 };

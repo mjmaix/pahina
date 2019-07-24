@@ -9,3 +9,4 @@ export interface IconObject extends IconProps {
 
 export * from './HeaderIcon';
 export * from './IconWithBadge';
+export * from './IconCollection';

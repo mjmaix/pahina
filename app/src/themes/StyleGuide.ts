@@ -3,6 +3,7 @@ export const StyleGuide = {
     tiny: 2,
     regular: 5,
     big: 10,
+    xl: 20,
   },
   hitSlop: {
     top: 10,
