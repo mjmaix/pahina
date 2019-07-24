@@ -1,21 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import _ from 'lodash';
-import {
-  ListRenderItem,
-  SectionList,
-  Alert,
-  View,
-  FlatList,
-} from 'react-native';
+import { ListRenderItem, Alert, FlatList } from 'react-native';
 import {
   StyledListItem,
   containerStyles,
-  GapListItem,
   ListItemExentendProps,
   StyledButton,
 } from '../../components';
-import { ButtonProps, Button } from 'react-native-elements';
 import { StyleGuide } from '../../themes';
+import { NavigationService } from '../../utils';
 
 interface Props {}
 interface State {}
@@ -104,7 +97,7 @@ export class AddressesScreen extends Component<Props, State> {
         <Fragment>
           <StyledButton
             label={'Add address'}
-            onPress={() => Alert.alert('not yet implemented')}
+            onPress={() => NavigationService.navigate('Address')}
             style={{
               margin: StyleGuide.gap.big,
             }}

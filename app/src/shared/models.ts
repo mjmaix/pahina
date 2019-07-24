@@ -98,3 +98,15 @@ export const VerifyContactModel = {
   contact: '',
   phone_number: '',
 };
+
+export const AddressModel = {
+  address1: '',
+  address2: '',
+  city: '',
+  first_name: '',
+  last_name: '',
+  phone: '',
+  province: '',
+  country: '',
+  zip: '',
+};

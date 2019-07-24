@@ -10,7 +10,7 @@ export interface ListItemExentendProps extends ListItemProps {
 export const StyledListItem = styled(ListItem).attrs<ListItemExentendProps>(
   props => {
     const titleStyle: TextStyle = {
-      color: props.danger ? props.theme.colors.error : undefined,
+      color: props.danger ? props.theme.colors.danger : undefined,
       textAlign: props.center ? 'center' : undefined,
     };
     return {

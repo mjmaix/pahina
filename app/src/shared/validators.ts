@@ -133,3 +133,27 @@ export const CompleteRegistrationSchema = (
 
   return validationSchema;
 };
+
+export const AddressSchema = Yup.object().shape({
+  address1: Yup.string()
+    .label('Address line 1')
+    .required(),
+  address2: Yup.string().label('Address line 2'),
+  city: Yup.string()
+    .label('City')
+    .required(),
+  first_name: Yup.string()
+    .label('Given name')
+    .required(),
+  last_name: Yup.string()
+    .label('Family name')
+    .required(),
+  phone: Yup.string().label('Phone'),
+  province: Yup.string()
+    .label('Province')
+    .required(),
+  country: Yup.string().label('Country'),
+  zip: Yup.string()
+    .label('Postal code')
+    .required(),
+});
