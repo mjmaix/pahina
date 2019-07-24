@@ -33,4 +33,13 @@ export const containerStyles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
   },
+  transparent: {
+    backgroundColor: 'rgba(0, 0, 0, 0.0)',
+  },
 });
+
+export const otherStyles = {
+  noHeight: {
+    height: 0,
+  },
+};
