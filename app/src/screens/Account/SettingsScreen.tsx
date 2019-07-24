@@ -21,7 +21,7 @@ const accountSection: ListItemExentendProps[] = [
   },
   {
     title: 'Address Book',
-    onPress: () => Alert.alert('not yet implemented'),
+    onPress: () => NavigationService.navigate('Addresses'),
     chevron: true,
     bottomDivider: true,
   },
@@ -30,7 +30,7 @@ const accountSection: ListItemExentendProps[] = [
 const securitySection: ListItemExentendProps[] = [
   {
     title: 'Change Password',
-    onPress: () => Alert.alert('not yet implemented'),
+    onPress: () => NavigationService.navigate('Change'),
     chevron: true,
     bottomDivider: true,
   },
