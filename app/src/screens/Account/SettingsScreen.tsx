@@ -10,7 +10,6 @@ import {
   containerStyles,
 } from '../../components';
 import { handleSignOutAsync } from '../../stores';
-import { container } from '@aws-amplify/ui';
 
 type Props = NavigationScreenProps;
 
@@ -47,7 +46,7 @@ const securitySection: ListItemExentendProps[] = [
 const themeSection: ListItemExentendProps[] = [
   {
     title: 'Choose your theme',
-    onPress: () => NavigationService.navigate('Profile'),
+    onPress: () => NavigationService.navigate('SelectTheme'),
     chevron: true,
     bottomDivider: true,
   },

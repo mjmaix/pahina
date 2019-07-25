@@ -37,7 +37,7 @@ export default class App extends Component<{}, AppState> {
   public componentWillMount() {
     handleGetStorefrontConfig().then(resp => {
       if (resp) {
-        this.setState({ storefrontConfig: resp.getStorefrontConfig });
+        this.setState({ storefrontConfig: resp.getShopifyStorefrontConfig });
       }
     });
 
@@ -93,7 +93,7 @@ export default class App extends Component<{}, AppState> {
 
   private async loadTheme() {
     try {
-      const themeId = Cache.getItem(STORAGE_KEY) as ThemeName;
+      const themeId = (await Cache.getItem(STORAGE_KEY)) as ThemeName;
       if (themeId) {
         ThemeHelper.set(themeId);
         this.setState({ isThemeReady: true, theme: ThemeHelper.get() });
