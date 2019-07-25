@@ -1,0 +1,2703 @@
+{
+  "data": {
+    "products": {
+      "edges": [
+        {
+          "cursor": "eyJsYXN0X2lkIjozOTQ1MzEzNjY1MTMzLCJsYXN0X3ZhbHVlIjoiMjAxOS0wNy0yMyAxMDowOTo0OSJ9",
+          "node": {
+            "id": "gid://shopify/Product/3945313665133",
+            "publishedAt": "2019-07-23T10:09:48Z",
+            "createdAt": "2019-07-23T10:09:49Z",
+            "vendor": "Michael James Abadilla",
+            "title": "Case Digest by Michael James Abadilla, AC. No. 10912 - 2016-01-19",
+            "description": "PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT.AC. No. 109122016-01-19http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557Deserunt qui eum vel. Perspiciatis libero odio ea doloremque id in earum. Nulla et ut tempore qui magni saepe.",
+            "descriptionHtml": "<p>PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT.</p><p>AC. No. 10912</p><p>2016-01-19</p><p>http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557</p><p>Deserunt qui eum vel. Perspiciatis libero odio ea doloremque id in earum. Nulla et ut tempore qui magni saepe.</p>",
+            "onlineStoreUrl": null,
+            "onlineStorePreviewUrl": "https://freelitemjabadilla.myshopify.com/products/case-digest-by-michael-james-abadilla-ac-no-10912-2016-01-170",
+            "noteId": {
+              "id": "gid://shopify/Metafield/9276796239981",
+              "namespace": "ProductLinks",
+              "description": "Author ID",
+              "key": "authorId",
+              "value": "50d5d9e7-703f-469e-9297-982e9dd9351e",
+              "valueType": "STRING"
+            },
+            "authorName": {
+              "id": "gid://shopify/Metafield/9276796305517",
+              "namespace": "ProductDetails",
+              "description": "Author Name",
+              "key": "authorName",
+              "value": "Michael James Abadilla",
+              "valueType": "STRING"
+            },
+            "metafields": {
+              "edges": [
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9276796207213",
+                    "description": "Note ID",
+                    "key": "noteId",
+                    "namespace": "ProductLinks",
+                    "value": "7043ade8-2fe9-4732-bc25-11107ddde447"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9276796239981",
+                    "description": "Author ID",
+                    "key": "authorId",
+                    "namespace": "ProductLinks",
+                    "value": "50d5d9e7-703f-469e-9297-982e9dd9351e"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9276796272749",
+                    "description": "Note Case ID",
+                    "key": "pahinaNoteCaseId",
+                    "namespace": "ProductLinks",
+                    "value": "showdocs/1/61557"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9276796305517",
+                    "description": "Author Name",
+                    "key": "authorName",
+                    "namespace": "ProductDetails",
+                    "value": "Michael James Abadilla"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9276796338285",
+                    "description": "Case Title",
+                    "key": "caseTitle",
+                    "namespace": "ProductDetails",
+                    "value": "PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT."
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9276796371053",
+                    "description": "Case Code",
+                    "key": "caseCode",
+                    "namespace": "ProductDetails",
+                    "value": "AC. No. 10912"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9276796403821",
+                    "description": "date",
+                    "key": "caseDate",
+                    "namespace": "ProductDetails",
+                    "value": "2016-01-19"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9276796436589",
+                    "description": "Case link",
+                    "key": "caseLink",
+                    "namespace": "ProductDetails",
+                    "value": "http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557"
+                  }
+                }
+              ]
+            },
+            "variants": {
+              "edges": [
+                {
+                  "node": {
+                    "title": "Free",
+                    "id": "gid://shopify/ProductVariant/29492858519661",
+                    "inventoryPolicy": "DENY",
+                    "inventoryQuantity": 0,
+                    "price": "0.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": "100.00"
+                  }
+                },
+                {
+                  "node": {
+                    "title": "Paid",
+                    "id": "gid://shopify/ProductVariant/29492858617965",
+                    "inventoryPolicy": "CONTINUE",
+                    "inventoryQuantity": 0,
+                    "price": "100.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": null
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "cursor": "eyJsYXN0X2lkIjozOTQzMzY3NzcwMjIxLCJsYXN0X3ZhbHVlIjoiMjAxOS0wNy0yMiAwODoyMjoyMSJ9",
+          "node": {
+            "id": "gid://shopify/Product/3943367770221",
+            "publishedAt": "2019-07-22T08:22:20Z",
+            "createdAt": "2019-07-22T08:22:20Z",
+            "vendor": "Michael James Abadilla",
+            "title": "Case Digest by Michael James Abadilla, AC. No. 10912 - 2016-01-19",
+            "description": "PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT.AC. No. 109122016-01-19http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557Deserunt qui eum vel. Perspiciatis libero odio ea doloremque id in earum. Nulla et ut tempore qui magni saepe.",
+            "descriptionHtml": "<p>PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT.</p><p>AC. No. 10912</p><p>2016-01-19</p><p>http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557</p><p>Deserunt qui eum vel. Perspiciatis libero odio ea doloremque id in earum. Nulla et ut tempore qui magni saepe.</p>",
+            "onlineStoreUrl": null,
+            "onlineStorePreviewUrl": "https://freelitemjabadilla.myshopify.com/products/case-digest-by-michael-james-abadilla-ac-no-10912-2016-01-169",
+            "noteId": {
+              "id": "gid://shopify/Metafield/9271495196781",
+              "namespace": "ProductLinks",
+              "description": "Author ID",
+              "key": "authorId",
+              "value": "50d5d9e7-703f-469e-9297-982e9dd9351e",
+              "valueType": "STRING"
+            },
+            "authorName": {
+              "id": "gid://shopify/Metafield/9271495262317",
+              "namespace": "ProductDetails",
+              "description": "Author Name",
+              "key": "authorName",
+              "value": "Michael James Abadilla",
+              "valueType": "STRING"
+            },
+            "metafields": {
+              "edges": [
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9271495164013",
+                    "description": "Note ID",
+                    "key": "noteId",
+                    "namespace": "ProductLinks",
+                    "value": "7043ade8-2fe9-4732-bc25-11107ddde447"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9271495196781",
+                    "description": "Author ID",
+                    "key": "authorId",
+                    "namespace": "ProductLinks",
+                    "value": "50d5d9e7-703f-469e-9297-982e9dd9351e"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9271495229549",
+                    "description": "Note Case ID",
+                    "key": "pahinaNoteCaseId",
+                    "namespace": "ProductLinks",
+                    "value": "showdocs/1/61557"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9271495262317",
+                    "description": "Author Name",
+                    "key": "authorName",
+                    "namespace": "ProductDetails",
+                    "value": "Michael James Abadilla"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9271495295085",
+                    "description": "Case Title",
+                    "key": "caseTitle",
+                    "namespace": "ProductDetails",
+                    "value": "PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT."
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9271495327853",
+                    "description": "Case Code",
+                    "key": "caseCode",
+                    "namespace": "ProductDetails",
+                    "value": "AC. No. 10912"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9271495360621",
+                    "description": "date",
+                    "key": "caseDate",
+                    "namespace": "ProductDetails",
+                    "value": "2016-01-19"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9271495393389",
+                    "description": "Case link",
+                    "key": "caseLink",
+                    "namespace": "ProductDetails",
+                    "value": "http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557"
+                  }
+                }
+              ]
+            },
+            "variants": {
+              "edges": [
+                {
+                  "node": {
+                    "title": "Free",
+                    "id": "gid://shopify/ProductVariant/29485038076013",
+                    "inventoryPolicy": "DENY",
+                    "inventoryQuantity": 5,
+                    "price": "0.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": "100.00"
+                  }
+                },
+                {
+                  "node": {
+                    "title": "Paid",
+                    "id": "gid://shopify/ProductVariant/29485038108781",
+                    "inventoryPolicy": "CONTINUE",
+                    "inventoryQuantity": 0,
+                    "price": "100.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": null
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "cursor": "eyJsYXN0X2lkIjozOTQyNTc0ODUwMTU3LCJsYXN0X3ZhbHVlIjoiMjAxOS0wNy0yMSAwNzoxMzozNiJ9",
+          "node": {
+            "id": "gid://shopify/Product/3942574850157",
+            "publishedAt": "2019-07-21T07:13:35Z",
+            "createdAt": "2019-07-21T07:13:36Z",
+            "vendor": "Michael James Abadilla",
+            "title": "Case Digest by Michael James Abadilla, AC. No. 10912 - 2016-01-19",
+            "description": "PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT.AC. No. 109122016-01-19http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557Deserunt qui eum vel. Perspiciatis libero odio ea doloremque id in earum. Nulla et ut tempore qui magni saepe.",
+            "descriptionHtml": "<p>PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT.</p><p>AC. No. 10912</p><p>2016-01-19</p><p>http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557</p><p>Deserunt qui eum vel. Perspiciatis libero odio ea doloremque id in earum. Nulla et ut tempore qui magni saepe.</p>",
+            "onlineStoreUrl": null,
+            "onlineStorePreviewUrl": "https://freelitemjabadilla.myshopify.com/products/case-digest-by-michael-james-abadilla-ac-no-10912-2016-01-168",
+            "noteId": {
+              "id": "gid://shopify/Metafield/9267733463149",
+              "namespace": "ProductLinks",
+              "description": "Author ID",
+              "key": "authorId",
+              "value": "50d5d9e7-703f-469e-9297-982e9dd9351e",
+              "valueType": "STRING"
+            },
+            "authorName": {
+              "id": "gid://shopify/Metafield/9267733528685",
+              "namespace": "ProductDetails",
+              "description": "Author Name",
+              "key": "authorName",
+              "value": "Michael James Abadilla",
+              "valueType": "STRING"
+            },
+            "metafields": {
+              "edges": [
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9267733430381",
+                    "description": "Note ID",
+                    "key": "noteId",
+                    "namespace": "ProductLinks",
+                    "value": "7043ade8-2fe9-4732-bc25-11107ddde447"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9267733463149",
+                    "description": "Author ID",
+                    "key": "authorId",
+                    "namespace": "ProductLinks",
+                    "value": "50d5d9e7-703f-469e-9297-982e9dd9351e"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9267733495917",
+                    "description": "Note Case ID",
+                    "key": "pahinaNoteCaseId",
+                    "namespace": "ProductLinks",
+                    "value": "showdocs/1/61557"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9267733528685",
+                    "description": "Author Name",
+                    "key": "authorName",
+                    "namespace": "ProductDetails",
+                    "value": "Michael James Abadilla"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9267733561453",
+                    "description": "Case Title",
+                    "key": "caseTitle",
+                    "namespace": "ProductDetails",
+                    "value": "PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT."
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9267733594221",
+                    "description": "Case Code",
+                    "key": "caseCode",
+                    "namespace": "ProductDetails",
+                    "value": "AC. No. 10912"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9267733626989",
+                    "description": "date",
+                    "key": "caseDate",
+                    "namespace": "ProductDetails",
+                    "value": "2016-01-19"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9267733659757",
+                    "description": "Case link",
+                    "key": "caseLink",
+                    "namespace": "ProductDetails",
+                    "value": "http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557"
+                  }
+                }
+              ]
+            },
+            "variants": {
+              "edges": [
+                {
+                  "node": {
+                    "title": "Free",
+                    "id": "gid://shopify/ProductVariant/29481011708013",
+                    "inventoryPolicy": "DENY",
+                    "inventoryQuantity": 5,
+                    "price": "0.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": "100.00"
+                  }
+                },
+                {
+                  "node": {
+                    "title": "Paid",
+                    "id": "gid://shopify/ProductVariant/29481011740781",
+                    "inventoryPolicy": "CONTINUE",
+                    "inventoryQuantity": 0,
+                    "price": "100.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": null
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "cursor": "eyJsYXN0X2lkIjozOTQyNTU3MjIwOTczLCJsYXN0X3ZhbHVlIjoiMjAxOS0wNy0yMSAwNjoyMzo0MiJ9",
+          "node": {
+            "id": "gid://shopify/Product/3942557220973",
+            "publishedAt": "2019-07-21T06:23:41Z",
+            "createdAt": "2019-07-21T06:23:42Z",
+            "vendor": "Michael James Abadilla",
+            "title": "Case Digest by Michael James Abadilla, AC. No. 10912 - 2016-01-19",
+            "description": "PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT.AC. No. 109122016-01-19http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557Deserunt qui eum vel. Perspiciatis libero odio ea doloremque id in earum. Nulla et ut tempore qui magni saepe.",
+            "descriptionHtml": "<p>PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT.</p><p>AC. No. 10912</p><p>2016-01-19</p><p>http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557</p><p>Deserunt qui eum vel. Perspiciatis libero odio ea doloremque id in earum. Nulla et ut tempore qui magni saepe.</p>",
+            "onlineStoreUrl": null,
+            "onlineStorePreviewUrl": "https://freelitemjabadilla.myshopify.com/products/case-digest-by-michael-james-abadilla-ac-no-10912-2016-01-167",
+            "noteId": {
+              "id": "gid://shopify/Metafield/9267673137261",
+              "namespace": "ProductLinks",
+              "description": "Author ID",
+              "key": "authorId",
+              "value": "50d5d9e7-703f-469e-9297-982e9dd9351e",
+              "valueType": "STRING"
+            },
+            "authorName": {
+              "id": "gid://shopify/Metafield/9267673202797",
+              "namespace": "ProductDetails",
+              "description": "Author Name",
+              "key": "authorName",
+              "value": "Michael James Abadilla",
+              "valueType": "STRING"
+            },
+            "metafields": {
+              "edges": [
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9267673104493",
+                    "description": "Note ID",
+                    "key": "noteId",
+                    "namespace": "ProductLinks",
+                    "value": "7043ade8-2fe9-4732-bc25-11107ddde447"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9267673137261",
+                    "description": "Author ID",
+                    "key": "authorId",
+                    "namespace": "ProductLinks",
+                    "value": "50d5d9e7-703f-469e-9297-982e9dd9351e"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9267673170029",
+                    "description": "Note Case ID",
+                    "key": "pahinaNoteCaseId",
+                    "namespace": "ProductLinks",
+                    "value": "showdocs/1/61557"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9267673202797",
+                    "description": "Author Name",
+                    "key": "authorName",
+                    "namespace": "ProductDetails",
+                    "value": "Michael James Abadilla"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9267673235565",
+                    "description": "Case Title",
+                    "key": "caseTitle",
+                    "namespace": "ProductDetails",
+                    "value": "PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT."
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9267673268333",
+                    "description": "Case Code",
+                    "key": "caseCode",
+                    "namespace": "ProductDetails",
+                    "value": "AC. No. 10912"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9267673301101",
+                    "description": "date",
+                    "key": "caseDate",
+                    "namespace": "ProductDetails",
+                    "value": "2016-01-19"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9267673333869",
+                    "description": "Case link",
+                    "key": "caseLink",
+                    "namespace": "ProductDetails",
+                    "value": "http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557"
+                  }
+                }
+              ]
+            },
+            "variants": {
+              "edges": [
+                {
+                  "node": {
+                    "title": "Free",
+                    "id": "gid://shopify/ProductVariant/29480820965485",
+                    "inventoryPolicy": "DENY",
+                    "inventoryQuantity": 5,
+                    "price": "0.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": "100.00"
+                  }
+                },
+                {
+                  "node": {
+                    "title": "Paid",
+                    "id": "gid://shopify/ProductVariant/29480820998253",
+                    "inventoryPolicy": "CONTINUE",
+                    "inventoryQuantity": 0,
+                    "price": "100.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": null
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "cursor": "eyJsYXN0X2lkIjozOTQxNDAzNzU0NjA1LCJsYXN0X3ZhbHVlIjoiMjAxOS0wNy0xOSAxOTowMzoxMSJ9",
+          "node": {
+            "id": "gid://shopify/Product/3941403754605",
+            "publishedAt": "2019-07-19T19:03:10Z",
+            "createdAt": "2019-07-19T19:03:11Z",
+            "vendor": "Michael James Abadilla",
+            "title": "Case Digest by Michael James Abadilla, AC. No. 10912 - 2016-01-19",
+            "description": "PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT.AC. No. 109122016-01-19http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557Deserunt qui eum vel. Perspiciatis libero odio ea doloremque id in earum. Nulla et ut tempore qui magni saepe.",
+            "descriptionHtml": "<p>PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT.</p><p>AC. No. 10912</p><p>2016-01-19</p><p>http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557</p><p>Deserunt qui eum vel. Perspiciatis libero odio ea doloremque id in earum. Nulla et ut tempore qui magni saepe.</p>",
+            "onlineStoreUrl": null,
+            "onlineStorePreviewUrl": "https://freelitemjabadilla.myshopify.com/products/case-digest-by-michael-james-abadilla-ac-no-10912-2016-01-166",
+            "noteId": {
+              "id": "gid://shopify/Metafield/9263228387437",
+              "namespace": "ProductLinks",
+              "description": "Author ID",
+              "key": "authorId",
+              "value": "50d5d9e7-703f-469e-9297-982e9dd9351e",
+              "valueType": "STRING"
+            },
+            "authorName": {
+              "id": "gid://shopify/Metafield/9263228452973",
+              "namespace": "ProductDetails",
+              "description": "Author Name",
+              "key": "authorName",
+              "value": "Michael James Abadilla",
+              "valueType": "STRING"
+            },
+            "metafields": {
+              "edges": [
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9263228354669",
+                    "description": "Note ID",
+                    "key": "noteId",
+                    "namespace": "ProductLinks",
+                    "value": "7043ade8-2fe9-4732-bc25-11107ddde447"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9263228387437",
+                    "description": "Author ID",
+                    "key": "authorId",
+                    "namespace": "ProductLinks",
+                    "value": "50d5d9e7-703f-469e-9297-982e9dd9351e"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9263228420205",
+                    "description": "Note Case ID",
+                    "key": "pahinaNoteCaseId",
+                    "namespace": "ProductLinks",
+                    "value": "showdocs/1/61557"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9263228452973",
+                    "description": "Author Name",
+                    "key": "authorName",
+                    "namespace": "ProductDetails",
+                    "value": "Michael James Abadilla"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9263228485741",
+                    "description": "Case Title",
+                    "key": "caseTitle",
+                    "namespace": "ProductDetails",
+                    "value": "PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT."
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9263228518509",
+                    "description": "Case Code",
+                    "key": "caseCode",
+                    "namespace": "ProductDetails",
+                    "value": "AC. No. 10912"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9263228551277",
+                    "description": "date",
+                    "key": "caseDate",
+                    "namespace": "ProductDetails",
+                    "value": "2016-01-19"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9263228584045",
+                    "description": "Case link",
+                    "key": "caseLink",
+                    "namespace": "ProductDetails",
+                    "value": "http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557"
+                  }
+                }
+              ]
+            },
+            "variants": {
+              "edges": [
+                {
+                  "node": {
+                    "title": "Free",
+                    "id": "gid://shopify/ProductVariant/29475685695597",
+                    "inventoryPolicy": "DENY",
+                    "inventoryQuantity": 5,
+                    "price": "0.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": "100.00"
+                  }
+                },
+                {
+                  "node": {
+                    "title": "Paid",
+                    "id": "gid://shopify/ProductVariant/29475685728365",
+                    "inventoryPolicy": "CONTINUE",
+                    "inventoryQuantity": 0,
+                    "price": "100.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": null
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "cursor": "eyJsYXN0X2lkIjozOTQxMjA0MzI4NTU3LCJsYXN0X3ZhbHVlIjoiMjAxOS0wNy0xOSAxNToxOTo0MCJ9",
+          "node": {
+            "id": "gid://shopify/Product/3941204328557",
+            "publishedAt": "2019-07-08T18:38:51Z",
+            "createdAt": "2019-07-19T15:19:40Z",
+            "vendor": "(Author name)",
+            "title": "(Case Title) + (OWNER_SKU)",
+            "description": "Good snowboard!",
+            "descriptionHtml": "<strong>Good snowboard!</strong>",
+            "onlineStoreUrl": null,
+            "onlineStorePreviewUrl": "https://freelitemjabadilla.myshopify.com/products/case-title-owner_sku-3",
+            "noteId": {
+              "id": "gid://shopify/Metafield/9262663204973",
+              "namespace": "ProductLinks",
+              "description": "Author ID",
+              "key": "authorId",
+              "value": "b964512a-2d73-43b0-ba4d-7da8f9bf9f12",
+              "valueType": "STRING"
+            },
+            "authorName": {
+              "id": "gid://shopify/Metafield/9262663270509",
+              "namespace": "ProductDetails",
+              "description": "Author Name",
+              "key": "authorName",
+              "value": "Michael James Abadilla",
+              "valueType": "STRING"
+            },
+            "metafields": {
+              "edges": [
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9262663172205",
+                    "description": "Note ID",
+                    "key": "noteId",
+                    "namespace": "ProductLinks",
+                    "value": "06eed910-e641-423c-9c5a-a7d1a4384d43"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9262663204973",
+                    "description": "Author ID",
+                    "key": "authorId",
+                    "namespace": "ProductLinks",
+                    "value": "b964512a-2d73-43b0-ba4d-7da8f9bf9f12"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9262663237741",
+                    "description": "Note Case ID",
+                    "key": "pahinaNoteCaseId",
+                    "namespace": "ProductLinks",
+                    "value": "dc7034d8-3844-4cf2-bdb9-4bbd27165284"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9262663270509",
+                    "description": "Author Name",
+                    "key": "authorName",
+                    "namespace": "ProductDetails",
+                    "value": "Michael James Abadilla"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9262663303277",
+                    "description": "Case Title",
+                    "key": "caseTitle",
+                    "namespace": "ProductDetails",
+                    "value": "RAMIRO LIM & SONS AGRICULTURAL CO., INC., SIMA REAL ESTATE DEVELOPMENT, INC., AND RAMIRO LIM, PETITIONERS, VS. ARMANDO GUILARAN, ROMEO FRIAS, SANTIAGO CARAMBIAS, SR., JOEL SUAREZ, VICENTE OBORDO, JESSIE DAYON, JOEL PALMA, DOMICIANO PITULAN, NINFA ESPINOSA, ROMULO DELA PEÑA, FERNANDO ROWEL, VICENTE ESPINOSA, PONCIANO DACUMOS, OFELIA FRIAS, GILBERT CARAMBIAS, RODRIGO FRIAS, NIXON CARAMBIAS, RESTITUTO JUANICA, MARIANITA GUILARAN, ALY ROMERO, ROSEMINDA JUANICA, LOLITA ROMERO, LILIA ROWEL, ANTONIO DUMDUMAN, SANTIAGO CARAMBIAS, JR., DIOSCORO DACUMOS, ROSENDO DACUMOS, JONIEL DACUMOS, LEONARDA DACUMOS, JUDITA DACUMOS, MIGUELA DACUMOS, AND NINFA CARAMBIAS, RESPONDENT."
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9262663336045",
+                    "description": "Case Code",
+                    "key": "caseCode",
+                    "namespace": "ProductDetails",
+                    "value": "G.R. No. 221967"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9262663368813",
+                    "description": "date",
+                    "key": "caseDate",
+                    "namespace": "ProductDetails",
+                    "value": "February 06, 2019"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9262663401581",
+                    "description": "Case link",
+                    "key": "caseLink",
+                    "namespace": "ProductDetails",
+                    "value": "http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/64971"
+                  }
+                }
+              ]
+            },
+            "variants": {
+              "edges": [
+                {
+                  "node": {
+                    "title": "Free",
+                    "id": "gid://shopify/ProductVariant/29474750267501",
+                    "inventoryPolicy": "DENY",
+                    "inventoryQuantity": 5,
+                    "price": "0.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": "100.00"
+                  }
+                },
+                {
+                  "node": {
+                    "title": "Paid",
+                    "id": "gid://shopify/ProductVariant/29474750300269",
+                    "inventoryPolicy": "CONTINUE",
+                    "inventoryQuantity": 0,
+                    "price": "100.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": null
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "cursor": "eyJsYXN0X2lkIjozOTM4NjY0NDQ4MTA5LCJsYXN0X3ZhbHVlIjoiMjAxOS0wNy0xOCAwODozNTo0NCJ9",
+          "node": {
+            "id": "gid://shopify/Product/3938664448109",
+            "publishedAt": "2019-07-08T18:38:51Z",
+            "createdAt": "2019-07-17T17:49:51Z",
+            "vendor": "(Author name)",
+            "title": "(Case Title) + (OWNER_SKU)",
+            "description": "Good snowboard!",
+            "descriptionHtml": "<strong>Good snowboard!</strong>",
+            "onlineStoreUrl": null,
+            "onlineStorePreviewUrl": "https://freelitemjabadilla.myshopify.com/products/case-title-owner_sku-2",
+            "noteId": {
+              "id": "gid://shopify/Metafield/9255251083373",
+              "namespace": "ProductLinks",
+              "description": "Author ID",
+              "key": "authorId",
+              "value": "b964512a-2d73-43b0-ba4d-7da8f9bf9f12",
+              "valueType": "STRING"
+            },
+            "authorName": {
+              "id": "gid://shopify/Metafield/9255251148909",
+              "namespace": "ProductDetails",
+              "description": "Author Name",
+              "key": "authorName",
+              "value": "Michael James Abadilla",
+              "valueType": "STRING"
+            },
+            "metafields": {
+              "edges": [
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9255251050605",
+                    "description": "Note ID",
+                    "key": "noteId",
+                    "namespace": "ProductLinks",
+                    "value": "06eed910-e641-423c-9c5a-a7d1a4384d43"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9255251083373",
+                    "description": "Author ID",
+                    "key": "authorId",
+                    "namespace": "ProductLinks",
+                    "value": "b964512a-2d73-43b0-ba4d-7da8f9bf9f12"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9255251116141",
+                    "description": "Note Case ID",
+                    "key": "pahinaNoteCaseId",
+                    "namespace": "ProductLinks",
+                    "value": "dc7034d8-3844-4cf2-bdb9-4bbd27165284"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9255251148909",
+                    "description": "Author Name",
+                    "key": "authorName",
+                    "namespace": "ProductDetails",
+                    "value": "Michael James Abadilla"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9255251181677",
+                    "description": "Case Title",
+                    "key": "caseTitle",
+                    "namespace": "ProductDetails",
+                    "value": "RAMIRO LIM & SONS AGRICULTURAL CO., INC., SIMA REAL ESTATE DEVELOPMENT, INC., AND RAMIRO LIM, PETITIONERS, VS. ARMANDO GUILARAN, ROMEO FRIAS, SANTIAGO CARAMBIAS, SR., JOEL SUAREZ, VICENTE OBORDO, JESSIE DAYON, JOEL PALMA, DOMICIANO PITULAN, NINFA ESPINOSA, ROMULO DELA PEÑA, FERNANDO ROWEL, VICENTE ESPINOSA, PONCIANO DACUMOS, OFELIA FRIAS, GILBERT CARAMBIAS, RODRIGO FRIAS, NIXON CARAMBIAS, RESTITUTO JUANICA, MARIANITA GUILARAN, ALY ROMERO, ROSEMINDA JUANICA, LOLITA ROMERO, LILIA ROWEL, ANTONIO DUMDUMAN, SANTIAGO CARAMBIAS, JR., DIOSCORO DACUMOS, ROSENDO DACUMOS, JONIEL DACUMOS, LEONARDA DACUMOS, JUDITA DACUMOS, MIGUELA DACUMOS, AND NINFA CARAMBIAS, RESPONDENT."
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9255251214445",
+                    "description": "Case Code",
+                    "key": "caseCode",
+                    "namespace": "ProductDetails",
+                    "value": "G.R. No. 221967"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9255251247213",
+                    "description": "date",
+                    "key": "caseDate",
+                    "namespace": "ProductDetails",
+                    "value": "February 06, 2019"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9255251279981",
+                    "description": "Case link",
+                    "key": "caseLink",
+                    "namespace": "ProductDetails",
+                    "value": "http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/64971"
+                  }
+                }
+              ]
+            },
+            "variants": {
+              "edges": [
+                {
+                  "node": {
+                    "title": "Free",
+                    "id": "gid://shopify/ProductVariant/29460295745645",
+                    "inventoryPolicy": "DENY",
+                    "inventoryQuantity": 0,
+                    "price": "0.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": "100.00"
+                  }
+                },
+                {
+                  "node": {
+                    "title": "Paid",
+                    "id": "gid://shopify/ProductVariant/29460295778413",
+                    "inventoryPolicy": "CONTINUE",
+                    "inventoryQuantity": -1,
+                    "price": "100.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": null
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "cursor": "eyJsYXN0X2lkIjozOTM4NjYzMzk5NTMzLCJsYXN0X3ZhbHVlIjoiMjAxOS0wNy0xOCAwODozNTo0NCJ9",
+          "node": {
+            "id": "gid://shopify/Product/3938663399533",
+            "publishedAt": "2019-07-08T18:38:51Z",
+            "createdAt": "2019-07-17T17:47:34Z",
+            "vendor": "(Author name)",
+            "title": "(Case Title) + (OWNER_SKU)",
+            "description": "Good snowboard!",
+            "descriptionHtml": "<strong>Good snowboard!</strong>",
+            "onlineStoreUrl": null,
+            "onlineStorePreviewUrl": "https://freelitemjabadilla.myshopify.com/products/case-title-owner_sku-1",
+            "noteId": {
+              "id": "gid://shopify/Metafield/9255179812973",
+              "namespace": "ProductLinks",
+              "description": "Author ID",
+              "key": "authorId",
+              "value": "b964512a-2d73-43b0-ba4d-7da8f9bf9f12",
+              "valueType": "STRING"
+            },
+            "authorName": {
+              "id": "gid://shopify/Metafield/9255179878509",
+              "namespace": "ProductDetails",
+              "description": "Author Name",
+              "key": "authorName",
+              "value": "Michael James Abadilla",
+              "valueType": "STRING"
+            },
+            "metafields": {
+              "edges": [
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9255179780205",
+                    "description": "Note ID",
+                    "key": "noteId",
+                    "namespace": "ProductLinks",
+                    "value": "06eed910-e641-423c-9c5a-a7d1a4384d43"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9255179812973",
+                    "description": "Author ID",
+                    "key": "authorId",
+                    "namespace": "ProductLinks",
+                    "value": "b964512a-2d73-43b0-ba4d-7da8f9bf9f12"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9255179845741",
+                    "description": "Note Case ID",
+                    "key": "pahinaNoteCaseId",
+                    "namespace": "ProductLinks",
+                    "value": "dc7034d8-3844-4cf2-bdb9-4bbd27165284"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9255179878509",
+                    "description": "Author Name",
+                    "key": "authorName",
+                    "namespace": "ProductDetails",
+                    "value": "Michael James Abadilla"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9255179911277",
+                    "description": "Case Title",
+                    "key": "caseTitle",
+                    "namespace": "ProductDetails",
+                    "value": "RAMIRO LIM & SONS AGRICULTURAL CO., INC., SIMA REAL ESTATE DEVELOPMENT, INC., AND RAMIRO LIM, PETITIONERS, VS. ARMANDO GUILARAN, ROMEO FRIAS, SANTIAGO CARAMBIAS, SR., JOEL SUAREZ, VICENTE OBORDO, JESSIE DAYON, JOEL PALMA, DOMICIANO PITULAN, NINFA ESPINOSA, ROMULO DELA PEÑA, FERNANDO ROWEL, VICENTE ESPINOSA, PONCIANO DACUMOS, OFELIA FRIAS, GILBERT CARAMBIAS, RODRIGO FRIAS, NIXON CARAMBIAS, RESTITUTO JUANICA, MARIANITA GUILARAN, ALY ROMERO, ROSEMINDA JUANICA, LOLITA ROMERO, LILIA ROWEL, ANTONIO DUMDUMAN, SANTIAGO CARAMBIAS, JR., DIOSCORO DACUMOS, ROSENDO DACUMOS, JONIEL DACUMOS, LEONARDA DACUMOS, JUDITA DACUMOS, MIGUELA DACUMOS, AND NINFA CARAMBIAS, RESPONDENT."
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9255179944045",
+                    "description": "Case Code",
+                    "key": "caseCode",
+                    "namespace": "ProductDetails",
+                    "value": "G.R. No. 221967"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9255179976813",
+                    "description": "date",
+                    "key": "caseDate",
+                    "namespace": "ProductDetails",
+                    "value": "February 06, 2019"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9255180009581",
+                    "description": "Case link",
+                    "key": "caseLink",
+                    "namespace": "ProductDetails",
+                    "value": "http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/64971"
+                  }
+                }
+              ]
+            },
+            "variants": {
+              "edges": [
+                {
+                  "node": {
+                    "title": "Free",
+                    "id": "gid://shopify/ProductVariant/29460285882477",
+                    "inventoryPolicy": "DENY",
+                    "inventoryQuantity": 0,
+                    "price": "0.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": "100.00"
+                  }
+                },
+                {
+                  "node": {
+                    "title": "Paid",
+                    "id": "gid://shopify/ProductVariant/29460285915245",
+                    "inventoryPolicy": "CONTINUE",
+                    "inventoryQuantity": 0,
+                    "price": "100.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": null
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "cursor": "eyJsYXN0X2lkIjozOTM4NjYxOTkwNTA5LCJsYXN0X3ZhbHVlIjoiMjAxOS0wNy0xOCAwODozNTo0NCJ9",
+          "node": {
+            "id": "gid://shopify/Product/3938661990509",
+            "publishedAt": "2019-07-08T18:38:51Z",
+            "createdAt": "2019-07-17T17:46:01Z",
+            "vendor": "(Author name)",
+            "title": "(Case Title) + (OWNER_SKU)",
+            "description": "Good snowboard!",
+            "descriptionHtml": "<strong>Good snowboard!</strong>",
+            "onlineStoreUrl": null,
+            "onlineStorePreviewUrl": "https://freelitemjabadilla.myshopify.com/products/case-title-owner_sku",
+            "noteId": {
+              "id": "gid://shopify/Metafield/9255128105069",
+              "namespace": "ProductLinks",
+              "description": "Author ID",
+              "key": "authorId",
+              "value": "b964512a-2d73-43b0-ba4d-7da8f9bf9f12",
+              "valueType": "STRING"
+            },
+            "authorName": {
+              "id": "gid://shopify/Metafield/9255128170605",
+              "namespace": "ProductDetails",
+              "description": "Author Name",
+              "key": "authorName",
+              "value": "Michael James Abadilla",
+              "valueType": "STRING"
+            },
+            "metafields": {
+              "edges": [
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9255128072301",
+                    "description": "Note ID",
+                    "key": "noteId",
+                    "namespace": "ProductLinks",
+                    "value": "06eed910-e641-423c-9c5a-a7d1a4384d43"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9255128105069",
+                    "description": "Author ID",
+                    "key": "authorId",
+                    "namespace": "ProductLinks",
+                    "value": "b964512a-2d73-43b0-ba4d-7da8f9bf9f12"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9255128137837",
+                    "description": "Note Case ID",
+                    "key": "pahinaNoteCaseId",
+                    "namespace": "ProductLinks",
+                    "value": "dc7034d8-3844-4cf2-bdb9-4bbd27165284"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9255128170605",
+                    "description": "Author Name",
+                    "key": "authorName",
+                    "namespace": "ProductDetails",
+                    "value": "Michael James Abadilla"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9255128203373",
+                    "description": "Case Title",
+                    "key": "caseTitle",
+                    "namespace": "ProductDetails",
+                    "value": "RAMIRO LIM & SONS AGRICULTURAL CO., INC., SIMA REAL ESTATE DEVELOPMENT, INC., AND RAMIRO LIM, PETITIONERS, VS. ARMANDO GUILARAN, ROMEO FRIAS, SANTIAGO CARAMBIAS, SR., JOEL SUAREZ, VICENTE OBORDO, JESSIE DAYON, JOEL PALMA, DOMICIANO PITULAN, NINFA ESPINOSA, ROMULO DELA PEÑA, FERNANDO ROWEL, VICENTE ESPINOSA, PONCIANO DACUMOS, OFELIA FRIAS, GILBERT CARAMBIAS, RODRIGO FRIAS, NIXON CARAMBIAS, RESTITUTO JUANICA, MARIANITA GUILARAN, ALY ROMERO, ROSEMINDA JUANICA, LOLITA ROMERO, LILIA ROWEL, ANTONIO DUMDUMAN, SANTIAGO CARAMBIAS, JR., DIOSCORO DACUMOS, ROSENDO DACUMOS, JONIEL DACUMOS, LEONARDA DACUMOS, JUDITA DACUMOS, MIGUELA DACUMOS, AND NINFA CARAMBIAS, RESPONDENT."
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9255128236141",
+                    "description": "Case Code",
+                    "key": "caseCode",
+                    "namespace": "ProductDetails",
+                    "value": "G.R. No. 221967"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9255128268909",
+                    "description": "date",
+                    "key": "caseDate",
+                    "namespace": "ProductDetails",
+                    "value": "February 06, 2019"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9255128301677",
+                    "description": "Case link",
+                    "key": "caseLink",
+                    "namespace": "ProductDetails",
+                    "value": "http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/64971"
+                  }
+                }
+              ]
+            },
+            "variants": {
+              "edges": [
+                {
+                  "node": {
+                    "title": "Paid",
+                    "id": "gid://shopify/ProductVariant/29460270612589",
+                    "inventoryPolicy": "CONTINUE",
+                    "inventoryQuantity": -1,
+                    "price": "100.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": null
+                  }
+                },
+                {
+                  "node": {
+                    "title": "Free",
+                    "id": "gid://shopify/ProductVariant/29460270645357",
+                    "inventoryPolicy": "DENY",
+                    "inventoryQuantity": 0,
+                    "price": "0.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": "100.00"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "cursor": "eyJsYXN0X2lkIjozOTM4NjQyNTI2MzE3LCJsYXN0X3ZhbHVlIjoiMjAxOS0wNy0xOCAwODozNTo0NCJ9",
+          "node": {
+            "id": "gid://shopify/Product/3938642526317",
+            "publishedAt": "2019-07-17T17:22:42Z",
+            "createdAt": "2019-07-17T17:22:42Z",
+            "vendor": "Michael James Abadilla",
+            "title": "Case Digest by Michael James Abadilla, AC. No. 10912 - 2016-01-19",
+            "description": "PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT.AC. No. 109122016-01-19http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557Officiis quibusdam occaecati quasi voluptatem dolor expedita at. Enim non voluptas cupiditate labore et similique.",
+            "descriptionHtml": "<p>PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT.</p><p>AC. No. 10912</p><p>2016-01-19</p><p>http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557</p><p>Officiis quibusdam occaecati quasi voluptatem dolor expedita at. Enim non voluptas cupiditate labore et similique.</p>",
+            "onlineStoreUrl": null,
+            "onlineStorePreviewUrl": "https://freelitemjabadilla.myshopify.com/products/case-digest-by-michael-james-abadilla-ac-no-10912-2016-01-165",
+            "noteId": {
+              "id": "gid://shopify/Metafield/9254948405357",
+              "namespace": "ProductLinks",
+              "description": "Author ID",
+              "key": "authorId",
+              "value": "50d5d9e7-703f-469e-9297-982e9dd9351e",
+              "valueType": "STRING"
+            },
+            "authorName": {
+              "id": "gid://shopify/Metafield/9254948470893",
+              "namespace": "ProductDetails",
+              "description": "Author Name",
+              "key": "authorName",
+              "value": "Michael James Abadilla",
+              "valueType": "STRING"
+            },
+            "metafields": {
+              "edges": [
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254948372589",
+                    "description": "Note ID",
+                    "key": "noteId",
+                    "namespace": "ProductLinks",
+                    "value": "8363f3d1-1038-427d-93ec-649847b5302b"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254948405357",
+                    "description": "Author ID",
+                    "key": "authorId",
+                    "namespace": "ProductLinks",
+                    "value": "50d5d9e7-703f-469e-9297-982e9dd9351e"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254948438125",
+                    "description": "Note Case ID",
+                    "key": "pahinaNoteCaseId",
+                    "namespace": "ProductLinks",
+                    "value": "showdocs/1/61557"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254948470893",
+                    "description": "Author Name",
+                    "key": "authorName",
+                    "namespace": "ProductDetails",
+                    "value": "Michael James Abadilla"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254948503661",
+                    "description": "Case Title",
+                    "key": "caseTitle",
+                    "namespace": "ProductDetails",
+                    "value": "PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT."
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254948536429",
+                    "description": "Case Code",
+                    "key": "caseCode",
+                    "namespace": "ProductDetails",
+                    "value": "AC. No. 10912"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254948569197",
+                    "description": "date",
+                    "key": "caseDate",
+                    "namespace": "ProductDetails",
+                    "value": "2016-01-19"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254948601965",
+                    "description": "Case link",
+                    "key": "caseLink",
+                    "namespace": "ProductDetails",
+                    "value": "http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557"
+                  }
+                }
+              ]
+            },
+            "variants": {
+              "edges": [
+                {
+                  "node": {
+                    "title": "Paid",
+                    "id": "gid://shopify/ProductVariant/29460122599533",
+                    "inventoryPolicy": "CONTINUE",
+                    "inventoryQuantity": 0,
+                    "price": "100.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": null
+                  }
+                },
+                {
+                  "node": {
+                    "title": "Free",
+                    "id": "gid://shopify/ProductVariant/29460122632301",
+                    "inventoryPolicy": "DENY",
+                    "inventoryQuantity": 0,
+                    "price": "0.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": null
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "cursor": "eyJsYXN0X2lkIjozOTM4NjQyMzI5NzA5LCJsYXN0X3ZhbHVlIjoiMjAxOS0wNy0xOCAwODozNTo0NCJ9",
+          "node": {
+            "id": "gid://shopify/Product/3938642329709",
+            "publishedAt": "2019-07-17T17:22:29Z",
+            "createdAt": "2019-07-17T17:22:30Z",
+            "vendor": "Michael James Abadilla",
+            "title": "Case Digest by Michael James Abadilla, AC. No. 10912 - 2016-01-19",
+            "description": "PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT.AC. No. 109122016-01-19http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557Deserunt qui eum vel. Perspiciatis libero odio ea doloremque id in earum. Nulla et ut tempore qui magni saepe.",
+            "descriptionHtml": "<p>PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT.</p><p>AC. No. 10912</p><p>2016-01-19</p><p>http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557</p><p>Deserunt qui eum vel. Perspiciatis libero odio ea doloremque id in earum. Nulla et ut tempore qui magni saepe.</p>",
+            "onlineStoreUrl": null,
+            "onlineStorePreviewUrl": "https://freelitemjabadilla.myshopify.com/products/case-digest-by-michael-james-abadilla-ac-no-10912-2016-01-164",
+            "noteId": {
+              "id": "gid://shopify/Metafield/9254947979373",
+              "namespace": "ProductLinks",
+              "description": "Author ID",
+              "key": "authorId",
+              "value": "50d5d9e7-703f-469e-9297-982e9dd9351e",
+              "valueType": "STRING"
+            },
+            "authorName": {
+              "id": "gid://shopify/Metafield/9254948044909",
+              "namespace": "ProductDetails",
+              "description": "Author Name",
+              "key": "authorName",
+              "value": "Michael James Abadilla",
+              "valueType": "STRING"
+            },
+            "metafields": {
+              "edges": [
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254947946605",
+                    "description": "Note ID",
+                    "key": "noteId",
+                    "namespace": "ProductLinks",
+                    "value": "7043ade8-2fe9-4732-bc25-11107ddde447"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254947979373",
+                    "description": "Author ID",
+                    "key": "authorId",
+                    "namespace": "ProductLinks",
+                    "value": "50d5d9e7-703f-469e-9297-982e9dd9351e"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254948012141",
+                    "description": "Note Case ID",
+                    "key": "pahinaNoteCaseId",
+                    "namespace": "ProductLinks",
+                    "value": "showdocs/1/61557"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254948044909",
+                    "description": "Author Name",
+                    "key": "authorName",
+                    "namespace": "ProductDetails",
+                    "value": "Michael James Abadilla"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254948077677",
+                    "description": "Case Title",
+                    "key": "caseTitle",
+                    "namespace": "ProductDetails",
+                    "value": "PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT."
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254948110445",
+                    "description": "Case Code",
+                    "key": "caseCode",
+                    "namespace": "ProductDetails",
+                    "value": "AC. No. 10912"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254948143213",
+                    "description": "date",
+                    "key": "caseDate",
+                    "namespace": "ProductDetails",
+                    "value": "2016-01-19"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254948175981",
+                    "description": "Case link",
+                    "key": "caseLink",
+                    "namespace": "ProductDetails",
+                    "value": "http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557"
+                  }
+                }
+              ]
+            },
+            "variants": {
+              "edges": [
+                {
+                  "node": {
+                    "title": "Paid",
+                    "id": "gid://shopify/ProductVariant/29460122239085",
+                    "inventoryPolicy": "CONTINUE",
+                    "inventoryQuantity": 0,
+                    "price": "100.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": null
+                  }
+                },
+                {
+                  "node": {
+                    "title": "Free",
+                    "id": "gid://shopify/ProductVariant/29460122271853",
+                    "inventoryPolicy": "DENY",
+                    "inventoryQuantity": 5,
+                    "price": "0.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": null
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "cursor": "eyJsYXN0X2lkIjozOTM4NjQxNjc0MzQ5LCJsYXN0X3ZhbHVlIjoiMjAxOS0wNy0xOCAwODozNTo0NCJ9",
+          "node": {
+            "id": "gid://shopify/Product/3938641674349",
+            "publishedAt": "2019-07-17T17:21:51Z",
+            "createdAt": "2019-07-17T17:21:51Z",
+            "vendor": "Michael James Abadilla",
+            "title": "Case Digest by Michael James Abadilla, AC. No. 10912 - 2016-01-19",
+            "description": "PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT.AC. No. 109122016-01-19http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557Officiis quibusdam occaecati quasi voluptatem dolor expedita at. Enim non voluptas cupiditate labore et similique.",
+            "descriptionHtml": "<p>PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT.</p><p>AC. No. 10912</p><p>2016-01-19</p><p>http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557</p><p>Officiis quibusdam occaecati quasi voluptatem dolor expedita at. Enim non voluptas cupiditate labore et similique.</p>",
+            "onlineStoreUrl": null,
+            "onlineStorePreviewUrl": "https://freelitemjabadilla.myshopify.com/products/case-digest-by-michael-james-abadilla-ac-no-10912-2016-01-163",
+            "noteId": {
+              "id": "gid://shopify/Metafield/9254946898029",
+              "namespace": "ProductLinks",
+              "description": "Author ID",
+              "key": "authorId",
+              "value": "50d5d9e7-703f-469e-9297-982e9dd9351e",
+              "valueType": "STRING"
+            },
+            "authorName": {
+              "id": "gid://shopify/Metafield/9254946963565",
+              "namespace": "ProductDetails",
+              "description": "Author Name",
+              "key": "authorName",
+              "value": "Michael James Abadilla",
+              "valueType": "STRING"
+            },
+            "metafields": {
+              "edges": [
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254946865261",
+                    "description": "Note ID",
+                    "key": "noteId",
+                    "namespace": "ProductLinks",
+                    "value": "8363f3d1-1038-427d-93ec-649847b5302b"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254946898029",
+                    "description": "Author ID",
+                    "key": "authorId",
+                    "namespace": "ProductLinks",
+                    "value": "50d5d9e7-703f-469e-9297-982e9dd9351e"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254946930797",
+                    "description": "Note Case ID",
+                    "key": "pahinaNoteCaseId",
+                    "namespace": "ProductLinks",
+                    "value": "showdocs/1/61557"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254946963565",
+                    "description": "Author Name",
+                    "key": "authorName",
+                    "namespace": "ProductDetails",
+                    "value": "Michael James Abadilla"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254946996333",
+                    "description": "Case Title",
+                    "key": "caseTitle",
+                    "namespace": "ProductDetails",
+                    "value": "PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT."
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254947029101",
+                    "description": "Case Code",
+                    "key": "caseCode",
+                    "namespace": "ProductDetails",
+                    "value": "AC. No. 10912"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254947061869",
+                    "description": "date",
+                    "key": "caseDate",
+                    "namespace": "ProductDetails",
+                    "value": "2016-01-19"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254947094637",
+                    "description": "Case link",
+                    "key": "caseLink",
+                    "namespace": "ProductDetails",
+                    "value": "http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557"
+                  }
+                }
+              ]
+            },
+            "variants": {
+              "edges": [
+                {
+                  "node": {
+                    "title": "Paid",
+                    "id": "gid://shopify/ProductVariant/29460119453805",
+                    "inventoryPolicy": "CONTINUE",
+                    "inventoryQuantity": 0,
+                    "price": "100.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": null
+                  }
+                },
+                {
+                  "node": {
+                    "title": "Free",
+                    "id": "gid://shopify/ProductVariant/29460119486573",
+                    "inventoryPolicy": "DENY",
+                    "inventoryQuantity": 5,
+                    "price": "0.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": null
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "cursor": "eyJsYXN0X2lkIjozOTM4NjQwNzI0MDc3LCJsYXN0X3ZhbHVlIjoiMjAxOS0wNy0xOCAwODozNTo0NCJ9",
+          "node": {
+            "id": "gid://shopify/Product/3938640724077",
+            "publishedAt": "2019-07-17T17:20:37Z",
+            "createdAt": "2019-07-17T17:20:38Z",
+            "vendor": "Michael James Abadilla",
+            "title": "Case Digest by Michael James Abadilla, AC. No. 10912 - 2016-01-19",
+            "description": "PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT.AC. No. 109122016-01-19http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557Officiis quibusdam occaecati quasi voluptatem dolor expedita at. Enim non voluptas cupiditate labore et similique.",
+            "descriptionHtml": "<p>PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT.</p><p>AC. No. 10912</p><p>2016-01-19</p><p>http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557</p><p>Officiis quibusdam occaecati quasi voluptatem dolor expedita at. Enim non voluptas cupiditate labore et similique.</p>",
+            "onlineStoreUrl": null,
+            "onlineStorePreviewUrl": "https://freelitemjabadilla.myshopify.com/products/case-digest-by-michael-james-abadilla-ac-no-10912-2016-01-162",
+            "noteId": {
+              "id": "gid://shopify/Metafield/9254942441581",
+              "namespace": "ProductLinks",
+              "description": "Author ID",
+              "key": "authorId",
+              "value": "50d5d9e7-703f-469e-9297-982e9dd9351e",
+              "valueType": "STRING"
+            },
+            "authorName": {
+              "id": "gid://shopify/Metafield/9254942507117",
+              "namespace": "ProductDetails",
+              "description": "Author Name",
+              "key": "authorName",
+              "value": "Michael James Abadilla",
+              "valueType": "STRING"
+            },
+            "metafields": {
+              "edges": [
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254942408813",
+                    "description": "Note ID",
+                    "key": "noteId",
+                    "namespace": "ProductLinks",
+                    "value": "8363f3d1-1038-427d-93ec-649847b5302b"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254942441581",
+                    "description": "Author ID",
+                    "key": "authorId",
+                    "namespace": "ProductLinks",
+                    "value": "50d5d9e7-703f-469e-9297-982e9dd9351e"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254942474349",
+                    "description": "Note Case ID",
+                    "key": "pahinaNoteCaseId",
+                    "namespace": "ProductLinks",
+                    "value": "showdocs/1/61557"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254942507117",
+                    "description": "Author Name",
+                    "key": "authorName",
+                    "namespace": "ProductDetails",
+                    "value": "Michael James Abadilla"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254942539885",
+                    "description": "Case Title",
+                    "key": "caseTitle",
+                    "namespace": "ProductDetails",
+                    "value": "PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT."
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254942572653",
+                    "description": "Case Code",
+                    "key": "caseCode",
+                    "namespace": "ProductDetails",
+                    "value": "AC. No. 10912"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254942605421",
+                    "description": "date",
+                    "key": "caseDate",
+                    "namespace": "ProductDetails",
+                    "value": "2016-01-19"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254942638189",
+                    "description": "Case link",
+                    "key": "caseLink",
+                    "namespace": "ProductDetails",
+                    "value": "http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557"
+                  }
+                }
+              ]
+            },
+            "variants": {
+              "edges": [
+                {
+                  "node": {
+                    "title": "Paid",
+                    "id": "gid://shopify/ProductVariant/29460116570221",
+                    "inventoryPolicy": "CONTINUE",
+                    "inventoryQuantity": 0,
+                    "price": "100.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": null
+                  }
+                },
+                {
+                  "node": {
+                    "title": "Free",
+                    "id": "gid://shopify/ProductVariant/29460116602989",
+                    "inventoryPolicy": "DENY",
+                    "inventoryQuantity": 5,
+                    "price": "0.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": null
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "cursor": "eyJsYXN0X2lkIjozOTM4NjM5NzQxMDM3LCJsYXN0X3ZhbHVlIjoiMjAxOS0wNy0xOCAwODozNTo0NCJ9",
+          "node": {
+            "id": "gid://shopify/Product/3938639741037",
+            "publishedAt": "2019-07-17T17:19:32Z",
+            "createdAt": "2019-07-17T17:19:32Z",
+            "vendor": "Michael James Abadilla",
+            "title": "Case Digest by Michael James Abadilla, AC. No. 10912 - 2016-01-19",
+            "description": "PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT.AC. No. 109122016-01-19http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557Officiis quibusdam occaecati quasi voluptatem dolor expedita at. Enim non voluptas cupiditate labore et similique.",
+            "descriptionHtml": "<p>PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT.</p><p>AC. No. 10912</p><p>2016-01-19</p><p>http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557</p><p>Officiis quibusdam occaecati quasi voluptatem dolor expedita at. Enim non voluptas cupiditate labore et similique.</p>",
+            "onlineStoreUrl": null,
+            "onlineStorePreviewUrl": "https://freelitemjabadilla.myshopify.com/products/case-digest-by-michael-james-abadilla-ac-no-10912-2016-01-161",
+            "noteId": {
+              "id": "gid://shopify/Metafield/9254939557997",
+              "namespace": "ProductLinks",
+              "description": "Author ID",
+              "key": "authorId",
+              "value": "50d5d9e7-703f-469e-9297-982e9dd9351e",
+              "valueType": "STRING"
+            },
+            "authorName": {
+              "id": "gid://shopify/Metafield/9254939623533",
+              "namespace": "ProductDetails",
+              "description": "Author Name",
+              "key": "authorName",
+              "value": "Michael James Abadilla",
+              "valueType": "STRING"
+            },
+            "metafields": {
+              "edges": [
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254939525229",
+                    "description": "Note ID",
+                    "key": "noteId",
+                    "namespace": "ProductLinks",
+                    "value": "8363f3d1-1038-427d-93ec-649847b5302b"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254939557997",
+                    "description": "Author ID",
+                    "key": "authorId",
+                    "namespace": "ProductLinks",
+                    "value": "50d5d9e7-703f-469e-9297-982e9dd9351e"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254939590765",
+                    "description": "Note Case ID",
+                    "key": "pahinaNoteCaseId",
+                    "namespace": "ProductLinks",
+                    "value": "showdocs/1/61557"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254939623533",
+                    "description": "Author Name",
+                    "key": "authorName",
+                    "namespace": "ProductDetails",
+                    "value": "Michael James Abadilla"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254939656301",
+                    "description": "Case Title",
+                    "key": "caseTitle",
+                    "namespace": "ProductDetails",
+                    "value": "PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT."
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254939689069",
+                    "description": "Case Code",
+                    "key": "caseCode",
+                    "namespace": "ProductDetails",
+                    "value": "AC. No. 10912"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254939721837",
+                    "description": "date",
+                    "key": "caseDate",
+                    "namespace": "ProductDetails",
+                    "value": "2016-01-19"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254939754605",
+                    "description": "Case link",
+                    "key": "caseLink",
+                    "namespace": "ProductDetails",
+                    "value": "http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557"
+                  }
+                }
+              ]
+            },
+            "variants": {
+              "edges": [
+                {
+                  "node": {
+                    "title": "Paid",
+                    "id": "gid://shopify/ProductVariant/29460109787245",
+                    "inventoryPolicy": "CONTINUE",
+                    "inventoryQuantity": 0,
+                    "price": "100.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": null
+                  }
+                },
+                {
+                  "node": {
+                    "title": "Free",
+                    "id": "gid://shopify/ProductVariant/29460109820013",
+                    "inventoryPolicy": "DENY",
+                    "inventoryQuantity": 5,
+                    "price": "0.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": null
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "cursor": "eyJsYXN0X2lkIjozOTM4NjM4OTg3MzczLCJsYXN0X3ZhbHVlIjoiMjAxOS0wNy0xOCAwODozNTo0NCJ9",
+          "node": {
+            "id": "gid://shopify/Product/3938638987373",
+            "publishedAt": "2019-07-17T17:18:22Z",
+            "createdAt": "2019-07-17T17:18:22Z",
+            "vendor": "Michael James Abadilla",
+            "title": "Case Digest by Michael James Abadilla, AC. No. 10912 - 2016-01-19",
+            "description": "PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT.AC. No. 109122016-01-19http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557Officiis quibusdam occaecati quasi voluptatem dolor expedita at. Enim non voluptas cupiditate labore et similique.",
+            "descriptionHtml": "<p>PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT.</p><p>AC. No. 10912</p><p>2016-01-19</p><p>http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557</p><p>Officiis quibusdam occaecati quasi voluptatem dolor expedita at. Enim non voluptas cupiditate labore et similique.</p>",
+            "onlineStoreUrl": null,
+            "onlineStorePreviewUrl": "https://freelitemjabadilla.myshopify.com/products/case-digest-by-michael-james-abadilla-ac-no-10912-2016-01-160",
+            "noteId": {
+              "id": "gid://shopify/Metafield/9254936313965",
+              "namespace": "ProductLinks",
+              "description": "Author ID",
+              "key": "authorId",
+              "value": "50d5d9e7-703f-469e-9297-982e9dd9351e",
+              "valueType": "STRING"
+            },
+            "authorName": {
+              "id": "gid://shopify/Metafield/9254936379501",
+              "namespace": "ProductDetails",
+              "description": "Author Name",
+              "key": "authorName",
+              "value": "Michael James Abadilla",
+              "valueType": "STRING"
+            },
+            "metafields": {
+              "edges": [
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254936281197",
+                    "description": "Note ID",
+                    "key": "noteId",
+                    "namespace": "ProductLinks",
+                    "value": "8363f3d1-1038-427d-93ec-649847b5302b"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254936313965",
+                    "description": "Author ID",
+                    "key": "authorId",
+                    "namespace": "ProductLinks",
+                    "value": "50d5d9e7-703f-469e-9297-982e9dd9351e"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254936346733",
+                    "description": "Note Case ID",
+                    "key": "pahinaNoteCaseId",
+                    "namespace": "ProductLinks",
+                    "value": "showdocs/1/61557"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254936379501",
+                    "description": "Author Name",
+                    "key": "authorName",
+                    "namespace": "ProductDetails",
+                    "value": "Michael James Abadilla"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254936412269",
+                    "description": "Case Title",
+                    "key": "caseTitle",
+                    "namespace": "ProductDetails",
+                    "value": "PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT."
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254936445037",
+                    "description": "Case Code",
+                    "key": "caseCode",
+                    "namespace": "ProductDetails",
+                    "value": "AC. No. 10912"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254936477805",
+                    "description": "date",
+                    "key": "caseDate",
+                    "namespace": "ProductDetails",
+                    "value": "2016-01-19"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254936510573",
+                    "description": "Case link",
+                    "key": "caseLink",
+                    "namespace": "ProductDetails",
+                    "value": "http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557"
+                  }
+                }
+              ]
+            },
+            "variants": {
+              "edges": [
+                {
+                  "node": {
+                    "title": "Paid",
+                    "id": "gid://shopify/ProductVariant/29460106412141",
+                    "inventoryPolicy": "CONTINUE",
+                    "inventoryQuantity": 0,
+                    "price": "100.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": null
+                  }
+                },
+                {
+                  "node": {
+                    "title": "Free",
+                    "id": "gid://shopify/ProductVariant/29460106444909",
+                    "inventoryPolicy": "DENY",
+                    "inventoryQuantity": 5,
+                    "price": "0.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": null
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "cursor": "eyJsYXN0X2lkIjozOTM4NjM4MDM3MTAxLCJsYXN0X3ZhbHVlIjoiMjAxOS0wNy0xOCAwODozNTo0NCJ9",
+          "node": {
+            "id": "gid://shopify/Product/3938638037101",
+            "publishedAt": "2019-07-17T17:17:18Z",
+            "createdAt": "2019-07-17T17:17:19Z",
+            "vendor": "Michael James Abadilla",
+            "title": "Case Digest by Michael James Abadilla, AC. No. 10912 - 2016-01-19",
+            "description": "PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT.AC. No. 109122016-01-19http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557Officiis quibusdam occaecati quasi voluptatem dolor expedita at. Enim non voluptas cupiditate labore et similique.",
+            "descriptionHtml": "<p>PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT.</p><p>AC. No. 10912</p><p>2016-01-19</p><p>http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557</p><p>Officiis quibusdam occaecati quasi voluptatem dolor expedita at. Enim non voluptas cupiditate labore et similique.</p>",
+            "onlineStoreUrl": null,
+            "onlineStorePreviewUrl": "https://freelitemjabadilla.myshopify.com/products/case-digest-by-michael-james-abadilla-ac-no-10912-2016-01-159",
+            "noteId": {
+              "id": "gid://shopify/Metafield/9254932119661",
+              "namespace": "ProductLinks",
+              "description": "Author ID",
+              "key": "authorId",
+              "value": "50d5d9e7-703f-469e-9297-982e9dd9351e",
+              "valueType": "STRING"
+            },
+            "authorName": {
+              "id": "gid://shopify/Metafield/9254932185197",
+              "namespace": "ProductDetails",
+              "description": "Author Name",
+              "key": "authorName",
+              "value": "Michael James Abadilla",
+              "valueType": "STRING"
+            },
+            "metafields": {
+              "edges": [
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254932086893",
+                    "description": "Note ID",
+                    "key": "noteId",
+                    "namespace": "ProductLinks",
+                    "value": "8363f3d1-1038-427d-93ec-649847b5302b"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254932119661",
+                    "description": "Author ID",
+                    "key": "authorId",
+                    "namespace": "ProductLinks",
+                    "value": "50d5d9e7-703f-469e-9297-982e9dd9351e"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254932152429",
+                    "description": "Note Case ID",
+                    "key": "pahinaNoteCaseId",
+                    "namespace": "ProductLinks",
+                    "value": "showdocs/1/61557"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254932185197",
+                    "description": "Author Name",
+                    "key": "authorName",
+                    "namespace": "ProductDetails",
+                    "value": "Michael James Abadilla"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254932217965",
+                    "description": "Case Title",
+                    "key": "caseTitle",
+                    "namespace": "ProductDetails",
+                    "value": "PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT."
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254932250733",
+                    "description": "Case Code",
+                    "key": "caseCode",
+                    "namespace": "ProductDetails",
+                    "value": "AC. No. 10912"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254932283501",
+                    "description": "date",
+                    "key": "caseDate",
+                    "namespace": "ProductDetails",
+                    "value": "2016-01-19"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254932316269",
+                    "description": "Case link",
+                    "key": "caseLink",
+                    "namespace": "ProductDetails",
+                    "value": "http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557"
+                  }
+                }
+              ]
+            },
+            "variants": {
+              "edges": [
+                {
+                  "node": {
+                    "title": "Paid",
+                    "id": "gid://shopify/ProductVariant/29460097892461",
+                    "inventoryPolicy": "CONTINUE",
+                    "inventoryQuantity": 0,
+                    "price": "100.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": null
+                  }
+                },
+                {
+                  "node": {
+                    "title": "Free",
+                    "id": "gid://shopify/ProductVariant/29460097925229",
+                    "inventoryPolicy": "DENY",
+                    "inventoryQuantity": 5,
+                    "price": "0.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": null
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "cursor": "eyJsYXN0X2lkIjozOTM4NjM3OTcxNTY1LCJsYXN0X3ZhbHVlIjoiMjAxOS0wNy0xOCAwODozNTo0NCJ9",
+          "node": {
+            "id": "gid://shopify/Product/3938637971565",
+            "publishedAt": "2019-07-17T17:17:16Z",
+            "createdAt": "2019-07-17T17:17:16Z",
+            "vendor": "Michael James Abadilla",
+            "title": "Case Digest by Michael James Abadilla, AC. No. 10912 - 2016-01-19",
+            "description": "PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT.AC. No. 109122016-01-19http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557Deserunt qui eum vel. Perspiciatis libero odio ea doloremque id in earum. Nulla et ut tempore qui magni saepe.",
+            "descriptionHtml": "<p>PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT.</p><p>AC. No. 10912</p><p>2016-01-19</p><p>http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557</p><p>Deserunt qui eum vel. Perspiciatis libero odio ea doloremque id in earum. Nulla et ut tempore qui magni saepe.</p>",
+            "onlineStoreUrl": null,
+            "onlineStorePreviewUrl": "https://freelitemjabadilla.myshopify.com/products/case-digest-by-michael-james-abadilla-ac-no-10912-2016-01-158",
+            "noteId": {
+              "id": "gid://shopify/Metafield/9254931857517",
+              "namespace": "ProductLinks",
+              "description": "Author ID",
+              "key": "authorId",
+              "value": "50d5d9e7-703f-469e-9297-982e9dd9351e",
+              "valueType": "STRING"
+            },
+            "authorName": {
+              "id": "gid://shopify/Metafield/9254931923053",
+              "namespace": "ProductDetails",
+              "description": "Author Name",
+              "key": "authorName",
+              "value": "Michael James Abadilla",
+              "valueType": "STRING"
+            },
+            "metafields": {
+              "edges": [
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254931824749",
+                    "description": "Note ID",
+                    "key": "noteId",
+                    "namespace": "ProductLinks",
+                    "value": "7043ade8-2fe9-4732-bc25-11107ddde447"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254931857517",
+                    "description": "Author ID",
+                    "key": "authorId",
+                    "namespace": "ProductLinks",
+                    "value": "50d5d9e7-703f-469e-9297-982e9dd9351e"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254931890285",
+                    "description": "Note Case ID",
+                    "key": "pahinaNoteCaseId",
+                    "namespace": "ProductLinks",
+                    "value": "showdocs/1/61557"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254931923053",
+                    "description": "Author Name",
+                    "key": "authorName",
+                    "namespace": "ProductDetails",
+                    "value": "Michael James Abadilla"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254931955821",
+                    "description": "Case Title",
+                    "key": "caseTitle",
+                    "namespace": "ProductDetails",
+                    "value": "PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT."
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254931988589",
+                    "description": "Case Code",
+                    "key": "caseCode",
+                    "namespace": "ProductDetails",
+                    "value": "AC. No. 10912"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254932021357",
+                    "description": "date",
+                    "key": "caseDate",
+                    "namespace": "ProductDetails",
+                    "value": "2016-01-19"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254932054125",
+                    "description": "Case link",
+                    "key": "caseLink",
+                    "namespace": "ProductDetails",
+                    "value": "http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557"
+                  }
+                }
+              ]
+            },
+            "variants": {
+              "edges": [
+                {
+                  "node": {
+                    "title": "Paid",
+                    "id": "gid://shopify/ProductVariant/29460097728621",
+                    "inventoryPolicy": "CONTINUE",
+                    "inventoryQuantity": 0,
+                    "price": "100.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": null
+                  }
+                },
+                {
+                  "node": {
+                    "title": "Free",
+                    "id": "gid://shopify/ProductVariant/29460097761389",
+                    "inventoryPolicy": "DENY",
+                    "inventoryQuantity": 5,
+                    "price": "0.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": null
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "cursor": "eyJsYXN0X2lkIjozOTM4NjM2NzkxOTE3LCJsYXN0X3ZhbHVlIjoiMjAxOS0wNy0xOCAwODozNTo0MyJ9",
+          "node": {
+            "id": "gid://shopify/Product/3938636791917",
+            "publishedAt": "2019-07-17T17:16:24Z",
+            "createdAt": "2019-07-17T17:16:24Z",
+            "vendor": "Michael James Abadilla",
+            "title": "Case Digest by Michael James Abadilla, AC. No. 10912 - 2016-01-19",
+            "description": "PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT.AC. No. 109122016-01-19http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557Officiis quibusdam occaecati quasi voluptatem dolor expedita at. Enim non voluptas cupiditate labore et similique.",
+            "descriptionHtml": "<p>PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT.</p><p>AC. No. 10912</p><p>2016-01-19</p><p>http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557</p><p>Officiis quibusdam occaecati quasi voluptatem dolor expedita at. Enim non voluptas cupiditate labore et similique.</p>",
+            "onlineStoreUrl": null,
+            "onlineStorePreviewUrl": "https://freelitemjabadilla.myshopify.com/products/case-digest-by-michael-james-abadilla-ac-no-10912-2016-01-157",
+            "noteId": {
+              "id": "gid://shopify/Metafield/9254930022509",
+              "namespace": "ProductLinks",
+              "description": "Author ID",
+              "key": "authorId",
+              "value": "50d5d9e7-703f-469e-9297-982e9dd9351e",
+              "valueType": "STRING"
+            },
+            "authorName": {
+              "id": "gid://shopify/Metafield/9254930088045",
+              "namespace": "ProductDetails",
+              "description": "Author Name",
+              "key": "authorName",
+              "value": "Michael James Abadilla",
+              "valueType": "STRING"
+            },
+            "metafields": {
+              "edges": [
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254929989741",
+                    "description": "Note ID",
+                    "key": "noteId",
+                    "namespace": "ProductLinks",
+                    "value": "8363f3d1-1038-427d-93ec-649847b5302b"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254930022509",
+                    "description": "Author ID",
+                    "key": "authorId",
+                    "namespace": "ProductLinks",
+                    "value": "50d5d9e7-703f-469e-9297-982e9dd9351e"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254930055277",
+                    "description": "Note Case ID",
+                    "key": "pahinaNoteCaseId",
+                    "namespace": "ProductLinks",
+                    "value": "showdocs/1/61557"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254930088045",
+                    "description": "Author Name",
+                    "key": "authorName",
+                    "namespace": "ProductDetails",
+                    "value": "Michael James Abadilla"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254930120813",
+                    "description": "Case Title",
+                    "key": "caseTitle",
+                    "namespace": "ProductDetails",
+                    "value": "PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT."
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254930153581",
+                    "description": "Case Code",
+                    "key": "caseCode",
+                    "namespace": "ProductDetails",
+                    "value": "AC. No. 10912"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254930186349",
+                    "description": "date",
+                    "key": "caseDate",
+                    "namespace": "ProductDetails",
+                    "value": "2016-01-19"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254930219117",
+                    "description": "Case link",
+                    "key": "caseLink",
+                    "namespace": "ProductDetails",
+                    "value": "http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557"
+                  }
+                }
+              ]
+            },
+            "variants": {
+              "edges": [
+                {
+                  "node": {
+                    "title": "Paid",
+                    "id": "gid://shopify/ProductVariant/29460093436013",
+                    "inventoryPolicy": "CONTINUE",
+                    "inventoryQuantity": 0,
+                    "price": "100.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": null
+                  }
+                },
+                {
+                  "node": {
+                    "title": "Free",
+                    "id": "gid://shopify/ProductVariant/29460093468781",
+                    "inventoryPolicy": "DENY",
+                    "inventoryQuantity": 5,
+                    "price": "0.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": null
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "cursor": "eyJsYXN0X2lkIjozOTM4NjM1NjQ1MDM3LCJsYXN0X3ZhbHVlIjoiMjAxOS0wNy0xOCAwODozNTo0MyJ9",
+          "node": {
+            "id": "gid://shopify/Product/3938635645037",
+            "publishedAt": "2019-07-17T17:15:28Z",
+            "createdAt": "2019-07-17T17:15:29Z",
+            "vendor": "Michael James Abadilla",
+            "title": "Case Digest by Michael James Abadilla, AC. No. 10912 - 2016-01-19",
+            "description": "PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT.AC. No. 109122016-01-19http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557Officiis quibusdam occaecati quasi voluptatem dolor expedita at. Enim non voluptas cupiditate labore et similique.",
+            "descriptionHtml": "<p>PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT.</p><p>AC. No. 10912</p><p>2016-01-19</p><p>http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557</p><p>Officiis quibusdam occaecati quasi voluptatem dolor expedita at. Enim non voluptas cupiditate labore et similique.</p>",
+            "onlineStoreUrl": null,
+            "onlineStorePreviewUrl": "https://freelitemjabadilla.myshopify.com/products/case-digest-by-michael-james-abadilla-ac-no-10912-2016-01-156",
+            "noteId": {
+              "id": "gid://shopify/Metafield/9254927138925",
+              "namespace": "ProductLinks",
+              "description": "Author ID",
+              "key": "authorId",
+              "value": "50d5d9e7-703f-469e-9297-982e9dd9351e",
+              "valueType": "STRING"
+            },
+            "authorName": {
+              "id": "gid://shopify/Metafield/9254927204461",
+              "namespace": "ProductDetails",
+              "description": "Author Name",
+              "key": "authorName",
+              "value": "Michael James Abadilla",
+              "valueType": "STRING"
+            },
+            "metafields": {
+              "edges": [
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254927106157",
+                    "description": "Note ID",
+                    "key": "noteId",
+                    "namespace": "ProductLinks",
+                    "value": "8363f3d1-1038-427d-93ec-649847b5302b"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254927138925",
+                    "description": "Author ID",
+                    "key": "authorId",
+                    "namespace": "ProductLinks",
+                    "value": "50d5d9e7-703f-469e-9297-982e9dd9351e"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254927171693",
+                    "description": "Note Case ID",
+                    "key": "pahinaNoteCaseId",
+                    "namespace": "ProductLinks",
+                    "value": "showdocs/1/61557"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254927204461",
+                    "description": "Author Name",
+                    "key": "authorName",
+                    "namespace": "ProductDetails",
+                    "value": "Michael James Abadilla"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254927237229",
+                    "description": "Case Title",
+                    "key": "caseTitle",
+                    "namespace": "ProductDetails",
+                    "value": "PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT."
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254927269997",
+                    "description": "Case Code",
+                    "key": "caseCode",
+                    "namespace": "ProductDetails",
+                    "value": "AC. No. 10912"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254927302765",
+                    "description": "date",
+                    "key": "caseDate",
+                    "namespace": "ProductDetails",
+                    "value": "2016-01-19"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254927335533",
+                    "description": "Case link",
+                    "key": "caseLink",
+                    "namespace": "ProductDetails",
+                    "value": "http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557"
+                  }
+                }
+              ]
+            },
+            "variants": {
+              "edges": [
+                {
+                  "node": {
+                    "title": "Paid",
+                    "id": "gid://shopify/ProductVariant/29460088291437",
+                    "inventoryPolicy": "CONTINUE",
+                    "inventoryQuantity": 0,
+                    "price": "100.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": null
+                  }
+                },
+                {
+                  "node": {
+                    "title": "Free",
+                    "id": "gid://shopify/ProductVariant/29460088324205",
+                    "inventoryPolicy": "DENY",
+                    "inventoryQuantity": 5,
+                    "price": "0.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": null
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "cursor": "eyJsYXN0X2lkIjozOTM4NjM1MDg3OTgxLCJsYXN0X3ZhbHVlIjoiMjAxOS0wNy0xOCAwODozNTo0MyJ9",
+          "node": {
+            "id": "gid://shopify/Product/3938635087981",
+            "publishedAt": "2019-07-17T17:14:41Z",
+            "createdAt": "2019-07-17T17:14:41Z",
+            "vendor": "Michael James Abadilla",
+            "title": "Case Digest by Michael James Abadilla, AC. No. 10912 - 2016-01-19",
+            "description": "PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT.AC. No. 109122016-01-19http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557Deserunt qui eum vel. Perspiciatis libero odio ea doloremque id in earum. Nulla et ut tempore qui magni saepe.",
+            "descriptionHtml": "<p>PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT.</p><p>AC. No. 10912</p><p>2016-01-19</p><p>http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557</p><p>Deserunt qui eum vel. Perspiciatis libero odio ea doloremque id in earum. Nulla et ut tempore qui magni saepe.</p>",
+            "onlineStoreUrl": null,
+            "onlineStorePreviewUrl": "https://freelitemjabadilla.myshopify.com/products/case-digest-by-michael-james-abadilla-ac-no-10912-2016-01-155",
+            "noteId": {
+              "id": "gid://shopify/Metafield/9254925664365",
+              "namespace": "ProductLinks",
+              "description": "Author ID",
+              "key": "authorId",
+              "value": "50d5d9e7-703f-469e-9297-982e9dd9351e",
+              "valueType": "STRING"
+            },
+            "authorName": {
+              "id": "gid://shopify/Metafield/9254925729901",
+              "namespace": "ProductDetails",
+              "description": "Author Name",
+              "key": "authorName",
+              "value": "Michael James Abadilla",
+              "valueType": "STRING"
+            },
+            "metafields": {
+              "edges": [
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254925631597",
+                    "description": "Note ID",
+                    "key": "noteId",
+                    "namespace": "ProductLinks",
+                    "value": "7043ade8-2fe9-4732-bc25-11107ddde447"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254925664365",
+                    "description": "Author ID",
+                    "key": "authorId",
+                    "namespace": "ProductLinks",
+                    "value": "50d5d9e7-703f-469e-9297-982e9dd9351e"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254925697133",
+                    "description": "Note Case ID",
+                    "key": "pahinaNoteCaseId",
+                    "namespace": "ProductLinks",
+                    "value": "showdocs/1/61557"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254925729901",
+                    "description": "Author Name",
+                    "key": "authorName",
+                    "namespace": "ProductDetails",
+                    "value": "Michael James Abadilla"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254925762669",
+                    "description": "Case Title",
+                    "key": "caseTitle",
+                    "namespace": "ProductDetails",
+                    "value": "PAULINA T. YU COMPLAINANT, VS. ATTY. BERLIN R. DELA CRUZ, RESPONDENT."
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254925795437",
+                    "description": "Case Code",
+                    "key": "caseCode",
+                    "namespace": "ProductDetails",
+                    "value": "AC. No. 10912"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254925828205",
+                    "description": "date",
+                    "key": "caseDate",
+                    "namespace": "ProductDetails",
+                    "value": "2016-01-19"
+                  }
+                },
+                {
+                  "node": {
+                    "id": "gid://shopify/Metafield/9254925860973",
+                    "description": "Case link",
+                    "key": "caseLink",
+                    "namespace": "ProductDetails",
+                    "value": "http://elibrary.judiciary.gov.ph/thebookshelf/showdocs/1/61557"
+                  }
+                }
+              ]
+            },
+            "variants": {
+              "edges": [
+                {
+                  "node": {
+                    "title": "Paid",
+                    "id": "gid://shopify/ProductVariant/29460086423661",
+                    "inventoryPolicy": "CONTINUE",
+                    "inventoryQuantity": 0,
+                    "price": "100.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": null
+                  }
+                },
+                {
+                  "node": {
+                    "title": "Free",
+                    "id": "gid://shopify/ProductVariant/29460086456429",
+                    "inventoryPolicy": "DENY",
+                    "inventoryQuantity": 5,
+                    "price": "0.00",
+                    "requiresShipping": false,
+                    "sku": "",
+                    "compareAtPrice": null
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "pageInfo": {
+        "hasNextPage": true,
+        "hasPreviousPage": false
+      }
+    }
+  },
+  "extensions": {
+    "cost": {
+      "requestedQueryCost": 642,
+      "actualQueryCost": 342,
+      "throttleStatus": {
+        "maximumAvailable": 1000.0,
+        "currentlyAvailable": 658,
+        "restoreRate": 50.0
+      }
+    }
+  }
+}

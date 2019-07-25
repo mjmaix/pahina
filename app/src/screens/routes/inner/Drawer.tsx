@@ -11,6 +11,7 @@ import { Mappings } from '../mappings';
 import { IconSize } from '../../../utils';
 
 const navBarOptions: DrawerNavigatorConfig = {
+  initialRouteName: 'ShopifyStack',
   contentComponent: DrawerContentComponent,
   defaultNavigationOptions: ({ navigation, screenProps }) => ({
     drawerIcon: ({ focused, tintColor }) => {

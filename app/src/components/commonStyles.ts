@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, TextStyle } from 'react-native';
 
 import { StyleGuide } from '../themes';
 
@@ -43,4 +43,15 @@ export const otherStyles = {
   noHeight: {
     height: 0,
   },
+};
+
+export const textStyles = {
+  price: {
+    fontSize: 18,
+    fontWeight: '500',
+  } as TextStyle,
+  quantity: {
+    fontSize: 14,
+    fontWeight: '300',
+  } as TextStyle,
 };

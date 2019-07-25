@@ -1,0 +1,42 @@
+{
+  "addresses": [
+    {
+      "id": 2275593388141,
+      "customer_id": 2125981483117,
+      "first_name": "Free",
+      "last_name": "Test",
+      "company": "",
+      "address1": "447F Masilang Street",
+      "address2": "Barangay Pineda",
+      "city": "Pasig City",
+      "province": "Metro Manila",
+      "country": "Philippines",
+      "zip": "1603",
+      "phone": "09175967544",
+      "name": "Free Test",
+      "province_code": null,
+      "country_code": "PH",
+      "country_name": "Philippines",
+      "default": false
+    },
+    {
+      "id": 2275595124845,
+      "customer_id": 2125981483117,
+      "first_name": "Free",
+      "last_name": "Test",
+      "company": "",
+      "address1": "Test2 (editted) 447F Masilang Street",
+      "address2": "Barangay Pineda",
+      "city": "Pasig City",
+      "province": "Metro Manila",
+      "country": "Philippines",
+      "zip": "1603",
+      "phone": "09175967544",
+      "name": "Free Test",
+      "province_code": null,
+      "country_code": "PH",
+      "country_name": "Philippines",
+      "default": true
+    }
+  ]
+}

@@ -62,7 +62,7 @@ const routeConfigMap: StackRouteConfigMap = {
 };
 
 const AccountStack = createStackNavigator(routeConfigMap, {
-  initialRouteName: 'Settings',
+  initialRouteName: 'Addresses',
   defaultNavigationOptions: ({
     screenProps,
     navigation,

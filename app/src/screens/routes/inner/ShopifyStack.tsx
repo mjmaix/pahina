@@ -13,7 +13,7 @@ const routeConfigMap: StackRouteConfigMap = {
     navigationOptions: ({ screenProps }: NavigationScreenProps) => {
       const { theme } = screenProps as ThemedComponentProps;
       return {
-        title: 'Browse Notes',
+        title: 'Shop Notes',
       };
     },
   },
