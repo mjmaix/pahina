@@ -110,6 +110,13 @@ export function generateShopifyProduct(
           value: caseLink,
           value_type: 'string',
         },
+        {
+          namespace: 'ProductDetails',
+          description: 'Note Promotional',
+          key: 'notePromotional',
+          value: note.promotional.S,
+          value_type: 'string',
+        },
       ],
     },
   };
