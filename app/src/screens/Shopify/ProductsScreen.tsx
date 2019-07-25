@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import { Text, Card, CardProps } from 'react-native-elements';
-import { containerStyles, textStyles } from '../../components';
 
-import data from './sampleproducts.json';
+import data from '../../api-helpers/sampleproducts.json';
 import {
   FlatList,
   ListRenderItem,
@@ -12,11 +11,16 @@ import {
 } from 'react-native';
 import { withTheme, ThemedComponentProps } from 'styled-components';
 import { NavigationScreenProps } from 'react-navigation';
-import { ShopifyGraphQlProductNode, ShopifyGraphQlProduct } from './types';
+
 import { NavigationService } from '../../utils';
 import { StyleGuide } from '../../themes';
-
-// TODO: create product type
+import { PriceText } from '../../components/Product/PriceText';
+import { parseProductMetafields } from '../../api-helpers';
+import { containerStyles } from '../../components';
+import {
+  ShopifyGraphQlProduct,
+  ShopifyGraphQlProductNode,
+} from '../../types/index.js';
 
 type Props = NavigationScreenProps & ThemedComponentProps;
 type State = any;
@@ -45,20 +49,9 @@ class ProductsScreen extends Component<Props, State> {
       theme: { colors },
     } = this.props;
     const product: ShopifyGraphQlProduct = item.node;
-    const meta = _.keyBy(_.map(product.metafields.edges, m => m.node), 'key');
+    const meta = parseProductMetafields(product);
     const caseTitle = meta.caseTitle;
-    const caseCode = meta.caseCode;
-    const caseDate = meta.caseDate;
-    const caseLink = meta.caseLink;
-    const notePromotional = meta.notePromotional;
 
-    const variants = _.keyBy(
-      _.map(product.variants.edges, m => m.node),
-      'title',
-    );
-
-    const Free = variants.Free;
-    const isFree = Number(Free.inventoryQuantity) > 0;
     const cleanData: CardProps = {
       title: `${product.title}`,
       titleStyle: {
@@ -84,31 +77,7 @@ class ProductsScreen extends Component<Props, State> {
                 alignItems: 'center',
               }}
             >
-              <Text style={textStyles.price}>
-                {isFree && (
-                  <Text>
-                    <Text style={{ color: colors.primarydark }}>{`FREE `}</Text>
-                    <Text
-                      style={{
-                        ...textStyles.quantity,
-                        color: colors.grey2,
-                      }}
-                    >{`${Free.inventoryQuantity} pc(s) `}</Text>
-                  </Text>
-                )}
-                <Text
-                  style={[
-                    { color: colors.primarydark },
-                    isFree && textStyles.quantity,
-                    isFree && {
-                      textDecorationLine: 'line-through',
-                      color: colors.grey2,
-                    },
-                  ]}
-                >
-                  {`₱ ${variants.Free.compareAtPrice}`}
-                </Text>
-              </Text>
+              <PriceText product={product} />
             </View>
             <View>
               <Text

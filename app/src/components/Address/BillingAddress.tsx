@@ -1,7 +1,7 @@
 import React from 'react';
 import { ThemedComponentProps, withTheme } from 'styled-components';
-import { ShopifyRestAddress } from '../../screens/Shopify/types';
 import { Text } from 'react-native-elements';
+import { ShopifyRestAddress } from '../../types';
 
 type Props = ThemedComponentProps & {
   address: ShopifyRestAddress;

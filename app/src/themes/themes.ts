@@ -24,6 +24,7 @@ export interface Theme extends RneTheme {
     secondarydark: Color;
     secondarydarktext: Color;
     danger: Color;
+    greyBackground: Color;
   } & Partial<RneColors>;
   activeTintColor: Color;
   inactiveTintColor: Color;
@@ -56,6 +57,7 @@ export const themes: Theme[] = [
       secondarydark: '#1c313a',
       secondarydarktext: 'white',
       danger: 'red',
+      greyBackground: '#eee',
     },
     activeTintColor: '#ec407a',
     inactiveTintColor: '#455a64',
@@ -78,6 +80,7 @@ export const themes: Theme[] = [
       secondarydark: '#1c313a',
       secondarydarktext: 'black',
       danger: 'red',
+      greyBackground: '#eee',
     },
     activeTintColor: '#ec407a',
     inactiveTintColor: '#455a64',

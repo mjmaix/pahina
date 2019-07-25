@@ -36,6 +36,12 @@ export const containerStyles = StyleSheet.create({
   transparent: {
     backgroundColor: 'rgba(0, 0, 0, 0.0)',
   },
+  white: {
+    backgroundColor: 'white',
+  },
+  screenPad: {
+    padding: StyleGuide.gap.big,
+  },
   darken: { backgroundColor: 'rgba(0,0,0,0.1)' },
 });
 
@@ -43,15 +49,4 @@ export const otherStyles = {
   noHeight: {
     height: 0,
   },
-};
-
-export const textStyles = {
-  price: {
-    fontSize: 18,
-    fontWeight: '500',
-  } as TextStyle,
-  quantity: {
-    fontSize: 14,
-    fontWeight: '300',
-  } as TextStyle,
 };

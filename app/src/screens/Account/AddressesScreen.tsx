@@ -10,9 +10,9 @@ import {
 import { StyleGuide } from '../../themes';
 import { NavigationService } from '../../utils';
 import { withTheme, ThemedComponentProps } from 'styled-components';
-import { ShopifyRestAddress } from '../Shopify/types';
-import sampleData from '../Shopify/sampleaddresses.json';
+import sampleData from '../../api-helpers/sampleaddresses.json';
 import { ListRenderItem, FlatList } from 'react-native';
+import { ShopifyRestAddress } from '../../types';
 
 type Props = ThemedComponentProps;
 interface State {}

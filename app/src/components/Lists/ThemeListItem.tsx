@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native';
 import { Text } from 'react-native-elements';
 import { themes } from '../../themes';
 
@@ -12,7 +12,7 @@ interface ThemeListItem {
 
 export function ThemeListItem({ item, onPress }: ThemeListItem) {
   return (
-    <TouchableOpacity onPress={() => onPress(item)}>
+    <TouchableWithoutFeedback onPress={() => onPress(item)}>
       <View
         style={[
           styles.itemContainer,
@@ -25,7 +25,7 @@ export function ThemeListItem({ item, onPress }: ThemeListItem) {
           {item.id}
         </Text>
       </View>
-    </TouchableOpacity>
+    </TouchableWithoutFeedback>
   );
 }
 

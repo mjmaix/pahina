@@ -1,13 +1,14 @@
 import React from 'react';
-import { ListItem } from 'react-native-elements';
+import { ListItem, ListItemProps } from 'react-native-elements';
 import { containerStyles, otherStyles } from '../commonStyles';
 
-export const GapListItem = () => {
+export const GapListItem = (props: ListItemProps) => {
   return (
     <ListItem
       containerStyle={containerStyles.transparent}
       contentContainerStyle={otherStyles.noHeight}
       disabled={true}
+      {...props}
     />
   );
 };

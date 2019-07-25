@@ -9,3 +9,4 @@ export * from './StyledTextInput';
 export * from './StyledListItem';
 export * from './StyledView';
 export * from './StyledViews';
+export * from './StyledText';
