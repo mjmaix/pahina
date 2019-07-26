@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
-import { ActivityIndicator, View, StyleSheet } from 'react-native';
+import { ActivityIndicator, View, StyleSheet, Alert } from 'react-native';
 import { withTheme, ThemedComponentProps } from 'styled-components';
 import { NavigationScreenProps } from 'react-navigation';
-import { ListItem, Text } from 'react-native-elements';
+import { ListItem, Text, Button } from 'react-native-elements';
 import * as WebBrowser from 'expo-web-browser';
 import _ from 'lodash';
 import { formatDistance } from 'date-fns';
@@ -13,6 +13,7 @@ import {
   containerStyles,
   ThemedIcon,
   GapListItem,
+  StyledButton,
 } from '../../components';
 import { IconSize } from '../../utils';
 import { ShopifyGraphQlProduct } from '../../types';
@@ -164,6 +165,16 @@ class ProductDetailScreen extends Component<Props, State> {
             </Text>
           </View>
         </StyledScrollView>
+        <StyledButton
+          label="Add to cart"
+          onPress={() => Alert.alert('not yet implemented')}
+          containerStyle={[
+            containerStyles.fullWidth,
+            {
+              padding: StyleGuide.gap.big,
+            },
+          ]}
+        />
       </StyledScreenContainer>
     );
   }
