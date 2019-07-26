@@ -1,11 +1,12 @@
 import React, { Component, Fragment } from 'react';
-import { ActivityIndicator, View, StyleSheet, Alert } from 'react-native';
+import { ActivityIndicator, Alert } from 'react-native';
 import { withTheme, ThemedComponentProps } from 'styled-components';
 import { NavigationScreenProps } from 'react-navigation';
-import { ListItem, Text, Button } from 'react-native-elements';
 import * as WebBrowser from 'expo-web-browser';
 import _ from 'lodash';
 import { formatDistance } from 'date-fns';
+
+import styled from 'styled-components/native';
 
 import {
   StyledScreenContainer,
@@ -20,15 +21,42 @@ import { ShopifyGraphQlProduct } from '../../types';
 import { PriceText } from '../../components/Product/PriceText';
 import { StyleGuide } from '../../themes';
 import { parseProductMetafields } from '../../api-helpers';
+import { ListItem } from 'react-native-elements';
 
 interface State {
   data?: ShopifyGraphQlProduct;
+  purchased?: boolean;
 }
 type Props = NavigationScreenProps & ThemedComponentProps;
 
 const initialState = {
   data: undefined,
 };
+
+const InfoHeader = styled.Text`
+  font-size: 20;
+  font-weight: 500;
+  padding-bottom: ${StyleGuide.gap.regular};
+`;
+const InfoItem = styled.Text`
+  font-size: 16;
+  font-weight: 400;
+`;
+const Title = styled.Text`
+  font-size: 24;
+  font-weight: 600;
+`;
+
+const SectionContainer = styled.View`
+  ${props => ({
+    ...containerStyles.screenPad,
+    ...containerStyles.white,
+  })}
+`;
+
+const Gap = styled(GapListItem)`
+  background-color: ${props => props.theme.colors.greyBackground};
+`;
 
 class ProductDetailScreen extends Component<Props, State> {
   public readonly state: State = initialState;
@@ -49,10 +77,6 @@ class ProductDetailScreen extends Component<Props, State> {
       );
     }
 
-    const {
-      theme: { colors },
-    } = this.props;
-
     const meta = parseProductMetafields(data);
 
     const caseTitle = meta.caseTitle;
@@ -71,67 +95,41 @@ class ProductDetailScreen extends Component<Props, State> {
       new Date(),
     )}`;
 
-    const styles = StyleSheet.create({
-      title: { fontSize: 24, fontWeight: 'bold' },
-      infoheader: {
-        fontSize: 20,
-        fontWeight: '500',
-        paddingBottom: StyleGuide.gap.regular,
-      },
-      infoitem: { fontSize: 16, fontWeight: '400' },
-      sectionContainer: {
-        ...containerStyles.screenPad,
-        ...containerStyles.white,
-      },
-    });
-
-    const Gap = (
-      <GapListItem
-        containerStyle={{ backgroundColor: colors.greyBackground }}
-      />
-    );
     return (
       <StyledScreenContainer>
         <StyledScrollView style={[containerStyles.fullWidth]}>
-          <View style={styles.sectionContainer}>
-            <Text style={styles.title}>{data.title}</Text>
-          </View>
+          <SectionContainer>
+            <Title>{data.title}</Title>
+          </SectionContainer>
 
-          {Gap}
+          <Gap />
 
-          <View style={styles.sectionContainer}>
+          <SectionContainer>
             <PriceText product={data} />
-          </View>
+          </SectionContainer>
 
           {notePromotional && (
             <Fragment>
-              {Gap}
-
-              <View style={styles.sectionContainer}>
-                <Text style={styles.infoheader}>Promotional message</Text>
-                <Text style={styles.infoitem}>{notePromotional.value}</Text>
-              </View>
+              <Gap />
+              <SectionContainer>
+                <InfoHeader>Promotional message</InfoHeader>
+                <InfoItem>{notePromotional.value}</InfoItem>
+              </SectionContainer>
             </Fragment>
           )}
 
-          {Gap}
+          <Gap />
 
-          <View style={styles.sectionContainer}>
-            <Text style={styles.infoheader}>Author information</Text>
-            <Text style={styles.infoitem}>
-              {'\u2022 ' + 'Written by ' + authorName.value}
-            </Text>
-            {updated !== created && (
-              <Text style={styles.infoitem}>{'\u2022 ' + updated}</Text>
-            )}
-            {updated === created && (
-              <Text style={styles.infoitem}>{'\u2022 ' + created}</Text>
-            )}
-          </View>
+          <SectionContainer>
+            <InfoHeader>Author information</InfoHeader>
+            <InfoItem>{'\u2022 ' + 'Written by ' + authorName.value}</InfoItem>
+            {updated !== created && <InfoItem>{'\u2022 ' + updated}</InfoItem>}
+            {updated === created && <InfoItem>{'\u2022 ' + created}</InfoItem>}
+          </SectionContainer>
 
-          {Gap}
+          <Gap />
 
-          <View style={styles.sectionContainer}>
+          <SectionContainer>
             <ListItem
               containerStyle={{ padding: 0 }}
               onPress={() => WebBrowser.openBrowserAsync(caseLink.value)}
@@ -145,28 +143,22 @@ class ProductDetailScreen extends Component<Props, State> {
                 />
               }
             />
-          </View>
+          </SectionContainer>
 
-          {Gap}
+          <Gap />
 
-          <View style={styles.sectionContainer}>
-            <Text style={styles.infoheader}>More about the decision</Text>
-            <Text style={styles.infoitem}>
-              {'\u2022 ' + `Code - ${caseCode.value}`}
-            </Text>
-            <Text style={styles.infoitem}>
-              {'\u2022 ' + `Date - ${caseDate.value}`}
-            </Text>
-            <Text style={styles.infoitem}>
-              {'\u2022 ' + `Link - ${caseLink.value}`}
-            </Text>
-            <Text style={[styles.infoitem, { textTransform: 'capitalize' }]}>
+          <SectionContainer>
+            <InfoHeader>More about the decision</InfoHeader>
+            <InfoItem>{'\u2022 ' + `Code - ${caseCode.value}`}</InfoItem>
+            <InfoItem>{'\u2022 ' + `Date - ${caseDate.value}`}</InfoItem>
+            <InfoItem>{'\u2022 ' + `Link - ${caseLink.value}`}</InfoItem>
+            <InfoItem style={{ textTransform: 'capitalize' }}>
               {'\u2022 ' + `Title - ${caseTitle.value}`}
-            </Text>
-          </View>
+            </InfoItem>
+          </SectionContainer>
         </StyledScrollView>
         <StyledButton
-          label="Add to cart"
+          label="Buy now to read"
           onPress={() => Alert.alert('not yet implemented')}
           containerStyle={[
             containerStyles.fullWidth,

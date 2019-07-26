@@ -54,15 +54,15 @@ const ShopifyStack = createStackNavigator(routeConfigMap, {
       ) : (
         undefined
       ),
-      headerRight: (
-        <HeaderIcon
-          icon={{
-            ...Mappings.Cart.icon,
-            iconStyle: { color: theme.colors.primary },
-          }}
-          onPress={() => NavigationService.navigate('Cart')}
-        />
-      ),
+      // headerRight: (
+      //   <HeaderIcon
+      //     icon={{
+      //       ...Mappings.Cart.icon,
+      //       iconStyle: { color: theme.colors.primary },
+      //     }}
+      //     onPress={() => NavigationService.navigate('Cart')}
+      //   />
+      // ),
     };
   },
 });
