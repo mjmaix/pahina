@@ -16,7 +16,7 @@ const PriceText = (props: Props) => {
 
   const variants = parseProductVariants(product);
   const { Free, Paid } = variants;
-  const isFree = Number(Free.inventoryQuantity) > 0;
+  const isFree = Free && Number(Free.inventoryQuantity) > 0;
 
   return (
     <View style={{ flexDirection: 'column' }}>
