@@ -29,16 +29,16 @@ export function generateShopifyProduct(
       published_scope: 'global',
       published_at: isoNow(),
       variants: [
-        {
-          option1: 'Free',
-          price: '0.00',
-          compare_at_price: '100.00',
-          inventory_management: 'shopify',
-          inventory_policy: 'deny',
-          inventory_quantity: 5,
-          requires_shipping: false,
-          taxable: false,
-        },
+        // {
+        //   option1: 'Free',
+        //   price: '0.00',
+        //   compare_at_price: '100.00',
+        //   inventory_management: 'shopify',
+        //   inventory_policy: 'deny',
+        //   inventory_quantity: 5,
+        //   requires_shipping: false,
+        //   taxable: false,
+        // },
         {
           option1: 'Paid',
           price: '100.00',
@@ -50,7 +50,10 @@ export function generateShopifyProduct(
       options: [
         {
           name: 'Pricing',
-          values: ['paid', 'free'],
+          values: [
+            'paid',
+            // 'free'
+          ],
         },
       ],
       metafields: [
