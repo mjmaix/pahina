@@ -17,14 +17,21 @@ import {
   StyledButton,
 } from '../../components';
 import { IconSize } from '../../utils';
-import { ShopifyGraphQlProduct } from '../../types';
+import { ShopifyGraphQlProduct, ShopifyGraphQlVariant } from '../../types';
 import { PriceText } from '../../components/Product/PriceText';
 import { StyleGuide } from '../../themes';
-import { parseProductMetafields } from '../../api-helpers';
+import {
+  parseProductMetafields,
+  parseProductVariants,
+} from '../../api-helpers';
 import { ListItem } from 'react-native-elements';
+import { ConfigConsumer } from '../../stores/contexts/ConfigStore';
+import { getCartLink } from '../../api-helpers/productHelpers';
 
 interface State {
   data?: ShopifyGraphQlProduct;
+  selectedVariant?: ShopifyGraphQlVariant;
+  variants?: ReturnType<typeof parseProductVariants>;
   purchased?: boolean;
 }
 type Props = NavigationScreenProps & ThemedComponentProps;
@@ -64,11 +71,12 @@ class ProductDetailScreen extends Component<Props, State> {
     if (!this.state.data) {
       const { navigation } = this.props;
       const data = navigation.getParam('product');
-      this.setState({ data });
+      const variants = parseProductVariants(data);
+      this.setState({ data, variants, selectedVariant: variants.Paid });
     }
   }
   public render() {
-    const { data } = this.state;
+    const { data, selectedVariant } = this.state;
     if (!data) {
       return (
         <StyledScreenContainer>
@@ -96,78 +104,94 @@ class ProductDetailScreen extends Component<Props, State> {
     )}`;
 
     return (
-      <StyledScreenContainer>
-        <StyledScrollView style={[containerStyles.fullWidth]}>
-          <SectionContainer>
-            <Title>{data.title}</Title>
-          </SectionContainer>
+      <ConfigConsumer>
+        {config => {
+          const instantCartLink = getCartLink(config, selectedVariant);
 
-          <Gap />
+          return (
+            <StyledScreenContainer>
+              <StyledScrollView style={[containerStyles.fullWidth]}>
+                <SectionContainer>
+                  <Title>{data.title}</Title>
+                </SectionContainer>
 
-          <SectionContainer>
-            <PriceText product={data} />
-          </SectionContainer>
+                <Gap />
 
-          {notePromotional && (
-            <Fragment>
-              <Gap />
-              <SectionContainer>
-                <InfoHeader>Promotional message</InfoHeader>
-                <InfoItem>{notePromotional.value}</InfoItem>
-              </SectionContainer>
-            </Fragment>
-          )}
+                <SectionContainer>
+                  <PriceText product={data} />
+                </SectionContainer>
 
-          <Gap />
+                {notePromotional && (
+                  <Fragment>
+                    <Gap />
+                    <SectionContainer>
+                      <InfoHeader>Promotional message</InfoHeader>
+                      <InfoItem>{notePromotional.value}</InfoItem>
+                    </SectionContainer>
+                  </Fragment>
+                )}
 
-          <SectionContainer>
-            <InfoHeader>Author information</InfoHeader>
-            <InfoItem>{'\u2022 ' + 'Written by ' + authorName.value}</InfoItem>
-            {updated !== created && <InfoItem>{'\u2022 ' + updated}</InfoItem>}
-            {updated === created && <InfoItem>{'\u2022 ' + created}</InfoItem>}
-          </SectionContainer>
+                <Gap />
 
-          <Gap />
+                <SectionContainer>
+                  <InfoHeader>Author information</InfoHeader>
+                  <InfoItem>
+                    {'\u2022 ' + 'Written by ' + authorName.value}
+                  </InfoItem>
+                  {updated !== created && (
+                    <InfoItem>{'\u2022 ' + updated}</InfoItem>
+                  )}
+                  {updated === created && (
+                    <InfoItem>{'\u2022 ' + created}</InfoItem>
+                  )}
+                </SectionContainer>
 
-          <SectionContainer>
-            <ListItem
-              containerStyle={{ padding: 0 }}
-              onPress={() => WebBrowser.openBrowserAsync(caseLink.value)}
-              title="Official link"
-              titleStyle={{ fontSize: 20, fontWeight: '500' }}
-              rightIcon={
-                <ThemedIcon
-                  name="external-link"
-                  type="font-awesome"
-                  size={IconSize.SM}
+                <Gap />
+
+                <SectionContainer>
+                  <ListItem
+                    containerStyle={{ padding: 0 }}
+                    onPress={() => WebBrowser.openBrowserAsync(caseLink.value)}
+                    title="Official link"
+                    titleStyle={{ fontSize: 20, fontWeight: '500' }}
+                    rightIcon={
+                      <ThemedIcon
+                        name="external-link"
+                        type="font-awesome"
+                        size={IconSize.SM}
+                      />
+                    }
+                  />
+                </SectionContainer>
+
+                <Gap />
+
+                <SectionContainer>
+                  <InfoHeader>More about the decision</InfoHeader>
+                  <InfoItem>{'\u2022 ' + `Code - ${caseCode.value}`}</InfoItem>
+                  <InfoItem>{'\u2022 ' + `Date - ${caseDate.value}`}</InfoItem>
+                  <InfoItem>{'\u2022 ' + `Link - ${caseLink.value}`}</InfoItem>
+                  <InfoItem style={{ textTransform: 'capitalize' }}>
+                    {'\u2022 ' + `Title - ${caseTitle.value}`}
+                  </InfoItem>
+                </SectionContainer>
+              </StyledScrollView>
+              {!!instantCartLink && (
+                <StyledButton
+                  label="Buy now to read"
+                  onPress={() => WebBrowser.openBrowserAsync(instantCartLink)}
+                  containerStyle={[
+                    containerStyles.fullWidth,
+                    {
+                      padding: StyleGuide.gap.big,
+                    },
+                  ]}
                 />
-              }
-            />
-          </SectionContainer>
-
-          <Gap />
-
-          <SectionContainer>
-            <InfoHeader>More about the decision</InfoHeader>
-            <InfoItem>{'\u2022 ' + `Code - ${caseCode.value}`}</InfoItem>
-            <InfoItem>{'\u2022 ' + `Date - ${caseDate.value}`}</InfoItem>
-            <InfoItem>{'\u2022 ' + `Link - ${caseLink.value}`}</InfoItem>
-            <InfoItem style={{ textTransform: 'capitalize' }}>
-              {'\u2022 ' + `Title - ${caseTitle.value}`}
-            </InfoItem>
-          </SectionContainer>
-        </StyledScrollView>
-        <StyledButton
-          label="Buy now to read"
-          onPress={() => Alert.alert('not yet implemented')}
-          containerStyle={[
-            containerStyles.fullWidth,
-            {
-              padding: StyleGuide.gap.big,
-            },
-          ]}
-        />
-      </StyledScreenContainer>
+              )}
+            </StyledScreenContainer>
+          );
+        }}
+      </ConfigConsumer>
     );
   }
 }

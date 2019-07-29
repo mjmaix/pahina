@@ -11,6 +11,9 @@
     },
     {
       "path": "functions"
+    },
+    {
+      "path": "shopify-theme"
     }
   ],
   "settings": {
