@@ -19,19 +19,15 @@ Resources:
   PahinaShopiyThemeBucket:
     Type: AWS::S3::Bucket
     Properties:
-      AccessControl: PublicRead
       BucketName: !Sub
-        - "${project}-${env}-shopify-theme"
+        - "${project}-shopify-theme-${env}"
         - { project: !Ref ProjectName, env: !Ref EnvType }
       CorsConfiguration:
         CorsRules:
-          - AllowedHeaders:
-              - "*"
-            AllowedMethods:
+          - AllowedMethods:
               - GET
             AllowedOrigins:
               - !Ref ShopifyHost
-              - "*"
 Outputs:
   PahinaShopiyThemeBucket:
     Description: Generated bucket the project.
