@@ -14,5 +14,5 @@ exports.handler = async (event, context) => {
   const keyPath = `/${host}/${env}/Storefront`;
 
   const accessToken = await AwsSSM.getParam(keyPath);
-  return { accessToken };
+  return { shopifyStorefrontAccessToken: accessToken, shopifyHost: host, env };
 };
