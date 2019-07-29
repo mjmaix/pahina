@@ -1,0 +1,38 @@
+Parameters:
+  ProjectName:
+    Type: String
+    Default: Pahina
+  ShopifyHost:
+    Description: 'Shopify hostname'
+    Type: String
+    Default: 'freelitemjabadilla.myshopify.com'
+  EnvType:
+    Description: Environment for this function
+    Type: String
+    Default: dev
+    AllowedValues:
+    - dev
+    - prod
+    - test
+    - NONE
+Resources:
+  PahinaShopiyThemeBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      AccessControl: PublicRead
+      BucketName: !Sub
+        - "${project}-${env}-shopify-theme"
+        - { project: !Ref ProjectName, env: !Ref EnvType }
+      CorsConfiguration:
+        CorsRules:
+          - AllowedHeaders:
+              - "*"
+            AllowedMethods:
+              - GET
+            AllowedOrigins:
+              - !Ref ShopifyHost
+              - "*"
+Outputs:
+  PahinaShopiyThemeBucket:
+    Description: Generated bucket the project.
+    Value: !Ref PahinaShopiyThemeBucket
