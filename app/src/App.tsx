@@ -14,30 +14,30 @@ import {
 
 import { STORAGE_KEY, ThemeName, ThemeHelper } from './themes';
 import { NavigationService } from './utils';
-import { logInfo, logError, Storefront } from './shared';
-import { handleGetStorefrontConfig } from './shared/actions/functionActions';
-import { StorefrontProvider } from './stores/contexts/StorefrontStore';
+import { logInfo, logError, Config } from './shared';
+import { handleGetConfig } from './shared/actions/functionActions';
+import { ConfigProvider } from './stores/contexts/ConfigStore';
 import { AppRoutes } from './screens/routes';
 
 interface AppState {
   theme?: Theme;
   isThemeReady: boolean;
-  storefrontConfig?: Storefront | null;
+  config?: Config | null;
 }
 
 const initialState = {
   theme: ThemeHelper.get(),
   isThemeReady: false,
-  storefrontConfig: undefined,
+  config: undefined,
 };
 
 export default class App extends Component<{}, AppState> {
   public readonly state: AppState = initialState;
 
   public componentWillMount() {
-    handleGetStorefrontConfig().then(resp => {
+    handleGetConfig().then(resp => {
       if (resp) {
-        this.setState({ storefrontConfig: resp.getShopifyStorefrontConfig });
+        this.setState({ config: resp.getConfig });
       }
     });
 
@@ -64,7 +64,7 @@ export default class App extends Component<{}, AppState> {
   }
 
   public render() {
-    const { isThemeReady, storefrontConfig, theme } = this.state;
+    const { isThemeReady, config, theme } = this.state;
     if (!isThemeReady || !theme) {
       return <ActivityIndicator />;
     }
@@ -72,9 +72,7 @@ export default class App extends Component<{}, AppState> {
     return (
       <ScThemeProvider theme={(theme as unknown) as DefaultTheme}>
         <RneThemeProvider theme={theme}>
-          <StorefrontProvider
-            value={{ data: storefrontConfig, isReady: !!storefrontConfig }}
-          >
+          <ConfigProvider value={{ data: config, isReady: !!config }}>
             <AppRoutes
               screenProps={{
                 theme: this.state.theme,
@@ -85,7 +83,7 @@ export default class App extends Component<{}, AppState> {
                 }
               }}
             />
-          </StorefrontProvider>
+          </ConfigProvider>
         </RneThemeProvider>
       </ScThemeProvider>
     );

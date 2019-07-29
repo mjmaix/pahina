@@ -859,10 +859,12 @@ export type DeletePahinaCaseMutation = {
   } | null,
 };
 
-export type GetShopifyStorefrontConfigQuery = {
-  getShopifyStorefrontConfig:  {
-    __typename: "ShopifyStorefrontConfig",
-    accessToken: string | null,
+export type GetConfigQuery = {
+  getConfig:  {
+    __typename: "Config",
+    env: string | null,
+    shopifyHost: string | null,
+    shopifyStorefrontAccessToken: string | null,
   } | null,
 };
 

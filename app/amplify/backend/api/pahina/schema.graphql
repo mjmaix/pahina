@@ -295,8 +295,10 @@ input ShopifyMailingAddressInput {
   countryCode: String
 }
 
-type ShopifyStorefrontConfig {
-  accessToken: String
+type Config {
+  env: String
+  shopifyHost: String
+  shopifyStorefrontAccessToken: String
 }
 
 ###
@@ -308,8 +310,7 @@ type Subscription {
 }
 
 type Query {
-  getShopifyStorefrontConfig: ShopifyStorefrontConfig
-    @function(name: "storefrontconfigfunction-${env}")
+  getConfig: Config @function(name: "storefrontconfigfunction-${env}")
   getShopifyCustomer(id: ID!): ShopifyCustomer
     @function(name: "pahinaqueryshopifycustomerfunction-${env}") #FIXME: add owner verification
 }

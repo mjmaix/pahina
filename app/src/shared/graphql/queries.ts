@@ -1,9 +1,11 @@
 // tslint:disable
 // this is an auto generated file. This will be overwritten
 
-export const getShopifyStorefrontConfig = `query GetShopifyStorefrontConfig {
-  getShopifyStorefrontConfig {
-    accessToken
+export const getConfig = `query GetConfig {
+  getConfig {
+    env
+    shopifyHost
+    shopifyStorefrontAccessToken
   }
 }
 `;

@@ -1,19 +1,19 @@
 import gql from 'graphql-tag';
 import apollo from '../awsApolloClient';
 import { logInfo, logRecord } from '../utils';
-import { getShopifyStorefrontConfig } from '../graphql/queries';
-import { GetShopifyStorefrontConfigQuery } from '../API';
+import { getConfig } from '../graphql/queries';
+import { GetConfigQuery } from '../API';
 
-export const handleGetStorefrontConfig = async () => {
-  logInfo('[START]', 'handleGetStorefrontConfig');
+export const handleGetConfig = async () => {
+  logInfo('[START]', 'handleGetConfig');
   try {
-    const response = await apollo.query<GetShopifyStorefrontConfigQuery>({
-      query: gql(getShopifyStorefrontConfig),
+    const response = await apollo.query<GetConfigQuery>({
+      query: gql(getConfig),
     });
     return response.data;
   } catch (e) {
     logRecord({
-      name: 'GetStorefrontConfig',
+      name: 'GetConfig',
       attributes: {
         error: e.message,
       },
