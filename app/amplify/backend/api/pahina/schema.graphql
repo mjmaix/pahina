@@ -310,7 +310,7 @@ type Subscription {
 }
 
 type Query {
-  getConfig: Config @function(name: "storefrontconfigfunction-${env}")
+  getConfig: Config @function(name: "configfunction-${env}")
   getShopifyCustomer(id: ID!): ShopifyCustomer
     @function(name: "pahinaqueryshopifycustomerfunction-${env}") #FIXME: add owner verification
 }

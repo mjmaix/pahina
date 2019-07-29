@@ -39,12 +39,12 @@
 				"FunctionName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"storefrontconfigfunction",
+						"configfunction",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"storefrontconfigfunction",
+									"configfunction",
 									"-",
 									{
 										"Ref": "env"
@@ -90,7 +90,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "pahina-dev-20190629201236-deployment",
-					"S3Key": "amplify-builds/storefrontconfigfunction-66634f6c6e4c69337871-build.zip"
+					"S3Key": "amplify-builds/configfunction-476578433344316b4d59-build.zip"
 				}
 			}
 		},
