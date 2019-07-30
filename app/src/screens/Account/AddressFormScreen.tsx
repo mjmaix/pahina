@@ -11,6 +11,7 @@ import {
   StyledButton,
   StyledDangerButton,
   IconCollection,
+  containerStyles,
 } from '../../components';
 import { AddressModel, AddressSchema } from '../../shared';
 import { Formik, FormikActions } from 'formik';
@@ -20,6 +21,7 @@ import { View, Alert } from 'react-native';
 import { NavigationScreenProps } from 'react-navigation';
 import { ThemedComponentProps } from 'styled-components';
 import { withTheme } from 'styled-components';
+import { IconProps } from 'react-native-elements';
 
 type FormModel = typeof AddressModel;
 
@@ -33,7 +35,9 @@ class AddressFormScreen extends Component<Props, State> {
   public render() {
     return (
       <StyledScrollView>
-        <StyledScreenContainer>{this.renderForm()}</StyledScreenContainer>
+        <StyledScreenContainer style={containerStyles.white}>
+          {this.renderForm()}
+        </StyledScreenContainer>
       </StyledScrollView>
     );
   }
@@ -60,8 +64,6 @@ class AddressFormScreen extends Component<Props, State> {
             <StyledFormContainer>
               <View
                 style={{
-                  // borderWidth: 1,
-                  // borderColor: 'blue',
                   height: StyleGuide.gap.big,
                 }}
               />
@@ -178,7 +180,7 @@ class AddressFormScreen extends Component<Props, State> {
     const defaultIconColor = currentDefault
       ? theme.colors.success
       : theme.colors.primary;
-    const defaultIcon = { ...checkIcon, color: defaultIconColor };
+    const defaultIcon: IconProps = { ...checkIcon, color: defaultIconColor };
     return (
       <Fragment>
         {!addMode && (

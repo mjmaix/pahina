@@ -1,6 +1,6 @@
-import { IconObject } from 'react-native-elements';
+import { IconProps } from 'react-native-elements';
 
-export const IconCollection: { [key: string]: IconObject } = {
+export const IconCollection: { [key: string]: IconProps } = {
   checkFalse: { name: 'checkcircleo', type: 'antdesign' },
   checkTrue: { name: 'checkcircle', type: 'antdesign' },
   externalLink: { name: 'external-link', type: 'font-awesome' },

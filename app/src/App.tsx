@@ -12,6 +12,7 @@ import {
   DefaultTheme,
 } from 'styled-components';
 
+import { ShopifyRestApi } from './shared/ShopifyRestApi';
 import { STORAGE_KEY, ThemeName, ThemeHelper } from './themes';
 import { NavigationService } from './utils';
 import { logInfo, logError, Config } from './shared';
@@ -37,7 +38,11 @@ export default class App extends Component<{}, AppState> {
   public componentWillMount() {
     handleGetConfig().then(resp => {
       if (resp) {
-        this.setState({ config: resp.getConfig });
+        const conf = resp.getConfig;
+        this.setState({ config: conf });
+        if (conf && conf.pahinaShopifyApi) {
+          ShopifyRestApi.configure(conf.pahinaShopifyApi);
+        }
       }
     });
 

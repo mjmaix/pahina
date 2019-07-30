@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import _ from 'lodash';
 import {
   StyledListItem,
-  containerStyles,
   ListItemExentendProps,
   StyledButton,
   BillingAddress,
@@ -13,6 +12,7 @@ import { withTheme, ThemedComponentProps } from 'styled-components';
 import sampleData from '../../api-helpers/sampleaddresses.json';
 import { ListRenderItem, FlatList } from 'react-native';
 import { ShopifyRestAddress } from '../../types';
+import { getShopifyAddresses } from '../../shared/actions/shopifyApiRestMethods';
 
 type Props = ThemedComponentProps;
 interface State {}
@@ -20,6 +20,14 @@ interface State {}
 type Address = ShopifyRestAddress;
 
 class AddressesScreen extends Component<Props, State> {
+  public async componentDidMount() {
+    try {
+      const addresses = await getShopifyAddresses();
+      console.log('addresses', JSON.stringify(addresses, undefined, 2));
+    } catch (err) {
+      console.log('ERR addresses', JSON.stringify(err, undefined, 2));
+    }
+  }
   public render() {
     const sortedAddresses = _.orderBy(
       sampleData.addresses,
@@ -37,7 +45,6 @@ class AddressesScreen extends Component<Props, State> {
           }}
         />
         <FlatList<Address>
-          style={containerStyles.darken}
           keyExtractor={(item: Address, i: number) => (item.id || i).toString()}
           data={sortedAddresses}
           renderItem={this.renderItem}

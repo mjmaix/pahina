@@ -9,6 +9,7 @@ export const handleGetConfig = async () => {
   try {
     const response = await apollo.query<GetConfigQuery>({
       query: gql(getConfig),
+      // fetchPolicy: 'cache-first',
     });
     return response.data;
   } catch (e) {

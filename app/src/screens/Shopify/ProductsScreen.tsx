@@ -14,7 +14,7 @@ import { NavigationScreenProps } from 'react-navigation';
 
 import { NavigationService } from '../../utils';
 import { StyleGuide } from '../../themes';
-import { PriceText } from '../../components/Product/PriceText';
+import { PriceText } from '../../components/Product';
 import { parseProductMetafields } from '../../api-helpers';
 import { containerStyles } from '../../components';
 import {
