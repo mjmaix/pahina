@@ -63,18 +63,11 @@
 							"Ref": "AWS::Region"
 						},
 						"SHOPIFY_HOST": {
-							"Fn::Sub": [
-								"${host}",
+							"Fn::FindInMap": [
+								"Shopify",
+								"Host",
 								{
-									"host": {
-										"Fn::FindInMap": [
-											"Shopify",
-											"Host",
-											{
-												"Ref": "env"
-											}
-										]
-									}
+									"Ref": "env"
 								}
 							]
 						}
@@ -90,7 +83,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "pahina-dev-20190629201236-deployment",
-					"S3Key": "amplify-builds/configfunction-476578433344316b4d59-build.zip"
+					"S3Key": "amplify-builds/configfunction-3153662f33636d77416f-build.zip"
 				}
 			}
 		},
@@ -100,12 +93,12 @@
 				"RoleName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"pahinaLambdaRoleef701825",
+						"pahinaLambdaRolefc28c267",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"pahinaLambdaRoleef701825",
+									"pahinaLambdaRolefc28c267",
 									"-",
 									{
 										"Ref": "env"
@@ -213,6 +206,23 @@
 												}
 											]
 										},
+										"env": {
+											"Ref": "env"
+										}
+									}
+								]
+							}
+						},
+						{
+							"Sid": "VisualEditor1",
+							"Effect": "Allow",
+							"Action": [
+								"ssm:GetParametersByPath"
+							],
+							"Resource": {
+								"Fn::Sub": [
+									"arn:aws:ssm:${AWS::Region}:*:parameter/pahina-config/${env}",
+									{
 										"env": {
 											"Ref": "env"
 										}

@@ -299,6 +299,7 @@ type Config {
   env: String
   shopifyHost: String
   shopifyStorefrontAccessToken: String
+  pahinaShopifyApi: String
 }
 
 ###

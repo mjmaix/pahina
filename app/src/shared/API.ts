@@ -865,6 +865,7 @@ export type GetConfigQuery = {
     env: string | null,
     shopifyHost: string | null,
     shopifyStorefrontAccessToken: string | null,
+    pahinaShopifyApi: string | null,
   } | null,
 };
 

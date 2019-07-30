@@ -6,6 +6,7 @@ export const getConfig = `query GetConfig {
     env
     shopifyHost
     shopifyStorefrontAccessToken
+    pahinaShopifyApi
   }
 }
 `;

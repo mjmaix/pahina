@@ -9,10 +9,26 @@ exports.handler = async (event, context) => {
   }
 
   const env = process.env.ENV;
-  const host = process.env.SHOPIFY_HOST;
+  const shopifyHost = process.env.SHOPIFY_HOST;
 
-  const keyPath = `/${host}/${env}/Storefront`;
+  const storefrontKeyPath = `/${shopifyHost}/${env}/Storefront`;
+  const shopifyStorefrontAccessToken = await AwsSSM.getParam(storefrontKeyPath);
+  if (!shopifyStorefrontAccessToken) {
+    throw new Error(`[ERROR] ${storefrontKeyPath} param not provided`);
+  }
 
-  const accessToken = await AwsSSM.getParam(keyPath);
-  return { shopifyStorefrontAccessToken: accessToken, shopifyHost: host, env };
+  const pahinaConfigPath = `/pahina-config/${env}`;
+  const pahinaShopifyApiKeyPath = `${pahinaConfigPath}/pahina-shopify-api`;
+  await AwsSSM.fetchPath(pahinaConfigPath);
+  const pahinaShopifyApi = await AwsSSM.getParam(pahinaShopifyApiKeyPath);
+  if (!pahinaShopifyApi) {
+    throw new Error(`[ERROR] ${pahinaShopifyApiKeyPath} param not provided`);
+  }
+
+  return {
+    env,
+    shopifyStorefrontAccessToken,
+    shopifyHost,
+    pahinaShopifyApi,
+  };
 };
