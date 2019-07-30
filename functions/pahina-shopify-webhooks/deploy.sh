@@ -20,7 +20,9 @@ sam deploy \
 --capabilities CAPABILITY_IAM \
 --region $REGION \
 --parameter-overrides \
-   EnvType=$ENV_TYPE
+   EnvType=$ENV_TYPE \
+   ShopifyApiHost=freedev1.myshopify.com \
+ || { echo "sam deploy failed" ; exit 1; }
 
 
 sh ./post-deploy.sh products

@@ -22,6 +22,7 @@ sam deploy \
 --region $REGION \
 --parameter-overrides \
    EnvType=$ENV_TYPE \
+   ShopifyApiHost=freedev1.myshopify.com \
  || { echo "sam deploy failed" ; exit 1; }
 
 sh ./post-deploy.sh shopify-address-lambda

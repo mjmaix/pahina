@@ -26,7 +26,7 @@ Parameters:
   ShopifyApiHost:
     Description: 'Shopify hostname'
     Type: String
-    Default: 'freelitemjabadilla.myshopify.com' 
+    Default: 'freedev1.myshopify.com' 
 
   ShopifyApiVersion:
     Description: 'Shopify API version'

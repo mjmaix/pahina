@@ -9,7 +9,7 @@
 	"Mappings": {
 		"Shopify": {
 			"Host": {
-				"dev": "freelitemjabadilla.myshopify.com",
+				"dev": "freedev1.myshopify.com",
 				"prod": ""
 			}
 		}

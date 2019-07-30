@@ -16,7 +16,7 @@ Parameters:
   ShopifyApiHost:
     Description: Shopify hostname
     Type: String
-    Default: freelitemjabadilla.myshopify.com
+    Default: freedev1.myshopify.com
   ShopifyApiVersion:
     Description: Shopify API version
     Type: String
@@ -68,7 +68,7 @@ Resources:
   NoteStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-triggers/9bcbf16fa12a7aceab0eac1344b14618
+      CodeUri: s3://pahina-shopify-triggers/38a48f9ba88160403037e7036938cdab
       Handler: pahina-shopify-triggers/note-stream/app.handler
       MemorySize: 256
       Timeout: 240
@@ -233,7 +233,7 @@ Resources:
   UserStreamFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://pahina-shopify-triggers/4211fc040130e221c17c529bbb032e86
+      CodeUri: s3://pahina-shopify-triggers/74d01d85a09eadc45aecf933af2f2fa8
       Handler: pahina-shopify-triggers/user-stream/app.handler
       Environment:
         Variables:

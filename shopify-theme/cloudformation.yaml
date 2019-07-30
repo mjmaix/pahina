@@ -5,7 +5,7 @@ Parameters:
   ShopifyHost:
     Description: 'Shopify hostname'
     Type: String
-    Default: 'freelitemjabadilla.myshopify.com'
+    Default: 'freedev1.myshopify.com'
   EnvType:
     Description: Environment for this function
     Type: String

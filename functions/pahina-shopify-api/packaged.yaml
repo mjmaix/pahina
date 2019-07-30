@@ -26,7 +26,7 @@ Parameters:
   ShopifyApiHost:
     Description: Shopify hostname
     Type: String
-    Default: freelitemjabadilla.myshopify.com
+    Default: freedev1.myshopify.com
   ShopifyApiVersion:
     Description: Shopify API version
     Type: String
@@ -199,7 +199,7 @@ Resources:
         - ${FunctionName}-Address-${env}
         - env:
             Ref: EnvType
-      CodeUri: s3://pahina-shopify-api/9d7d1c8102889c0f1141709a7e601933
+      CodeUri: s3://pahina-shopify-api/f92969d56bb648c0e021f0ae21bb9a46
       Handler: pahina-shopify-api/shopify-address-lambda/app.lambdaHandler
       Role:
         Fn::GetAtt:
