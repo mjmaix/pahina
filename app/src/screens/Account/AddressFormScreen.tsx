@@ -1,4 +1,11 @@
 import React, { Component, Fragment } from 'react';
+import { View } from 'react-native';
+import { NavigationScreenProps } from 'react-navigation';
+import { ThemedComponentProps } from 'styled-components';
+import { withTheme } from 'styled-components';
+import { IconProps } from 'react-native-elements';
+import { Formik, FormikActions } from 'formik';
+
 import {
   StyledScreenContainer,
   StyledScrollView,
@@ -13,15 +20,10 @@ import {
   IconCollection,
   containerStyles,
 } from '../../components';
-import { AddressModel, AddressSchema } from '../../shared';
-import { Formik, FormikActions } from 'formik';
-import { alertFail, alertOk, NavigationService } from '../../utils';
+import { AddressModel, AddressSchema, logError } from '../../shared';
+import { alertFail, alertOk, NavigationService, Busy } from '../../utils';
 import { StyleGuide } from '../../themes';
-import { View, Alert } from 'react-native';
-import { NavigationScreenProps } from 'react-navigation';
-import { ThemedComponentProps } from 'styled-components';
-import { withTheme } from 'styled-components';
-import { IconProps } from 'react-native-elements';
+import { ShopifyRestApi } from '../../shared/ShopifyRestApi';
 
 type FormModel = typeof AddressModel;
 
@@ -92,9 +94,19 @@ class AddressFormScreen extends Component<Props, State> {
                   <StyledTextInput
                     label="House Number, Building, and Street"
                     textContentType="streetAddressLine1"
-                    placeholder="46 Brgy. Del Monte, Osmeña St."
+                    placeholder="46 Osmeña St."
                     multiline
                     numberOfLines={3}
+                  />
+                </FormikInputInjector>
+              </StyledFormRow>
+
+              <StyledFormRow>
+                <FormikInputInjector dataKey="address2" formProps={fProps}>
+                  <StyledTextInput
+                    label="Barangay"
+                    textContentType="streetAddressLine2"
+                    placeholder="Brgy. Del Monte"
                   />
                 </FormikInputInjector>
               </StyledFormRow>
@@ -153,12 +165,17 @@ class AddressFormScreen extends Component<Props, State> {
   ) => {
     const oldAttrs = this.state.form;
     const newAttrs = form;
+    const newForm: FormModel = { ...form };
+    const addMode = !newForm.id;
 
     try {
-      const newForm: FormModel = { ...form };
+      actions.setSubmitting(true);
+      if (addMode) {
+        await ShopifyRestApi.createAddress(newForm);
+      } else {
+        await ShopifyRestApi.updateAddress(newForm);
+      }
 
-      // await handleSaveNewAddress(newForm);
-      Alert.alert('not yet implemented');
       alertOk(() => null);
     } catch (err) {
       actions.setFieldError('form', err.message);
@@ -166,6 +183,30 @@ class AddressFormScreen extends Component<Props, State> {
     } finally {
       actions.setSubmitting(false);
       NavigationService.navigate('Addresses');
+    }
+  };
+
+  private onMakeDefault = async <T extends FormModel>(form: T) => {
+    try {
+      Busy.start();
+      await ShopifyRestApi.makeDefaultAddress(form);
+    } catch (err) {
+      logError(' ShopifyRestApi.makeDefaultAddress', err);
+    } finally {
+      NavigationService.navigate('Addresses');
+      Busy.stop();
+    }
+  };
+
+  private onDelete = async <T extends FormModel>(form: T) => {
+    try {
+      Busy.start();
+      await ShopifyRestApi.deleteAddress(form);
+    } catch (err) {
+      logError(' ShopifyRestApi.deleteAddress', err);
+    } finally {
+      NavigationService.navigate('Addresses');
+      Busy.stop();
     }
   };
 
@@ -190,7 +231,7 @@ class AddressFormScreen extends Component<Props, State> {
                 ? 'Default billing address'
                 : 'Make default billing address'
             }
-            onPress={() => Alert.alert('not yet implemented')}
+            onPress={() => this.onMakeDefault(form)}
             type="outline"
             disabled={addMode || currentDefault}
             icon={defaultIcon}
@@ -203,7 +244,7 @@ class AddressFormScreen extends Component<Props, State> {
                 ? 'Cannot delete default address'
                 : 'Delete address'
             }
-            onPress={() => Alert.alert('not yet implemented')}
+            onPress={() => this.onDelete(form)}
             type="clear"
             disabled={addMode || currentDefault}
           />

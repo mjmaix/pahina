@@ -12,6 +12,8 @@ import {
   DefaultTheme,
 } from 'styled-components';
 
+import { Provider as UnstatedProvider } from 'unstated';
+
 import { ShopifyRestApi } from './shared/ShopifyRestApi';
 import { STORAGE_KEY, ThemeName, ThemeHelper } from './themes';
 import { NavigationService } from './utils';
@@ -75,22 +77,24 @@ export default class App extends Component<{}, AppState> {
     }
 
     return (
-      <ScThemeProvider theme={(theme as unknown) as DefaultTheme}>
-        <RneThemeProvider theme={theme}>
-          <ConfigProvider value={{ data: config, isReady: !!config }}>
-            <AppRoutes
-              screenProps={{
-                theme: this.state.theme,
-              }}
-              ref={navigatorRef => {
-                if (navigatorRef) {
-                  NavigationService.setTopLevelNavigator(navigatorRef);
-                }
-              }}
-            />
-          </ConfigProvider>
-        </RneThemeProvider>
-      </ScThemeProvider>
+      <UnstatedProvider>
+        <ScThemeProvider theme={(theme as unknown) as DefaultTheme}>
+          <RneThemeProvider theme={theme}>
+            <ConfigProvider value={{ data: config, isReady: !!config }}>
+              <AppRoutes
+                screenProps={{
+                  theme: this.state.theme,
+                }}
+                ref={navigatorRef => {
+                  if (navigatorRef) {
+                    NavigationService.setTopLevelNavigator(navigatorRef);
+                  }
+                }}
+              />
+            </ConfigProvider>
+          </RneThemeProvider>
+        </ScThemeProvider>
+      </UnstatedProvider>
     );
   }
 

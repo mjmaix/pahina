@@ -1,4 +1,5 @@
 import { Intersection } from 'utility-types/dist/mapped-types';
+import { ShopifyRestAddress } from '../types';
 
 /* eslint-disable no-use-before-define */
 type Fields =
@@ -99,7 +100,7 @@ export const VerifyContactModel = {
   phone_number: '',
 };
 
-export const AddressModel = {
+export const AddressModel: ShopifyRestAddress = {
   id: '',
   address1: '',
   address2: '',

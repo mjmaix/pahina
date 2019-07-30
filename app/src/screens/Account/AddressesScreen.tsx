@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import _ from 'lodash';
+import { Subscribe } from 'unstated';
 import {
   StyledListItem,
   ListItemExentendProps,
@@ -7,49 +8,56 @@ import {
   BillingAddress,
 } from '../../components';
 import { StyleGuide } from '../../themes';
-import { NavigationService } from '../../utils';
-import { withTheme, ThemedComponentProps } from 'styled-components';
-import sampleData from '../../api-helpers/sampleaddresses.json';
 import { ListRenderItem, FlatList } from 'react-native';
+import { withTheme, ThemedComponentProps } from 'styled-components';
+import { NavigationService } from '../../utils';
 import { ShopifyRestAddress } from '../../types';
-import { getShopifyAddresses } from '../../shared/actions/shopifyApiRestMethods';
-
-type Props = ThemedComponentProps;
-interface State {}
+import { AddressesContainer } from '../../unstated';
 
 type Address = ShopifyRestAddress;
+type Props = ThemedComponentProps;
+interface State {
+  addresses: ShopifyRestAddress[];
+}
 
 class AddressesScreen extends Component<Props, State> {
-  public async componentDidMount() {
-    try {
-      const addresses = await getShopifyAddresses();
-      console.log('addresses', JSON.stringify(addresses, undefined, 2));
-    } catch (err) {
-      console.log('ERR addresses', JSON.stringify(err, undefined, 2));
-    }
+  public addressesContainer: AddressesContainer;
+  constructor(props: Props) {
+    super(props);
+    this.addressesContainer = new AddressesContainer({});
+  }
+
+  public componentDidMount() {
+    this.addressesContainer.fetchData();
   }
   public render() {
-    const sortedAddresses = _.orderBy(
-      sampleData.addresses,
-      ['default', 'id'],
-      ['desc', 'desc'],
-    );
-
     return (
-      <Fragment>
-        <StyledButton
-          label={'Add address'}
-          onPress={() => NavigationService.navigate('Address')}
-          style={{
-            margin: StyleGuide.gap.big,
-          }}
-        />
-        <FlatList<Address>
-          keyExtractor={(item: Address, i: number) => (item.id || i).toString()}
-          data={sortedAddresses}
-          renderItem={this.renderItem}
-        />
-      </Fragment>
+      <Subscribe to={[this.addressesContainer]}>
+        {addCntr => {
+          const { isReady, addresses } = addCntr.state;
+          return (
+            <Fragment>
+              <StyledButton
+                label={'Add billing address'}
+                onPress={() => NavigationService.navigate('Address')}
+                style={{
+                  margin: StyleGuide.gap.big,
+                }}
+              />
+              {isReady && !_.isEmpty(addresses) && (
+                <FlatList<Address>
+                  keyExtractor={(item: Address, i: number) =>
+                    (item.id || i).toString()
+                  }
+                  data={addresses}
+                  renderItem={this.renderItem}
+                />
+              )}
+              {isReady && _.isEmpty(addresses) && null}
+            </Fragment>
+          );
+        }}
+      </Subscribe>
     );
   }
 
