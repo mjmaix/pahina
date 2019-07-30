@@ -59,7 +59,7 @@
 			"providerPlugin": "awscloudformation",
 			"build": true
 		},
-		"configfunction": {
+		"pahinaconfigfunction": {
 			"service": "Lambda",
 			"providerPlugin": "awscloudformation",
 			"build": true

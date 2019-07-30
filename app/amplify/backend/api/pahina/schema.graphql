@@ -311,7 +311,7 @@ type Subscription {
 }
 
 type Query {
-  getConfig: Config @function(name: "configfunction-${env}")
+  getConfig: Config @function(name: "pahinaconfigfunction-${env}")
   getShopifyCustomer(id: ID!): ShopifyCustomer
     @function(name: "pahinaqueryshopifycustomerfunction-${env}") #FIXME: add owner verification
 }

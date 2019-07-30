@@ -39,12 +39,12 @@
 				"FunctionName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"configfunction",
+						"pahinaconfigfunction",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"configfunction",
+									"pahinaconfigfunction",
 									"-",
 									{
 										"Ref": "env"
@@ -83,7 +83,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "pahina-dev-20190629201236-deployment",
-					"S3Key": "amplify-builds/configfunction-3153662f33636d77416f-build.zip"
+					"S3Key": "amplify-builds/pahinaconfigfunction-3153662f33636d77416f-build.zip"
 				}
 			}
 		},
@@ -93,12 +93,12 @@
 				"RoleName": {
 					"Fn::If": [
 						"ShouldNotCreateEnvResources",
-						"pahinaLambdaRolefc28c267",
+						"pahinaLambdaRole4b9bf2a5",
 						{
 							"Fn::Join": [
 								"",
 								[
-									"pahinaLambdaRolefc28c267",
+									"pahinaLambdaRole4b9bf2a5",
 									"-",
 									{
 										"Ref": "env"
