@@ -13,26 +13,24 @@ import { withTheme, ThemedComponentProps } from 'styled-components';
 import { NavigationService } from '../../utils';
 import { ShopifyRestAddress } from '../../types';
 import { AddressesContainer } from '../../unstated';
+import { NavigationScreenProps } from 'react-navigation';
 
 type Address = ShopifyRestAddress;
-type Props = ThemedComponentProps;
+type Props = ThemedComponentProps & NavigationScreenProps;
 interface State {
   addresses: ShopifyRestAddress[];
 }
 
-class AddressesScreen extends Component<Props, State> {
-  public addressesContainer: AddressesContainer;
-  constructor(props: Props) {
-    super(props);
-    this.addressesContainer = new AddressesContainer({});
-  }
+const addressesContainer = new AddressesContainer({ preload: false });
 
+class AddressesScreen extends Component<Props, State> {
   public componentDidMount() {
-    this.addressesContainer.fetchData();
+    const { navigation } = this.props;
+    navigation.addListener('didFocus', () => addressesContainer.fetchData());
   }
   public render() {
     return (
-      <Subscribe to={[this.addressesContainer]}>
+      <Subscribe to={[addressesContainer]}>
         {addCntr => {
           const { isReady, addresses } = addCntr.state;
           return (
@@ -44,16 +42,17 @@ class AddressesScreen extends Component<Props, State> {
                   margin: StyleGuide.gap.big,
                 }}
               />
-              {isReady && !_.isEmpty(addresses) && (
-                <FlatList<Address>
-                  keyExtractor={(item: Address, i: number) =>
-                    (item.id || i).toString()
-                  }
-                  data={addresses}
-                  renderItem={this.renderItem}
-                />
-              )}
-              {isReady && _.isEmpty(addresses) && null}
+              <FlatList<Address>
+                keyExtractor={(item: Address, i: number) =>
+                  (item.id || i).toString()
+                }
+                data={addresses}
+                renderItem={this.renderItem}
+                refreshing={!isReady}
+                onRefresh={() => {
+                  addressesContainer.fetchData();
+                }}
+              />
             </Fragment>
           );
         }}

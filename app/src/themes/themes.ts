@@ -4,6 +4,8 @@ import {
   Theme as RneTheme,
   colors,
 } from 'react-native-elements';
+import { StyleGuide } from './StyleGuide';
+import { ViewStyle, StyleProp, TextStyle } from 'react-native';
 
 export const DEFAULT_THEME: ThemeName = 'LIGHT BRILLIANT PINK';
 
@@ -28,7 +30,22 @@ export interface Theme extends RneTheme {
   } & Partial<RneColors>;
   activeTintColor: Color;
   inactiveTintColor: Color;
+  TextInput: {
+    containerStyle: StyleProp<ViewStyle>;
+    inputStyle: StyleProp<TextStyle>;
+  };
 }
+
+const Common = {
+  TextInput: {
+    containerStyle: { paddingHorizontal: StyleGuide.gap.big },
+    inputStyle: {
+      fontSize: 18,
+      minHeight: 40,
+      flex: 1,
+    },
+  },
+};
 
 export type ThemeName =
   | 'LIGHT BRILLIANT PINK'
@@ -40,6 +57,7 @@ export type ThemeName =
 
 export const themes: Theme[] = [
   {
+    ...Common,
     id: 'LIGHT BRILLIANT PINK',
     colors: {
       ...colors,
@@ -63,6 +81,7 @@ export const themes: Theme[] = [
     inactiveTintColor: '#455a64',
   },
   {
+    ...Common,
     id: 'CYAN BLUE',
     colors: {
       ...colors,

@@ -17,32 +17,39 @@ const initialState = {
   addresses: [],
 };
 
-interface Props {}
+interface Props {
+  preload?: boolean;
+}
 
 class AddressesContainer extends Container<AddressesState> {
   public state: AddressesState = initialState;
   constructor(props: Props) {
     super();
-    this.fetchData();
+    if (props.preload) {
+      this.fetchData();
+    }
   }
 
   public fetchData = async () => {
+    let newState: AddressesState = { isReady: true };
     try {
-      const response = await ShopifyRestApi.getAddresses();
-      const body = await response.json();
-      console.log('addresses', JSON.stringify(response, undefined, 2));
-      if (body && body.addresses) {
-        const adds = body.addresses;
+      await this.setState({ isReady: false }, async () => {
+        const response = await ShopifyRestApi.getAddresses();
+        const body = await response.json();
+        if (body && body.addresses) {
+          const adds = body.addresses;
+          const ordered = _.orderBy(adds, ['default', 'id'], ['desc', 'desc']);
 
-        const ordered = _.orderBy(adds, ['default', 'id'], ['desc', 'desc']);
-
-        this.setState({ addresses: ordered });
-      }
+          newState = { ...newState, addresses: ordered };
+        }
+      });
     } catch (err) {
       logError(
         'ShopifyRestApi.getAddresses',
         JSON.stringify(err, undefined, 2),
       );
+    } finally {
+      this.setState(newState);
     }
   };
 }

@@ -5,6 +5,9 @@ import { ThemedComponentProps } from 'styled-components';
 import { withTheme } from 'styled-components';
 import { IconProps } from 'react-native-elements';
 import { Formik, FormikActions } from 'formik';
+import countryList from 'country-list';
+import _ from 'lodash';
+import RNPickerSelect from 'react-native-picker-select';
 
 import {
   StyledScreenContainer,
@@ -27,10 +30,21 @@ import { ShopifyRestApi } from '../../shared/ShopifyRestApi';
 
 type FormModel = typeof AddressModel;
 
-const InitialState = { form: AddressModel };
+const InitialState = {
+  form: {
+    ...AddressModel,
+    country: 'Philippines',
+  },
+};
 
 type Props = NavigationScreenProps & ThemedComponentProps;
 type State = typeof InitialState;
+
+const countries = _.map(countryList.getNames(), c => ({
+  label: c,
+  value: c,
+  key: c,
+}));
 
 class AddressFormScreen extends Component<Props, State> {
   public readonly state = InitialState;
@@ -54,6 +68,7 @@ class AddressFormScreen extends Component<Props, State> {
   }
 
   private renderForm = () => {
+    const { theme } = this.props;
     return (
       <Formik<FormModel>
         enableReinitialize
@@ -142,6 +157,34 @@ class AddressFormScreen extends Component<Props, State> {
               </StyledFormRow>
 
               <StyledFormRow>
+                <StyledTextInput
+                  label="Country"
+                  style={theme.TextInput.containerStyle}
+                  inputComponent={
+                    // tslint:disable-next-line max-classes-per-file
+                    class extends Component {
+                      // needed forward ref
+                      public render() {
+                        return (
+                          <RNPickerSelect
+                            textInputProps={{
+                              style: theme.TextInput.inputStyle,
+                            }}
+                            placeholder={{ label: 'Select country' }}
+                            onValueChange={value =>
+                              fProps.setFieldValue('country', value)
+                            }
+                            items={countries}
+                            value={fProps.values.country}
+                          />
+                        );
+                      }
+                    }
+                  }
+                />
+              </StyledFormRow>
+
+              <StyledFormRow>
                 <MemoFormikFormErrorText {...fProps} />
               </StyledFormRow>
 
@@ -163,8 +206,8 @@ class AddressFormScreen extends Component<Props, State> {
     form: T,
     actions: FormikActions<T>,
   ) => {
-    const oldAttrs = this.state.form;
-    const newAttrs = form;
+    // const oldAttrs = this.state.form;
+    // const newAttrs = form;
     const newForm: FormModel = { ...form };
     const addMode = !newForm.id;
 
