@@ -9,6 +9,7 @@ import {
   StyledBoldText,
   StyledScreenContainer,
   ThemeListItem,
+  containerStyles,
 } from '../../components';
 
 const saveThemeId = (item: Theme) => {
@@ -38,7 +39,7 @@ const SelectThemeScreen = (
   };
 
   return (
-    <StyledScreenContainer>
+    <StyledScreenContainer style={containerStyles.white}>
       <FlatList<Theme>
         keyExtractor={d => `${d.id}`}
         style={styles.flatListContainer}

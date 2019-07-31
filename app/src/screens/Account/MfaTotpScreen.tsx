@@ -5,7 +5,12 @@ import { ActivityIndicator, Dimensions, Linking, Platform } from 'react-native';
 import { Image } from 'react-native-elements';
 import QRCode from 'react-native-qrcode-svg';
 
-import { CodeInput, Header, formStyles } from '../../components';
+import {
+  CodeInput,
+  Header,
+  formStyles,
+  containerStyles,
+} from '../../components';
 import {
   FormikInputInjector,
   MemoFormikFormErrorText,
@@ -78,7 +83,7 @@ export const MfaTotpScreen = (props: MfaTotpProps) => {
   const urlLink = generateTotpLink(userAttrs.email, code, BRAND_NAME);
 
   return (
-    <StyledScreenContainer>
+    <StyledScreenContainer style={containerStyles.white}>
       <Header
         title={'Complete app MFA setup'}
         message={`${Platform.select({

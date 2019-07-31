@@ -2,7 +2,7 @@ import { Formik, FormikActions } from 'formik';
 import React, { Component } from 'react';
 import { NavigationScreenProps } from 'react-navigation';
 
-import { PasswordInput } from '../../components';
+import { PasswordInput, containerStyles } from '../../components';
 import {
   FormikInputInjector,
   StyledButton,
@@ -27,7 +27,7 @@ type Model = typeof PasswordChangeModel;
 class PasswordChangeScreen extends Component<Props> {
   public render() {
     return (
-      <StyledScreenContainer>
+      <StyledScreenContainer style={containerStyles.white}>
         <Formik
           initialValues={PasswordChangeModel}
           validationSchema={PasswordChangeSchema}

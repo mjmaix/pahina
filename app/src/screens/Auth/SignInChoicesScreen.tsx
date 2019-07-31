@@ -12,6 +12,7 @@ import {
   StyledScreenContainer,
   StyledView,
   BrandHeader,
+  containerStyles,
 } from '../../components';
 import { NavigationService } from '../../utils';
 
@@ -19,7 +20,6 @@ type Props = NavigationScreenProps & ThemedComponentProps;
 
 class SignInChoicesScreen extends Component<Props> {
   public render() {
-    const { theme } = this.props;
     return (
       <ImageBackground
         source={Image.resolveAssetSource(BannerImage)}
@@ -28,7 +28,7 @@ class SignInChoicesScreen extends Component<Props> {
           flex: 1,
         }}
       >
-        <StyledScreenContainer>
+        <StyledScreenContainer style={containerStyles.transparent}>
           <StyledFormOverImageContainer>
             <BrandHeader />
             <StyledFormContainer

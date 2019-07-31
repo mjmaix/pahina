@@ -25,6 +25,7 @@ import {
   StyledScrollView,
   StyledTextInput,
   StyledView,
+  containerStyles,
 } from '../../components';
 import {
   AsyncImagePicker,
@@ -262,9 +263,12 @@ class ProfileScreen extends Component<Props, typeof InitialState> {
     return (
       <StyledScrollView>
         <StyledScreenContainer
-          style={{
-            justifyContent: 'space-between',
-          }}
+          style={[
+            {
+              justifyContent: 'space-between',
+            },
+            containerStyles.white,
+          ]}
         >
           {this.renderForm()}
         </StyledScreenContainer>

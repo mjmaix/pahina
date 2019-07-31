@@ -1,11 +1,13 @@
 import _ from 'lodash';
 
 import { ConfigStoreInfo } from '../stores/';
-import { ShopifyGraphQlVariant } from '../types';
+import { ShopifyGraphQlVariant, ShopifyRestAddress } from '../types';
 
 export const getCartLink = (
   config: ConfigStoreInfo,
   variant?: ShopifyGraphQlVariant,
+  billingAddress?: ShopifyRestAddress,
+  email?: string,
   quantity: number = 1,
 ) => {
   let link = '';
@@ -20,8 +22,31 @@ export const getCartLink = (
         id = strippedId;
       }
     }
-    link = `https://${shopifyHost}/cart/${id}:${quantity}`;
+    link = `https://${shopifyHost}/cart/${id}:${quantity}?1=1`;
   }
 
-  return link;
+  if (billingAddress) {
+    const {
+      first_name,
+      last_name,
+      address1,
+      address2,
+      city,
+      zip,
+      country,
+    } = billingAddress;
+
+    link += `&checkout[billing_address][first_name]=${first_name}`;
+    link += `&checkout[billing_address][last_name]=${last_name}`;
+    link += `&checkout[billing_address][address1]=${address1}`;
+    link += `&checkout[billing_address][address2]=${address2}`;
+    link += `&checkout[billing_address][city]=${city}`;
+    link += `&checkout[billing_address][zip]=${zip}`;
+    link += `&checkout[billing_address][country]=${country}`;
+  }
+  if (email) {
+    link += `&checkout[email]=${email}`;
+  }
+
+  return encodeURI(link);
 };

@@ -43,6 +43,7 @@ class AddressesContainer extends Container<AddressesState> {
           newState = { ...newState, addresses: ordered };
         }
       });
+      return this.state.addresses;
     } catch (err) {
       logError(
         'ShopifyRestApi.getAddresses',
@@ -51,6 +52,7 @@ class AddressesContainer extends Container<AddressesState> {
     } finally {
       this.setState(newState);
     }
+    return null;
   };
 }
 const instance = new AddressesContainer({});

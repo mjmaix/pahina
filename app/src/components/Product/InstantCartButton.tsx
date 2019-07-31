@@ -1,69 +1,114 @@
 import React from 'react';
 import * as WebBrowser from 'expo-web-browser';
-import { Subscribe } from 'unstated';
 import _ from 'lodash';
 
-import { ShopifyGraphQlVariant } from '../../types';
+import { ShopifyGraphQlVariant, ShopifyRestAddress } from '../../types';
 import { getCartLink } from '../../api-helpers/productHelpers';
-import { ConfigConsumer } from '../../stores';
+import { ConfigConsumer, ConfigStoreInfo } from '../../stores';
 import { containerStyles } from '../commonStyles';
 import { StyleGuide } from '../../themes';
 import { StyledButton } from '../Styled';
 import { AddressesContainerInstance } from '../../unstated';
-import { NavigationService, alertConfirm } from '../../utils';
+import { NavigationService, alertConfirm, Busy } from '../../utils';
+import { handleGetCurrentUserAttrs, logError, pretty } from '../../shared';
+import { withTheme, ThemedComponentProps } from 'styled-components';
 
-interface Props {
+interface OpenBrowserParams {
+  toolbarColor?: string;
+  browserPackage?: string;
+  enableBarCollapsing?: boolean;
+  showTitle?: boolean;
+}
+
+interface Props extends ThemedComponentProps {
   data?: ShopifyGraphQlVariant;
 }
 
-export const InstantCartButton = ({ data }: Props) => (
-  <Subscribe to={[AddressesContainerInstance]}>
-    {addsCntr => {
-      const { addresses } = addsCntr.state;
-      return (
-        <ConfigConsumer>
-          {config => {
-            const instantCartLink = getCartLink(config, data);
+const InstantCartButton = ({ data, theme }: Props) => {
+  const label = !data ? 'Select a variant' : 'Buy now to read';
+  const browserParams = {
+    toolbarColor: theme.colors.primary,
+    collapseToolbar: true,
+  };
+  return (
+    <ConfigConsumer>
+      {config => {
+        return (
+          <StyledButton
+            disabled={!data}
+            label={label}
+            onPress={onPressEvent(config, data, browserParams)}
+            containerStyle={[
+              containerStyles.fullWidth,
+              {
+                padding: StyleGuide.gap.big,
+              },
+            ]}
+          />
+        );
+      }}
+    </ConfigConsumer>
+  );
+};
 
-            const defaultBilling = _.find(addresses, a => a.default);
-            const label = !data ? 'Select a variant' : 'Buy now to read';
-            let buttonAction: () => void | Promise<any> = () =>
-              WebBrowser.openBrowserAsync(instantCartLink);
+const ThemedInstantCartButton = withTheme(InstantCartButton);
 
-            if (_.isEmpty(defaultBilling)) {
-              buttonAction = onEmptyBillingAddress;
-            }
+export { ThemedInstantCartButton as InstantCartButton };
 
-            return (
-              <StyledButton
-                disabled={!data}
-                label={label}
-                onPress={buttonAction}
-                containerStyle={[
-                  containerStyles.fullWidth,
-                  {
-                    padding: StyleGuide.gap.big,
-                  },
-                ]}
-              />
-            );
-          }}
-        </ConfigConsumer>
-      );
-    }}
-  </Subscribe>
-);
+const onPressEvent = (
+  config: ConfigStoreInfo,
+  data?: ShopifyGraphQlVariant,
+  browserOpts?: OpenBrowserParams,
+) => async () => {
+  try {
+    Busy.start();
+
+    await AddressesContainerInstance.fetchData();
+    const userAttrs = await handleGetCurrentUserAttrs();
+
+    const { addresses } = AddressesContainerInstance.state;
+    const defaultBilling = _.first(_.filter(addresses, 'default')) as
+      | ShopifyRestAddress
+      | undefined;
+
+    if (_.isEmpty(defaultBilling) || _.isEmpty(addresses)) {
+      return void onEmptyBillingAddress();
+    }
+
+    if (!userAttrs.email_verified) {
+      return void onUnverifiedEmail();
+    }
+
+    // proceed
+    const instantCartLink = getCartLink(
+      config,
+      data,
+      defaultBilling,
+      userAttrs.email,
+    );
+
+    return void WebBrowser.openBrowserAsync(instantCartLink, browserOpts);
+  } catch (err) {
+    logError('InstantCartButton.onPressEvent', pretty(err));
+  } finally {
+    Busy.stop();
+  }
+  return;
+};
 
 const onEmptyBillingAddress = () =>
-  alertConfirm(
-    () => {
-      NavigationService.navigate('Address');
-    },
-    {
-      title: 'Billing information required',
-      message:
-        'You will be redirected to create a default billing address. You can purchase this item afterwards.',
-      okText: 'Proceed',
-      cancelText: 'Go back',
-    },
-  );
+  alertConfirm(() => NavigationService.navigate('Address'), {
+    title: 'Billing information required',
+    message:
+      'You will be redirected to create a default billing address. You can purchase this item afterwards.',
+    okText: 'Proceed',
+    cancelText: 'Go back',
+  });
+
+const onUnverifiedEmail = () => {
+  alertConfirm(() => NavigationService.navigate('VerifyContact'), {
+    title: 'Account not yet verified',
+    message:
+      'Please verify your registered email first. Purchases will be bound the note to your account.',
+  });
+};

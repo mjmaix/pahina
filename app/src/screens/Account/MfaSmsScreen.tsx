@@ -11,6 +11,7 @@ import {
   StyledFormRow,
   StyledScreenContainer,
   StyledTextInput,
+  containerStyles,
 } from '../../components';
 import { Busy, NavigationService, alertFail, alertOk } from '../../utils';
 import {
@@ -55,7 +56,7 @@ export const MfaSmsScreen = (props: MfaSmsProps) => {
   }, []);
 
   return (
-    <StyledScreenContainer>
+    <StyledScreenContainer style={containerStyles.white}>
       <Header
         title={'Complete SMS MFA setup'}
         message={`We sent a verification code to your verified mobile number.`}
