@@ -3,6 +3,8 @@ import { Alert } from 'react-native';
 interface AlertOptions {
   title?: string;
   message?: string;
+  okText?: string;
+  cancelText?: string;
   cancelable?: boolean;
 }
 
@@ -31,11 +33,11 @@ export const alertConfirm = (cb: () => void, opts: AlertOptions = {}) => {
     opts.message,
     [
       {
-        text: 'Yes',
+        text: opts.okText || 'Yes',
         onPress: cb,
       },
       {
-        text: 'No',
+        text: opts.cancelText || 'No',
         style: 'cancel',
       },
     ],

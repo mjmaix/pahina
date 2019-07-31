@@ -1,4 +1,5 @@
 import './init';
+
 import React, { Component } from 'react';
 import { ActivityIndicator } from 'react-native';
 import { Hub, Cache } from 'aws-amplify';
@@ -12,6 +13,8 @@ import {
   DefaultTheme,
 } from 'styled-components';
 
+import _ from 'lodash';
+
 import { Provider as UnstatedProvider } from 'unstated';
 
 import { ShopifyRestApi } from './shared/ShopifyRestApi';
@@ -21,6 +24,7 @@ import { logInfo, logError, Config } from './shared';
 import { handleGetConfig } from './shared/actions/functionActions';
 import { ConfigProvider } from './stores/contexts/ConfigStore';
 import { AppRoutes } from './screens/routes';
+import { AddressesContainerInstance } from './unstated';
 
 interface AppState {
   theme?: Theme;
@@ -60,6 +64,10 @@ export default class App extends Component<{}, AppState> {
     logInfo('[START]', 'authListener');
     switch (data.payload.event) {
       case 'signIn':
+        // NOTE: Reset containers/cache
+        if (!_.isEmpty(AddressesContainerInstance.state.addresses)) {
+          AddressesContainerInstance.fetchData();
+        }
         break;
       case 'signOut':
         break;

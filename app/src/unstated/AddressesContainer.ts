@@ -23,9 +23,9 @@ interface Props {
 
 class AddressesContainer extends Container<AddressesState> {
   public state: AddressesState = initialState;
-  constructor(props: Props) {
+  constructor(props?: Props) {
     super();
-    if (props.preload) {
+    if (props && props.preload) {
       this.fetchData();
     }
   }
@@ -53,5 +53,6 @@ class AddressesContainer extends Container<AddressesState> {
     }
   };
 }
+const instance = new AddressesContainer({});
 
-export { AddressesContainer };
+export { AddressesContainer, instance as AddressesContainerInstance };

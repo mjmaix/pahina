@@ -12,7 +12,7 @@ import { ListRenderItem, FlatList } from 'react-native';
 import { withTheme, ThemedComponentProps } from 'styled-components';
 import { NavigationService } from '../../utils';
 import { ShopifyRestAddress } from '../../types';
-import { AddressesContainer } from '../../unstated';
+import { AddressesContainerInstance } from '../../unstated';
 import { NavigationScreenProps } from 'react-navigation';
 
 type Address = ShopifyRestAddress;
@@ -21,7 +21,7 @@ interface State {
   addresses: ShopifyRestAddress[];
 }
 
-const addressesContainer = new AddressesContainer({ preload: false });
+const addressesContainer = AddressesContainerInstance;
 
 class AddressesScreen extends Component<Props, State> {
   public componentDidMount() {

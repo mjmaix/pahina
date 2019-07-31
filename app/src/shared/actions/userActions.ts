@@ -41,6 +41,7 @@ export const handleGetAppSyncUser = async (
         id: username,
         notesNextToken,
       },
+      fetchPolicy: 'no-cache',
     });
 
     return response.data;
