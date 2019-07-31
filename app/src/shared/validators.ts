@@ -137,9 +137,9 @@ export const CompleteRegistrationSchema = (
 export const AddressSchema = Yup.object().shape({
   id: Yup.string(),
   address1: Yup.string()
-    .label('Address line 1')
+    .label('House Number, Building, and Street')
     .required(),
-  address2: Yup.string().label('Address line 2'),
+  address2: Yup.string().label('Barangay'),
   city: Yup.string()
     .label('City')
     .required(),

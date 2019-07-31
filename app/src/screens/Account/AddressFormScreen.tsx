@@ -23,10 +23,11 @@ import {
   IconCollection,
   containerStyles,
 } from '../../components';
-import { AddressModel, AddressSchema, logError } from '../../shared';
+import { AddressModel, AddressSchema, logError, logInfo } from '../../shared';
 import { alertFail, alertOk, NavigationService, Busy } from '../../utils';
 import { StyleGuide } from '../../themes';
 import { ShopifyRestApi } from '../../shared/ShopifyRestApi';
+import { pretty } from '../../shared/utils';
 
 type FormModel = typeof AddressModel;
 
@@ -100,6 +101,16 @@ class AddressFormScreen extends Component<Props, State> {
                     label="Family name"
                     textContentType="familyName"
                     placeholder="dela Cruz"
+                  />
+                </FormikInputInjector>
+              </StyledFormRow>
+
+              <StyledFormRow>
+                <FormikInputInjector dataKey="phone" formProps={fProps}>
+                  <StyledTextInput
+                    label="Phone"
+                    textContentType="telephoneNumber"
+                    placeholder="+639xxxxxxxxx"
                   />
                 </FormikInputInjector>
               </StyledFormRow>
@@ -213,11 +224,15 @@ class AddressFormScreen extends Component<Props, State> {
 
     try {
       actions.setSubmitting(true);
+      let response;
       if (addMode) {
-        await ShopifyRestApi.createAddress(newForm);
+        response = await ShopifyRestApi.createAddress(newForm);
       } else {
-        await ShopifyRestApi.updateAddress(newForm);
+        response = await ShopifyRestApi.updateAddress(newForm);
       }
+
+      const body = await response.json();
+      logInfo('onSave body', pretty(body));
 
       alertOk(() => null);
     } catch (err) {
@@ -232,24 +247,27 @@ class AddressFormScreen extends Component<Props, State> {
   private onMakeDefault = async <T extends FormModel>(form: T) => {
     try {
       Busy.start();
-      await ShopifyRestApi.makeDefaultAddress(form);
+      const response = await ShopifyRestApi.makeDefaultAddress(form);
+      const body = await response.json();
+      logInfo('onMakeDefault body', pretty(body));
     } catch (err) {
-      logError(' ShopifyRestApi.makeDefaultAddress', err);
+      logError(' AddressFormScreen.onMakeDefault', err);
     } finally {
       NavigationService.navigate('Addresses');
-      Busy.stop();
     }
   };
 
   private onDelete = async <T extends FormModel>(form: T) => {
     try {
       Busy.start();
-      await ShopifyRestApi.deleteAddress(form);
+      const response = await ShopifyRestApi.deleteAddress(form);
+
+      const body = await response.json();
+      logInfo('onDelete body', pretty(body));
     } catch (err) {
-      logError(' ShopifyRestApi.deleteAddress', err);
+      logError(' AddressFormScreen.onDelete', err);
     } finally {
       NavigationService.navigate('Addresses');
-      Busy.stop();
     }
   };
 

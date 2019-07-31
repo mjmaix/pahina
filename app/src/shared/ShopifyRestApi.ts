@@ -16,7 +16,7 @@ class ShopifyRestApi {
   };
 
   public getAddresses = async () => {
-    const resource = this.url + '/addresses';
+    const resource = this.url + '/addresses/';
 
     const headers = await this.getHeader();
     return fetch(resource, {
@@ -26,18 +26,20 @@ class ShopifyRestApi {
   };
 
   public createAddress = async (form: ShopifyRestAddress) => {
-    const resource = this.url + '/addresses';
+    const resource = this.url + '/addresses/';
 
     const body = {
-      address1: form.address1,
-      address2: form.address2,
-      city: form.city,
-      first_name: form.first_name,
-      last_name: form.last_name,
-      phone: form.phone,
-      province: form.province,
-      country: form.country,
-      zip: form.zip,
+      address: {
+        address1: form.address1,
+        address2: form.address2,
+        city: form.city,
+        first_name: form.first_name,
+        last_name: form.last_name,
+        phone: form.phone,
+        province: form.province,
+        country: form.country,
+        zip: form.zip,
+      },
     };
 
     const headers = await this.getHeader();
@@ -49,30 +51,33 @@ class ShopifyRestApi {
   };
 
   public makeDefaultAddress = async (form: ShopifyRestAddress) => {
-    const resource = this.url + '/addresses' + form.id + '/default';
+    const resource = this.url + '/addresses/' + form.id + '/default';
 
     const headers = await this.getHeader();
 
     return fetch(resource, {
       method: 'PUT',
       headers,
+      body: JSON.stringify({}),
     });
   };
 
   public updateAddress = async (form: ShopifyRestAddress) => {
-    const resource = this.url + '/addresses' + form.id;
+    const resource = this.url + '/addresses/' + form.id;
 
     const body = {
-      id: form.id,
-      address1: form.address1,
-      address2: form.address2,
-      city: form.city,
-      first_name: form.first_name,
-      last_name: form.last_name,
-      phone: form.phone,
-      province: form.province,
-      country: form.country,
-      zip: form.zip,
+      address: {
+        id: form.id,
+        address1: form.address1,
+        address2: form.address2,
+        city: form.city,
+        first_name: form.first_name,
+        last_name: form.last_name,
+        phone: form.phone,
+        province: form.province,
+        country: form.country,
+        zip: form.zip,
+      },
     };
 
     const headers = await this.getHeader();
@@ -83,7 +88,7 @@ class ShopifyRestApi {
     });
   };
   public deleteAddress = async (form: ShopifyRestAddress) => {
-    const resource = this.url + '/addresses' + form.id;
+    const resource = this.url + '/addresses/' + form.id;
 
     const headers = await this.getHeader();
 
