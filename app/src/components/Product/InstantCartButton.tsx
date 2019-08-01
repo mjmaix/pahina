@@ -12,6 +12,7 @@ import { AddressesContainerInstance } from '../../unstated';
 import { NavigationService, alertConfirm, Busy } from '../../utils';
 import { handleGetCurrentUserAttrs, logError, pretty } from '../../shared';
 import { withTheme, ThemedComponentProps } from 'styled-components';
+import { FooterButton } from '../Footers';
 
 interface OpenBrowserParams {
   toolbarColor?: string;
@@ -34,16 +35,18 @@ const InstantCartButton = ({ data, theme }: Props) => {
     <ConfigConsumer>
       {config => {
         return (
-          <StyledButton
-            disabled={!data}
-            label={label}
-            onPress={onPressEvent(config, data, browserParams)}
-            containerStyle={[
-              containerStyles.fullWidth,
-              {
-                padding: StyleGuide.gap.big,
-              },
-            ]}
+          <FooterButton
+            buttonProps={{
+              disabled: !data,
+              title: label + ' ',
+              onPress: onPressEvent(config, data, browserParams),
+            }}
+            // containerStyle={[
+            //   containerStyles.fullWidth,
+            //   {
+            //     padding: StyleGuide.gap.big,
+            //   },
+            // ]}
           />
         );
       }}

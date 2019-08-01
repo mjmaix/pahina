@@ -101,69 +101,77 @@ class ProductDetailScreen extends Component<Props, State> {
     )}`;
 
     return (
-      <StyledScreenContainer>
-        <StyledScrollView style={[containerStyles.fullWidth]}>
-          <SectionContainer>
-            <Title>{data.title}</Title>
-          </SectionContainer>
+      <Fragment>
+        <StyledScreenContainer>
+          <StyledScrollView style={[containerStyles.fullWidth]}>
+            <SectionContainer>
+              <Title>{data.title}</Title>
+            </SectionContainer>
 
-          <Gap />
+            <Gap />
 
-          <SectionContainer>
-            <PriceText product={data} />
-          </SectionContainer>
+            <SectionContainer>
+              <PriceText product={data} />
+            </SectionContainer>
 
-          {notePromotional && (
-            <Fragment>
-              <Gap />
-              <SectionContainer>
-                <InfoHeader>Promotional message</InfoHeader>
-                <InfoItem>{notePromotional.value}</InfoItem>
-              </SectionContainer>
-            </Fragment>
-          )}
+            {notePromotional && (
+              <Fragment>
+                <Gap />
+                <SectionContainer>
+                  <InfoHeader>Promotional message</InfoHeader>
+                  <InfoItem>{notePromotional.value}</InfoItem>
+                </SectionContainer>
+              </Fragment>
+            )}
 
-          <Gap />
+            <Gap />
 
-          <SectionContainer>
-            <InfoHeader>Author information</InfoHeader>
-            <InfoItem>{'\u2022 ' + 'Written by ' + authorName.value}</InfoItem>
-            {updated !== created && <InfoItem>{'\u2022 ' + updated}</InfoItem>}
-            {updated === created && <InfoItem>{'\u2022 ' + created}</InfoItem>}
-          </SectionContainer>
+            <SectionContainer>
+              <InfoHeader>Author information</InfoHeader>
+              <InfoItem>
+                {'\u2022 ' + 'Written by ' + authorName.value}
+              </InfoItem>
+              {updated !== created && (
+                <InfoItem>{'\u2022 ' + updated}</InfoItem>
+              )}
+              {updated === created && (
+                <InfoItem>{'\u2022 ' + created}</InfoItem>
+              )}
+            </SectionContainer>
 
-          <Gap />
+            <Gap />
 
-          <SectionContainer>
-            <ListItem
-              containerStyle={{ padding: 0 }}
-              onPress={() => WebBrowser.openBrowserAsync(caseLink.value)}
-              title="Official link"
-              titleStyle={{ fontSize: 20, fontWeight: '500' }}
-              rightIcon={
-                <ThemedIcon
-                  name="external-link"
-                  type="font-awesome"
-                  size={IconSize.SM}
-                />
-              }
-            />
-          </SectionContainer>
+            <SectionContainer>
+              <ListItem
+                containerStyle={{ padding: 0 }}
+                onPress={() => WebBrowser.openBrowserAsync(caseLink.value)}
+                title="Official link"
+                titleStyle={{ fontSize: 20, fontWeight: '500' }}
+                rightIcon={
+                  <ThemedIcon
+                    name="external-link"
+                    type="font-awesome"
+                    size={IconSize.SM}
+                  />
+                }
+              />
+            </SectionContainer>
 
-          <Gap />
+            <Gap />
 
-          <SectionContainer>
-            <InfoHeader>More about the decision</InfoHeader>
-            <InfoItem>{'\u2022 ' + `Code - ${caseCode.value}`}</InfoItem>
-            <InfoItem>{'\u2022 ' + `Date - ${caseDate.value}`}</InfoItem>
-            <InfoItem>{'\u2022 ' + `Link - ${caseLink.value}`}</InfoItem>
-            <InfoItem style={{ textTransform: 'capitalize' }}>
-              {'\u2022 ' + `Title - ${caseTitle.value}`}
-            </InfoItem>
-          </SectionContainer>
-        </StyledScrollView>
+            <SectionContainer>
+              <InfoHeader>More about the decision</InfoHeader>
+              <InfoItem>{'\u2022 ' + `Code - ${caseCode.value}`}</InfoItem>
+              <InfoItem>{'\u2022 ' + `Date - ${caseDate.value}`}</InfoItem>
+              <InfoItem>{'\u2022 ' + `Link - ${caseLink.value}`}</InfoItem>
+              <InfoItem style={{ textTransform: 'capitalize' }}>
+                {'\u2022 ' + `Title - ${caseTitle.value}`}
+              </InfoItem>
+            </SectionContainer>
+          </StyledScrollView>
+        </StyledScreenContainer>
         <InstantCartButton data={selectedVariant} />
-      </StyledScreenContainer>
+      </Fragment>
     );
   }
 }

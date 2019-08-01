@@ -1,23 +1,21 @@
 import React from 'react';
 import { withTheme, ThemedComponentProps } from 'styled-components';
 import { SafeAreaView } from 'react-native';
-import { StyledButton } from '../Styled';
 import { ThemedIcon, IconCollection } from '../Icons';
 import { containerStyles } from '../commonStyles';
 import { hexToRgbA } from '../../utils';
+import { ButtonProps, Button } from 'react-native-elements';
 
 interface Props extends ThemedComponentProps {
-  onPress: () => void;
-  label: string;
   opacity?: number;
+  buttonProps?: ButtonProps;
 }
 
 const FooterButton = (props: Props) => {
   const {
-    onPress,
-    label,
     theme: { colors },
     opacity,
+    buttonProps,
   } = props;
   let bgColor = colors.primary;
   if (opacity) {
@@ -28,15 +26,14 @@ const FooterButton = (props: Props) => {
     <SafeAreaView
       style={[containerStyles.fullWidth, { backgroundColor: bgColor }]}
     >
-      <StyledButton
-        onPress={onPress}
-        label={label + ' '}
+      <Button
         buttonStyle={[
           containerStyles.fullWidth,
           { borderRadius: 0, ...containerStyles.transparent },
         ]}
         iconRight
         icon={<ThemedIcon {...IconCollection.externalLink} darktext />}
+        {...buttonProps}
       />
     </SafeAreaView>
   );

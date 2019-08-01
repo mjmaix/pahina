@@ -142,15 +142,18 @@ export const BecomeSellerScreen = () => {
             </ContentContainer>
 
             <FooterButton
-              label="Learn more"
-              onPress={async () => {
-                if (link) {
-                  await WebBrowser.openBrowserAsync(link);
-                } else {
-                  alertFail(() => null, {
-                    message: 'Learn more failed to open.',
-                  });
-                }
+              buttonProps={{
+                title: 'Learn more ',
+
+                onPress: async () => {
+                  if (link) {
+                    await WebBrowser.openBrowserAsync(link);
+                  } else {
+                    alertFail(() => null, {
+                      message: 'Learn more failed to open.',
+                    });
+                  }
+                },
               }}
               opacity={0.5}
             />
