@@ -7,6 +7,7 @@ export const getConfig = `query GetConfig {
     shopifyHost
     shopifyStorefrontAccessToken
     pahinaShopifyApi
+    webBecomeSellerLearnMore
   }
 }
 `;

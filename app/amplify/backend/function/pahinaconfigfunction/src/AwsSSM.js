@@ -42,6 +42,7 @@ class AwsSSM {
     const config = {
       Path: path,
       WithDecryption: true,
+      Recursive: true,
     };
     const newParams = await this.ssm.getParametersByPath(config).promise();
 

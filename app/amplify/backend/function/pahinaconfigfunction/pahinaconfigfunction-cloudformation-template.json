@@ -83,7 +83,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "pahina-dev-20190629201236-deployment",
-					"S3Key": "amplify-builds/pahinaconfigfunction-3153662f33636d77416f-build.zip"
+					"S3Key": "amplify-builds/pahinaconfigfunction-63524b4e75375a374d62-build.zip"
 				}
 			}
 		},

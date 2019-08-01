@@ -21,6 +21,10 @@ exports.handler = async (event, context) => {
   const pahinaShopifyApiKeyPath = `${pahinaConfigPath}/pahina-shopify-api`;
   await AwsSSM.fetchPath(pahinaConfigPath);
   const pahinaShopifyApi = await AwsSSM.getParam(pahinaShopifyApiKeyPath);
+  const webBecomeSellerLearnMorePath = `${pahinaConfigPath}/web/become_seller-learn_more`;
+  const webBecomeSellerLearnMore = await AwsSSM.getParam(
+    webBecomeSellerLearnMorePath,
+  );
   if (!pahinaShopifyApi) {
     throw new Error(`[ERROR] ${pahinaShopifyApiKeyPath} param not provided`);
   }
@@ -30,5 +34,6 @@ exports.handler = async (event, context) => {
     shopifyStorefrontAccessToken,
     shopifyHost,
     pahinaShopifyApi,
+    webBecomeSellerLearnMore,
   };
 };

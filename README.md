@@ -27,13 +27,15 @@
 1. root - `./setup.sh`
 2. app - `amplify push`
 3. app - `amplify publish`
+   1. Create AWS SSM Parameter entry using the website static URL.
+      * `/pahina-config/<env>/web/become_seller-learn_more`
 4. functions
    1. pahina-shopify-api
       1. Update cloudformation mappings/parameters
       2. Update `deploy.sh` environment overrides
       3. `./deploy.sh`
       4.  Create AWS SSM Parameter **Secured Key** entries entries using the API gateway **Invoke URL**.
-          1.  `/pahina-config/<env>/pahina-shopify-api`
+          *  `/pahina-config/<env>/pahina-shopify-api`
    2. pahina-shopify-triggers
       1.  Update cloudformation mappings/parameters
       2.  Update `deploy.sh` environment overrides

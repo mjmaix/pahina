@@ -300,6 +300,7 @@ type Config {
   shopifyHost: String
   shopifyStorefrontAccessToken: String
   pahinaShopifyApi: String
+  webBecomeSellerLearnMore: String
 }
 
 ###
