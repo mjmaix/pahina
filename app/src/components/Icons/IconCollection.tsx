@@ -5,4 +5,5 @@ export const IconCollection: { [key: string]: IconProps } = {
   checkTrue: { name: 'checkcircle', type: 'antdesign' },
   externalLink: { name: 'external-link', type: 'font-awesome' },
   flag: { name: 'flag', type: 'feather' },
+  burger: { name: 'reorder', type: 'font-awesome' },
 };

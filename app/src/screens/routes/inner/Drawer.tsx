@@ -1,5 +1,4 @@
 import React from 'react';
-import { View, Alert } from 'react-native';
 import { createDrawerNavigator, DrawerNavigatorConfig } from 'react-navigation';
 
 import AccountStack from './AccountStack';
@@ -9,6 +8,8 @@ import { DrawerContentComponent } from '../../../components/';
 import { Icon } from 'react-native-elements';
 import { Mappings } from '../mappings';
 import { IconSize } from '../../../utils';
+import NotebookStack from './NotebookStack';
+import SellerStack from './SellerStack';
 
 const navBarOptions: DrawerNavigatorConfig = {
   initialRouteName: 'ShopifyStack',
@@ -36,13 +37,16 @@ const NavBar = createDrawerNavigator(
         title: 'Filter by Court Decisions',
       }),
     },
-    MyNotes: {
-      screen: () => {
-        Alert.alert('not yet implemented');
-        return <View />;
-      },
+    NotebookStack: {
+      screen: NotebookStack,
       navigationOptions: () => ({
         title: 'My Notebook',
+      }),
+    },
+    SellerStack: {
+      screen: SellerStack,
+      navigationOptions: () => ({
+        title: 'Seller/Author',
       }),
     },
     AccountStack: {

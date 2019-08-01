@@ -30,6 +30,9 @@ import {
 import { StyleGuide } from '../../themes';
 import { AddressesScreen } from '../Account/AddressesScreen';
 import { AddressFormScreen } from '../Account/AddressFormScreen';
+import { MyNotesScreen } from '../Notebook/MyNotesScreen';
+import { BecomeSellerScreen } from '../Seller/BecomeSellerScreen';
+import { IconCollection } from '../../components';
 
 // TODO: rename to RouteName
 export type ScreenName =
@@ -60,6 +63,8 @@ export type ScreenName =
   | 'Pledge'
   | 'Addresses'
   | 'Address'
+  | 'BecomeSeller'
+  | 'MyNotes'
   // parents
   | 'AuthLoading'
   | 'App'
@@ -67,7 +72,8 @@ export type ScreenName =
   | 'AccountStack'
   | 'ShopifyStack'
   | 'DecisionsStack'
-  | 'MyNotes'
+  | 'SellerStack'
+  | 'NotebookStack'
   | 'Drawer'
   | 'MfaStack';
 
@@ -190,9 +196,17 @@ export const Mappings: Mappings = {
     screen: ProductDetailScreen,
     icon: { name: '', type: 'font-awesome' },
   },
+  MyNotes: {
+    screen: MyNotesScreen,
+    icon: { name: 'notebook', type: 'material-community' },
+  },
+  BecomeSeller: {
+    screen: BecomeSellerScreen,
+    icon: { name: 'feather', type: 'feather' },
+  },
   Drawer: {
     screen: null,
-    icon: { name: 'reorder', type: 'font-awesome' },
+    icon: IconCollection.burger,
   },
   ShopifyStack: {
     screen: null,
@@ -206,8 +220,12 @@ export const Mappings: Mappings = {
     screen: null,
     icon: { name: 'balance-scale', type: 'font-awesome' },
   },
-  MyNotes: {
+  NotebookStack: {
     screen: null,
     icon: { name: 'notebook', type: 'material-community' },
+  },
+  SellerStack: {
+    screen: null,
+    icon: { name: 'feather', type: 'material-community' },
   },
 };

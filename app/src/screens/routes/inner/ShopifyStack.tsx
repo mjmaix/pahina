@@ -3,15 +3,14 @@ import { NavigationScreenProps, createStackNavigator } from 'react-navigation';
 import { ThemedComponentProps } from 'styled-components';
 
 import { Mappings, StackRouteConfigMap } from '../mappings';
-import { HeaderIcon } from '../../../components';
-import { NavigationService } from '../../../utils';
 import { updateStatusBarStyle } from '../../../utils/StatusBarService';
+import { commonNavigationOption } from '../stackUtils';
+import { DrawerBurgerIcon } from '../../../components';
 
 const routeConfigMap: StackRouteConfigMap = {
   Shop: {
     screen: Mappings.Shop.screen,
     navigationOptions: ({ screenProps }: NavigationScreenProps) => {
-      const { theme } = screenProps as ThemedComponentProps;
       return {
         title: 'Shop Notes',
       };
@@ -32,10 +31,8 @@ const routeConfigMap: StackRouteConfigMap = {
 };
 
 const ShopifyStack = createStackNavigator(routeConfigMap, {
-  defaultNavigationOptions: ({
-    screenProps,
-    navigation,
-  }: NavigationScreenProps) => {
+  defaultNavigationOptions: (navScreenProps: NavigationScreenProps) => {
+    const { screenProps, navigation } = navScreenProps;
     const { theme } = screenProps as ThemedComponentProps;
     navigation.addListener('didFocus', () => {
       updateStatusBarStyle();
@@ -44,38 +41,14 @@ const ShopifyStack = createStackNavigator(routeConfigMap, {
     return {
       headerTintColor: theme.colors.primary,
       headerLeft: isInitial ? (
-        <HeaderIcon
-          icon={{
-            ...Mappings.Drawer.icon,
-            iconStyle: { color: theme.colors.primary },
-          }}
-          onPress={() => NavigationService.toggleDrawer()}
-        />
+        <DrawerBurgerIcon {...navScreenProps} />
       ) : (
         undefined
       ),
-      // headerRight: (
-      //   <HeaderIcon
-      //     icon={{
-      //       ...Mappings.Cart.icon,
-      //       iconStyle: { color: theme.colors.primary },
-      //     }}
-      //     onPress={() => NavigationService.navigate('Cart')}
-      //   />
-      // ),
     };
   },
 });
 
-ShopifyStack.navigationOptions = ({ navigation }: NavigationScreenProps) => {
-  let tabBarVisible = true;
-  if (navigation.state.index > 0) {
-    tabBarVisible = false;
-  }
-
-  return {
-    tabBarVisible,
-  };
-};
+ShopifyStack.navigationOptions = commonNavigationOption();
 
 export default ShopifyStack;

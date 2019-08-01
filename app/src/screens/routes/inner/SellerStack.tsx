@@ -3,34 +3,26 @@ import { NavigationScreenProps } from 'react-navigation';
 
 import { StackRouteConfigMap, Mappings } from '../mappings';
 import {
-  commonNavigationOption,
   commonCreateStackNavigator,
+  commonNavigationOption,
 } from '../stackUtils';
 import { DrawerBurgerIcon } from '../../../components';
 
 const routeConfigMap: StackRouteConfigMap = {
-  Decisions: {
-    screen: Mappings.Decisions.screen,
+  BecomeSeller: {
+    screen: Mappings.BecomeSeller.screen,
 
     navigationOptions: (navScreenProps: NavigationScreenProps) => {
       return {
-        title: 'Decisions',
+        title: 'Become a seller',
         headerLeft: <DrawerBurgerIcon {...navScreenProps} />,
-      };
-    },
-  },
-  Pledge: {
-    screen: Mappings.Pledge.screen,
-    navigationOptions: ({ screenProps }: NavigationScreenProps) => {
-      return {
-        title: 'Pledge',
       };
     },
   },
 };
 
-const DecisionStack = commonCreateStackNavigator(routeConfigMap);
+const SellerStack = commonCreateStackNavigator(routeConfigMap);
 
-DecisionStack.navigationOptions = commonNavigationOption();
+SellerStack.navigationOptions = commonNavigationOption();
 
-export default DecisionStack;
+export default SellerStack;

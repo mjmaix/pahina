@@ -9,28 +9,20 @@ import {
 import { DrawerBurgerIcon } from '../../../components';
 
 const routeConfigMap: StackRouteConfigMap = {
-  Decisions: {
-    screen: Mappings.Decisions.screen,
+  MyNotes: {
+    screen: Mappings.MyNotes.screen,
 
     navigationOptions: (navScreenProps: NavigationScreenProps) => {
       return {
-        title: 'Decisions',
+        title: 'My Notes',
         headerLeft: <DrawerBurgerIcon {...navScreenProps} />,
-      };
-    },
-  },
-  Pledge: {
-    screen: Mappings.Pledge.screen,
-    navigationOptions: ({ screenProps }: NavigationScreenProps) => {
-      return {
-        title: 'Pledge',
       };
     },
   },
 };
 
-const DecisionStack = commonCreateStackNavigator(routeConfigMap);
+const NotebookStack = commonCreateStackNavigator(routeConfigMap);
 
-DecisionStack.navigationOptions = commonNavigationOption();
+NotebookStack.navigationOptions = commonNavigationOption();
 
-export default DecisionStack;
+export default NotebookStack;

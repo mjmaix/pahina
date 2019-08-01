@@ -3,15 +3,15 @@ import { NavigationScreenProps, createStackNavigator } from 'react-navigation';
 import { ThemedComponentProps } from 'styled-components';
 
 import { Mappings, StackRouteConfigMap } from '../mappings';
-import { HeaderIcon } from '../../../components';
+import { HeaderIcon, DrawerBurgerIcon } from '../../../components';
 import { NavigationService } from '../../../utils';
 import { updateStatusBarStyle } from '../../../utils/StatusBarService';
+import { commonNavigationOption } from '../stackUtils';
 
 const routeConfigMap: StackRouteConfigMap = {
   Profile: {
     screen: Mappings.Profile.screen,
     navigationOptions: ({ screenProps }: NavigationScreenProps) => {
-      const { theme } = screenProps as ThemedComponentProps;
       return {
         title: 'Profile',
       };
@@ -63,11 +63,8 @@ const routeConfigMap: StackRouteConfigMap = {
 
 const AccountStack = createStackNavigator(routeConfigMap, {
   initialRouteName: 'Settings',
-  defaultNavigationOptions: ({
-    screenProps,
-    navigation,
-    navigationOptions,
-  }: NavigationScreenProps) => {
+  defaultNavigationOptions: (navScreenProps: NavigationScreenProps) => {
+    const { screenProps, navigation, navigationOptions } = navScreenProps;
     const { theme } = screenProps as ThemedComponentProps;
     navigation.addListener('didFocus', () => {
       updateStatusBarStyle();
@@ -76,13 +73,7 @@ const AccountStack = createStackNavigator(routeConfigMap, {
     return {
       headerTintColor: theme.colors.primary,
       headerLeft: navigation.isFirstRouteInParent() ? (
-        <HeaderIcon
-          icon={{
-            ...Mappings.Drawer.icon,
-            iconStyle: { color: theme.colors.primary },
-          }}
-          onPress={() => NavigationService.toggleDrawer()}
-        />
+        <DrawerBurgerIcon {...navScreenProps} />
       ) : (
         undefined
       ),
@@ -99,15 +90,6 @@ const AccountStack = createStackNavigator(routeConfigMap, {
   },
 });
 
-AccountStack.navigationOptions = ({ navigation }: NavigationScreenProps) => {
-  let tabBarVisible = true;
-  if (navigation.state.index > 0) {
-    tabBarVisible = false;
-  }
-
-  return {
-    tabBarVisible,
-  };
-};
+AccountStack.navigationOptions = commonNavigationOption();
 
 export default AccountStack;
