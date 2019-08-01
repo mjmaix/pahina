@@ -9,3 +9,4 @@ export * from './getExt';
 export * from './NavigationService';
 export * from './networkUtils';
 export * from './StoreKeyObjHelper';
+export * from './hexToRgba';

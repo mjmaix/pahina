@@ -6,4 +6,5 @@ export const IconCollection: { [key: string]: IconProps } = {
   externalLink: { name: 'external-link', type: 'font-awesome' },
   flag: { name: 'flag', type: 'feather' },
   burger: { name: 'reorder', type: 'font-awesome' },
+  close: { name: 'close', type: 'antdesign' },
 };

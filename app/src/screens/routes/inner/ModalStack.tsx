@@ -2,7 +2,7 @@ import React from 'react';
 import { StackNavigatorConfig, createStackNavigator } from 'react-navigation';
 
 import { Mappings, StackRouteConfigMap } from '../mappings';
-import { FixedBackHeader } from '../../../components';
+import { FixedBackHeader, IconCollection } from '../../../components';
 
 const options: StackNavigatorConfig = {
   headerMode: 'screen',
@@ -18,7 +18,7 @@ const routeConfigMap: StackRouteConfigMap = {
       header: (
         <FixedBackHeader
           confirm
-          iconProps={{ name: 'close', type: 'antdesign' }}
+          iconProps={IconCollection.close}
           backTo="Settings"
         />
       ),
@@ -31,7 +31,7 @@ const routeConfigMap: StackRouteConfigMap = {
       header: (
         <FixedBackHeader
           confirm
-          iconProps={{ name: 'close', type: 'antdesign' }}
+          iconProps={IconCollection.close}
           backTo="Settings"
         />
       ),

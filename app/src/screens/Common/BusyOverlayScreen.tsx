@@ -1,14 +1,14 @@
 import React from 'react';
 import { ActivityIndicator } from 'react-native';
 
-import { FixedBackHeader } from '../../components';
+import { FixedBackHeader, IconCollection } from '../../components';
 import { StyledBlurredView, StyledTopContainer } from '../../components';
 
 export const BusyOverlayScreen = () => {
   return (
     <StyledBlurredView>
       <StyledTopContainer>
-        <FixedBackHeader iconProps={{ name: 'close', type: 'antdesign' }} />
+        <FixedBackHeader iconProps={IconCollection.close} />
       </StyledTopContainer>
       <ActivityIndicator size="large" />
     </StyledBlurredView>

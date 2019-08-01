@@ -2,6 +2,7 @@ export * from './Buttons';
 export * from './commonStyles';
 export * from './Forms';
 export * from './Headers';
+export * from './Footers';
 export * from './HOCs';
 export * from './Icons';
 export * from './Images';

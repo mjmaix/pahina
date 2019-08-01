@@ -3,19 +3,21 @@ import { SafeAreaView, StyleSheet } from 'react-native';
 import { Button, Icon, IconProps } from 'react-native-elements';
 
 import { StyleGuide } from '../../themes';
-import { ScreenName } from '../../routes/mappings';
 import { NavigationService, alertClose } from '../../utils';
+import { ScreenName } from '../../screens/routes/mappings';
 
 interface FixedBackHeaderProps {
   iconProps?: IconProps;
   confirm?: boolean;
   backTo?: ScreenName;
+  IconComponent?: React.ComponentType;
 }
 
 export const FixedBackHeader = ({
   iconProps,
   confirm,
   backTo,
+  IconComponent,
 }: FixedBackHeaderProps) => {
   const backAction = () => {
     if (backTo) {
@@ -33,13 +35,16 @@ export const FixedBackHeader = ({
   };
   return (
     <SafeAreaView style={styles.container}>
-      <Button
-        containerStyle={styles.buttonContainer}
-        onPress={onPress}
-        icon={<Icon name="chevron-left" type={'entypo'} {...iconProps} />}
-        type="clear"
-        hitSlop={{ ...StyleGuide.hitSlop, right: 50 }}
-      />
+      {!!IconComponent && <IconComponent />}
+      {!IconComponent && (
+        <Button
+          containerStyle={styles.buttonContainer}
+          onPress={onPress}
+          icon={<Icon name="chevron-left" type={'entypo'} {...iconProps} />}
+          type="clear"
+          hitSlop={{ ...StyleGuide.hitSlop, right: 50 }}
+        />
+      )}
     </SafeAreaView>
   );
 };
