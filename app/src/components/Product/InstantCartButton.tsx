@@ -1,17 +1,14 @@
 import React from 'react';
 import * as WebBrowser from 'expo-web-browser';
 import _ from 'lodash';
+import { withTheme, ThemedComponentProps } from 'styled-components';
 
 import { ShopifyGraphQlVariant, ShopifyRestAddress } from '../../types';
 import { getCartLink } from '../../api-helpers/productHelpers';
 import { ConfigConsumer, ConfigStoreInfo } from '../../stores';
-import { containerStyles } from '../commonStyles';
-import { StyleGuide } from '../../themes';
-import { StyledButton } from '../Styled';
 import { AddressesContainerInstance } from '../../unstated';
 import { NavigationService, alertConfirm, Busy } from '../../utils';
 import { handleGetCurrentUserAttrs, logError, pretty } from '../../shared';
-import { withTheme, ThemedComponentProps } from 'styled-components';
 import { FooterButton } from '../Footers';
 
 interface OpenBrowserParams {
@@ -41,12 +38,6 @@ const InstantCartButton = ({ data, theme }: Props) => {
               title: label + ' ',
               onPress: onPressEvent(config, data, browserParams),
             }}
-            // containerStyle={[
-            //   containerStyles.fullWidth,
-            //   {
-            //     padding: StyleGuide.gap.big,
-            //   },
-            // ]}
           />
         );
       }}
