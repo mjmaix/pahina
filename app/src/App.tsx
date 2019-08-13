@@ -17,7 +17,7 @@ import _ from 'lodash';
 
 import { Provider as UnstatedProvider } from 'unstated';
 
-import { ShopifyRestApi } from './shared/ShopifyRestApi';
+import { ShopifyRestApi } from './api-helpers/ShopifyRestApi';
 import { STORAGE_KEY, ThemeName, ThemeHelper } from './themes';
 import { NavigationService } from './utils';
 import { logInfo, logError, Config } from './shared';

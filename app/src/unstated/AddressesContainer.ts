@@ -2,7 +2,7 @@ import { Container } from 'unstated';
 import _ from 'lodash';
 
 import { ShopifyRestAddress } from '../types';
-import { ShopifyRestApi } from '../shared/ShopifyRestApi';
+import { ShopifyRestApi } from '../api-helpers/ShopifyRestApi';
 import { logError } from '../shared';
 
 export interface AddressesState {

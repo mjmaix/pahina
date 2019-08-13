@@ -23,11 +23,12 @@ import {
   IconCollection,
   containerStyles,
 } from '../../components';
-import { AddressModel, AddressSchema, logError, logInfo } from '../../shared';
+import { AddressSchema, logError, logInfo } from '../../shared';
 import { alertFail, alertOk, NavigationService, Busy } from '../../utils';
 import { StyleGuide } from '../../themes';
-import { ShopifyRestApi } from '../../shared/ShopifyRestApi';
+import { ShopifyRestApi } from '../../api-helpers/ShopifyRestApi';
 import { pretty } from '../../shared/utils';
+import { AddressModel } from '../../api-helpers/models';
 
 type FormModel = typeof AddressModel;
 
